@@ -4,25 +4,25 @@
 				Fourier級数展開の基底関数はFourier変換やDFTのものと違って正規化されていないため、美しさに欠ける。
 				\par
 				$d\in\naturalNumbers,\;W_l>0\;(l=1,2,,\cdots,d),\;\bm{k}\in\integers^d$とする。
-				次式で定義される、$\bm{x}\in\realSpace^d$に関する連続座標信号を、区間$\prod_{l=1}^d [-W_l,W_l]$に於ける第$\bm{k}$基底関数という。
+				次式で定義される、$\bm{x}\in\realNumbers^d$に関する連続座標信号を、区間$\prod_{l=1}^d [-W_l,W_l]$に於ける第$\bm{k}$基底関数という。
 				\[ W(\bm{k},\bm{x}) := \exp i\sum_{l=1}^d k_l\frac{x_l}{W_l}\pi \]
 			
 			\section{Fourier係数}
 				$d\in\naturalNumbers,\;W_l>0\;(l=1,2,,\cdots,d),\;\Omega:=\prod_{l=1}^d [-W_l,W_l],\;\bm{k}\in\integers^d$とする。
-				$f:\bm{x}\in\realSpace \mapsto f(\bm{x})\in\realSpace$を、第$l$座標に関して周期が$2W_l$であるような周期関数とする。
+				$f:\bm{x}\in\realNumbers \mapsto f(\bm{x})\in\realNumbers$を、第$l$座標に関して周期が$2W_l$であるような周期関数とする。
 				次式で定義する、$\bm{k}$に関する離散座標信号を$f$の第$\bm{k}$Fourier係数という。
 				\[ c(f,\bm{k}) := \left(\prod_{l=1}^d 2W_l\right)^{-1}\integ{\Omega}{}{\overline{W(\bm{k},\bm{x})}f(\bm{x})}{\bm{x}} \]
 			
 		\chapter{Fourier変換}
 			\section{基底関数}
-				$d\in\naturalNumbers,\;\bm{x},\bm{\omega}\in\realSpace^d$とする。
+				$d\in\naturalNumbers,\;\bm{x},\bm{\omega}\in\realNumbers^d$とする。
 				次のものを$d$次元Fourier変換に於ける基底関数という。
 				\[ W(\bm{\omega},\bm{x}) := (2\pi)^{-d/2}\exp i\bm{\omega}^\top\bm{x} \]
 			
 			\section{Fourier変換の定義}
-				$d\in\naturalNumbers,\;\bm{\omega}\in\realSpace^d$とする。
-				$f:\realSpace^d\to\complexSpace$に対して、次式で定義される、$\omega$に関する連続座標信号を$f$のFourier変換という。
-				\[ \mathcal{F}(f,\bm{\omega}) := \integ{\realSpace^d}{}{\overline{W(\bm{\omega},\bm{x})}f(\bm{x})}{\bm{x}} = (2\pi)^{-d/2} \integ{\realSpace^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{\bm{x}} \]
+				$d\in\naturalNumbers,\;\bm{\omega}\in\realNumbers^d$とする。
+				$f:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\omega$に関する連続座標信号を$f$のFourier変換という。
+				\[ \mathcal{F}(f,\bm{\omega}) := \integ{\realNumbers^d}{}{\overline{W(\bm{\omega},\bm{x})}f(\bm{x})}{\bm{x}} = (2\pi)^{-d/2} \integ{\realNumbers^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{\bm{x}} \]
 
 		\chapter{離散Fourier変換(DFT)}
 			\section{基底}
@@ -57,7 +57,7 @@
 		\chapter{サンプリング定理}
 			\begin{shadebox}
 				$d\in\naturalNumbers,\;W_l>0\;(l=1,2,,\cdots,d),\;\Omega:=\prod_{l=1}^d [-W_l,W_l]$とする。
-				$f:\realSpace^d\to\realSpace$のFourier変換$\mathcal{F}(f,\bm{\omega})$が存在してその台が$\Omega$に含まれるとき、次式が成り立つ。
+				$f:\realNumbers^d\to\realNumbers$のFourier変換$\mathcal{F}(f,\bm{\omega})$が存在してその台が$\Omega$に含まれるとき、次式が成り立つ。
 				\[ f(\bm{x}) = \sum_{\bm{n}\in\naturalNumbers}f\left(\pi\frac{n_1}{W_1},\cdots,\pi\frac{n_d}{W_d}\right)\prod_{l=1}^d\sinc W_l\left(x_l + \pi\frac{n_l}{W_l}\right) \]
 				つまり$f$の各点での評価値を沢山集めて$f$を任意の精度で近似できる。
 				\par
@@ -72,13 +72,13 @@
 				となる。$c(\mathcal{F}(f),\bm{n})$は次式で求まる。
 				\begin{align*}
 					c(\mathcal{F}(f),\bm{n}) &= \left(\prod_{l=1}^d 2W_l\right)^{-1} \integ{\Omega}{}{\mathcal{F}(f,\bm{\xi}) \exp (-i)\sum_{l=1}^d n_l\frac{\xi_l}{W_l}\pi}{\bm{\xi}} \\
-					&= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} (2\pi)^{-d/2} \integ{\textcolor{darkpastelgreen}{\realSpace^d}}{}{\mathcal{F}(f,\bm{\xi}) \exp i\sum_{l=1}^d \left(\frac{-n_l}{W_l}\pi\right)\xi_l}{\bm{\xi}} \\
+					&= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} (2\pi)^{-d/2} \integ{\textcolor{darkpastelgreen}{\realNumbers^d}}{}{\mathcal{F}(f,\bm{\xi}) \exp i\sum_{l=1}^d \left(\frac{-n_l}{W_l}\pi\right)\xi_l}{\bm{\xi}} \\
 					&= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} \mathcal{F}^{-1}\left(\mathcal{F}(f),\frac{-\pi\bm{n}}{\bm{W}}\right) \\
 					&= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} f\left(\frac{-\pi\bm{n}}{\bm{W}}\right)
 				\end{align*}
 				$f$は$\mathcal{F}(f)$のFourier逆変換で次のようにして求まる。
 				\begin{align*}
-					f(\bm{x}) &= \mathcal{F}^{-1}\left(\mathcal{F}(f),\bm{x}\right) = (2\pi)^{-d/2} \integ{\realSpace^d}{}{\mathcal{F}(f,\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{\bm{\omega}} = (2\pi)^{-d/2} \integ{\Omega}{}{\mathcal{F}(f,\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{\bm{\omega}} \\
+					f(\bm{x}) &= \mathcal{F}^{-1}\left(\mathcal{F}(f),\bm{x}\right) = (2\pi)^{-d/2} \integ{\realNumbers^d}{}{\mathcal{F}(f,\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{\bm{\omega}} = (2\pi)^{-d/2} \integ{\Omega}{}{\mathcal{F}(f,\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{\bm{\omega}} \\
 					&= (2\pi)^{-d/2} \integ{\Omega}{}{\sum_{\bm{n}\in\naturalNumbers^d} c(\mathcal{F}(f),\bm{n}) \left(\exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi\right) \exp i\bm{\omega}^\top\bm{x}}{\bm{\omega}} \\
 					&= (2\pi)^{-d/2} \sum_{\bm{n}\in\naturalNumbers^d} \integ{\Omega}{}{c(\mathcal{F}(f),\bm{n}) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\frac{\bm{n}}{\bm{W}}\right) }{\bm{\omega}} \\
 					&= (2\pi)^{-d/2} \sum_{\bm{n}\in\naturalNumbers^d} \integ{\Omega}{}{(2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} f\left(\frac{-\pi\bm{n}}{\bm{W}}\right) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\frac{\bm{n}}{\bm{W}}\right) }{\bm{\omega}} \\

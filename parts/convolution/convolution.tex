@@ -33,21 +33,21 @@
 				\subsection{動機}
 					画像処理に於いてカーネルとの畳み込みを実行してから線形変換を施す場合と、事前に画像とカーネルの両方に線形変換を施してから畳み込む場合の結果の違いに関心がある。
 				\subsection{理論}
-					$d\in\naturalNumbers$とし、$f:\bm{x}\in\realSpace^d\mapsto f(\bm{x})\in\realSpace$を$d$次元信号とする。
+					$d\in\naturalNumbers$とし、$f:\bm{x}\in\realNumbers^d\mapsto f(\bm{x})\in\realNumbers$を$d$次元信号とする。
 					線形変換を表す正則行列を$A$とし、$A$による変換を$T_A$と表す。
 					$T_A$による変換は次式を以て定義する。
 					\[ T_A(f)(\bm{x}) = f(A^{-1}\bm{x}) \]
-					$G:\bm{x}\in\realSpace^d\mapsto G(\bm{x})\in\realSpace$を$d$次元信号とする。
+					$G:\bm{x}\in\realNumbers^d\mapsto G(\bm{x})\in\realNumbers$を$d$次元信号とする。
 					このとき次式が成り立つ。
 					\[ T_A(G)*T_A(f) = |A|T_A(G*f) \]
 					\begin{proof}
 						\quad\par
 						$\mu$をJordan測度とする。
 						\begin{align*}
-							T_A(G)*T_A(f)(\bm{x}) &= \LebInteg{\realSpace^d}{T_A(G)(\bm{x}-\bm{u})T_A(f)(\bm{u})}{\mu}{\bm{u}} = \LebInteg{\realSpace^d}{G(A^{-1}(\bm{x}-\bm{u}))f(A^{-1}\bm{u})}{\mu}{\bm{u}} \\
-							&= \LebInteg{\realSpace^d}{G(A^{-1}\bm{x} - A^{-1}\bm{u})f(A^{-1}\bm{u})}{\mu}{\bm{u}} \\
-							&= \LebInteg{\realSpace^d}{G(A^{-1}\bm{x} - \bm{v})f(\bm{v})}{|A|\mu}{\bm{v}} \quad (\bm{v}=A^{-1}\bm{u}\text{と変数変換した}) \\
-							&= |A| \LebInteg{\realSpace^d}{G(A^{-1}\bm{x} - \bm{v})f(\bm{v})}{\mu}{\bm{v}} \\
+							T_A(G)*T_A(f)(\bm{x}) &= \LebInteg{\realNumbers^d}{T_A(G)(\bm{x}-\bm{u})T_A(f)(\bm{u})}{\mu}{\bm{u}} = \LebInteg{\realNumbers^d}{G(A^{-1}(\bm{x}-\bm{u}))f(A^{-1}\bm{u})}{\mu}{\bm{u}} \\
+							&= \LebInteg{\realNumbers^d}{G(A^{-1}\bm{x} - A^{-1}\bm{u})f(A^{-1}\bm{u})}{\mu}{\bm{u}} \\
+							&= \LebInteg{\realNumbers^d}{G(A^{-1}\bm{x} - \bm{v})f(\bm{v})}{|A|\mu}{\bm{v}} \quad (\bm{v}=A^{-1}\bm{u}\text{と変数変換した}) \\
+							&= |A| \LebInteg{\realNumbers^d}{G(A^{-1}\bm{x} - \bm{v})f(\bm{v})}{\mu}{\bm{v}} \\
 							&= |A|T_A(G*f)(\bm{x})
 						\end{align*}
 					\end{proof}
