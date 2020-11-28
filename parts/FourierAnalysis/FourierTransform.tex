@@ -11,7 +11,7 @@
 				$d\in\naturalNumbers,\;W_l>0\;(l=1,2,,\cdots,d),\;\Omega:=\prod_{l=1}^d [-W_l,W_l],\;\bm{k}\in\integers^d$とする。
 				$f:\bm{x}\in\realNumbers \mapsto f(\bm{x})\in\realNumbers$を、第$l$座標に関して周期が$2W_l$であるような周期関数とする。
 				次式で定義する、$\bm{k}$に関する離散座標信号を$f$の第$\bm{k}$Fourier係数という。
-				\[ c(f,\bm{k}) := \left(\prod_{l=1}^d 2W_l\right)^{-1}\integ{\Omega}{}{\overline{W(\bm{k},\bm{x})}f(\bm{x})}{\bm{x}} \]
+				\[ c(f,\bm{k}) := \left(\prod_{l=1}^d 2W_l\right)^{-1}\integ{\Omega}{}{\conj{W(\bm{k},\bm{x})}f(\bm{x})}{\bm{x}} \]
 
 		\chapter{Fourier変換}
 			\section{基底関数}
@@ -22,7 +22,7 @@
 			\section{Fourier変換の定義}
 				$d\in\naturalNumbers,\;\bm{\omega}\in\realNumbers^d$とする。
 				$f:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\omega$に関する連続座標信号を$f$のFourier変換という。
-				\[ \mathcal{F}(f,\bm{\omega}) := \integ{\realNumbers^d}{}{\overline{W(\bm{\omega},\bm{x})}f(\bm{x})}{\bm{x}} = (2\pi)^{-d/2} \integ{\realNumbers^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{\bm{x}} \]
+				\[ \mathcal{F}(f,\bm{\omega}) := \integ{\realNumbers^d}{}{\conj{W(\bm{\omega},\bm{x})}f(\bm{x})}{\bm{x}} = (2\pi)^{-d/2} \integ{\realNumbers^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{\bm{x}} \]
 
 		\chapter{離散Fourier変換(DFT)}
 			\section{基底}
@@ -35,7 +35,22 @@
 				$d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\cdots,d),\;\bm{k}\in\integers^d$とする。
 				$\Omega := \{0,1,\cdots,N_1-1\}\times\{0,1,\cdots,N_2-1\}\times\cdots\times\{0,1,\cdots,N_d-1\}$とする。
 				$f$を周期が$(N_1,N_2,\cdots,N_d)$であるような離散座標信号$f: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n})$とするとき、次式で定義される、$\bm{k}$に関する離散座標信号を$f$のDFTという。
-				\[ \text{DFT}(f,\bm{k}) := \sum_{\bm{n}\in\Omega} \overline{W(\bm{k},\bm{n})} f(\bm{n}) \]
+				\[ \text{DFT}(f,\bm{k}) := \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} f(\bm{n}) \]
+
+			\section{Hermiteな離散時間信号のDFTは実数である}
+				\label{Hermiteな離散時間信号のDFTは実数である}
+				\begin{shadebox}
+					$d,N_l,\bm{k},\Omega,f$の定義は\ref{DFTの定義}と同じものとする。
+					$f$にさらにHermite性: $\conj{f(\bm{n})} = f(-\bm{n})$を要請するとき、$\text{DFT}(f,\bm{k})$は実数となる。
+				\end{shadebox}
+				\begin{proof}
+					\begin{align*}
+						2\Im{\text{DFT}(f,\bm{k})} &= \text{DFT}(f,\bm{k}) - \conj{\text{DFT}(f,\bm{k})}
+					\end{align*}
+				\end{proof}
+
+			\subsection{系: Hermiteな離散時間信号のIDFTは実数である}
+				\ref{Hermiteな離散時間信号のDFTは実数である}と同様にして示せる。
 
 			\section{巡回畳み込みのDFTはDFTの積に比例する}
 				\begin{shadebox}
@@ -47,11 +62,11 @@
 					\quad\par
 					$\bm{N} := [N_1,\cdots,N_d]^\top$とする。
 					\begin{align*}
-						\text{DFT}\left(\cycConv{f}{g},\bm{k}\right) &= \sum_{\bm{n}\in\Omega}\overline{W(\bm{k},\bm{n})} \left(\cycConv{f}{g}\right)(\bm{n}) = \sum_{\bm{n}\in\Omega}\overline{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \\
-						&= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \overline{W(\bm{k},\bm{n})}g((\bm{n}-\bm{m})\%\bm{N}) \\
-						&= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \left(\prod_{l=1}^d N_l\right)^{1/2} \overline{W(\bm{k},\bm{m})} \overline{W(\bm{k},\bm{n}-\bm{m})} g((\bm{n}-\bm{m})\%\bm{N}) \\
-						&= \left(\prod_{l=1}^d N_l\right)^{1/2} \sum_{\bm{m}\in\Omega} \overline{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \overline{W(\bm{k},(\bm{n}-\bm{m})\%\bm{N})} g((\bm{n}-\bm{m})\%\bm{N}) \\
-						&= \left(\prod_{l=1}^d N_l\right)^{1/2} \sum_{\bm{m}\in\Omega} \overline{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \overline{W(\bm{k},\bm{n})} g(\bm{n}) \\
+						\text{DFT}\left(\cycConv{f}{g},\bm{k}\right) &= \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \left(\cycConv{f}{g}\right)(\bm{n}) = \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \\
+						&= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}g((\bm{n}-\bm{m})\%\bm{N}) \\
+						&= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \left(\prod_{l=1}^d N_l\right)^{1/2} \conj{W(\bm{k},\bm{m})} \conj{W(\bm{k},\bm{n}-\bm{m})} g((\bm{n}-\bm{m})\%\bm{N}) \\
+						&= \left(\prod_{l=1}^d N_l\right)^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},(\bm{n}-\bm{m})\%\bm{N})} g((\bm{n}-\bm{m})\%\bm{N}) \\
+						&= \left(\prod_{l=1}^d N_l\right)^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} g(\bm{n}) \\
 						&= \left(\prod_{l=1}^d N_l\right)^{1/2}\text{DFT}(f,\bm{k})\text{DFT}(g,\bm{k})
 					\end{align*}
 				\end{proof}
