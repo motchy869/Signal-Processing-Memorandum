@@ -45,7 +45,19 @@
 				\end{shadebox}
 				\begin{proof}
 					\begin{align*}
-						2\Im{\text{DFT}(f,\bm{k})} &= \text{DFT}(f,\bm{k}) - \conj{\text{DFT}(f,\bm{k})}
+						2\Im{\text{DFT}(f,\bm{k})} &= \text{DFT}(f,\bm{k}) - \conj{\text{DFT}(f,\bm{k})} \\
+						&= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})\conj{f(\bm{n})}
+					\end{align*}
+					ここで$\bm{n}_\text{M} := [N_1,\cdots,N_d]^\top$とすると、
+					\[ \conj{W(\bm{k},\bm{n})} = W(\bm{k},-\bm{n}) = W(\bm{k},\bm{n}_\text{M}-\bm{n}) \]
+					また、$f$のHermite性の仮定より
+					\[ \conj{f(\bm{n})} = f(-\bm{n}) = f(\bm{n}_\text{M}-\bm{n}) \]
+					以上より
+					\begin{align*}
+						2\Im{\text{DFT}(f,\bm{k})} &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\text{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})f(\bm{n}_\text{M}-\bm{n}) \\
+						&= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\text{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\text{M}-\bm{n})f(\bm{n}) \\
+						&\phantom{=} (\{(\bm{n}, \bm{n}_\text{M}-\bm{n}) | \bm{n}\in\Omega\} = \{(\bm{n}_\text{M}-\bm{n}), \bm{n} | \bm{n}\in\Omega\}\text{を用いた}) \\
+						&= 0
 					\end{align*}
 				\end{proof}
 
