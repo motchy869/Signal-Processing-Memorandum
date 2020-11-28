@@ -31,14 +31,16 @@
 				\[ W(\bm{k},\bm{n}) := \left(\prod_{l=1}^d N_l\right)^{-1/2} \exp i\left(\sum_{l=1}^d \frac{k_l n_l}{N_l}2\pi\right)\]
 
 			\section{DFTの定義}
+				\label{DFTの定義}
 				$d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\cdots,d),\;\bm{k}\in\integers^d$とする。
-				$f$を、定義域が$\Omega := \{0,1,\cdots,N_1-1\}\times\{0,1,\cdots,N_2-1\}\times\cdots\times\{0,1,\cdots,N_d-1\}$であるような離散座標信号$f: \Omega\to\field;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n})$とするとき、次式で定義される、$\bm{k}$に関する離散座標信号を$f$のDFTという。
+				$\Omega := \{0,1,\cdots,N_1-1\}\times\{0,1,\cdots,N_2-1\}\times\cdots\times\{0,1,\cdots,N_d-1\}$とする。
+				$f$を周期が$(N_1,N_2,\cdots,N_d)$であるような離散座標信号$f: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n})$とするとき、次式で定義される、$\bm{k}$に関する離散座標信号を$f$のDFTという。
 				\[ \text{DFT}(f,\bm{k}) := \sum_{\bm{n}\in\Omega} \overline{W(\bm{k},\bm{n})} f(\bm{n}) \]
 
 			\section{巡回畳み込みのDFTはDFTの積に比例する}
 				\begin{shadebox}
-					$d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\cdots,d),\;\bm{k}\in\integers^d$とする。
-					$f,g$を、定義域が$\Omega := \{0,1,\cdots,N_1-1\}\times\{0,1,\cdots,N_2-1\}\times\cdots\times\{0,1,\cdots,N_d-1\}$であるような離散座標信号$f,g: \Omega\to\field;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき、次が成り立つ。
+					$d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
+					$f,g$を周期が$(N_1,N_2,\cdots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき、次が成り立つ。
 					\[ \text{DFT}\left(\cycConv{f}{g},\bm{k}\right) = \left(\prod_{l=1}^d N_l\right)^{1/2}\text{DFT}(f,\bm{k})\text{DFT}(g,\bm{k}) \]
 				\end{shadebox}
 				\begin{proof}
