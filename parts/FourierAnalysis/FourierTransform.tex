@@ -6,19 +6,19 @@
 				$d\in\naturalNumbers,\;W_l>0\;(l=1,2,,\cdots,d),\;\bm{k}\in\integers^d$とする。
 				次式で定義される、$\bm{x}\in\realNumbers^d$に関する連続座標信号を、区間$\prod_{l=1}^d [-W_l,W_l]$に於ける第$\bm{k}$基底関数という。
 				\[ W(\bm{k},\bm{x}) := \exp i\sum_{l=1}^d k_l\frac{x_l}{W_l}\pi \]
-			
+
 			\section{Fourier係数}
 				$d\in\naturalNumbers,\;W_l>0\;(l=1,2,,\cdots,d),\;\Omega:=\prod_{l=1}^d [-W_l,W_l],\;\bm{k}\in\integers^d$とする。
 				$f:\bm{x}\in\realNumbers \mapsto f(\bm{x})\in\realNumbers$を、第$l$座標に関して周期が$2W_l$であるような周期関数とする。
 				次式で定義する、$\bm{k}$に関する離散座標信号を$f$の第$\bm{k}$Fourier係数という。
 				\[ c(f,\bm{k}) := \left(\prod_{l=1}^d 2W_l\right)^{-1}\integ{\Omega}{}{\overline{W(\bm{k},\bm{x})}f(\bm{x})}{\bm{x}} \]
-			
+
 		\chapter{Fourier変換}
 			\section{基底関数}
 				$d\in\naturalNumbers,\;\bm{x},\bm{\omega}\in\realNumbers^d$とする。
 				次のものを$d$次元Fourier変換に於ける基底関数という。
 				\[ W(\bm{\omega},\bm{x}) := (2\pi)^{-d/2}\exp i\bm{\omega}^\top\bm{x} \]
-			
+
 			\section{Fourier変換の定義}
 				$d\in\naturalNumbers,\;\bm{\omega}\in\realNumbers^d$とする。
 				$f:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\omega$に関する連続座標信号を$f$のFourier変換という。
@@ -29,12 +29,12 @@
 				$d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\cdots,d),\;\bm{k},\bm{n}\in\integers^d$とする。
 				次式で定義される、$\bm{n}$に関する離散座標信号を$d$次元DFTの第$\bm{k}$基底ベクトルという。
 				\[ W(\bm{k},\bm{n}) := \left(\prod_{l=1}^d N_l\right)^{-1/2} \exp i\left(\sum_{l=1}^d \frac{k_l n_l}{N_l}2\pi\right)\]
-		
+
 			\section{DFTの定義}
 				$d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\cdots,d),\;\bm{k}\in\integers^d$とする。
 				$f$を、定義域が$\Omega := \{0,1,\cdots,N_1-1\}\times\{0,1,\cdots,N_2-1\}\times\cdots\times\{0,1,\cdots,N_d-1\}$であるような離散座標信号$f: \Omega\to\field;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n})$とするとき、次式で定義される、$\bm{k}$に関する離散座標信号を$f$のDFTという。
 				\[ \text{DFT}(f,\bm{k}) := \sum_{\bm{n}\in\Omega} \overline{W(\bm{k},\bm{n})} f(\bm{n}) \]
-		
+
 			\section{巡回畳み込みのDFTはDFTの積に比例する}
 				\begin{shadebox}
 					$d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\cdots,d),\;\bm{k}\in\integers^d$とする。
@@ -53,7 +53,7 @@
 						&= \left(\prod_{l=1}^d N_l\right)^{1/2}\text{DFT}(f,\bm{k})\text{DFT}(g,\bm{k})
 					\end{align*}
 				\end{proof}
-		
+
 		\chapter{サンプリング定理}
 			\begin{shadebox}
 				$d\in\naturalNumbers,\;W_l>0\;(l=1,2,,\cdots,d),\;\Omega:=\prod_{l=1}^d [-W_l,W_l]$とする。
