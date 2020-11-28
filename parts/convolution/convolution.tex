@@ -1,13 +1,13 @@
  \part{畳み込み}
 		\chapter{巡回畳み込み}
-		$f,g$を、定義域が$\Omega := \{0,1,\cdots,N_1-1\}\times\{0,1,\cdots,N_2-1\}\times\cdots\times\{0,1,\cdots,N_d-1\}$であるような離散座標信号$f,g: \Omega\to\field;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とする。
+		$f,g$を、定義域が$\Omega := \{0,1,\cdots,N_1-1\}\times\{0,1,\cdots,N_2-1\}\times\cdots\times\{0,1,\cdots,N_d-1\}$であるような離散座標信号$f,g: \Omega\to\complexNumbers;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とする。
 		$\bm{N} := [N_1,\cdots,N_d]^\top$とする。
 		$f$と$g$の巡回畳み込み$\cycConv{f}{g}$を次式で定義する。
 		\[ \left(\cycConv{f}{g}\right)(\bm{n}) := \sum_{\bm{m} \in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \]
 
 		\section{巡回畳み込みの可換則}
 			\begin{shadebox}
-				$f,g$を、定義域が$\Omega := \{0,1,\cdots,N_1-1\}\times\{0,1,\cdots,N_2-1\}\times\cdots\times\{0,1,\cdots,N_d-1\}$であるような離散座標信号$f,g: \Omega\to\field;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき、次が成り立つ。
+				$f,g$を、定義域が$\Omega := \{0,1,\cdots,N_1-1\}\times\{0,1,\cdots,N_2-1\}\times\cdots\times\{0,1,\cdots,N_d-1\}$であるような離散座標信号$f,g: \Omega\to\complexNumbers;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき、次が成り立つ。
 				\[ \cycConv{f}{g} = \cycConv{g}{f} \]
 			\end{shadebox}
 			\begin{proof}
