@@ -46,9 +46,10 @@
 						\begin{align*}
 							T_A(G)*T_A(f)(\bm{x}) &= \LebInteg{\realNumbers^d}{T_A(G)(\bm{x}-\bm{u})T_A(f)(\bm{u})}{\mu}{\bm{u}} = \LebInteg{\realNumbers^d}{G(A^{-1}(\bm{x}-\bm{u}))f(A^{-1}\bm{u})}{\mu}{\bm{u}} \\
 							&= \LebInteg{\realNumbers^d}{G(A^{-1}\bm{x} - A^{-1}\bm{u})f(A^{-1}\bm{u})}{\mu}{\bm{u}} \\
-							&= \LebInteg{\realNumbers^d}{G(A^{-1}\bm{x} - \bm{v})f(\bm{v})}{|A|\mu}{\bm{v}} \quad (\bm{v}=A^{-1}\bm{u}\text{と変数変換した}) \\
-							&= |A| \LebInteg{\realNumbers^d}{G(A^{-1}\bm{x} - \bm{v})f(\bm{v})}{\mu}{\bm{v}} \\
-							&= |A|T_A(G*f)(\bm{x})
+							&= \LebInteg{\realNumbers^d}{G(A^{-1}\bm{x} - \bm{v})f(\bm{v})}{\abs{|A|}\mu}{\bm{v}} \\
+							&\phantom{=} (\bm{v}=A^{-1}\bm{u}\text{と変数変換した。}\abs{|A|}\text{は}|A|の絶対値である。) \\
+							&= \abs{|A|} \LebInteg{\realNumbers^d}{G(A^{-1}\bm{x} - \bm{v})f(\bm{v})}{\mu}{\bm{v}} \\
+							&= \abs{|A|}T_A(G*f)(\bm{x})
 						\end{align*}
 					\end{proof}
 				\section{数値実験}
