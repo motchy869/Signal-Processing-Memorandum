@@ -1,14 +1,16 @@
-﻿\documentclass[report]{jsbook}
-%\documentclass[a4paper]{jsreport}
+﻿\RequirePackage{plautopatch}
+\documentclass[dvipdfmx,uplatex,report]{jsbook}%\documentclass[a4paper]{jsreport}
 \RequirePackage[l2tabu, orthodox]{nag}	%古いコマンド,パッケージに対する警告
 \usepackage{amsmath, amssymb, amsfonts, amsthm}
 \usepackage{ascmac}
 \usepackage{bbm}
 \usepackage{bigdelim}
 \usepackage{cases}
+\usepackage{color}
 \usepackage{comment}
 \usepackage{empheq}
 \usepackage{fancybox}
+\usepackage{graphicx}
 \usepackage{here}
 \usepackage{ifthen}
 \usepackage{indent}
@@ -18,7 +20,6 @@
 \usepackage{tabularx, arydshln}
 \usepackage{udline}
 \usepackage{url}
-\usepackage[dvipdfmx]{color,graphicx}
 
 \theoremstyle{definition}%定理環境 : 斜体なし
 \newtheorem*{commentary}{解説}
