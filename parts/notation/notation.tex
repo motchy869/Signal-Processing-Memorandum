@@ -1,28 +1,28 @@
- \part{表記法}
-		\chapter{数学記号}
-			\begin{itemize}
-				\item $\field$: 体
-				\item $\integers$: 整数全体の集合
-				\item $\realNumbers$: 実数全体の集合
-				\item $\complexNumbers$: 複素数全体の集合
-				\item $\bm{a}/\bm{b}\;(d \in \naturalNumbers,\;\bm{a},\bm{b} \in \field^d,\;b_i\neq 0 \text{ for all }i)$: $[a_1/b_1,\cdots,a_d/b_d]^\top$
-				\item $a\%b\;(a,b\in\integers,\;b\neq 0)$: $a$を$b$で割った余り。符号に2通り考えられるが、本書では結果を0以上$|a|$未満とする定義を採用する。
-				\item $\bm{a}\%\bm{b}\;(d\in\naturalNumbers,\;\bm{a},\bm{b} \in \integers^d,\; b_i\neq 0 \text{ for all }i)$: $[a_1\%b_1,\cdots,a_d\%b_d]^\top$
-			\end{itemize}
-		
-		\chapter{連続座標信号の表現}
-			連続的な座標値$\bm{x}\in\realNumbers^{d_1}\;(d_1\in\naturalNumbers)$から$\realNumbers^{d_2}\;(d_2\in\naturalNumbers)$への写像を$d_1$次元連続座標信号という。
-			信号値は全ての座標に対して定義される必要はない。
-			\par
-			例えばカセットテープレコーダーに記録された音声信号は$d_1=d_2=1$のものである。
-			\par
-			信号$f$の位置$\bm{x} = [x_1,x_2,\cdots,x_{d_1}]^\top$での値を$f(\bm{x})$や$f(x_1,\cdots,x_{d_1})$で表す。
+\part{表記法}
+	\chapter{数学記号}
+		\begin{itemize}
+			\item $\field$: 体
+			\item $\integers$: 整数全体の集合
+			\item $\realNumbers$: 実数全体の集合
+			\item $\complexNumbers$: 複素数全体の集合
+			\item $\bm{a}/\bm{b}\;(d \in \naturalNumbers,\;\bm{a},\bm{b} \in \field^d,\;b_i\neq 0 \text{ for all }i)$: $[a_1/b_1,\cdots,a_d/b_d]^\top$
+			\item $a\%b\;(a,b\in\integers,\;b\neq 0)$: $a$を$b$で割った余り。符号に2通り考えられるが、本書では結果を0以上$|a|$未満とする定義を採用する。
+			\item $\bm{a}\%\bm{b}\;(d\in\naturalNumbers,\;\bm{a},\bm{b} \in \integers^d,\; b_i\neq 0 \text{ for all }i)$: $[a_1\%b_1,\cdots,a_d\%b_d]^\top$
+		\end{itemize}
 
-		\chapter{離散座標信号の表現}
-			離散的な座標値$\bm{x}\in\integers^{d_1}\;(d_1\in\naturalNumbers)$から$\realNumbers^{d_2}\;(d_2\in\naturalNumbers)$への写像を$d_1$次元離散座標信号という。
-			信号値は全ての座標に対して定義される必要はない。
-			\par
-			例えば離散的な時刻での電圧のサンプリングデータは$d_1=d_2=1$のものである(この場合の「座標」は時間軸上での座標という意味になる)。
-			また、コンピュータのディスプレイに映る2次元カラー画像は$d_1=2,d_2=3$のものである。
-			\par
-			信号$f$の位置$\bm{x} = [x_1,x_2,\cdots,x_{d_1}]^\top$での値を$f(\bm{x})$や$f(x_1,\cdots,x_{d_1})$で表す。
+	\chapter{連続座標信号の表現}
+		連続的な座標値$\bm{x}\in\realNumbers^{d_1}\;(d_1\in\naturalNumbers)$から$\realNumbers^{d_2}\;(d_2\in\naturalNumbers)$への写像を$d_1$次元連続座標信号という。
+		信号値は全ての座標に対して定義される必要はない。
+		\par
+		例えばカセットテープレコーダーに記録された音声信号は$d_1=d_2=1$のものである。
+		\par
+		信号$f$の位置$\bm{x} = [x_1,x_2,\cdots,x_{d_1}]^\top$での値を$f(\bm{x})$や$f(x_1,\cdots,x_{d_1})$で表す。
+
+	\chapter{離散座標信号の表現}
+		離散的な座標値$\bm{x}\in\integers^{d_1}\;(d_1\in\naturalNumbers)$から$\realNumbers^{d_2}\;(d_2\in\naturalNumbers)$への写像を$d_1$次元離散座標信号という。
+		信号値は全ての座標に対して定義される必要はない。
+		\par
+		例えば離散的な時刻での電圧のサンプリングデータは$d_1=d_2=1$のものである(この場合の「座標」は時間軸上での座標という意味になる)。
+		また、コンピュータのディスプレイに映る2次元カラー画像は$d_1=2,d_2=3$のものである。
+		\par
+		信号$f$の位置$\bm{x} = [x_1,x_2,\cdots,x_{d_1}]^\top$での値を$f(\bm{x})$や$f(x_1,\cdots,x_{d_1})$で表す。
