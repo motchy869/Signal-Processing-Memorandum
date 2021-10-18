@@ -27,7 +27,13 @@
 		\chapter{離散時間Fourier変換(DTFT)}
 			\section{定義}
 				$d\in\naturalNumbers, \bm{\omega}\in\realNumbers^d$とする。
-				$f:\naturalNumbers^d\to\complexNumbers$に対して、次式で定義される、$\omega$に関する連続座標信号を$f$のFourier変換という。
+				$f:\naturalNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{\omega}$に関する連続座標信号を$f$の離散時間Fourier変換(Discrete Time Fourier Transform; DTFT)という。
+				\[ \text{DTFT}(f,\bm{\omega}) := \sum_{\bm{n}\in\naturalNumbers^d} f(\bm{n})\exp(-i\bm{\omega}^\top\bm{n}) \]
+				DTFTは周期関数であり、その周期は$(2\pi,2\pi,\dots,2\pi)$である。
+				\subsection{呼称について}
+					本書では関数の引数を時間や周波数に限定せず、より一般に座標と呼ぶ姿勢をとっている。
+					しかしDTFTは電気・電子系の信号処理の分野で発展したため、離散``時間''という呼称が浸透しており、これに敢えて逆らって離散``座標''と呼ぶのは本書と工学応用の相性を悪くするだけで無益である。
+					そこで、DTFTのような、歴史的な理由で呼称が定着しているものについては慣例に従うことにする。
 			\section{連続座標信号との関係}
 			\section{正弦波のDTFTの導出}
 		\chapter{離散Fourier変換(DFT)}
