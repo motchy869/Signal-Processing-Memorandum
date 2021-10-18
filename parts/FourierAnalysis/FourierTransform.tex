@@ -37,6 +37,17 @@
 					しかしDTFTは電気・電子系の信号処理の分野で発展したため、離散``時間''という呼称が浸透しており、これに敢えて逆らって離散``座標''と呼ぶのは本書と工学応用の相性を悪くするだけで無益である。
 					そこで、DTFTのような、歴史的な理由で呼称が定着しているものについては慣例に従うことにする。
 			\section{連続座標信号との関係}
+				連続座標信号$f_\text{c}:\realNumbers^d\to\complexNumbers$をサンプリング周期$\bm{T}_\text{s} := [T_{\text{s},1}, T_{\text{s},2}, \dots, T_{\text{s},d}]^\top\in\realNumbers^d$すなわち周波数$\bm{f}_\text{s} := [f_{\text{s},1}, f_{\text{s},2}, \dots, f_{\text{s},d}]^\top := [1/T_{\text{s},1}, 1/T_{\text{s},2}, \dots, 1/T_{\text{s},d}]^\top\in\realNumbers^d$でサンプリングした離散座標信号を$f_\text{d}: \bm{n}\in\naturalNumbers^d\mapsto f_\text{c}(\bm{T}^\top\bm{n})$とする。
+				$f_\text{d}$のDTFTに於ける多次元の角周波数$\bm{\omega}$を周波数$\bm{f}$を用いて$\bm{\omega} := 2\pi\bm{f}$と表す。
+				\par
+				$\bm{n}$の第$k$要素$n_k$が1だけ変化すると、元の連続座標信号の対応する座標は$T_k$だけ変化し、DTFTのカーネル関数$\exp(i\bm{\omega}^\top\bm{n})$の偏角は$\omega_k = 2\pi f_k$だけ変化する。
+				つまりDTFTの定義域に於ける周波数$\bm{f}$の第$k$成分に対応する元の連続座標信号の周波数の第$k$成分は$\frac{1}{2\pi}\frac{\omega_k}{T_{\text{s},k}} = f_k f_{\text{s}, k}$である。
+				ベクトル的に書けば、DTFTの定義域に於ける周波数$\bm{f}$に対応する元の連続座標信号の周波数は
+				\[ \frac{1}{2\pi} \left(\nabla_\bm{n} \bm{\omega}^\top\bm{n}\right) \oslash \left(\nabla_\bm{n} \bm{T}_\text{s}^\top\bm{n}\right) = \bm{f} \odot \bm{f}_\text{s} \]
+				ここに$\oslash, \odot$はそれぞれHadamard商, Hadamard積の演算子である。
+				\par
+				DTFTの定義で述べたように、DTFTは周期が$(2\pi,2\pi,\dots,2\pi)$であるから、一意に区別できる角周波数は$-\bm{\pi} \leq \bm{\omega} < \bm{\pi}$、つまり一意に区別できる周波数は$-\bm{1}/2 \leq \bm{f} < \bm{1}/2$である。
+				この事実と、先程述べたDTFTと元の連続座標信号との周波数の関係から、DTFTに於いて一意に区別できる周波数に対応する元の連続座標信号の周波数$\tilde{\bm{f}}$は$-\bm{f}_\text{s}/2 \leq \tilde{\bm{f}} < \bm{f}_\text{s}/2$である。
 			\section{正弦波のDTFTの導出}
 		\chapter{離散Fourier変換(DFT)}
 			\section{基底}
