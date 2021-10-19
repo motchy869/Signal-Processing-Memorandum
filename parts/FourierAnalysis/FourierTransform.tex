@@ -49,6 +49,12 @@
 				DTFTの定義で述べたように、DTFTは周期が$(2\pi,2\pi,\dotsc,2\pi)$であるから、一意に区別できる角周波数は$-\bm{\pi} \leq \bm{\omega} < \bm{\pi}$、つまり一意に区別できる周波数は$-\bm{1}/2 \leq \bm{f} < \bm{1}/2$である。
 				この事実と、先程述べたDTFTと元の連続座標信号との周波数の関係から、DTFTに於いて一意に区別できる周波数に対応する元の連続座標信号の周波数$\tilde{\bm{f}}$は$-\bm{f}_\text{s}/2 \leq \tilde{\bm{f}} < \bm{f}_\text{s}/2$である。
 			\section{逆離散時間Fourier変換(IDTFT)}
+				$d\in\naturalNumbers, \Omega := [-\pi,\pi)^d$とする。
+				$F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{n}\in\naturalNumbers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT; IDTFT)という。
+				\[ \text{IDTFT}(F,\bm{n}) \coloneqq \frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\bm{\omega})\exp(i\bm{\bm{\omega}}^\top\bm{n})}{\bm{\omega}} \]
+				\subsection{IDTFTがDTFTの逆変換であること}
+					厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\naturalNumbers^d} f(\bm{n})$が絶対収束する場合は$\text{IDTFT}(\text{DTFT}(f,\bm{\omega}),\bm{n}) = f(\bm{n})$となることを簡単に証明できる。
+					$\sum$と$\int$の順序交換が簡単に行えるからである。
 			\section{正弦波のDTFTの導出}
 		\chapter{離散Fourier変換(DFT)}
 			\section{基底}
