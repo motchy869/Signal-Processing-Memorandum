@@ -55,6 +55,7 @@
 					$\sum$と$\int$の順序交換が簡単に行えるからである。
 			\section{積と畳み込みとの関係}
 				以下では既出の記号の定義は上書きしない限り引き継ぐ。
+				$f,g:\integers^d\to\complexNumbers$に対してそのDTFTを$F(\bm{\omega}),G(\bm{\omega})$とする。
 				\subsection{時間領域, 周波数領域の畳み込みの定義}
 					時間領域の畳み込みを次で定義する:
 					\par
@@ -65,7 +66,6 @@
 					$F,G:\realNumbers^d\to\complexNumbers$に対してその畳み込み$F*G$を次式で定義する。
 					\[ (F*G)(\bm{\omega}) := \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} \]
 				\subsection{積のDTFT}
-					$f,g:\integers^d\to\complexNumbers$に対してそのDTFTを$F(\bm{\omega}),G(\bm{\omega})$とする。
 					$f,g$の積のDTFTは次式で求まる。
 					\begin{align*}
 						\text{DTFT}(fg,\bm{\omega}) &= \sum_{\bm{n}\in\integers^d} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) = \sum_{\bm{n}\in\integers^d} \text{IDTFT}(F,\bm{n}) g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) \\
@@ -74,6 +74,12 @@
 						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} = (F*G)(\omega)
 					\end{align*}
 				\subsection{畳み込みのDTFT}
+					$f,g$の畳み込みのDTFTは次式で求まる。
+					\begin{align*}
+						\text{DTFT}(f*g,\bm{\omega}) &= \sum_{\bm{n}\in\integers^d} \sum_{\bm{m}\in\integers^d}f(\bm{m})g(\bm{n}-\bm{m})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) \\
+						&= \sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{m}) \sum_{\bm{n}\in\integers^d} g(\bm{n}-\bm{m})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top(\bm{n}-\bm{m})) \\
+						&= F(\bm{\omega})G(\bm{\omega})
+					\end{align*}
 				\subsection{積のIDTFT}
 				\subsection{畳み込みのIDTFT}
 			\section{定数関数1のDTFT}
