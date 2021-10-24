@@ -29,15 +29,15 @@
 				離散時間Fourier変換(Discrete Time Fourier Transform; DTFT)とは、直観的には、離散座標信号を、連続的な周波数をもつ無数の離散時間信号の重ね合わせとして表現するものである。
 			\section{定義}
 				$d\in\naturalNumbers$とする。
-				$f:\naturalNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{\omega}\in\realNumbers^d$に関する連続座標信号を$f$の離散時間Fourier変換という。
-				\[ \text{DTFT}(f,\bm{\omega}) \coloneqq \sum_{\bm{n}\in\naturalNumbers^d} f(\bm{n})\exp(-i\bm{\omega}^\top\bm{n}) \]
+				$f:\integers^d\to\complexNumbers$に対して、次式で定義される、$\bm{\omega}\in\realNumbers^d$に関する連続座標信号を$f$の離散時間Fourier変換という。
+				\[ \text{DTFT}(f,\bm{\omega}) \coloneqq \sum_{\bm{n}\in\integers^d} f(\bm{n})\exp(-i\bm{\omega}^\top\bm{n}) \]
 				DTFTは周期関数であり、その周期は$(2\pi,2\pi,\dotsc,2\pi)$である。
 				\subsection{呼称について}
 					本書では関数の引数を時間や周波数に限定せず、より一般に座標と呼ぶ姿勢をとっている。
 					しかしDTFTは電気・電子系の信号処理の分野で発展したため、離散``時間''という呼称が浸透しており、これに敢えて逆らって離散``座標''と呼ぶのは本書と工学応用の相性を悪くするだけで無益である。
 					そこで、DTFTのような、歴史的な理由で呼称が定着しているものについては慣例に従うことにする。
 			\section{連続座標信号との関係}
-				連続座標信号$f_\text{c}:\realNumbers^d\to\complexNumbers$をサンプリング周期$\bm{T}_\text{s} \coloneqq [T_{\text{s},1}, T_{\text{s},2}, \dotsc, T_{\text{s},d}]^\top\in\realNumbers^d$すなわち周波数$\bm{f}_\text{s} \coloneqq [f_{\text{s},1}, f_{\text{s},2}, \dotsc, f_{\text{s},d}]^\top \coloneqq [1/T_{\text{s},1}, 1/T_{\text{s},2}, \dotsc, 1/T_{\text{s},d}]^\top\in\realNumbers^d$でサンプリングした離散座標信号を$f_\text{d}: \bm{n}\in\naturalNumbers^d\mapsto f_\text{c}(\bm{T}^\top\bm{n})$とする。
+				連続座標信号$f_\text{c}:\realNumbers^d\to\complexNumbers$をサンプリング周期$\bm{T}_\text{s} \coloneqq [T_{\text{s},1}, T_{\text{s},2}, \dotsc, T_{\text{s},d}]^\top\in\realNumbers^d$すなわち周波数$\bm{f}_\text{s} \coloneqq [f_{\text{s},1}, f_{\text{s},2}, \dotsc, f_{\text{s},d}]^\top \coloneqq [1/T_{\text{s},1}, 1/T_{\text{s},2}, \dotsc, 1/T_{\text{s},d}]^\top\in\realNumbers^d$でサンプリングした離散座標信号を$f_\text{d}: \bm{n}\in\integers^d\mapsto f_\text{c}(\bm{T}^\top\bm{n})$とする。
 				$f_\text{d}$のDTFTに於ける多次元の角周波数$\bm{\omega}$を周波数$\bm{f}$を用いて$\bm{\omega} \coloneqq 2\pi\bm{f}$と表す。
 				\par
 				$\bm{n}$の第$k$要素$n_k$が1だけ変化すると、元の連続座標信号の対応する座標は$T_k$だけ変化し、DTFTのカーネル関数$\exp(i\bm{\omega}^\top\bm{n})$の偏角は$\omega_k = 2\pi f_k$だけ変化する。
@@ -50,10 +50,10 @@
 				この事実と、先程述べたDTFTと元の連続座標信号との周波数の関係から、DTFTに於いて一意に区別できる周波数に対応する元の連続座標信号の周波数$\tilde{\bm{f}}$は$-\bm{f}_\text{s}/2 \leq \tilde{\bm{f}} < \bm{f}_\text{s}/2$である。
 			\section{逆離散時間Fourier変換(IDTFT)}
 				$d\in\naturalNumbers, \Omega := [-\pi,\pi)^d$とする。
-				$F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{n}\in\naturalNumbers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT; IDTFT)という。
+				$F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{n}\in\integers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT; IDTFT)という。
 				\[ \text{IDTFT}(F,\bm{n}) \coloneqq \frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\bm{\omega})\exp(i\bm{\bm{\omega}}^\top\bm{n})}{\bm{\omega}} \]
 				\subsection{IDTFTがDTFTの逆変換であること}
-					厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\naturalNumbers^d} f(\bm{n})$が絶対収束する場合は$\text{IDTFT}(\text{DTFT}(f,\bm{\omega}),\bm{n}) = f(\bm{n})$となることを簡単に証明できる。
+					厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\text{IDTFT}(\text{DTFT}(f,\bm{\omega}),\bm{n}) = f(\bm{n})$となることを簡単に証明できる。
 					$\sum$と$\int$の順序交換が簡単に行えるからである。
 			\section{定数関数1のDTFT}
 				簡単のため1次元の場合について考察する。
