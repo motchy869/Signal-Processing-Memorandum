@@ -56,6 +56,26 @@
 					厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\text{IDTFT}(\text{DTFT}(f,\bm{\omega}),\bm{n}) = f(\bm{n})$となることを簡単に証明できる。
 					$\sum$と$\int$の順序交換が簡単に行えるからである。
 			\section{積と畳み込みとの関係}
+				\subsection{時間領域, 周波数領域の畳み込みの定義}
+					$d\in\naturalNumbers, \Omega := [-\pi,\pi)^d$とする。
+					時間領域の畳み込みを次で定義する:
+					\par
+					$f,g:\integers^d\to\complexNumbers$に対してその畳み込み$f*g$を次式で定義する。
+					\[ (f*g)(\bm{n}) := \sum_{\bm{m}\in\integers} f(\bm{m})g(\bm{n}-\bm{m}) \]
+					周波数領域の畳み込みを次で定義する:
+					\par
+					$F,G:\realNumbers^d\to\complexNumbers$に対してその畳み込み$F*G$を次式で定義する。
+					\[ (F*G)(\bm{\omega}) := \frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} \]
+				\subsection{積のDTFT}
+					$d\in\naturalNumbers,\;\Omega := [-\pi,\pi)^d,\;\bm{\omega}\in\realNumbers^d$とする。
+					$f,g:\integers^d\to\complexNumbers$に対してそのDTFTを$F(\bm{\omega}),G(\bm{\omega})$とする。
+					$f,g$の積のDTFTは次式で求まる。
+					\begin{align*}
+						\text{DTFT}(fg,\bm{\omega}) &= \sum_{n\in\integers} f(\bm{n})g(\bm{n})\exp(-i\bm{\omega}^\top\bm{n}) = \sum_{n\in\integers} \text{IDTFT}(F,\bm{n}) g(\bm{n})\exp(-i\bm{\omega}^\top\bm{n}) \\
+						&= \sum_{n\in\integers} \left(\frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})e^{i\tilde{\bm{\omega}}^\top\bm{n}}}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i\bm{\omega}^\top\bm{n}) \\
+						&= \frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{n\in\integers} g(\bm{n})e^{-i(\bm{\omega}-\tilde{\bm{\omega}})^\top\bm{n}}\right)}{\tilde{\bm{\omega}}} \\
+						&= \frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} = (F*G)(\omega)
+					\end{align*}
 				\subsection{畳み込みのDTFT}
 				\subsection{積のIDTFT}
 				\subsection{畳み込みのIDTFT}
