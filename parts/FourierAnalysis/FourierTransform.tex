@@ -28,10 +28,11 @@
 			\section{直観的な説明}
 				離散時間Fourier変換(Discrete Time Fourier Transform; DTFT)とは、直観的には、離散座標信号を、連続的な周波数をもつ無数の離散時間信号の重ね合わせとして表現するものである。
 			\section{定義}
-				$d\in\naturalNumbers$とする。
+				$d\in\naturalNumbers,\;\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0}$とする。
 				$f:\integers^d\to\complexNumbers$に対して、次式で定義される、$\bm{\omega}\in\realNumbers^d$に関する連続座標信号を$f$の離散時間Fourier変換という。
-				\[ \text{DTFT}(f,\bm{\omega}) \coloneqq \sum_{\bm{n}\in\integers^d} f(\bm{n})\exp(-i\bm{\omega}^\top\bm{n}) \]
-				DTFTは周期関数であり、その周期は$(2\pi,2\pi,\dotsc,2\pi)$である。
+				\[ \text{DTFT}(f,\bm{\omega}) \coloneqq \sum_{\bm{n}\in\integers^d} f(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) \]
+				$\bm{\omega}$は各軸方向の角周波数をまとめて表したベクトルであり、$\bm{T}_\text{s}$は各軸方向のサンプリング周期である。
+				DTFTは$\bm{\omega}$に関する周期関数であり、その周期は$2\pi\bm{1}\oslash\bm{T}_\text{s}$である。
 				\subsection{呼称について}
 					本書では関数の引数を時間や周波数に限定せず、より一般に座標と呼ぶ姿勢をとっている。
 					しかしDTFTは電気・電子系の信号処理の分野で発展したため、離散``時間''という呼称が浸透しており、これに敢えて逆らって離散``座標''と呼ぶのは本書と工学応用の相性を悪くするだけで無益である。
@@ -40,24 +41,21 @@
 				連続座標信号$f_\text{c}:\realNumbers^d\to\complexNumbers$をサンプリング周期$\bm{T}_\text{s} \coloneqq [T_{\text{s},1}, T_{\text{s},2}, \dotsc, T_{\text{s},d}]^\top\in\realNumbers^d$すなわち周波数$\bm{f}_\text{s} \coloneqq [f_{\text{s},1}, f_{\text{s},2}, \dotsc, f_{\text{s},d}]^\top \coloneqq [1/T_{\text{s},1}, 1/T_{\text{s},2}, \dotsc, 1/T_{\text{s},d}]^\top\in\realNumbers^d$でサンプリングした離散座標信号を$f_\text{d}: \bm{n}\in\integers^d\mapsto f_\text{c}(\bm{T}^\top\bm{n})$とする。
 				$f_\text{d}$のDTFTに於ける多次元の角周波数$\bm{\omega}$を周波数$\bm{f}$を用いて$\bm{\omega} \coloneqq 2\pi\bm{f}$と表す。
 				\par
-				$\bm{n}$の第$k$要素$n_k$が1だけ変化すると、元の連続座標信号の対応する座標は$T_k$だけ変化し、DTFTのカーネル関数$\exp(i\bm{\omega}^\top\bm{n})$の偏角は$\omega_k = 2\pi f_k$だけ変化する。
-				つまりDTFTの定義域に於ける周波数$\bm{f}$の第$k$成分に対応する元の連続座標信号の周波数の第$k$成分は$\frac{1}{2\pi}\frac{\omega_k}{T_{\text{s},k}} = f_k f_{\text{s}, k}$である。
-				ベクトル的に書けば、DTFTの定義域に於ける周波数$\bm{f}$に対応する元の連続座標信号の周波数は
-				\[ \frac{1}{2\pi} \left(\nabla_\bm{n} \bm{\omega}^\top\bm{n}\right) \oslash \left(\nabla_\bm{n} \bm{T}_\text{s}^\top\bm{n}\right) = \bm{f} \odot \bm{f}_\text{s} \]
-				ここに$\oslash, \odot$はそれぞれHadamard商, Hadamard積の演算子である。
+				$\bm{n}$の第$k$要素$n_k$が1だけ変化すると、元の連続座標信号の対応する座標は$T_k$だけ変化し、DTFTのカーネル関数$\exp(i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n})$の偏角は$\omega_k T_{\text{s},k} = 2\pi f_k T_{\text{s},k}$だけ変化する。
+				つまりDTFTの定義域に於ける周波数$\bm{f}$の第$k$成分に対応する元の連続座標信号の周波数の第$k$成分は$f_k$であり、スケールは保たれている。
 				\par
-				DTFTの定義で述べたように、DTFTは周期が$(2\pi,2\pi,\dotsc,2\pi)$であるから、一意に区別できる角周波数は$-\bm{\pi} \leq \bm{\omega} < \bm{\pi}$、つまり一意に区別できる周波数は$-\bm{1}/2 \leq \bm{f} < \bm{1}/2$である。
+				DTFTの定義で述べたように、DTFTは周期が$2\pi\bm{1}\oslash\bm{T}_\text{s}$であるから、一意に区別できる角周波数は$-\bm{\pi}\oslash\bm{T}_\text{s} \leq \bm{\omega} < \bm{\pi}\oslash\bm{T}_\text{s}$、つまり一意に区別できる周波数は$-\bm{f}_\text{s}/2 \leq \bm{f} < \bm{f}_\text{s}/2$である。
 				この事実と、先程述べたDTFTと元の連続座標信号との周波数の関係から、DTFTに於いて一意に区別できる周波数に対応する元の連続座標信号の周波数$\tilde{\bm{f}}$は$-\bm{f}_\text{s}/2 \leq \tilde{\bm{f}} < \bm{f}_\text{s}/2$である。
 			\section{逆離散時間Fourier変換(IDTFT)}
-				$d\in\naturalNumbers, \Omega := [-\pi,\pi)^d$とする。
+				$d\in\naturalNumbers,\;\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0},\;\Omega := \prod_{k=1}^d [-\pi/T_{\text{s},k},\pi/T_{\text{s},k})$とする。
 				$F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{n}\in\integers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT; IDTFT)という。
-				\[ \text{IDTFT}(F,\bm{n}) \coloneqq \frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\bm{\omega})\exp(i\bm{\bm{\omega}}^\top\bm{n})}{\bm{\omega}} \]
+				\[ \text{IDTFT}(F,\bm{n}) \coloneqq \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \]
 				\subsection{IDTFTがDTFTの逆変換であること}
 					厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\text{IDTFT}(\text{DTFT}(f,\bm{\omega}),\bm{n}) = f(\bm{n})$となることを簡単に証明できる。
 					$\sum$と$\int$の順序交換が簡単に行えるからである。
 			\section{積と畳み込みとの関係}
+				以下では既出の記号の定義は上書きしない限り引き継ぐ。
 				\subsection{時間領域, 周波数領域の畳み込みの定義}
-					$d\in\naturalNumbers, \Omega := [-\pi,\pi)^d$とする。
 					時間領域の畳み込みを次で定義する:
 					\par
 					$f,g:\integers^d\to\complexNumbers$に対してその畳み込み$f*g$を次式で定義する。
@@ -65,16 +63,15 @@
 					周波数領域の畳み込みを次で定義する:
 					\par
 					$F,G:\realNumbers^d\to\complexNumbers$に対してその畳み込み$F*G$を次式で定義する。
-					\[ (F*G)(\bm{\omega}) := \frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} \]
+					\[ (F*G)(\bm{\omega}) := \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} \]
 				\subsection{積のDTFT}
-					$d\in\naturalNumbers,\;\Omega := [-\pi,\pi)^d,\;\bm{\omega}\in\realNumbers^d$とする。
 					$f,g:\integers^d\to\complexNumbers$に対してそのDTFTを$F(\bm{\omega}),G(\bm{\omega})$とする。
 					$f,g$の積のDTFTは次式で求まる。
 					\begin{align*}
-						\text{DTFT}(fg,\bm{\omega}) &= \sum_{n\in\integers} f(\bm{n})g(\bm{n})\exp(-i\bm{\omega}^\top\bm{n}) = \sum_{n\in\integers} \text{IDTFT}(F,\bm{n}) g(\bm{n})\exp(-i\bm{\omega}^\top\bm{n}) \\
-						&= \sum_{n\in\integers} \left(\frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})e^{i\tilde{\bm{\omega}}^\top\bm{n}}}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i\bm{\omega}^\top\bm{n}) \\
-						&= \frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{n\in\integers} g(\bm{n})e^{-i(\bm{\omega}-\tilde{\bm{\omega}})^\top\bm{n}}\right)}{\tilde{\bm{\omega}}} \\
-						&= \frac{1}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} = (F*G)(\omega)
+						\text{DTFT}(fg,\bm{\omega}) &= \sum_{n\in\integers} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) = \sum_{n\in\integers} \text{IDTFT}(F,\bm{n}) g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) \\
+						&= \sum_{n\in\integers} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})e^{i(\tilde{\bm{\omega}}\odot\bm{T}_\text{s})^\top\bm{n}}}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{n\in\integers} g(\bm{n})e^{-i\left((\bm{\omega}-\tilde{\bm{\omega}})\odot\bm{T}_\text{s}\right)^\top\bm{n}}\right)}{\tilde{\bm{\omega}}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} = (F*G)(\omega)
 					\end{align*}
 				\subsection{畳み込みのDTFT}
 				\subsection{積のIDTFT}
@@ -82,49 +79,49 @@
 			\section{定数関数1のDTFT}
 				\label{定数関数1のDTFT}
 				簡単のため1次元の場合について考察する。
-				工学系の学生を対象とする講義では、$\text{DTFT}(1,\omega) = 2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
-				$\text{IDTFT}\left(2\pi\sum_{m\in\integers}\delta(\omega-2m\pi),x\right)=1$の確認は簡単であり、DTFTの可逆性から$\text{DTFT}(1,\omega) = 2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$を受け入れる説明がなされると思う。
+				工学系の学生を対象とする講義では、$\text{DTFT}(1,\omega) = (2\pi/T_\text{s})\sum_{m\in\integers}\delta(\omega-2m\pi/T_\text{s})$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
+				$\text{IDTFT}\left((2\pi/T_\text{s})\sum_{m\in\integers}\delta(\omega-2m\pi/T_\text{s}),x\right)=1$の確認は簡単であり、DTFTの可逆性から$\text{DTFT}(1,\omega) = (2\pi/T_\text{s})\sum_{m\in\integers}\delta(\omega-2m\pi/T_\text{s})$を受け入れる説明がなされると思う。
 				\par
-				ここではDirichlet積分を用いて$\text{DTFT}(1,\omega) = 2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$を直接的に考察してみる。
+				ここではDirichlet積分を用いて$\text{DTFT}(1,\omega) = (2\pi/T_\text{s})\sum_{m\in\integers}\delta(\omega-2m\pi/T_\text{s})$を直接的に導出してみる。
 				DTFTの定義から次式が成り立つ。
 				\[
-					\text{DTFT}(1,\omega) = \lim_{N\to\infty} \sum_{m=-N}^N e^{i\omega m} = \frac{\sin(N+1/2)\omega}{\sin(\omega/2)}
+					\text{DTFT}(1,\omega) = \lim_{N\to\infty} \sum_{m=-N}^N e^{i\omega T_\text{s} m} = \frac{\sin(N+1/2)\omega T_\text{s}}{\sin(\omega T_\text{s}/2)}
 				\]
 				最右辺は等比数列の和の公式を用いた後、分母と分子に$e^{-i\omega/2}$を掛けて整理すると得られる。
-				これが$N\to\infty$で$2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$として振る舞うことを確かめる。
-				$2\pi$周期性については明らかだから、$[-\pi,\pi)$の範囲で$\delta(\omega)$として振る舞うことを確かめれば十分である。
+				これが$N\to\infty$で$(2\pi/T_\text{s})\sum_{m\in\integers}\delta(\omega-2m\pi/T_\text{s})$として振る舞うことを確かめる。
+				$2\pi/T_\text{s}$周期性については明らかだから、$[-\pi/T_\text{s},\pi/T_\text{s})$の範囲で$(2\pi/T_\text{s})\delta(\omega)$として振る舞うことを確かめれば十分である。
 				示すべきことは次の通りである。
 				\begin{shadebox}
 					$d\in\naturalNumbers$とする。
-					区間$\Omega \subseteq [-\pi,\pi)$上で連続な関数$f:\Omega\to\complexNumbers^d$を考える。
+					区間$\Omega \subseteq [-\pi/T_\text{s},\pi/T_\text{s})$上で連続な任意の関数$f:\Omega\to\complexNumbers^d$を考える。
 					$h>0$を$[-h,h) \subseteq \Omega$となるように任意にとる。
 					このとき次式が成り立つ。
 					\[
-						\lim_{N\to\infty} \integ{-h}{h}{\frac{\sin(N+1/2)x}{\sin(x/2)} f(x)}{x} = 2\pi f(0)
+						\lim_{N\to\infty} \integ{-h}{h}{\frac{\sin(N+1/2)x T_\text{s}}{\sin(x T_\text{s}/2)} f(x)}{x} = \frac{2\pi}{T_\text{s}} f(0)
 					\]
 				\end{shadebox}
 				\begin{proof}
 					\quad\par
 					極限をとる前の積分を$I_N$とおく。
-					$y = x/2$と変数変換すると次式を得る。
+					$y = x T_\text{s}/2$と変数変換すると次式を得る。
 					\[
-						I_N = 2\integ{-h/2}{h/2}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{y} = 2\integ{-h/2}{h/2}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{y}
+						I_N = \frac{2}{T_\text{s}}\integ{-h T_\text{s}/2}{h T_\text{s}/2}{\frac{\sin(2N+1)y}{\sin y}f(2y/T_\text{s})}{y} = \frac{2}{T_\text{s}}\integ{-h T_\text{s}/2}{h T_\text{s}/2}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{y}
 					\]
 					後に現れるDirichlet積分の性質から$N\to\infty$で積分の主要部分が$x=0$近傍に集中することがこの時点で推察できる。
-					そこで、十分に小さい正数$d'$を$0<d'<h/2$となるようにとり、積分区間を$[-h/2,-d']\cup[-d',d']\cup[d',h/2]$と分割する。
+					そこで、十分に小さい正数$d'$を$0<d'<h T_\text{s}/2$となるようにとり、積分区間を$[-h T_\text{s}/2,-d']\cup[-d',d']\cup[d',h T_\text{s}/2]$と分割する。
 					\par
-					$[-h/2,-d'], [d',h/2]$に於いて$f(2y)/\sin y$は一様連続であるので$N\to\infty$でこの2つの区間に於ける$(f(2y)\sin(2N+1)y)/\sin y$の積分は0に収束する。
-					証明の方針としては、$\sin(2N+1)y$の符号が変化する点で積分区間を細分し、格区間内で$f(2y)/\sin y$を定数で近似して全体の積分を近似すると、一様連続性から近似値と真の積分の差が0に収束し、かつ近似値が0に収束する。
+					$[-h T_\text{s}/2,-d'], [d',h T_\text{s}/2]$に於いて$f(2y/T_\text{s})/\sin y$は一様連続であるので$N\to\infty$でこの2つの区間に於ける$(f(2y/T_\text{s})\sin(2N+1)y)/\sin y$の積分は0に収束する。
+					証明の方針としては、$\sin(2N+1)y$の符号が変化する点で積分区間を細分し、各区間内で$f(2y/T_\text{s})/\sin y$を定数で近似して全体の積分を近似すると、一様連続性から近似値と真の積分の差が0に収束し、かつ近似値が0に収束する。
 					\par
 					つまり任意に小さい$\varepsilon>0$に対して、$d'$に依存して決まる十分大きい自然数$N_1$が存在して次式が成り立つ。
 					\[
-						N\geq N_1 \Rightarrow \abs{2\integ{[-h/2,-d']\cup[d',h/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{y}}<\varepsilon
+						N\geq N_1 \Rightarrow \abs{\frac{2}{T_\text{s}}\integ{[-h T_\text{s}/2,-d']\cup[d',h T_\text{s}/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y/T_\text{s})}{y}}<\varepsilon
 					\]
 					\par
 					次に$[-d',d']$に於ける積分を評価する。
-					$y\to 0$で$y/\sin y\to 1,\;f(2y)\to f(0)$であるから、$d'$を十分小さくとりなおすことで$|f(2y)y/\sin y - f(0)| < \varepsilon$となり次式が成り立つ。
+					$y\to 0$で$y/\sin y\to 1,\;f(2y/T_\text{s})\to f(0)$であるから、$d'$を十分小さくとりなおすことで$|f(2y/T_\text{s})y/\sin y - f(0)| < \varepsilon$となり次式が成り立つ。
 					\[
-						\abs{2\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{y} - 2f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}} < 2\varepsilon\abs{\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}}
+						\abs{\frac{2}{T_\text{s}}\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y/T_\text{s})}{y} - \frac{2}{T_\text{s}}f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}} < \frac{2\varepsilon}{T_\text{s}}\abs{\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}}
 					\]
 					最後にDirichlet積分を用いて$(\sin(2N+1)y)/\sin y$の積分を評価する。
 					\[
@@ -134,23 +131,24 @@
 					\[ N\geq N_1 \Rightarrow \abs{\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y} - \pi} < \varepsilon \]
 					以上より、$d'>0$を十分に小さくとり、$N\geq\max(N_1,N_2)$とすれば次式が成り立つ。
 					\begin{align*}
-						|I_N - 2\pi f(0)| &= \left|\underbrace{\left(2f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y} - 2\pi f(0)\right)}_{(1)} \right. \\
-						&\phantom{=} \left.+ \underbrace{\left(2\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{y} - 2f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}\right)}_{(2)} \right. \\
-						&\phantom{=} \left.+ \underbrace{2\integ{[-h/2,-d']\cup[d',h/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{y}}_{(3)}\right| \\
-						&\leq |(1)| + |(2)| + |(3)| < 2f(0)\varepsilon + 2\varepsilon(\pi+\varepsilon) + \varepsilon
+						\abs{I_N - \frac{2\pi}{T_\text{s}} f(0)} &= \left|\underbrace{\left(\frac{2}{T_\text{s}}f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y} - \frac{2\pi}{T_\text{s}} f(0)\right)}_{(1)} \right. \\
+						&\phantom{=} \left.+ \underbrace{\left(\frac{2}{T_\text{s}}\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{y} - \frac{2}{T_\text{s}}f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}\right)}_{(2)} \right. \\
+						&\phantom{=} \left.+ \underbrace{\frac{2}{T_\text{s}}\integ{[-h/2,-d']\cup[d',h/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{y}}_{(3)}\right| \\
+						&\leq |(1)| + |(2)| + |(3)| < \frac{2f(0)}{T_\text{s}}\varepsilon + \frac{2\varepsilon}{T_\text{s}}(\pi+\varepsilon) + \varepsilon
 					\end{align*}
 				\end{proof}
 			\section{単一周波数波のDTFTの導出}
-				$\sin\omega_0 n,\cos\omega_0 n\;(\omega_0\in\realNumbers, n\in\integers)$のDTFTは\ref{定数関数1のDTFT}の結果を用いて次のようにして得られる。
+				$T_\text{s}>0$とする。
+				$\sin\omega_0 T_\text{s} n,\;\cos\omega_0 T_\text{s} n\;(\omega_0\in\realNumbers, n\in\integers)$のDTFTは\ref{定数関数1のDTFT}の結果を用いて次のようにして得られる。
 				\begin{align*}
 					\begin{split}
-						\text{DTFT}(\sin\omega_0 n, \omega) &= \sum_{n=-\infty}^\infty \frac{e^{i\omega_0 n} - e^{-i\omega_0 n}}{2i}e^{-i\omega n} = \frac{1}{2i}\sum_{n=-\infty}^\infty \left(e^{-i(\omega-\omega_0) n} - e^{-i(\omega+\omega_0) n}\right) \\
-						&= -i\pi\sum_{m\in\integers}\bigl(\delta(\omega-\omega_0-2m\pi) - \delta(\omega+\omega_0-2m\pi)\bigr) \\
-						&= i\pi\sum_{m\in\integers}\bigl(\delta(\omega+\omega_0-2m\pi) - \delta(\omega-\omega_0-2m\pi)\bigr)
+						\text{DTFT}(\sin\omega_0 T_\text{s} n, \omega) &= \sum_{n=-\infty}^\infty \frac{e^{i\omega_0 T_\text{s} n} - e^{-i\omega_0 T_\text{s} n}}{2i}e^{-i\omega T_\text{s} n} = \frac{1}{2i}\sum_{n=-\infty}^\infty \left(e^{-i(\omega-\omega_0)T_\text{s} n} - e^{-i(\omega+\omega_0)T_\text{s} n}\right) \\
+						&= \frac{-i\pi}{T_\text{s}}\sum_{m\in\integers}\bigl(\delta(\omega-\omega_0-2m\pi) - \delta(\omega+\omega_0-2m\pi)\bigr) \\
+						&= \frac{i\pi}{T_\text{s}}\sum_{m\in\integers}\bigl(\delta(\omega+\omega_0-2m\pi) - \delta(\omega-\omega_0-2m\pi)\bigr)
 					\end{split} \\
 					\begin{split}
-						\text{DTFT}(\cos\omega_0 n, \omega) &= \sum_{n=-\infty}^\infty \frac{e^{i\omega_0 n} + e^{-i\omega_0 n}}{2}e^{-i\omega n} = \frac{1}{2}\sum_{n=-\infty}^\infty \left(e^{-i(\omega-\omega_0) n} + e^{-i(\omega+\omega_0) n}\right) \\
-						&= \pi\sum_{m\in\integers}\bigl(\delta(\omega-\omega_0-2m\pi) + \delta(\omega+\omega_0-2m\pi)\bigr)
+						\text{DTFT}(\cos\omega_0 T_\text{s} n, \omega) &= \sum_{n=-\infty}^\infty \frac{e^{i\omega_0 T_\text{s} n} + e^{-i\omega_0 T_\text{s} n}}{2}e^{-i\omega T_\text{s} n} = \frac{1}{2}\sum_{n=-\infty}^\infty \left(e^{-i(\omega-\omega_0)T_\text{s} n} + e^{-i(\omega+\omega_0)T_\text{s} n}\right) \\
+						&= \frac{\pi}{T_\text{s}}\sum_{m\in\integers}\bigl(\delta(\omega-\omega_0-2m\pi) + \delta(\omega+\omega_0-2m\pi)\bigr)
 					\end{split}
 				\end{align*}
 			\section{システムの伝達関数と正弦波入力の関係}
