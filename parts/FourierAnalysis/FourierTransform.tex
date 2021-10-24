@@ -88,7 +88,7 @@
 				ここではDirichlet積分を用いて$\text{DTFT}(1,\omega) = 2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$を直接的に考察してみる。
 				DTFTの定義から次式が成り立つ。
 				\[
-					\text{DTFT}(1,\omega) = \lim_{n\to\infty} \sum_{m=-N}^N e^{i\omega m} = \frac{\sin(N+1/2)\omega}{\sin(\omega/2)}
+					\text{DTFT}(1,\omega) = \lim_{N\to\infty} \sum_{m=-N}^N e^{i\omega m} = \frac{\sin(N+1/2)\omega}{\sin(\omega/2)}
 				\]
 				最右辺は等比数列の和の公式を用いた後、分母と分子に$e^{-i\omega/2}$を掛けて整理すると得られる。
 				これが$N\to\infty$で$2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$として振る舞うことを確かめる。
