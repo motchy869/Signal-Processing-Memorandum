@@ -55,6 +55,66 @@
 				\subsection{IDTFTがDTFTの逆変換であること}
 					厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\naturalNumbers^d} f(\bm{n})$が絶対収束する場合は$\text{IDTFT}(\text{DTFT}(f,\bm{\omega}),\bm{n}) = f(\bm{n})$となることを簡単に証明できる。
 					$\sum$と$\int$の順序交換が簡単に行えるからである。
+			\section{定数関数1のDTFT}
+				簡単のため1次元の場合について考察する。
+				工学系の学生を対象とする講義では、定数関数$\text{DTFT}(1,\omega) = 2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
+				$\text{IDTFT}\left(2\pi\sum_{m\in\integers}\delta(\omega-2m\pi),x\right)=1$の確認は簡単であり、DTFTの可逆性から$\text{DTFT}(1,\omega) = 2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$を受け入れる説明がなされると思う。
+				\par
+				ここではDirichlet積分を用いて$\text{DTFT}(1,\omega) = 2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$を直接的に考察してみる。
+				DTFTの定義から次式が成り立つ。
+				\[
+					\text{DTFT}(1,\omega) = \lim_{n\to\infty} \sum_{m=-N}^N e^{i\omega m} = \frac{\sin(N+1/2)\omega}{\sin(\omega/2)}
+				\]
+				最右辺は等比数列の和の公式を用いた後、分母と分子に$e^{-i\omega/2}$を掛けて整理すると得られる。
+				これが$N\to\infty$で$2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$として振る舞うことを確かめる。
+				$2\pi$周期性については明らかだから、$[-\pi,\pi)$の範囲で$\delta(\omega)$として振る舞うことを確かめれば十分である。
+				示すべきことは次の通りである。
+				\begin{shadebox}
+					$d\in\naturalNumbers$とする。
+					区間$\Omega \subseteq [-\pi,\pi)$上で連続な関数$f:\Omega\to\complexNumbers^d$を考える。
+					$h>0$を$[-h,h) \subseteq \Omega$となるように任意にとる。
+					このとき次式が成り立つ。
+					\[
+						\lim_{N\to\infty} \integ{-h}{h}{\frac{\sin(N+1/2)x}{\sin(x/2)} f(x)}{x} = 2\pi f(0)
+					\]
+				\end{shadebox}
+				\begin{proof}
+					\quad\par
+					極限をとる前の積分を$I_N$とおく。
+					$y = x/2$と変数変換すると次式を得る。
+					\[
+						I_N = 2\integ{-h/2}{h/2}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{y} = 2\integ{-h/2}{h/2}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{y}
+					\]
+					後に現れるDirichlet積分の性質から$N\to\infty$で積分の主要部分が$x=0$近傍に集中することがこの時点で推察できる。
+					そこで、十分に小さい正数$d'$を$0<d'<h/2$となるようにとり、積分区間を$[-h/2,-d']\cup[-d',d']\cup[d',h/2]$と分割する。
+					\par
+					$[-h/2,-d'], [d',h/2]$に於いて$f(2y)/\sin y$は一様連続であるので$N\to\infty$でこの2つの区間に於ける$(f(2y)\sin(2N+1)y)/\sin y$の積分は0に収束する。
+					証明の方針としては、$\sin(2N+1)y$の符号が変化する点で積分区間を細分し、格区間内で$f(2y)/\sin y$を定数で近似して全体の積分を近似すると、一様連続性から近似値と真の積分の差が0に収束し、かつ近似値が0に収束する。
+					\par
+					つまり任意に小さい$\varepsilon>0$に対して、$d'$に依存して決まる十分大きい自然数$N_1$が存在して次式が成り立つ。
+					\[
+						N\geq N_1 \Rightarrow \abs{2\integ{[-h/2,-d']\cup[d',h/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{y}}<\varepsilon
+					\]
+					\par
+					次に$[-d',d']$に於ける積分を評価する。
+					$y\to 0$で$y/\sin y\to 1,\;f(2y)\to f(0)$であるから、$d'$を十分小さくとりなおすことで$|f(2y)y/\sin y - f(0)| < \varepsilon$となり次式が成り立つ。
+					\[
+						\abs{2\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{y} - 2f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}} < 2\varepsilon\abs{\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}}
+					\]
+					最後にDirichlet積分を用いて$(\sin(2N+1)y)/\sin y$の積分を評価する。
+					\[
+						\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y} = 2\integ{0}{d'}{\frac{\sin(2N+1)y}{y}}{y} = 2\integ{0}{(2n+1)d'}{\frac{\sin z}{z}}{z} \to \pi \text{ as } n\to\infty
+					\]
+					すなわち$d'$に依存して決まる十分大きい自然数$N_2$が存在して次式が成り立つ。
+					\[ N\geq N_1 \Rightarrow \abs{\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y} - \pi} < \varepsilon \]
+					以上より、$d'>0$を十分に小さくとり、$N\geq\max(N_1,N_2)$とすれば次式が成り立つ。
+					\begin{align*}
+						|I_N - 2\pi f(0)| &= \left|\underbrace{\left(2f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y} - 2\pi f(0)\right)}_{(1)} \right. \\
+						&\phantom{=} \left.+ \underbrace{\left(2\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{y} - 2f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}\right)}_{(2)} \right. \\
+						&\phantom{=} \left.+ \underbrace{2\integ{[-h/2,-d']\cup[d',h/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{y}}_{(3)}\right| \\
+						&\leq |(1)| + |(2)| + |(3)| < 2f(0)\varepsilon + 2\varepsilon(\pi+\varepsilon) + \varepsilon
+					\end{align*}
+				\end{proof}
 			\section{正弦波のDTFTの導出}
 			\section{システムの伝達関数と正弦波入力の関係}
 		\chapter{離散Fourier変換(DFT)}
