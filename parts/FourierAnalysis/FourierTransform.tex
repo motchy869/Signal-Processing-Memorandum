@@ -81,7 +81,16 @@
 						&= F(\bm{\omega})G(\bm{\omega})
 					\end{align*}
 				\subsection{積のIDTFT}
+					DTFTの可逆性から直ちに言えるが、敢えて直接計算してみる。
+					\begin{align*}
+						\text{IDTFT}(FG,\bm{n}) &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\bm{\omega})G(\bm{\omega})\exp(i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{\left(\text{DTFT}(f,\bm{\omega})\right)G(\bm{\omega})\exp(i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{\left(\sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{m})\right)G(\bm{\omega})\exp(i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \\
+						&= \sum_{\bm{m}\in\integers^d} f(\bm{m}) \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d} \integ{\Omega}{}{G(\bm{\omega})\exp(i(\bm{\omega}\odot\bm{T}_\text{s})^\top(\bm{n}-\bm{m}))}{\bm{\omega}} \\
+						&= \sum_{\bm{m}\in\integers^d} f(\bm{m})g(\bm{n}-\bm{m}) = (f*g)(\bm{n})
+					\end{align*}
 				\subsection{畳み込みのIDTFT}
+					DTFTの可逆性から直ちに言えるが、敢えて直接計算してみる。
 			\section{定数関数1のDTFT}
 				\label{定数関数1のDTFT}
 				簡単のため1次元の場合について考察する。
