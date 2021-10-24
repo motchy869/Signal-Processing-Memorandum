@@ -56,6 +56,7 @@
 					厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\text{IDTFT}(\text{DTFT}(f,\bm{\omega}),\bm{n}) = f(\bm{n})$となることを簡単に証明できる。
 					$\sum$と$\int$の順序交換が簡単に行えるからである。
 			\section{定数関数1のDTFT}
+				\label{定数関数1のDTFT}
 				簡単のため1次元の場合について考察する。
 				工学系の学生を対象とする講義では、定数関数$\text{DTFT}(1,\omega) = 2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
 				$\text{IDTFT}\left(2\pi\sum_{m\in\integers}\delta(\omega-2m\pi),x\right)=1$の確認は簡単であり、DTFTの可逆性から$\text{DTFT}(1,\omega) = 2\pi\sum_{m\in\integers}\delta(\omega-2m\pi)$を受け入れる説明がなされると思う。
@@ -115,7 +116,19 @@
 						&\leq |(1)| + |(2)| + |(3)| < 2f(0)\varepsilon + 2\varepsilon(\pi+\varepsilon) + \varepsilon
 					\end{align*}
 				\end{proof}
-			\section{正弦波のDTFTの導出}
+			\section{単一周波数波のDTFTの導出}
+				$\sin\omega_0 n,\cos\omega_0 n\;(\omega_0\in\realNumbers, n\in\integers)$のDTFTは\ref{定数関数1のDTFT}の結果を用いて次のようにして得られる。
+				\begin{align*}
+					\begin{split}
+						\text{DTFT}(\sin\omega_0 n, \omega) &= \sum_{n=-\infty}^\infty \frac{e^{i\omega_0 n} - e^{-i\omega_0 n}}{2i}e^{-i\omega n} = \frac{1}{2i}\sum_{n=-\infty}^\infty \left(e^{-i(\omega-\omega_0) n} - e^{-i(\omega+\omega_0) n}\right) \\
+						&= -i\pi\sum_{m\in\integers}\bigl(\delta(\omega-\omega_0-2m\pi) - \delta(\omega+\omega_0-2m\pi)\bigr) \\
+						&= i\pi\sum_{m\in\integers}\bigl(\delta(\omega+\omega_0-2m\pi) - \delta(\omega-\omega_0-2m\pi)\bigr)
+					\end{split} \\
+					\begin{split}
+						\text{DTFT}(\cos\omega_0 n, \omega) &= \sum_{n=-\infty}^\infty \frac{e^{i\omega_0 n} + e^{-i\omega_0 n}}{2}e^{-i\omega n} = \frac{1}{2}\sum_{n=-\infty}^\infty \left(e^{-i(\omega-\omega_0) n} + e^{-i(\omega+\omega_0) n}\right) \\
+						&= \pi\sum_{m\in\integers}\bigl(\delta(\omega-\omega_0-2m\pi) + \delta(\omega+\omega_0-2m\pi)\bigr)
+					\end{split}
+				\end{align*}
 			\section{システムの伝達関数と正弦波入力の関係}
 		\chapter{離散Fourier変換(DFT)}
 			\section{基底}
