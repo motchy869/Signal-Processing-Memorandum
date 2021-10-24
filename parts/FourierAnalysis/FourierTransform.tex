@@ -68,9 +68,9 @@
 					$f,g:\integers^d\to\complexNumbers$に対してそのDTFTを$F(\bm{\omega}),G(\bm{\omega})$とする。
 					$f,g$の積のDTFTは次式で求まる。
 					\begin{align*}
-						\text{DTFT}(fg,\bm{\omega}) &= \sum_{n\in\integers} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) = \sum_{n\in\integers} \text{IDTFT}(F,\bm{n}) g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) \\
-						&= \sum_{n\in\integers} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})e^{i(\tilde{\bm{\omega}}\odot\bm{T}_\text{s})^\top\bm{n}}}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) \\
-						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{n\in\integers} g(\bm{n})e^{-i\left((\bm{\omega}-\tilde{\bm{\omega}})\odot\bm{T}_\text{s}\right)^\top\bm{n}}\right)}{\tilde{\bm{\omega}}} \\
+						\text{DTFT}(fg,\bm{\omega}) &= \sum_{\bm{n}\in\integers^d} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) = \sum_{\bm{n}\in\integers^d} \text{IDTFT}(F,\bm{n}) g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) \\
+						&= \sum_{\bm{n}\in\integers^d} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})e^{i(\tilde{\bm{\omega}}\odot\bm{T}_\text{s})^\top\bm{n}}}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n}) \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{\bm{n}\in\integers^d} g(\bm{n})e^{-i\left((\bm{\omega}-\tilde{\bm{\omega}})\odot\bm{T}_\text{s}\right)^\top\bm{n}}\right)}{\tilde{\bm{\omega}}} \\
 						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} = (F*G)(\omega)
 					\end{align*}
 				\subsection{畳み込みのDTFT}
