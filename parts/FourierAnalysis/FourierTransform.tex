@@ -91,6 +91,16 @@
 					\end{align*}
 				\subsection{畳み込みのIDTFT}
 					DTFTの可逆性から直ちに言えるが、敢えて直接計算してみる。
+					\begin{align*}
+						&\phantom{=} \text{IDTFT}(F*G,\bm{n}) \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\bm{\omega}\in\Omega}{}{(F*G)(\bm{\omega})\exp(i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\bm{\omega}\in\Omega}{}{\left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\tilde{\bm{\omega}}\in\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}}\right)\exp(i(\bm{\omega}\odot\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \\
+						&=
+						\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d} \int_{\tilde{\bm{\omega}}\in\Omega} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\bm{\omega}\in\Omega}{}{G(\bm{\omega}-\tilde{\bm{\omega}})\exp(i((\bm{\omega}-\tilde{\bm{\omega}})\odot\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}}\right) \\
+						&\phantom{=} F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\odot\bm{T}_\text{s})^\top\bm{n})\mathrm{d}\bm{\tilde{\bm{\omega}}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\tilde{\bm{\omega}}\in\Omega}{}{g(\bm{n})F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\odot\bm{T}_\text{s})^\top\bm{n})}{\tilde{\bm{\omega}}} \\
+						&= f(\bm{n})g(\bm{n})
+					\end{align*}
 			\section{定数関数1のDTFT}
 				\label{定数関数1のDTFT}
 				簡単のため1次元の場合について考察する。
