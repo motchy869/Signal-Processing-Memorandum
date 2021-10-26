@@ -177,13 +177,31 @@
 					\end{split}
 				\end{align*}
 			\section{システムの伝達関数と正弦波入力の関係}
+				\newcommand{\Ts}{T_\text{s}}
 				\begin{shadebox}
-					システムの伝達関数が$H:\omega\in\realNumbers\mapsto H(\omega)\in\complexNumbers$であるとき、このシステムに単一周波数の正弦波$f(n) := \sin(\omega_0 T_\text{s}n + \phi)$を入力したときの出力$g(n)$は次式となる。
-					\[ g(n) = \abs{H(\omega_0)}\sin\bigl(\omega_0 T_\text{s}n + \phi + \Arg{H(\omega_0)}\bigr) \]
+					サンプリング時間を$\Ts>0$とする。
+					実数値の入力に対して実数値を出力するシステムの伝達関数が$H:\omega\in\realNumbers\mapsto H(\omega)\in\complexNumbers$であるとき、このシステムに単一周波数の正弦波$f(n) := \sin(\omega_0 \Ts n + \phi)$を入力したときの出力$g(n)$は次式となる。
+					\[ g(n) = \abs{H(\omega_0)}\sin\bigl(\omega_0 \Ts n + \phi + \Arg{H(\omega_0)}\bigr) \]
 				\end{shadebox}
+				(直接的で長い証明)
 				\begin{proof}
-					システムのインパルス応答を$h(n) = \text{IDTFT}(H,n)$とすると$g(n) = (h*f)(n)$と表される。
+					\quad
+					システムのインパルス応答を$h(n)(\in\realNumbers) = \text{IDTFT}(H,n)$とすると$g(n) = (h*f)(n)$と表される。
+					\begin{align*}
+						g(n) &= (h*f)(n) = \sum_{m=-\infty}^\infty h(m)f(n-m) = \sum_{m=-\infty}^\infty \left(\frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp(i\omega\Ts m)}{\omega}\right)f(n-m) \\
+						&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{\sum_{m=-\infty}^\infty \exp(i\omega\Ts m)f(n-m)}{\omega} \\
+						&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{\frac{1}{2i}\sum_{m=-\infty}^\infty \exp(i\omega\Ts m)\Bigl(\exp\bigl(i(\omega_0\Ts(n-m)+\phi)\bigr)-\exp\bigl(-i(\omega_0\Ts(n-m)+\phi)\bigr)\Bigr)}{\omega} \\
+						%&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{\frac{1}{2i}\sum_{m=-\infty}^\infty \Bigl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i\Ts(\omega-\omega_0)m\bigr) - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i\Ts(\omega+\omega_0)m\bigr)\Bigr)}{\omega} \\
+						&= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}\sum_{m=-\infty}^\infty \Bigl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i(\omega-\omega_0)\Ts m\bigr) \\
+						&\phantom{=} - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i(\omega+\omega_0)\Ts m\bigr)\Bigr) \mathrm{d}\omega \\
+						&= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}\sum_{m=-\infty}^\infty \biggl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\frac{2\pi}{\Ts}\delta(\omega-\omega_0 - 2\pi m/\Ts)\\
+						&\phantom{=} - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\frac{2\pi}{\Ts}\delta(\omega+\omega_0 - 2\pi m/\Ts)\biggr) \mathrm{d}\omega
+					\end{align*}
 				\end{proof}
+				(DTFTを経由した短い照明)
+				\begin{proof}
+				\end{proof}
+				\let\Ts\undefined
 		\chapter{離散Fourier変換(DFT)}
 			\section{基底}
 				$d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\cdots,d),\;\bm{k},\bm{n}\in\integers^d$とする。
