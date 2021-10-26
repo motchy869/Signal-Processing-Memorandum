@@ -177,6 +177,13 @@
 					\end{split}
 				\end{align*}
 			\section{システムの伝達関数と正弦波入力の関係}
+				\begin{shadebox}
+					システムの伝達関数が$H:\omega\in\realNumbers\mapsto H(\omega)\in\complexNumbers$であるとき、このシステムに単一周波数の正弦波$f(n) := \sin(\omega_0 T_\text{s}n + \phi)$を入力したときの出力$g(n)$は次式となる。
+					\[ g(n) = \abs{H(\omega_0)}\sin\bigl(\omega_0 T_\text{s}n + \phi + \Arg{H(\omega_0)}\bigr) \]
+				\end{shadebox}
+				\begin{proof}
+					システムのインパルス応答を$h(n) = \text{IDTFT}(H,n)$とすると$g(n) = (h*f)(n)$と表される。
+				\end{proof}
 		\chapter{離散Fourier変換(DFT)}
 			\section{基底}
 				$d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\cdots,d),\;\bm{k},\bm{n}\in\integers^d$とする。
