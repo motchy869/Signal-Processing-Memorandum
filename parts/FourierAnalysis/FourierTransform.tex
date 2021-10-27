@@ -189,13 +189,16 @@
 					システムのインパルス応答を$h(n)(\in\realNumbers) = \text{IDTFT}(H,n)$とすると$g(n) = (h*f)(n)$と表される。
 					\begin{align*}
 						g(n) &= (h*f)(n) = \sum_{m=-\infty}^\infty h(m)f(n-m) = \sum_{m=-\infty}^\infty \left(\frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp(i\omega\Ts m)}{\omega}\right)f(n-m) \\
-						&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{\sum_{m=-\infty}^\infty \exp(i\omega\Ts m)f(n-m)}{\omega} \\
-						&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{\frac{1}{2i}\sum_{m=-\infty}^\infty \exp(i\omega\Ts m)\Bigl(\exp\bigl(i(\omega_0\Ts(n-m)+\phi)\bigr)-\exp\bigl(-i(\omega_0\Ts(n-m)+\phi)\bigr)\Bigr)}{\omega} \\
-						%&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{\frac{1}{2i}\sum_{m=-\infty}^\infty \Bigl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i\Ts(\omega-\omega_0)m\bigr) - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i\Ts(\omega+\omega_0)m\bigr)\Bigr)}{\omega} \\
-						&= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}\sum_{m=-\infty}^\infty \Bigl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i(\omega-\omega_0)\Ts m\bigr) \\
+						&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{H(\omega)\sum_{m=-\infty}^\infty \exp(i\omega\Ts m)f(n-m)}{\omega} \\
+						%&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{\frac{1}{2i}H(\omega)\sum_{m=-\infty}^\infty \exp(i\omega\Ts m)\Bigl(\exp\bigl(i(\omega_0\Ts(n-m)+\phi)\bigr)-\exp\bigl(-i(\omega_0\Ts(n-m)+\phi)\bigr)\Bigr)}{\omega} \\
+						&= \frac{\Ts}{2\pi} \int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega) \sum_{m=-\infty}^\infty \exp(i\omega\Ts m) \Bigl(\exp\bigl(i(\omega_0\Ts(n-m)+\phi)\bigr) \\
+						&\phantom{=} - \exp\bigl(-i(\omega_0\Ts(n-m)+\phi)\bigr)\Bigr)\mathrm{d}\omega \\
+						&= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega)\sum_{m=-\infty}^\infty \Bigl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i(\omega-\omega_0)\Ts m\bigr) \\
 						&\phantom{=} - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i(\omega+\omega_0)\Ts m\bigr)\Bigr) \mathrm{d}\omega \\
-						&= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}\sum_{m=-\infty}^\infty \biggl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\frac{2\pi}{\Ts}\delta(\omega-\omega_0 - 2\pi m/\Ts)\\
-						&\phantom{=} - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\frac{2\pi}{\Ts}\delta(\omega+\omega_0 - 2\pi m/\Ts)\biggr) \mathrm{d}\omega
+						&= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega)\sum_{m=-\infty}^\infty \biggl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\frac{2\pi}{\Ts}\delta(\omega-\omega_0 - 2\pi m/\Ts)\\
+						&\phantom{=} - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\frac{2\pi}{\Ts}\delta(\omega+\omega_0 - 2\pi m/\Ts)\biggr) \mathrm{d}\omega \\
+						&= \frac{1}{2i}\int_{-\pi/\Ts}^{\pi/\Ts} H(\omega)\left(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\delta(\omega-\omega_0) - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\delta(\omega+\omega_0)\right) \mathrm{d}\omega \\
+						&= \frac{1}{2i}\left(H(\omega_0)\exp\bigl(i(\omega_0\Ts n+\phi)\bigr) - H(-\omega_0)\exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\right)
 					\end{align*}
 				\end{proof}
 				(DTFTを経由した短い照明)
