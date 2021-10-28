@@ -216,11 +216,12 @@
 				\begin{proof}
 					\quad\par
 					$f,g$のDTFTを$F,G$とすると
+					\[ G(\omega) = H(\omega)F(\omega) = H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \]
+					これを逆変換して
 					\begin{align*}
-						G(\omega) &= H(\omega)F(\omega) = H(\omega)
+						g(n) &= \text{IDTFT}(G,n) = \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)}{\omega} \\
+						&= \frac{1}{2i}H((\omega_0+\pi)\%2\pi-\pi)
 					\end{align*}
-				\end{proof}
-				\begin{proof}
 				\end{proof}
 				\let\Ts\undefined
 		\chapter{離散Fourier変換(DFT)}
