@@ -186,12 +186,13 @@
 				\newcommand{\Ts}{T_\text{s}}
 				\begin{shadebox}
 					サンプリング時間を$\Ts>0$とする。
-					実数値の入力に対して実数値を出力するシステムの伝達関数が$H:\omega\in\realNumbers\mapsto H(\omega)\in\complexNumbers$であるとき、このシステムに単一周波数の正弦波$f(n) := \sin(\omega_0 \Ts n + \phi)$を入力したときの出力$g(n)$は次式となる。
+					実数値の入力に対して実数値を出力するシステムの伝達関数が$H:\omega\in\realNumbers\mapsto H(\omega)\in\complexNumbers$であるとき、このシステムに単一周波数の正弦波$f(n) := \sin(\omega_0 \Ts n + \phi)\;(-\pi/\Ts\leq\omega_0\leq\pi/\Ts)$を入力したときの出力$g(n)$は次式となる。
 					\[ g(n) = \abs{H(\omega_0)}\sin\bigl(\omega_0 \Ts n + \phi + \Arg{H(\omega_0)}\bigr) \]
+					$\omega<-\pi/\Ts, \pi/\Ts<\omega$のときは$\tilde{\omega}_0 := (\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts$とすると$\sin(\omega_0 \Ts n + \phi) = \sin(\tilde{\omega}_1 \Ts n + \phi)$となるので、$-\pi/\Ts\leq\omega_0\leq\pi/\Ts$の場合のみを考慮すればよい。
 				\end{shadebox}
 				(直接的で長い証明)
 				\begin{proof}
-					\quad
+					\quad\par
 					システムのインパルス応答を$h(n)(\in\realNumbers) = \text{IDTFT}(H,n)$とすると$g(n) = (h*f)(n)$と表される。
 					\begin{align*}
 						g(n) &= (h*f)(n) = \sum_{m=-\infty}^\infty h(m)f(n-m) = \sum_{m=-\infty}^\infty \left(\frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp(i\omega\Ts m)}{\omega}\right)f(n-m) \\
@@ -221,16 +222,9 @@
 					\begin{align*}
 						g(n) &= \text{IDTFT}(G,n) \\
 						&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)\exp(i\omega\Ts n)}{\omega} \\
-						&= \frac{1}{2i}\left(H(\tilde{\omega}_1)\exp(i(\tilde{\omega}_1\Ts n + \phi)) - H(\tilde{\omega}_2)\exp(i(\tilde{\omega}_2\Ts n - \phi))\right) \\
-						&\phantom{=} \bigl(\text{where }\tilde{\omega}_1 := (\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts,\;\tilde{\omega}_2 := (-\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts := -\tilde{\omega}_1\bigr) \\
-						&= \frac{1}{2i}\left(H(\tilde{\omega}_1)\exp(i(\tilde{\omega}_1\Ts n + \phi)) - H(-\tilde{\omega}_1)\exp(-i(\tilde{\omega}_1\Ts n + \phi))\right) \\
-						&= \frac{1}{2i}\left(H(\tilde{\omega}_1)\exp\bigl(i(\tilde{\omega}_1\Ts n+\phi)\bigr) - \overline{H(\tilde{\omega}_1)\exp\bigl(i(\tilde{\omega}_1\Ts n+\phi)\bigr)}\right) \\
-						&\phantom{=} \bigl(h(n)\in\realNumbers\text{なので}H(-\tilde{\omega}_1) = \overline{H(\tilde{\omega}_1)}\bigr) \\
-						&= \frac{1}{2i}2i\Im{H(\tilde{\omega}_1)\exp\bigl(i(\tilde{\omega}_1\Ts n+\phi)\bigr)} \\
-						&= \Re{H(\tilde{\omega}_1)}\Im{\exp\bigl(i(\tilde{\omega}_1\Ts n+\phi)\bigr)} + \Im{H(\tilde{\omega}_1)}\Re{\exp\bigl(i(\tilde{\omega}_1\Ts n+\phi)\bigr)} \\
-						&= \Re{H(\tilde{\omega}_1)}\sin(\tilde{\omega}_1\Ts n+\phi) + \Im{H(\tilde{\omega}_1)}\cos(\tilde{\omega}_1\Ts n+\phi) \\
-						&= |H(\omega)|\sin\bigl(\tilde{\omega}_1\Ts n+\phi + \Arg{H(\tilde{\omega}_1)}\bigr)
+						&= \frac{1}{2i}\left(H(\omega_0)\exp\bigl(i(\omega_0\Ts n+\phi)\bigr) - H(-\omega_0)\exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\right)
 					\end{align*}
+					この先は「直接的で長い証明」と同じである。
 				\end{proof}
 				\let\Ts\undefined
 		\chapter{離散Fourier変換(DFT)}
