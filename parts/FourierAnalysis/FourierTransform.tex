@@ -163,19 +163,25 @@
 					\end{align*}
 				\end{proof}
 			\section{単一周波数波のDTFTの導出}
+				\newcommand{\Ts}{T_\text{s}}
 				$T_\text{s}>0$とする。
-				$\sin\omega_0 T_\text{s} n,\;\cos\omega_0 T_\text{s} n\;(\omega_0\in\realNumbers, n\in\integers)$のDTFTは\ref{定数関数1のDTFT}の結果を用いて次のようにして得られる。
+				$\sin(\omega_0 T_\text{s} n + \phi)\;(\omega_0\in\realNumbers, n\in\integers)$のDTFTは\ref{定数関数1のDTFT}の結果を用いて次のようにして得られる。
 				\begin{align*}
-					\begin{split}
-						\text{DTFT}(\sin\omega_0 T_\text{s} n, \omega) &= \sum_{n=-\infty}^\infty \frac{e^{i\omega_0 T_\text{s} n} - e^{-i\omega_0 T_\text{s} n}}{2i}e^{-i\omega T_\text{s} n} = \frac{1}{2i}\sum_{n=-\infty}^\infty \left(e^{-i(\omega-\omega_0)T_\text{s} n} - e^{-i(\omega+\omega_0)T_\text{s} n}\right) \\
-						&= \frac{-i\pi}{T_\text{s}}\sum_{m\in\integers}\bigl(\delta(\omega-\omega_0-2m\pi) - \delta(\omega+\omega_0-2m\pi)\bigr) \\
-						&= \frac{i\pi}{T_\text{s}}\sum_{m\in\integers}\bigl(\delta(\omega+\omega_0-2m\pi) - \delta(\omega-\omega_0-2m\pi)\bigr)
-					\end{split} \\
-					\begin{split}
-						\text{DTFT}(\cos\omega_0 T_\text{s} n, \omega) &= \sum_{n=-\infty}^\infty \frac{e^{i\omega_0 T_\text{s} n} + e^{-i\omega_0 T_\text{s} n}}{2}e^{-i\omega T_\text{s} n} = \frac{1}{2}\sum_{n=-\infty}^\infty \left(e^{-i(\omega-\omega_0)T_\text{s} n} + e^{-i(\omega+\omega_0)T_\text{s} n}\right) \\
-						&= \frac{\pi}{T_\text{s}}\sum_{m\in\integers}\bigl(\delta(\omega-\omega_0-2m\pi) + \delta(\omega+\omega_0-2m\pi)\bigr)
-					\end{split}
+					\text{DTFT}(\sin(\omega_0 T_\text{s} n + \phi), \omega) &= \frac{1}{2i}\sum_{m\in\integers} \bigl(\exp(i(\omega_0\Ts m + \phi) - \exp(-i(\omega_0\Ts m + \phi))\bigr)\exp(-i\omega\Ts m) \\
+					&= \frac{1}{2i}\sum_{m\in\integers} \left(e^{i\phi}\exp(i(\omega_0-\omega)\Ts m) - e^{-i\phi}\exp(i(-\omega_0-\omega)\Ts m)\right) \\
+					&= \frac{1}{2i}e^{i\phi}\sum_{m\in\integers}\delta(\omega_0-\omega - 2\pi m/\Ts) - \frac{1}{2i}e^{-i\phi}\sum_{m\in\integers}\delta(-\omega_0-\omega - 2\pi m/\Ts) \\
+					&= \frac{1}{2i}e^{i\phi}\sum_{m\in\integers}\delta(-(\omega-\omega_0) - 2\pi m/\Ts) - \frac{1}{2i}e^{-i\phi}\sum_{m\in\integers}\delta(-(\omega+\omega_0) - 2\pi m/\Ts) \\
+					&= \frac{1}{2i}e^{i\phi}\frac{2\pi}{\Ts}\sum_{m\in\integers}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \frac{1}{2i}e^{-i\phi}\frac{2\pi}{\Ts}\sum_{m\in\integers}\delta(\omega+\omega_0 - 2\pi m/\Ts) \\
+					&= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
 				\end{align*}
+				上の結果を利用して、$\cos(\omega_0 T_\text{s} n + \phi)$のDTFTは次式となる。
+				\begin{align*}
+					\text{DTFT}(\cos(\omega_0 T_\text{s} n + \phi), \omega) &= \text{DTFT}(\sin(\omega_0 T_\text{s} n + \phi + \pi/2), \omega) \\
+					&= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i(\phi+\pi/2)}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i(\phi+\pi/2)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
+					&= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(ie^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + ie^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
+					&= \frac{\pi}{\Ts}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + e^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
+				\end{align*}
+				\let\Ts\undefined
 			\section{システムの伝達関数と正弦波入力の関係}
 				\newcommand{\Ts}{T_\text{s}}
 				\begin{shadebox}
