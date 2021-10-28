@@ -221,8 +221,15 @@
 					\begin{align*}
 						g(n) &= \text{IDTFT}(G,n) \\
 						&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)\exp(i\omega\Ts n)}{\omega} \\
-						&= \frac{1}{2i}\left(H(\tilde{\omega}_1)\exp(i(\tilde{\omega}_1\Ts n + \phi)) + H(\tilde{\omega}_2)\exp(i(\tilde{\omega}_2\Ts n - \phi))\right) \\
-						&\phantom{=} \bigl(\text{where }\tilde{\omega}_1 := (\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts,\;\tilde{\omega}_2 := (-\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts\bigr)
+						&= \frac{1}{2i}\left(H(\tilde{\omega}_1)\exp(i(\tilde{\omega}_1\Ts n + \phi)) - H(\tilde{\omega}_2)\exp(i(\tilde{\omega}_2\Ts n - \phi))\right) \\
+						&\phantom{=} \bigl(\text{where }\tilde{\omega}_1 := (\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts,\;\tilde{\omega}_2 := (-\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts := -\tilde{\omega}_1\bigr) \\
+						&= \frac{1}{2i}\left(H(\tilde{\omega}_1)\exp(i(\tilde{\omega}_1\Ts n + \phi)) - H(-\tilde{\omega}_1)\exp(-i(\tilde{\omega}_1\Ts n + \phi))\right) \\
+						&= \frac{1}{2i}\left(H(\tilde{\omega}_1)\exp\bigl(i(\tilde{\omega}_1\Ts n+\phi)\bigr) - \overline{H(\tilde{\omega}_1)\exp\bigl(i(\tilde{\omega}_1\Ts n+\phi)\bigr)}\right) \\
+						&\phantom{=} \bigl(h(n)\in\realNumbers\text{なので}H(-\tilde{\omega}_1) = \overline{H(\tilde{\omega}_1)}\bigr) \\
+						&= \frac{1}{2i}2i\Im{H(\tilde{\omega}_1)\exp\bigl(i(\tilde{\omega}_1\Ts n+\phi)\bigr)} \\
+						&= \Re{H(\tilde{\omega}_1)}\Im{\exp\bigl(i(\tilde{\omega}_1\Ts n+\phi)\bigr)} + \Im{H(\tilde{\omega}_1)}\Re{\exp\bigl(i(\tilde{\omega}_1\Ts n+\phi)\bigr)} \\
+						&= \Re{H(\tilde{\omega}_1)}\sin(\tilde{\omega}_1\Ts n+\phi) + \Im{H(\tilde{\omega}_1)}\cos(\tilde{\omega}_1\Ts n+\phi) \\
+						&= |H(\omega)|\sin\bigl(\tilde{\omega}_1\Ts n+\phi + \Arg{H(\tilde{\omega}_1)}\bigr)
 					\end{align*}
 				\end{proof}
 				\let\Ts\undefined
