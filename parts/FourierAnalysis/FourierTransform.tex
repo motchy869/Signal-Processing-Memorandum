@@ -11,7 +11,7 @@
 				$d\in\naturalNumbers,\;W_l>0\;(l=1,2,,\cdots,d),\;\Omega\coloneqq\prod_{l=1}^d [-W_l,W_l],\;\bm{k}\in\integers^d$とする。
 				$f:\bm{x}\in\realNumbers \mapsto f(\bm{x})\in\realNumbers$を、第$l$座標に関して周期が$2W_l$であるような周期関数とする。
 				次式で定義する、$\bm{k}$に関する離散座標信号を$f$の第$\bm{k}$ Fourier係数という。
-				\[ c(f,\bm{k}) \coloneqq \left(\prod_{l=1}^d 2W_l\right)^{-1}\integ{\Omega}{}{\conj{W(\bm{k},\bm{x})}f(\bm{x})}{\bm{x}} \]
+				\[ c(f,\bm{k}) \coloneqq \left(\prod_{l=1}^d 2W_l\right)^{-1}\integrate{\Omega}{}{\conj{W(\bm{k},\bm{x})}f(\bm{x})}{}{\bm{x}} \]
 
 		\chapter{Fourier変換}
 			\section{基底関数}
@@ -22,7 +22,7 @@
 			\section{Fourier変換の定義}
 				$d\in\naturalNumbers,\;\bm{\omega}\in\realNumbers^d$とする。
 				$f:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{\omega}$に関する連続座標信号を$f$のFourier変換という。
-				\[ \mathcal{F}(f,\bm{\omega}) \coloneqq \integ{\realNumbers^d}{}{\conj{W(\bm{\omega},\bm{x})}f(\bm{x})}{\bm{x}} = (2\pi)^{-d/2} \integ{\realNumbers^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{\bm{x}} \]
+				\[ \mathcal{F}(f,\bm{\omega}) \coloneqq \integrate{\realNumbers^d}{}{\conj{W(\bm{\omega},\bm{x})}f(\bm{x})}{}{\bm{x}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{}{\bm{x}} \]
 
 		\chapter{離散時間Fourier変換(DTFT)}
 			\section{直観的な説明}
@@ -49,7 +49,7 @@
 			\section{逆離散時間Fourier変換(IDTFT)}
 				$d\in\naturalNumbers,\;\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0},\;\Omega := \prod_{k=1}^d [-\pi/T_{\text{s},k},\pi/T_{\text{s},k})$とする。
 				$F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{n}\in\integers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT; IDTFT)という。
-				\[ \text{IDTFT}(F,\bm{n}) \coloneqq \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \]
+				\[ \text{IDTFT}(F,\bm{n}) \coloneqq \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \]
 				\subsection{IDTFTがDTFTの逆変換であること}
 					厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\text{IDTFT}(\text{DTFT}(f,\bm{\omega}),\bm{n}) = f(\bm{n})$となることを簡単に証明できる。
 					$\sum$と$\int$の順序交換が簡単に行えるからである。
@@ -64,14 +64,14 @@
 					周波数領域の畳み込みを次で定義する:
 					\par
 					$F,G:\realNumbers^d\to\complexNumbers$に対してその畳み込み$F*G$を次式で定義する。
-					\[ (F*G)(\bm{\omega}) := \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} \]
+					\[ (F*G)(\bm{\omega}) := \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}} \]
 				\subsection{積のDTFT}
 					$f,g$の積のDTFTは次式で求まる。
 					\begin{align*}
 						\text{DTFT}(fg,\bm{\omega}) &= \sum_{\bm{n}\in\integers^d} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) = \sum_{\bm{n}\in\integers^d} \text{IDTFT}(F,\bm{n}) g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \\
-						&= \sum_{\bm{n}\in\integers^d} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})e^{i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\text{s})^\top\bm{n}}}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \\
-						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{\bm{n}\in\integers^d} g(\bm{n})e^{-i\left((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\text{s}\right)^\top\bm{n}}\right)}{\tilde{\bm{\omega}}} \\
-						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}} = (F*G)(\omega)
+						&= \sum_{\bm{n}\in\integers^d} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})e^{i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\text{s})^\top\bm{n}}}{}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{\bm{n}\in\integers^d} g(\bm{n})e^{-i\left((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\text{s}\right)^\top\bm{n}}\right)}{}{\tilde{\bm{\omega}}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}} = (F*G)(\omega)
 					\end{align*}
 				\subsection{畳み込みのDTFT}
 					$f,g$の畳み込みのDTFTは次式で求まる。
@@ -83,22 +83,22 @@
 				\subsection{積のIDTFT}
 					DTFTの可逆性から直ちに言えるが、敢えて直接計算してみる。
 					\begin{align*}
-						\text{IDTFT}(FG,\bm{n}) &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{F(\bm{\omega})G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \\
-						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{\left(\text{DTFT}(f,\bm{\omega})\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \\
-						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\Omega}{}{\left(\sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{m})\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \\
-						&= \sum_{\bm{m}\in\integers^d} f(\bm{m}) \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d} \integ{\Omega}{}{G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top(\bm{n}-\bm{m}))}{\bm{\omega}} \\
+						\text{IDTFT}(FG,\bm{n}) &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\left(\text{DTFT}(f,\bm{\omega})\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\left(\sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{m})\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
+						&= \sum_{\bm{m}\in\integers^d} f(\bm{m}) \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d} \integrate{\Omega}{}{G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top(\bm{n}-\bm{m}))}{}{\bm{\omega}} \\
 						&= \sum_{\bm{m}\in\integers^d} f(\bm{m})g(\bm{n}-\bm{m}) = (f*g)(\bm{n})
 					\end{align*}
 				\subsection{畳み込みのIDTFT}
 					DTFTの可逆性から直ちに言えるが、敢えて直接計算してみる。
 					\begin{align*}
 						&\phantom{=} \text{IDTFT}(F*G,\bm{n}) \\
-						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\bm{\omega}\in\Omega}{}{(F*G)(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \\
-						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\bm{\omega}\in\Omega}{}{\left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\tilde{\bm{\omega}}\in\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{\tilde{\bm{\omega}}}\right)\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{(F*G)(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{\left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\tilde{\bm{\omega}}\in\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}}\right)\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
 						&=
-						\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d} \int_{\tilde{\bm{\omega}}\in\Omega} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\bm{\omega}\in\Omega}{}{G(\bm{\omega}-\tilde{\bm{\omega}})\exp(i((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{\bm{\omega}}\right) \\
+						\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d} \int_{\tilde{\bm{\omega}}\in\Omega} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{G(\bm{\omega}-\tilde{\bm{\omega}})\exp(i((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}}\right) \\
 						&\phantom{=} F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\text{s})^\top\bm{n})\mathrm{d}\bm{\tilde{\bm{\omega}}} \\
-						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integ{\tilde{\bm{\omega}}\in\Omega}{}{g(\bm{n})F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{\tilde{\bm{\omega}}} \\
+						&= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\tilde{\bm{\omega}}\in\Omega}{}{g(\bm{n})F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\tilde{\bm{\omega}}} \\
 						&= f(\bm{n})g(\bm{n})
 					\end{align*}
 			\section{定数関数1のDTFT}
@@ -122,7 +122,7 @@
 					$h>0$を$[-h,h) \subseteq \Omega$となるように任意にとる。
 					このとき次式が成り立つ。
 					\[
-						\lim_{N\to\infty} \integ{-h}{h}{\frac{\sin(N+1/2)x T_\text{s}}{\sin(x T_\text{s}/2)} f(x)}{x} = \frac{2\pi}{T_\text{s}} f(0)
+						\lim_{N\to\infty} \integrate{-h}{h}{\frac{\sin(N+1/2)x T_\text{s}}{\sin(x T_\text{s}/2)} f(x)}{}{x} = \frac{2\pi}{T_\text{s}} f(0)
 					\]
 				\end{shadebox}
 				\begin{proof}
@@ -130,7 +130,7 @@
 					極限をとる前の積分を$I_N$とおく。
 					$y = x T_\text{s}/2$と変数変換すると次式を得る。
 					\[
-						I_N = \frac{2}{T_\text{s}}\integ{-h T_\text{s}/2}{h T_\text{s}/2}{\frac{\sin(2N+1)y}{\sin y}f(2y/T_\text{s})}{y} = \frac{2}{T_\text{s}}\integ{-h T_\text{s}/2}{h T_\text{s}/2}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{y}
+						I_N = \frac{2}{T_\text{s}}\integrate{-h T_\text{s}/2}{h T_\text{s}/2}{\frac{\sin(2N+1)y}{\sin y}f(2y/T_\text{s})}{}{y} = \frac{2}{T_\text{s}}\integrate{-h T_\text{s}/2}{h T_\text{s}/2}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{}{y}
 					\]
 					後に現れるDirichlet積分の性質から$N\to\infty$で積分の主要部分が$x=0$近傍に集中することがこの時点で推察できる。
 					そこで、十分に小さい正数$d'$を$0<d'<h T_\text{s}/2$となるようにとり、積分区間を$[-h T_\text{s}/2,-d']\cup[-d',d']\cup[d',h T_\text{s}/2]$と分割する。
@@ -140,25 +140,25 @@
 					\par
 					つまり任意に小さい$\varepsilon>0$に対して、$d'$に依存して決まる十分大きい自然数$N_1$が存在して次式が成り立つ。
 					\[
-						N\geq N_1 \Rightarrow \abs{\frac{2}{T_\text{s}}\integ{[-h T_\text{s}/2,-d']\cup[d',h T_\text{s}/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y/T_\text{s})}{y}}<\varepsilon
+						N\geq N_1 \Rightarrow \abs{\frac{2}{T_\text{s}}\integrate{[-h T_\text{s}/2,-d']\cup[d',h T_\text{s}/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y/T_\text{s})}{}{y}}<\varepsilon
 					\]
 					\par
 					次に$[-d',d']$に於ける積分を評価する。
 					$y\to 0$で$y/\sin y\to 1,\;f(2y/T_\text{s})\to f(0)$であるから、$d'$を十分小さくとりなおすことで$|f(2y/T_\text{s})y/\sin y - f(0)| < \varepsilon$となり次式が成り立つ。
 					\[
-						\abs{\frac{2}{T_\text{s}}\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y/T_\text{s})}{y} - \frac{2}{T_\text{s}}f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}} < \frac{2\varepsilon}{T_\text{s}}\abs{\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}}
+						\abs{\frac{2}{T_\text{s}}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y/T_\text{s})}{}{y} - \frac{2}{T_\text{s}}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}} < \frac{2\varepsilon}{T_\text{s}}\abs{\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}}
 					\]
 					最後にDirichlet積分を用いて$(\sin(2N+1)y)/\sin y$の積分を評価する。
 					\[
-						\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y} = 2\integ{0}{d'}{\frac{\sin(2N+1)y}{y}}{y} = 2\integ{0}{(2n+1)d'}{\frac{\sin z}{z}}{z} \to \pi \text{ as } n\to\infty
+						\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} = 2\integrate{0}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} = 2\integrate{0}{(2n+1)d'}{\frac{\sin z}{z}}{}{z} \to \pi \text{ as } n\to\infty
 					\]
 					すなわち$d'$に依存して決まる十分大きい自然数$N_2$が存在して次式が成り立つ。
-					\[ N\geq N_1 \Rightarrow \abs{\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y} - \pi} < \varepsilon \]
+					\[ N\geq N_1 \Rightarrow \abs{\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} - \pi} < \varepsilon \]
 					以上より、$d'>0$を十分に小さくとり、$N\geq\max(N_1,N_2)$とすれば次式が成り立つ。
 					\begin{align*}
-						\abs{I_N - \frac{2\pi}{T_\text{s}} f(0)} &= \left|\underbrace{\left(\frac{2}{T_\text{s}}f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y} - \frac{2\pi}{T_\text{s}} f(0)\right)}_{(1)} \right. \\
-						&\phantom{=} \left.+ \underbrace{\left(\frac{2}{T_\text{s}}\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{y} - \frac{2}{T_\text{s}}f(0)\integ{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{y}\right)}_{(2)} \right. \\
-						&\phantom{=} \left.+ \underbrace{\frac{2}{T_\text{s}}\integ{[-h/2,-d']\cup[d',h/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{y}}_{(3)}\right| \\
+						\abs{I_N - \frac{2\pi}{T_\text{s}} f(0)} &= \left|\underbrace{\left(\frac{2}{T_\text{s}}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} - \frac{2\pi}{T_\text{s}} f(0)\right)}_{(1)} \right. \\
+						&\phantom{=} \left.+ \underbrace{\left(\frac{2}{T_\text{s}}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{}{y} - \frac{2}{T_\text{s}}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}\right)}_{(2)} \right. \\
+						&\phantom{=} \left.+ \underbrace{\frac{2}{T_\text{s}}\integrate{[-h/2,-d']\cup[d',h/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{}{y}}_{(3)}\right| \\
 						&\leq |(1)| + |(2)| + |(3)| < \frac{2f(0)}{T_\text{s}}\varepsilon + \frac{2\varepsilon}{T_\text{s}}(\pi+\varepsilon) + \varepsilon
 					\end{align*}
 				\end{proof}
@@ -195,8 +195,8 @@
 					\quad\par
 					システムのインパルス応答を$h(n)(\in\realNumbers) = \text{IDTFT}(H,n)$とすると$g(n) = (h*f)(n)$と表される。
 					\begin{align*}
-						g(n) &= (h*f)(n) = \sum_{m=-\infty}^\infty h(m)f(n-m) = \sum_{m=-\infty}^\infty \left(\frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp(i\omega\Ts m)}{\omega}\right)f(n-m) \\
-						&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{H(\omega)\sum_{m=-\infty}^\infty \exp(i\omega\Ts m)f(n-m)}{\omega} \\
+						g(n) &= (h*f)(n) = \sum_{m=-\infty}^\infty h(m)f(n-m) = \sum_{m=-\infty}^\infty \left(\frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp(i\omega\Ts m)}{}{\omega}\right)f(n-m) \\
+						&= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\sum_{m=-\infty}^\infty \exp(i\omega\Ts m)f(n-m)}{}{\omega} \\
 						&= \frac{\Ts}{2\pi} \int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega) \sum_{m=-\infty}^\infty \exp(i\omega\Ts m) \Bigl(\exp\bigl(i(\omega_0\Ts(n-m)+\phi)\bigr) \\
 						&\phantom{=} - \exp\bigl(-i(\omega_0\Ts(n-m)+\phi)\bigr)\Bigr)\mathrm{d}\omega \\
 						&= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega)\sum_{m=-\infty}^\infty \Bigl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i(\omega-\omega_0)\Ts m\bigr) \\
@@ -221,7 +221,7 @@
 					これを逆変換して
 					\begin{align*}
 						g(n) &= \text{IDTFT}(G,n) \\
-						&= \frac{\Ts}{2\pi}\integ{-\pi/\Ts}{\pi/\Ts}{H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)\exp(i\omega\Ts n)}{\omega} \\
+						&= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)\exp(i\omega\Ts n)}{}{\omega} \\
 						&= \frac{1}{2i}\left(H(\omega_0)\exp\bigl(i(\omega_0\Ts n+\phi)\bigr) - H(-\omega_0)\exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\right)
 					\end{align*}
 					この先は「直接的で長い証明」と同じである。
@@ -322,22 +322,22 @@
 				\[ \mathcal{F}(f,\bm{\omega}) = \sum_{\bm{n}\in\naturalNumbers^d} c(\mathcal{F}(f),\bm{n}) \exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi \]
 				となる。$c(\mathcal{F}(f),\bm{n})$は次式で求まる。
 				\begin{align*}
-					c(\mathcal{F}(f),\bm{n}) &= \left(\prod_{l=1}^d 2W_l\right)^{-1} \integ{\Omega}{}{\mathcal{F}(f,\bm{\xi}) \exp (-i)\sum_{l=1}^d n_l\frac{\xi_l}{W_l}\pi}{\bm{\xi}} \\
-					&= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} (2\pi)^{-d/2} \integ{\textcolor{darkpastelgreen}{\realNumbers^d}}{}{\mathcal{F}(f,\bm{\xi}) \exp i\sum_{l=1}^d \left(\frac{-n_l}{W_l}\pi\right)\xi_l}{\bm{\xi}} \\
+					c(\mathcal{F}(f),\bm{n}) &= \left(\prod_{l=1}^d 2W_l\right)^{-1} \integrate{\Omega}{}{\mathcal{F}(f,\bm{\xi}) \exp (-i)\sum_{l=1}^d n_l\frac{\xi_l}{W_l}\pi}{}{\bm{\xi}} \\
+					&= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} (2\pi)^{-d/2} \integrate{\textcolor{darkpastelgreen}{\realNumbers^d}}{}{\mathcal{F}(f,\bm{\xi}) \exp i\sum_{l=1}^d \left(\frac{-n_l}{W_l}\pi\right)\xi_l}{}{\bm{\xi}} \\
 					&= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} \mathcal{F}^{-1}\left(\mathcal{F}(f),-\pi\bm{n}\HadamardDiv\bm{W}\right) \\
 					&= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right)
 				\end{align*}
 				$f$は$\mathcal{F}(f)$のFourier逆変換で次のようにして求まる。
 				\begin{align*}
-					f(\bm{x}) &= \mathcal{F}^{-1}\left(\mathcal{F}(f),\bm{x}\right) = (2\pi)^{-d/2} \integ{\realNumbers^d}{}{\mathcal{F}(f,\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{\bm{\omega}} = (2\pi)^{-d/2} \integ{\Omega}{}{\mathcal{F}(f,\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{\bm{\omega}} \\
-					&= (2\pi)^{-d/2} \integ{\Omega}{}{\sum_{\bm{n}\in\naturalNumbers^d} c(\mathcal{F}(f),\bm{n}) \left(\exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi\right) \exp i\bm{\omega}^\top\bm{x}}{\bm{\omega}} \\
-					&= (2\pi)^{-d/2} \sum_{\bm{n}\in\naturalNumbers^d} \integ{\Omega}{}{c(\mathcal{F}(f),\bm{n}) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{\bm{\omega}} \\
-					&= (2\pi)^{-d/2} \sum_{\bm{n}\in\naturalNumbers^d} \integ{\Omega}{}{(2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{\bm{\omega}} \\
-					&= \left(\prod_{l=1}^d 2W_l\right)^{-1} \sum_{\bm{n}\in\naturalNumbers^d} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \integ{\Omega}{}{\exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{\bm{\omega}}
+					f(\bm{x}) &= \mathcal{F}^{-1}\left(\mathcal{F}(f),\bm{x}\right) = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\mathcal{F}(f,\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} = (2\pi)^{-d/2} \integrate{\Omega}{}{\mathcal{F}(f,\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} \\
+					&= (2\pi)^{-d/2} \integrate{\Omega}{}{\sum_{\bm{n}\in\naturalNumbers^d} c(\mathcal{F}(f),\bm{n}) \left(\exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi\right) \exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} \\
+					&= (2\pi)^{-d/2} \sum_{\bm{n}\in\naturalNumbers^d} \integrate{\Omega}{}{c(\mathcal{F}(f),\bm{n}) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}} \\
+					&= (2\pi)^{-d/2} \sum_{\bm{n}\in\naturalNumbers^d} \integrate{\Omega}{}{(2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}} \\
+					&= \left(\prod_{l=1}^d 2W_l\right)^{-1} \sum_{\bm{n}\in\naturalNumbers^d} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \integrate{\Omega}{}{\exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}}
 				\end{align*}
 				ここで
 				\begin{align*}
-					\integ{\Omega}{}{\exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{\bm{\omega}} &= \prod_{l=1}^d \integ{-W_l}{W_l}{\exp i\left(x_l + \pi\frac{n_l}{W_l}\right)\omega_l}{\omega_l} \\
+					\integrate{\Omega}{}{\exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}} &= \prod_{l=1}^d \integrate{-W_l}{W_l}{\exp i\left(x_l + \pi\frac{n_l}{W_l}\right)\omega_l}{}{\omega_l} \\
 					&= \prod_{l=1}^d \frac{1}{i\left(x_l + \pi\frac{n_l}{W_l}\right)}\left[\exp i\left(x_l + \pi\frac{n_l}{W_l}\right)W_l - \exp (-i)\left(x_l + \pi\frac{n_l}{W_l}\right)W_l\right] \\
 					&= \prod_{l=1}^d 2W_l \frac{\sin \left(x_l + \pi\frac{n_l}{W_l}\right)W_l}{\left(x_l + \pi\frac{n_l}{W_l}\right)W_l} = \prod_{l=1}^d 2W_l \prod_{l=1}^d \sinc W_l\left(x_l + \pi\frac{n_l}{W_l}\right)
 				\end{align*}
