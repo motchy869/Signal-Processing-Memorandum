@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Introduced `hyperref` package
+- Introduced `hyperref` package.
+- Added version to title page.
 
 ## [0.2.0]
 
