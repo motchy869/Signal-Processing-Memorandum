@@ -1,4 +1,9 @@
 \part{Fourier解析}
+	\newcommand{\FT}[1]{\mathcal{F}\left(#1\right)}
+	\newcommand{\FTwithArg}[2]{\FT{#1}\left(#2\right)}
+	\newcommand{\IFT}[1]{\mathcal{F}^{-1}\left(#1\right)}
+	\newcommand{\IFTwithArg}[2]{\IFT{#1}\left(#2\right)}
+
 	\chapter{Fourier級数展開}
 		\section{基底関数}
 			Fourier級数展開の基底関数はFourier変換やDFTのものと違って正規化されていないため、美しさに欠ける。
@@ -22,12 +27,12 @@
 		\section{Fourier変換の定義}
 			$d\in\naturalNumbers,\;\bm{\omega}\in\realNumbers^d$とする。
 			$f:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{\omega}$に関する連続座標信号を$f$のFourier変換という。
-			\[ \mathcal{F}(f)(\bm{\omega}) \coloneqq \integrate{\realNumbers^d}{}{\conj{W(\bm{\omega},\bm{x})}f(\bm{x})}{d}{\bm{x}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{d}{\bm{x}} \]
+			\[ \FTwithArg{f}{\bm{\omega}} \coloneqq \integrate{\realNumbers^d}{}{\conj{W(\bm{\omega},\bm{x})}f(\bm{x})}{d}{\bm{x}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{d}{\bm{x}} \]
 
 		\section{逆Fourier変換}
 			$d\in\naturalNumbers,\;\bm{x}\in\realNumbers^d$とする。
 			$F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{x}$に関する連続座標信号を$F$の逆Fourier変換という。
-			\[ \mathcal{F}^{-1}(F)(\bm{x}) \coloneqq \integrate{\realNumbers^d}{}{W(\bm{\omega},\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (i\bm{\omega}^\top\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} \]
+			\[ \IFTwithArg{F}{\bm{x}} \coloneqq \integrate{\realNumbers^d}{}{W(\bm{\omega},\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (i\bm{\omega}^\top\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} \]
 
 		\section{周波数表示されたFourier変換との関係}
 			上述のFourier変換の定義はその数学的対称性の美しさから、理学系で主に用いられる。
@@ -43,10 +48,10 @@
 			\subsection{逆変換により元の関数に戻ること}
 				通常のFourier変換が$\mathcal{F}^{-1}(\mathcal{F}(f))(\bm{x}) = f(\bm{x})$を満たすことを既知として、周波数表示されたFourier変換が$\tilde{\mathcal{F}}^{-1}(\tilde{\mathcal{F}}(g))(\bm{x}) = g(\bm{x})$を満たすことは$\bm{\omega} = 2\pi\bm{f}$なる変数変換をを用いて確かめられる。
 				\begin{gather*}
-					G(\bm{f}) \coloneqq \tilde{\mathcal{F}}(g)(\bm{f}) = (2\pi)^{d/2}\mathcal{F}(g)(\bm{\omega}) \\
+					G(\bm{f}) \coloneqq \tilde{\mathcal{F}}(g)(\bm{f}) = (2\pi)^{d/2}\FTwithArg{g}{\bm{\omega}} \\
 					\begin{aligned}
-						\tilde{\mathcal{F}}^{-1}(G)(\bm{x}) &= \integrate{\realNumbers^d}{}{G(\bm{f})\exp (i2\pi\bm{f}^\top\bm{x})}{d}{\bm{f}} = \integrate{\realNumbers^d}{}{(2\pi)^{d/2}\mathcal{F}(g)(\bm{\omega})\exp (i\bm{\omega}^\top\bm{x})\det\left(\frac{1}{2\pi}I_d\right)}{d}{\bm{\omega}} \\
-						&= (2\pi)^{-d/2}\integrate{\realNumbers^d}{}{\mathcal{F}(g)(\bm{\omega})\exp (i\bm{\omega}^\top\bm{x})}{d}{\bm{\omega}} = \mathcal{F}^{-1}(\mathcal{F}(g))(\bm{x}) = g(\bm{x})
+						\tilde{\mathcal{F}}^{-1}(G)(\bm{x}) &= \integrate{\realNumbers^d}{}{G(\bm{f})\exp (i2\pi\bm{f}^\top\bm{x})}{d}{\bm{f}} = \integrate{\realNumbers^d}{}{(2\pi)^{d/2}\FTwithArg{g}{\bm{\omega}}\exp (i\bm{\omega}^\top\bm{x})\det\left(\frac{1}{2\pi}I_d\right)}{d}{\bm{\omega}} \\
+						&= (2\pi)^{-d/2}\integrate{\realNumbers^d}{}{\FTwithArg{g}{\bm{\omega}}\exp (i\bm{\omega}^\top\bm{x})}{d}{\bm{\omega}} = \IFTwithArg{\FT{g}}{\bm{x}} = g(\bm{x})
 					\end{aligned}
 				\end{gather*}
 
