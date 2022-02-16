@@ -3,6 +3,7 @@
         "coloneqq",
         "dotsep",
         "dottedtocline",
+        "hyperref",
         "jsbook",
         "pnumwidth"
     ]
