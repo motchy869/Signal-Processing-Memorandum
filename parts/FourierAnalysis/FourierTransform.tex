@@ -24,6 +24,11 @@
 				$f:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{\omega}$に関する連続座標信号を$f$のFourier変換という。
 				\[ \mathcal{F}(f,\bm{\omega}) \coloneqq \integrate{\realNumbers^d}{}{\conj{W(\bm{\omega},\bm{x})}f(\bm{x})}{d}{\bm{x}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{d}{\bm{x}} \]
 
+			\section{逆Fourier変換}
+				$d\in\naturalNumbers,\;\bm{x}\in\realNumbers^d$とする。
+				$F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{x}$に関する連続座標信号を$F$の逆Fourier変換という。
+				\[ \mathcal{F}^{-1}(f,\bm{x}) \coloneqq \integrate{\realNumbers^d}{}{W(\bm{\omega},\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (i\bm{\omega}^\top\bm{x})f(\bm{\omega})}{d}{\bm{\omega}} \]
+
 		\chapter{離散時間Fourier変換(DTFT)}
 			\section{直観的な説明}
 				離散時間Fourier変換(Discrete Time Fourier Transform; DTFT)とは、直観的には、離散座標信号を、連続的な周波数をもつ無数の離散時間信号の重ね合わせとして表現するものである。
