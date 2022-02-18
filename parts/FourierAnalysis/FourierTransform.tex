@@ -87,7 +87,7 @@
 			$F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{n}\in\integers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT; IDTFT)という。
 			\[ \IDTFTwithArg{F}{\bm{n}} \coloneqq \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \]
 			\subsection{IDTFTがDTFTの逆変換であること}
-				厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\IDTFTwithArg{\DTFTwithArg{f}{\bm{\omega}}}{\bm{n}} = f(\bm{n})$となることを簡単に証明できる。
+				厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\IDTFTwithArg{\DTFT{f}}{\bm{n}} = f(\bm{n})$となることを簡単に証明できる。
 				$\sum$と$\int$の順序交換が簡単に行えるからである。
 		\section{積と畳み込みとの関係}
 			以下では既出の記号の定義は上書きしない限り引き継ぐ。
