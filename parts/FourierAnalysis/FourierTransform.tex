@@ -348,17 +348,17 @@
 		\begin{shadebox}
 			$d\in\naturalNumbers,\;W_l>0\;(l=1,2,,\cdots,d),\;\Omega\coloneqq\prod_{l=1}^d [-W_l,W_l]$とする。
 			$f:\realNumbers^d\to\realNumbers$のFourier変換$\mathcal{F}(f,\bm{\omega})$が存在してその台が$\Omega$に含まれるとき、次式が成り立つ。
-			\[ f(\bm{x}) = \sum_{\bm{n}\in\naturalNumbers}f\left(\pi\frac{n_1}{W_1},\cdots,\pi\frac{n_d}{W_d}\right)\prod_{l=1}^d\sinc W_l\left(x_l + \pi\frac{n_l}{W_l}\right) \]
+			\[ f(\bm{x}) = \sum_{\bm{n}\in\integers}f\left(\pi\frac{n_1}{W_1},\cdots,\pi\frac{n_d}{W_d}\right)\prod_{l=1}^d\sinc W_l\left(x_l + \pi\frac{n_l}{W_l}\right) \]
 			つまり$f$の各点での評価値を沢山集めて$f$を任意の精度で近似できる。
 			\par
 			角周波数$W_l$のかわりに周波数$F_l=W_l/(2\pi)$を使うと上式は次式になる。
-			\[ f(\bm{x}) = \sum_{\bm{n}\in\naturalNumbers}f\left(\frac{n_1}{2F_1},\cdots,\frac{n_d}{2F_d}\right)\prod_{l=1}^d\sinc 2\pi F_l\left(x_l + \frac{n_l}{2F_l}\right) \]
+			\[ f(\bm{x}) = \sum_{\bm{n}\in\integers}f\left(\frac{n_1}{2F_1},\cdots,\frac{n_d}{2F_d}\right)\prod_{l=1}^d\sinc 2\pi F_l\left(x_l + \frac{n_l}{2F_l}\right) \]
 		\end{shadebox}
 		\begin{proof}
 			\quad\par
 			$\mathcal{F}(f,\bm{\omega})$の台が超直方体$\Omega$に含まれるから$\mathcal{F}(f,\bm{\omega})$はFourier級数展開できる。
 			第$\bm{n}$Fourier係数を$c(\mathcal{F}(f),\bm{n})$とすると
-			\[ \mathcal{F}(f,\bm{\omega}) = \sum_{\bm{n}\in\naturalNumbers^d} c(\mathcal{F}(f),\bm{n}) \exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi \]
+			\[ \mathcal{F}(f,\bm{\omega}) = \sum_{\bm{n}\in\integers^d} c(\mathcal{F}(f),\bm{n}) \exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi \]
 			となる。$c(\mathcal{F}(f),\bm{n})$は次式で求まる。
 			\begin{align*}
 				c(\mathcal{F}(f),\bm{n}) &= \left(\prod_{l=1}^d 2W_l\right)^{-1} \integrate{\Omega}{}{\mathcal{F}(f,\bm{\xi}) \exp (-i)\sum_{l=1}^d n_l\frac{\xi_l}{W_l}\pi}{}{\bm{\xi}} \\
@@ -369,10 +369,10 @@
 			$f$は$\mathcal{F}(f)$のFourier逆変換で次のようにして求まる。
 			\begin{align*}
 				f(\bm{x}) &= \mathcal{F}^{-1}\left(\mathcal{F}(f),\bm{x}\right) = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\mathcal{F}(f,\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} = (2\pi)^{-d/2} \integrate{\Omega}{}{\mathcal{F}(f,\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} \\
-				&= (2\pi)^{-d/2} \integrate{\Omega}{}{\sum_{\bm{n}\in\naturalNumbers^d} c(\mathcal{F}(f),\bm{n}) \left(\exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi\right) \exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} \\
-				&= (2\pi)^{-d/2} \sum_{\bm{n}\in\naturalNumbers^d} \integrate{\Omega}{}{c(\mathcal{F}(f),\bm{n}) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}} \\
-				&= (2\pi)^{-d/2} \sum_{\bm{n}\in\naturalNumbers^d} \integrate{\Omega}{}{(2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}} \\
-				&= \left(\prod_{l=1}^d 2W_l\right)^{-1} \sum_{\bm{n}\in\naturalNumbers^d} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \integrate{\Omega}{}{\exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}}
+				&= (2\pi)^{-d/2} \integrate{\Omega}{}{\sum_{\bm{n}\in\integers^d} c(\mathcal{F}(f),\bm{n}) \left(\exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi\right) \exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} \\
+				&= (2\pi)^{-d/2} \sum_{\bm{n}\in\integers^d} \integrate{\Omega}{}{c(\mathcal{F}(f),\bm{n}) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}} \\
+				&= (2\pi)^{-d/2} \sum_{\bm{n}\in\integers^d} \integrate{\Omega}{}{(2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}} \\
+				&= \left(\prod_{l=1}^d 2W_l\right)^{-1} \sum_{\bm{n}\in\integers^d} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \integrate{\Omega}{}{\exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}}
 			\end{align*}
 			ここで
 			\begin{align*}
@@ -382,8 +382,8 @@
 			\end{align*}
 			であるから
 			\begin{align*}
-				f(\bm{x}) &= \sum_{\bm{n}\in\naturalNumbers^d} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \prod_{l=1}^d 2W_l \sinc \left(x_l + \pi\frac{n_l}{W_l}\right)W_l = \sum_{\bm{n}\in\naturalNumbers^d} f\left(\pi\bm{n}\HadamardDiv\bm{W}\right) \prod_{l=1}^d \sinc W_l\left(x_l - \pi\frac{n_l}{W_l}\right) \\
-				&= \sum_{\bm{n}\in\naturalNumbers^d} f\left(\pi\frac{n_1}{W_1},\cdots,\pi\frac{n_d}{W_d}\right) \prod_{l=1}^d \sinc W_l\left(x_l - \pi\frac{n_l}{W_l}\right)
+				f(\bm{x}) &= \sum_{\bm{n}\in\integers^d} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \prod_{l=1}^d 2W_l \sinc \left(x_l + \pi\frac{n_l}{W_l}\right)W_l = \sum_{\bm{n}\in\integers^d} f\left(\pi\bm{n}\HadamardDiv\bm{W}\right) \prod_{l=1}^d \sinc W_l\left(x_l - \pi\frac{n_l}{W_l}\right) \\
+				&= \sum_{\bm{n}\in\integers^d} f\left(\pi\frac{n_1}{W_1},\cdots,\pi\frac{n_d}{W_d}\right) \prod_{l=1}^d \sinc W_l\left(x_l - \pi\frac{n_l}{W_l}\right)
 			\end{align*}
 		\end{proof}
 	\chapter{高速Fourier変換(FFT)}
