@@ -1,6 +1,6 @@
 ﻿\RequirePackage{plautopatch}
-\documentclass[dvipdfmx,uplatex,report]{jsbook}%\documentclass[a4paper]{jsreport}
-\RequirePackage[l2tabu, orthodox]{nag}	%古いコマンド,パッケージに対する警告
+\documentclass[dvipdfmx,uplatex,report]{jsbook} % \documentclass[a4paper]{jsreport}
+\RequirePackage[l2tabu, orthodox]{nag} % 古いコマンド, パッケージに対する警告
 \usepackage{amsmath, amssymb, amsfonts, amsthm}
 \usepackage{ascmac}
 \usepackage{bbm}
@@ -23,14 +23,14 @@
 \usepackage{udline}
 \usepackage{url}
 
-\theoremstyle{definition}%定理環境 : 斜体なし
+\theoremstyle{definition} % 定理環境:斜体なし
 \newtheorem*{commentary}{解説}
 \newtheorem*{attention}{注意}
 \newtheorem*{solution}{解法}
 \newtheorem*{definition}{定義}
 \input{macros/subsubsubsection}
 
-%section, subsection, subsubsection の先頭に部番号が付くようにする
+% section, subsection, subsubsection の先頭に部番号が付くようにする
 \makeatletter
 \@addtoreset{chapter}{part}\renewcommand{\thechapter}{\thepart.\arabic{chapter}}
 \@addtoreset{section}{chapter}\renewcommand{\thesection}{\thechapter.\arabic{section}}
@@ -38,9 +38,9 @@
 \@addtoreset{subsubsection}{subsection}\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 \@addtoreset{subsubsubsection}{subsubsection}\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
 
-\renewcommand{\theequation}{\arabic{equation}}%jsbook によって書き換えられた \theequation を元に戻す
+\renewcommand{\theequation}{\arabic{equation}} % jsbook によって書き換えられた \theequation を元に戻す
 
-%part, chapter, section, subsection, subsubsection, subsubsubsection 毎に数式,図番号をリセットする
+% part, chapter, section, subsection, subsubsection, subsubsubsection 毎に数式,図番号をリセットする
 \@addtoreset{equation}{part}
 \@addtoreset{equation}{chapter}
 \@addtoreset{equation}{section}
@@ -73,18 +73,18 @@
 	}\fi%
 }
 
-%目次の番号とタイトルが重ならないようにする
-%dottedtocline{A}{B}{C}のパラメータABC
-%	A：目次を生成するレベル(\chapterはレベル0、\sectionはレベル1...)
-%	B：一番外側からの左マージン
-%	C：見出し番号が入るボックスの幅
+% 目次の番号とタイトルが重ならないようにする
+% dottedtocline{A}{B}{C}のパラメータABC
+%   A：目次を生成するレベル(\chapterはレベル0、\sectionはレベル1...)
+%   B：一番外側からの左マージン
+%   C：見出し番号が入るボックスの幅
 \renewcommand{\l@chapter}{\@motchyTocline{0}{0em}{7em}}
 \renewcommand{\l@section}{\@dottedtocline{1}{1em}{7em}}
 \renewcommand{\l@subsection}{\@dottedtocline{2}{2em}{6em}}
 \renewcommand{\l@subsubsection}{\@dottedtocline{3}{3em}{5em}}
 \makeatother
 
-\setcounter{tocdepth}{4}%subsubsubsection まで目次に表示する
+\setcounter{tocdepth}{4} % subsubsubsection まで目次に表示する
 
 \input{macros/LaTeX-motchyMacros/motchyMacros}
 
