@@ -1,4 +1,8 @@
 \chapter{離散時間Fourier変換(DTFT)}
+    \newcommand{\DTFT}[1]{\mathrm{DTFT}\left(#1\right)}
+    \newcommand{\DTFTwithArg}[2]{\DTFT{#1}\left(#2\right)}
+    \newcommand{\IDTFT}[1]{\mathrm{IDTFT}\left(#1\right)}
+    \newcommand{\IDTFTwithArg}[2]{\IDTFT{#1}\left(#2\right)}
     \section{直観的な説明}
         離散時間Fourier変換(Discrete Time Fourier Transform; DTFT)とは、直観的には、離散座標信号を、連続的な周波数をもつ無数の離散時間信号の重ね合わせとして表現するものである。
     \section{定義}
@@ -223,3 +227,22 @@
             この先は「直接的で長い証明」と同じである。
         \end{proof}
         \let\Ts\undefined
+    \section{GaussianノイズのDTFT}
+        \newcommand{\Ts}{T_\text{s}}
+        複素数のGaussian乱数のDTFTは周波数に依らない分布をもつことを示す。
+        GaussianノイズがWhiteである(スペクトルが平坦である)と言われる理由はここにある。
+        \begin{shadebox}
+            $N\in\naturalNumbers,\;\sigma>0$とする。
+            連続時間信号$X:\realNumbers\to\complexNumbers$は確率変数であるとする。
+            これをサンプリング周期$\Ts>0$でサンプリングした$N$個の確率変数$X_n = X(n\Ts)\;(n=0,1,\cdots,N-1)$は互いに独立であり、自身の実部と虚部も独立であり、それぞれ$N(0,\sigma)$に従うとする。
+            数列$\{X_n\}$のDTFTを$Y:\realNumbers\to\complexNumbers$とすると、$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
+        \end{shadebox}
+        \begin{proof}
+            \quad\par
+            $[\Re{X_n}, \Im{X_n}]^\top \sim N(\bm{0}, \sigma I_2)$である。
+            ここに$I_2$は2次の正方行列である。
+            $Y(\omega) = \sum_{n=0}^{N-1} X_n e^{-j\omega\Ts n}$
+            であるが、$X_n e^{-j\omega\Ts n}$は$X_n$を$-\omega\Ts n$だけ回転させたものであり、これもまた$N(\bm{0}, \sigma I_2)$に従う。
+            よって$Y(\omega)$は$N(\bm{0}, \sqrt{N}\sigma I_2)$に従う。
+            $Y(\omega)/(\sqrt{N}\sigma)$の実部と虚部は独立でそれぞれ標準正規分布に従うので、$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
+        \end{proof}
