@@ -7,7 +7,6 @@
 \usepackage{bigdelim}
 \usepackage{cases}
 \usepackage[usenames]{color}
-\usepackage{color}
 \usepackage{comment}
 \usepackage{currfile}
 \usepackage{empheq}
@@ -18,10 +17,17 @@
 \usepackage{ifthen}
 \usepackage{mathtools}
 \usepackage{multirow}
+\usepackage{nameref}
+\usepackage{pxjahyper}
 \usepackage{siunitx}
 \usepackage{tabularx, arydshln}
 \usepackage{udline}
 \usepackage{url}
+\usepackage{zref-xr}
+
+% cross reference
+\zxrsetup{toltxlabel} % use normal LaTeX style \ref
+\zexternaldocument*[1:]{reference/Mathematics_Memorandum_v0.10.1} % usage: \zexternaldocument*[prefix]{path/to/aux/file/without/extension}[path/to/pdf/file] Only ascii name is allowed.
 
 \theoremstyle{definition} % 定理環境:斜体なし
 \newtheorem*{commentary}{解説}
@@ -103,7 +109,9 @@
 	\input{parts/LaplaceTransform/LaplaceTransform.tex}
 	\input{parts/Z-transform/Z-transform.tex}
 	\input{parts/application/application.tex}
+	\input{parts/others/others.tex}
 
-	\begin{thebibliography}{99}
+	\begin{thebibliography}{9}
+		\bibitem{数学備忘録}motchy (2022) 『数学備忘録 v0.10.1』\url{https://github.com/motchy869/Mathematics-Memorandum/releases/tag/v0.10.1}
 	\end{thebibliography}
 \end{document}
