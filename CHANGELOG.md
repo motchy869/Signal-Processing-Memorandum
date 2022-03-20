@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - critical errors in Sampling Theorem (The summing range is not restricted to be natural numbers, but integers.)
 - Added
   - relationship between DTFT and aliasing
+  - integral representation of Heaviside step function
 
 ## [0.3.0] - 2022/2/17
 
