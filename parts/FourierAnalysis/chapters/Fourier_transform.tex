@@ -1,0 +1,36 @@
+\chapter{Fourier変換}
+    \section{基底関数}
+        $d\in\naturalNumbers,\;\bm{x},\bm{\omega}\in\realNumbers^d$とする。
+        次のものを$d$次元Fourier変換に於ける基底関数という。
+        \[ W(\bm{\omega},\bm{x}) \coloneqq (2\pi)^{-d/2}\exp i\bm{\omega}^\top\bm{x} \]
+
+    \section{Fourier変換の定義}
+        $d\in\naturalNumbers,\;\bm{\omega}\in\realNumbers^d$とする。
+        $f:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{\omega}$に関する連続座標信号を$f$のFourier変換という。
+        \[ \FTwithArg{f}{\bm{\omega}} \coloneqq \integrate{\realNumbers^d}{}{\conj{W(\bm{\omega},\bm{x})}f(\bm{x})}{d}{\bm{x}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{d}{\bm{x}} \]
+
+    \section{逆Fourier変換}
+        $d\in\naturalNumbers,\;\bm{x}\in\realNumbers^d$とする。
+        $F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{x}$に関する連続座標信号を$F$の逆Fourier変換という。
+        \[ \IFTwithArg{F}{\bm{x}} \coloneqq \integrate{\realNumbers^d}{}{W(\bm{\omega},\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (i\bm{\omega}^\top\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} \]
+
+    \section{周波数表示されたFourier変換との関係}
+        上述のFourier変換の定義はその数学的対称性の美しさから、理学系で主に用いられる。
+        一方、工学系ではFourier変換結果の定義域を角周波数ではなく周波数にとることがしばしばある。
+        本書では2種類のFourier変換を区別するために、周波数を定義域とするFourier変換を「周波数表示されたFourier変換」と呼び分けることにする。
+        \par
+        $d\in\naturalNumbers,\;\bm{x},\bm{f}\in\realNumbers^d$とする。
+        $g:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{f}$に関する連続座標信号を$g$の周波数表示されたFourier変換という。
+        \[ \tilde{\mathcal{F}}(g)(\bm{f}) \coloneqq \integrate{\realNumbers^d}{}{\exp (-i2\pi\bm{f}^\top\bm{x})g(\bm{x})}{d}{\bm{x}} \]
+        また、$G:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{x}$に関する連続座標信号を$G$の周波数表示された逆Fourier変換という。
+        \[ \tilde{\mathcal{F}}^{-1}(G)(\bm{x}) \coloneqq \integrate{\realNumbers^d}{}{\exp (i2\pi\bm{f}^\top\bm{x})G(\bm{f})}{d}{\bm{f}} \]
+
+        \subsection{逆変換により元の関数に戻ること}
+            通常のFourier変換が$\mathcal{F}^{-1}(\mathcal{F}(f))(\bm{x}) = f(\bm{x})$を満たすことを既知として、周波数表示されたFourier変換が$\tilde{\mathcal{F}}^{-1}(\tilde{\mathcal{F}}(g))(\bm{x}) = g(\bm{x})$を満たすことは$\bm{\omega} = 2\pi\bm{f}$なる変数変換をを用いて確かめられる。
+            \begin{gather*}
+                G(\bm{f}) \coloneqq \tilde{\mathcal{F}}(g)(\bm{f}) = (2\pi)^{d/2}\FTwithArg{g}{\bm{\omega}} \\
+                \begin{aligned}
+                    \tilde{\mathcal{F}}^{-1}(G)(\bm{x}) &= \integrate{\realNumbers^d}{}{G(\bm{f})\exp (i2\pi\bm{f}^\top\bm{x})}{d}{\bm{f}} = \integrate{\realNumbers^d}{}{(2\pi)^{d/2}\FTwithArg{g}{\bm{\omega}}\exp (i\bm{\omega}^\top\bm{x})\det\left(\frac{1}{2\pi}I_d\right)}{d}{\bm{\omega}} \\
+                    &= (2\pi)^{-d/2}\integrate{\realNumbers^d}{}{\FTwithArg{g}{\bm{\omega}}\exp (i\bm{\omega}^\top\bm{x})}{d}{\bm{\omega}} = \IFTwithArg{\FT{g}}{\bm{x}} = g(\bm{x})
+                \end{aligned}
+            \end{gather*}
