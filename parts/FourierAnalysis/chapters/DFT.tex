@@ -1,0 +1,79 @@
+\chapter{離散Fourier変換(DFT)}
+    \newcommand{\DFT}[1]{\mathrm{DFT}\left(#1\right)}
+    \newcommand{\DFTwithArg}[2]{\DFT{#1}\left(#2\right)}
+    \section{基底}
+        $d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\cdots,d),\;\bm{k},\bm{n}\in\integers^d$とする。
+        次式で定義される、$\bm{n}$に関する離散座標信号を$d$次元DFTの第$\bm{k}$基底ベクトルという。
+        \[ W(\bm{k},\bm{n}) \coloneqq \left(\prod_{l=1}^d N_l\right)^{-1/2} \exp i\left(\sum_{l=1}^d \frac{k_l n_l}{N_l}2\pi\right)\]
+
+    \section{DFTの定義}
+        \label{DFTの定義}
+        $d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\cdots,d),\;\bm{k}\in\integers^d$とする。
+        $\Omega \coloneqq \{0,1,\cdots,N_1-1\}\times\{0,1,\cdots,N_2-1\}\times\cdots\times\{0,1,\cdots,N_d-1\}$とする。
+        $f$を周期が$(N_1,N_2,\cdots,N_d)$であるような離散座標信号$f: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n})$とするとき、次式で定義される、$\bm{k}$に関する離散座標信号を$f$の離散Fourier変換(Discrete Fourier Transform; DFT)という。
+        \[ \DFTwithArg{f}{\bm{k}} \coloneqq \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} f(\bm{n}) \]
+
+    \section{Hermiteな離散時間信号のDFTは実数である}
+        \label{Hermiteな離散時間信号のDFTは実数である}
+        \begin{shadebox}
+            $d,N_l,\bm{k},\Omega,f$の定義は\ref{DFTの定義}と同じものとする。
+            $f$にさらにHermite性: $\conj{f(\bm{n})} = f(-\bm{n})$を要請するとき、$\DFTwithArg{f}{\bm{k}}$は実数となる。
+        \end{shadebox}
+        \begin{proof}
+            \begin{align*}
+                2\Im{\DFTwithArg{f}{\bm{k}}} &= \DFTwithArg{f}{\bm{k}} - \conj{\DFTwithArg{f}{\bm{k}}} \\
+                &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})\conj{f(\bm{n})}
+            \end{align*}
+            ここで$\bm{n}_\text{M} \coloneqq [N_1,\cdots,N_d]^\top$とすると、
+            \[ \conj{W(\bm{k},\bm{n})} = W(\bm{k},-\bm{n}) = W(\bm{k},\bm{n}_\text{M}-\bm{n}) \]
+            また、$f$のHermite性の仮定より
+            \[ \conj{f(\bm{n})} = f(-\bm{n}) = f(\bm{n}_\text{M}-\bm{n}) \]
+            以上より
+            \begin{align*}
+                2\Im{\DFTwithArg{f}{\bm{k}}} &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\text{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})f(\bm{n}_\text{M}-\bm{n}) \\
+                &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\text{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\text{M}-\bm{n})f(\bm{n}) \\
+                &\phantom{=} (\{(\bm{n}, \bm{n}_\text{M}-\bm{n}) | \bm{n}\in\Omega\} = \{(\bm{n}_\text{M}-\bm{n}), \bm{n} | \bm{n}\in\Omega\}\text{を用いた}) \\
+                &= 0
+            \end{align*}
+        \end{proof}
+
+    \subsection{系: Hermiteな離散時間信号のIDFTは実数である}
+        \ref{Hermiteな離散時間信号のDFTは実数である}と同様にして示せる。
+
+    \section{巡回畳み込みのDFTはDFTの積に比例する}
+        \begin{shadebox}
+            $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
+            $f,g$を周期が$(N_1,N_2,\cdots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\cdots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき、次が成り立つ。
+            \[ \DFTwithArg{\cycConv{f}{g}}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
+        \end{shadebox}
+        \begin{proof}
+            \quad\par
+            $\bm{N} \coloneqq [N_1,\cdots,N_d]^\top$とする。
+            \begin{align*}
+                \DFTwithArg{\cycConv{f}{g}}{\bm{k}} &= \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \left(\cycConv{f}{g}\right)(\bm{n}) = \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \\
+                &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}g((\bm{n}-\bm{m})\%\bm{N}) \\
+                &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \left(\prod_{l=1}^d N_l\right)^{1/2} \conj{W(\bm{k},\bm{m})} \conj{W(\bm{k},\bm{n}-\bm{m})} g((\bm{n}-\bm{m})\%\bm{N}) \\
+                &= \left(\prod_{l=1}^d N_l\right)^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},(\bm{n}-\bm{m})\%\bm{N})} g((\bm{n}-\bm{m})\%\bm{N}) \\
+                &= \left(\prod_{l=1}^d N_l\right)^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} g(\bm{n}) \\
+                &= \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}}
+            \end{align*}
+        \end{proof}
+
+    \section{GaussianノイズのDFT}
+        \begin{shadebox}
+            $F(n) \in \complexNumbers\;(n=0,1,\cdots,N-1)$は互いに独立で、複素正規分布$N(0,\sigma^2)$に従うとする$\left(\text{p}(f) = \frac{1}{2\pi\sigma^2}\exp\frac{-\Re{f}^2-\Im{f}^2}{2\sigma^2} = \frac{1}{2\pi\sigma^2}\exp\frac{-|f|^2}{2\sigma^2}\right)$。
+            これのDFTを$G(k) = \DFTwithArg{F}{k}$とするとき、$G(k)\;(k=0,1,\cdots,N-1)$もまた互いに独立で、複素正規分布$N(0,\sigma^2)$に従う。
+        \end{shadebox}
+        \begin{proof}
+            \[ P \in \complexNumbers^{N\times N},\; P_{k,n} \coloneqq W(k,n) \coloneqq \frac{1}{\sqrt{N}}\exp i\frac{kn}{N}2\pi\;(k,n \in \{0,1,\cdots,N-1\}) \]
+            \[ \bm{F} \coloneqq [F(0), F(1), \cdots, F(N-1)]^\top,\;\bm{G} \coloneqq [G(0), G(1), \cdots, G(N-1)]^\top \]
+            と定義すると
+            \[ \bm{G} = P^*\bm{F} \]
+            となる。
+            \begin{align*}
+                \Pr{\bm{G} = \bm{g} \in \complexNumbers^N} &= \Pr{P^*\bm{F} = \bm{g}} = \Pr{\bm{F} = P\bm{g}} \\
+                &= \prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2} \exp\frac{-|(P\bm{g})[i]|^2}{2\sigma^2} = \left(\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}\right) \exp \sum_{i=0}^{N-1} \frac{-|(P\bm{g})[i]|^2}{2\sigma^2} \\
+                &= \left(\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}\right) \exp \frac{-\norm{P\bm{g}}_2^2}{2\sigma^2} = \left(\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}\right) \exp \frac{-\norm{\bm{g}}_2^2}{2\sigma^2} \\
+                &= \prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2} \exp \frac{-|g_i|^2}{2\sigma^2}
+            \end{align*}
+        \end{proof}

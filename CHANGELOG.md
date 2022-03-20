@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added
   - relationship between DTFT and aliasing
   - integral representation of Heaviside step function
+  - DTFT of Gaussian noise
 
 ## [0.3.0] - 2022/2/17
 
