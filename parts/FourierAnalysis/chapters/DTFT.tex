@@ -229,20 +229,31 @@
         \let\Ts\undefined
     \section{GaussianノイズのDTFT}
         \newcommand{\Ts}{T_\text{s}}
-        複素数のGaussian乱数のDTFTは周波数に依らない分布をもつことを示す。
-        GaussianノイズがWhiteである(スペクトルが平坦である)と言われる理由はここにある。
-        \begin{shadebox}
-            $N\in\naturalNumbers,\;\sigma>0$とする。
-            連続時間信号$X:\realNumbers\to\complexNumbers$は確率変数であるとする。
-            これをサンプリング周期$\Ts>0$でサンプリングした$N$個の確率変数$X_n = X(n\Ts)\;(n=0,1,\cdots,N-1)$は互いに独立であり、自身の実部と虚部も独立であり、それぞれ$N(0,\sigma)$に従うとする。
-            数列$\{X_n\}$のDTFTを$Y:\realNumbers\to\complexNumbers$とすると、$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
-        \end{shadebox}
-        \begin{proof}
-            \quad\par
-            $[\Re{X_n}, \Im{X_n}]^\top \sim N(\bm{0}, \sigma I_2)$である。
-            ここに$I_2$は2次の正方行列である。
-            $Y(\omega) = \sum_{n=0}^{N-1} X_n e^{-j\omega\Ts n}$
-            であるが、$X_n e^{-j\omega\Ts n}$は$X_n$を$-\omega\Ts n$だけ回転させたものであり、これもまた$N(\bm{0}, \sigma I_2)$に従う。
-            正規分布の再生性から$Y(\omega)$は$N(\bm{0}, \sqrt{N}\sigma I_2)$に従う。
-            $Y(\omega)/(\sqrt{N}\sigma)$の実部と虚部は独立でそれぞれ標準正規分布に従うので、$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
-        \end{proof}
+        \subsection{パワースペクトルの性質}
+            \label{GaussianノイズのDTFTのパワースペクトル}
+            複素数のGaussian乱数のDTFTは周波数に依らない分布をもつことを示す。
+            GaussianノイズがWhiteである(スペクトルが平坦である)と言われる理由はここにある。
+            \begin{shadebox}
+                $N\in\naturalNumbers,\;\sigma>0$とする。
+                連続時間信号$X:\realNumbers\to\complexNumbers$は確率変数であるとする。
+                これをサンプリング周期$\Ts>0$でサンプリングした$N$個の確率変数$X_n = X(n\Ts)\;(n=0,1,\cdots,N-1)$は互いに独立であり、自身の実部と虚部も独立であり、それぞれ$N(0,\sigma)$に従うとする。
+                数列$\{X_n\}$のDTFTを$Y:\realNumbers\to\complexNumbers$とすると、$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
+            \end{shadebox}
+            \begin{proof}
+                \quad\par
+                $[\Re{X_n}, \Im{X_n}]^\top \sim N(\bm{0}, \sigma I_2)$である。
+                ここに$I_2$は2次の正方行列である。
+                $Y(\omega) = \sum_{n=0}^{N-1} X_n e^{-j\omega\Ts n}$
+                であるが、$X_n e^{-j\omega\Ts n}$は$X_n$を$-\omega\Ts n$だけ回転させたものであり、これもまた$N(\bm{0}, \sigma I_2)$に従う。
+                正規分布の再生性から$Y(\omega)$は$N(\bm{0}, \sqrt{N}\sigma I_2)$に従う。
+                $Y(\omega)/(\sqrt{N}\sigma)$の実部と虚部は独立でそれぞれ標準正規分布に従うので、$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
+            \end{proof}
+        \subsection{Fourier変換との関係}
+            通信工学で現れるGaussianノイズの電力密度という言葉について説明を試みる。
+            時間の不連続関数とも思えるノイズに対するFourier変換を通常の方法で定義できない。
+            ここでは、サンプリング周波数が極めて高い測定器を用いて計算されるDTFT由来のスペクトルを考えることにする。
+            産業応用上はこのような測定結果を用いるので、極限を数学的に厳密に扱わなくても実用上困ることはない。
+            注目する時間区間(測定器で言えばGate time) $I := [t_0,t_1]$ に於いて確率変数としての連続時間ノイズ信号$X(t)$を周期$\Ts$でサンプリングした$N = \lfloor(t_1-t_0)/\Ts\rfloor$個のデータ$X_n := X(n\Ts)$に対して、区間$I$に於ける平均スペクトルを次式で定義する。
+            \[ Y(f) := \frac{1}{t_1-t_0}\sum_{n=0}^{N-1} \frac{t_1-t_0}{N} X_n \exp\left(-j2\pi f n\Ts\right) \]
+            上式は$\Ts\to +0$のとき、$X$の台を$I$に制限したFourier変換の$1/(t_1-t_0)$倍に近付く($X$がRiemann可積分かどうか疑わしいので「一致する」とは言い難い)。
+            \ref{GaussianノイズのDTFTのパワースペクトル}の証明と同様にして$Y(\omega)$の実部と虚部はそれぞれ独立に正規分布$N(0,\sigma)$に従い、$|Y(\omega)|^2/\sigma^2$は$\chi_2^2$分布に従うことがわかる。
