@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed
   - minor errors in DTFT
   - critical errors in Sampling Theorem (The summing range is not restricted to be natural numbers, but integers.)
+- Improved
+  - Replaced `,\cdots,` with `,\dots,`.
 - Added
   - relationship between DTFT and aliasing
   - integral representation of Heaviside step function
