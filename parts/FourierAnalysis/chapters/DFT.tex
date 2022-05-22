@@ -58,6 +58,15 @@
             \end{align*}
         \end{proof}
 
+    \section{巡回相関のDFT}
+        \begin{shadebox}
+            $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
+            $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とする。
+            $f$と$g$の巡回相関を$R_{f,g}(n)$とする。
+            このとき、次が成り立つ。
+            \[ \DFTwithArg{R_{f,g}}{\bm{k}} = \]
+        \end{shadebox}
+
     \section{GaussianノイズのDFT}
         \begin{shadebox}
             $F(n) \in \complexNumbers\;(n=0,1,\dots,N-1)$は互いに独立で、複素正規分布$N(0,\sigma^2)$に従うとする$\left(\text{p}(f) = \frac{1}{2\pi\sigma^2}\exp\frac{-\Re{f}^2-\Im{f}^2}{2\sigma^2} = \frac{1}{2\pi\sigma^2}\exp\frac{-|f|^2}{2\sigma^2}\right)$。
