@@ -62,10 +62,28 @@
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
             $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とする。
-            $f$と$g$の巡回相関を$R_{f,g}(n)$とする。
+            $f$と$g$の巡回相関を$R_{f,g}(n) = \cycCorrel{f}{g}(\bm{n})$とする。
             このとき、次が成り立つ。
-            \[ \DFTwithArg{R_{f,g}}{\bm{k}} = \]
+            \[ \DFTwithArg{R_{f,g}}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
         \end{shadebox}
+        \begin{proof}
+            \quad\par
+            $\bm{N} \coloneqq [N_1,\dots,N_d]^\top$とする。
+            \begin{align*}
+                \DFTwithArg{R_{f,g}}{\bm{k}} &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})\conj{g((\bm{m}-\bm{n})\%\bm{N})} \\
+                &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}\conj{g((\bm{m}-\bm{n})\%\bm{N})} \tag{1}
+            \end{align*}
+            ここで$\conj{W(\bm{k},\bm{n})}$を変形して次式を得る。
+            \begin{align*}
+                \conj{W(\bm{k},\bm{n})} &= W(\bm{k},-\bm{n}) = \left(\prod_{l=1}^d N_l\right)^{1/2}W(\bm{k},\bm{m}-\bm{n})W(\bm{k},-\bm{m}) \\
+                &= \left(\prod_{l=1}^d N_l\right)^{1/2}W(\bm{k},(\bm{m}-\bm{n})\%\bm{N})\conj{W(\bm{k},\bm{m})}
+            \end{align*}
+            これを式(1)に適用して次式を得る。
+            \begin{align*}
+                \DFTwithArg{R_{f,g}}{\bm{k}} &= \left(\prod_{l=1}^d N_l\right)^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega}\conj{\conj{W(\bm{k},(\bm{m}-\bm{n})\%\bm{N})}g((\bm{m}-\bm{n})\%\bm{N})} \\
+                &= \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\conj{\DFTwithArg{g}{\bm{k}}}
+            \end{align*}
+        \end{proof}
 
     \section{GaussianノイズのDFT}
         \begin{shadebox}
