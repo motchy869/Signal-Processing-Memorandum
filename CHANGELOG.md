@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - DTFT of Gaussian noise
   - average spectrum of Gaussian noise
   - definition of cyclic correlation
+  - DFT of cyclic correlation
 
 ## [0.3.0] - 2022/2/17
 
