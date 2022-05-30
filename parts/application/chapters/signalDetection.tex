@@ -12,7 +12,7 @@
         受信信号から参照信号を検出する方法として、直観的に次の2つの方法を思いつくだろう。
         \subsection{手法1: cos類似度の絶対値の最大化}
             \label{手法1: cos類似度の絶対値の最大化}
-            参照信号の長さを$L\in\naturalNumbers$, 参照信号を$\bm{d} \in \complexNumbers^L$, 受信信号中のテスト領域を$\bm{s}^{(i)} \coloneqq [s_i,s_{i+1},\cdots,s_{i+L-1}]^\top \in \complexNumbers^L$とするとき、$\bm{d}$と$\bm{s}^{(i)}$の$\cos$類似度の複素数版
+            参照信号の長さを$L\in\naturalNumbers$, 参照信号を$\bm{d} \in \complexNumbers^L$, 受信信号中のテスト領域を$\bm{s}^{(i)} \coloneqq [s_i,s_{i+1},\dots,s_{i+L-1}]^\top \in \complexNumbers^L$とするとき、$\bm{d}$と$\bm{s}^{(i)}$の$\cos$類似度の複素数版
             \[ \frac{\bm{d}^*\bm{s}^{(i)}}{\norm{\bm{d}}_2\norm{\bm{s}^{(i)}}_2} \]
             の位相を無視し、絶対値の2乗(2乗を使うのは、平方根の計算を無くして計算量を抑える為)で評価する。
             $\norm{\bm{d}}_2$は$\bm{s}^{(i)}$に依存しないので評価値同士の大小比較に必要ないから取り除く。
@@ -40,7 +40,7 @@
             \[ \frac{1}{\norm{\bm{s}^{(i)}}_2^2}\norm{\bm{s}^{(i)} - \frac{\bm{d}^*\bm{s}^{(i)}}{\norm{\bm{d}}_2^2}\bm{d}}_2^2 < \frac{1}{\norm{\bm{s}^{(j)}}_2^2}\norm{\bm{s}^{(j)} - \frac{\bm{d}^*\bm{s}^{(j)}}{\norm{\bm{d}}_2^2}\bm{d}}_2^2 \iff \frac{|\bm{d}^*\bm{s}^{(i)}|^2}{\norm{\bm{s}^{(i)}}_2^2} > \frac{|\bm{d}^*\bm{s}^{(j)}|^2}{\norm{\bm{s}^{(j)}}_2^2} \]
             これを示す。
             \begin{align*}
-                \frac{1}{\norm{\bm{s}^{(i)}}_2^2}\norm{\bm{s}^{(i)} - \frac{\bm{d}^*\bm{s}^{(i)}}{\norm{\bm{d}}_2^2}\bm{d}}_2^2 &= \frac{1}{\norm{\bm{s}^{(i)}}_2^2}\left[ \norm{\bm{s}^{(i)}}_2^2 + \frac{|\bm{d}^*\bm{s}^{(i)}|^2}{\norm{\bm{d}}_2^4}\norm{\bm{d}}_2^2 - \frac{\bm{d}^*\bm{s}^{(i)}}{\norm{\bm{d}}_2^2}{\bm{s}^{(i)}}^*\bm{d} - \frac{\overline{\bm{d}^*\bm{s}^{(i)}}}{\norm{\bm{d}}_2^2}\bm{d}^*\bm{s}^{(i)} \right] \\
+                \frac{1}{\norm{\bm{s}^{(i)}}_2^2}\norm{\bm{s}^{(i)} - \frac{\bm{d}^*\bm{s}^{(i)}}{\norm{\bm{d}}_2^2}\bm{d}}_2^2 &= \frac{1}{\norm{\bm{s}^{(i)}}_2^2}\left[ \norm{\bm{s}^{(i)}}_2^2 + \frac{|\bm{d}^*\bm{s}^{(i)}|^2}{\norm{\bm{d}}_2^4}\norm{\bm{d}}_2^2 - \frac{\bm{d}^*\bm{s}^{(i)}}{\norm{\bm{d}}_2^2}{\bm{s}^{(i)}}^*\bm{d} - \frac{\conj{\bm{d}^*\bm{s}^{(i)}}}{\norm{\bm{d}}_2^2}\bm{d}^*\bm{s}^{(i)} \right] \\
                 &= \frac{1}{\norm{\bm{s}^{(i)}}_2^2}\left[ \norm{\bm{s}^{(i)}}_2^2 + \frac{|\bm{d}^*\bm{s}^{(i)}|^2}{\norm{\bm{d}}_2^2} - 2\frac{|\bm{d}^*\bm{s}^{(i)}|^2}{\norm{\bm{d}}_2^2} \right] \\
                 &= 1 - \frac{|\bm{d}^*\bm{s}^{(i)}|^2}{\norm{\bm{d}}_2^2}
             \end{align*}
