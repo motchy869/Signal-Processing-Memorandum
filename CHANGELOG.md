@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Refactored
+  - rename title in title page: "motchyの信号処理備忘録" -> "信号処理備忘録"
   - rename a part: "Fourier解析" -> "Fourier級数とFourier変換"
 
 ## [0.5.0]
