@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Refactored
-  - rename title in title page: "motchyの信号処理備忘録" -> "信号処理備忘録"
-  - rename a part: "Fourier解析" -> "Fourier級数とFourier変換"
+  - Renamed title in title page: "motchyの信号処理備忘録" -> "信号処理備忘録"
+  - Renamed a part: "Fourier解析" -> "Fourier級数とFourier変換"
+  - Moved "Sampling Theorem" after "Fourier Transform"
 - Added
   - continuous-time filter behavior observed from discrete-time system.
 

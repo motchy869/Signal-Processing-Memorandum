@@ -92,12 +92,19 @@
 
 \setcounter{tocdepth}{4} % subsubsubsection まで目次に表示する
 
+% document version number
+\def\docVerMajor{0}
+\def\docVerMinor{6}
+\def\docVerPatch{0}
+\def\docVerWip{-wip} % \def\docVerWip{-wip}
+\def\docVer{\docVerMajor.\docVerMinor.\docVerPatch\docVerWip}
+
 \input{macros/LaTeX-motchyMacros/motchyMacros}
 
 \begin{document}
 	\title{信号処理備忘録}
 	\author{motchy}
-	\date{\西暦 2019年11月16日 $\sim$ \today \\ver 0.5.0}
+	\date{\西暦 2019年11月16日 $\sim$ \today \\ver \docVer}
 	\maketitle
 	{\scriptsize \tableofcontents}
 
