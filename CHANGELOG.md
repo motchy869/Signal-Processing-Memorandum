@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Moved "Sampling Theorem" after "Fourier Transform"
 - Added
   - continuous-time filter behavior observed from discrete-time system.
+  - a lemma for comprehension of DCT basis orthogonality
 
 ## [0.5.0]
 
