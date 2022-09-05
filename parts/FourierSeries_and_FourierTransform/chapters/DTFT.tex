@@ -1,4 +1,5 @@
 \chapter{離散時間Fourier変換(DTFT)}
+    \newcommand{\Tsamp}{T_\text{s}}
     \newcommand{\DTFT}[1]{\mathrm{DTFT}\left(#1\right)}
     \newcommand{\DTFTwithArg}[2]{\DTFT{#1}\left(#2\right)}
     \newcommand{\IDTFT}[1]{\mathrm{IDTFT}\left(#1\right)}
@@ -82,49 +83,49 @@
     \section{定数関数1のDTFT}
         \label{定数関数1のDTFT}
         簡単のため1次元の場合について考察する。
-        工学系の学生を対象とする講義では、$\DTFTwithArg{1}{\omega} = (2\pi/T_\text{s})\sum_{m\in\integers}\delta(\omega-2m\pi/T_\text{s})$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
-        $\IDTFTwithArg{(2\pi/T_\text{s})\sum_{m\in\integers}\delta(\omega-2m\pi/T_\text{s})}{x}=1$の確認は簡単であり、DTFTの可逆性から$\DTFTwithArg{1}{\omega} = (2\pi/T_\text{s})\sum_{m\in\integers}\delta(\omega-2m\pi/T_\text{s})$を受け入れる説明がなされると思う。
+        工学系の学生を対象とする講義では、$\DTFTwithArg{1}{\omega} = (2\pi/\Tsamp)\sum_{m\in\integers}\delta(\omega-2m\pi/\Tsamp)$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
+        $\IDTFTwithArg{(2\pi/\Tsamp)\sum_{m\in\integers}\delta(\omega-2m\pi/\Tsamp)}{x}=1$の確認は簡単であり、DTFTの可逆性から$\DTFTwithArg{1}{\omega} = (2\pi/\Tsamp)\sum_{m\in\integers}\delta(\omega-2m\pi/\Tsamp)$を受け入れる説明がなされると思う。
         \par
-        ここではDirichlet積分を用いて$\DTFTwithArg{1}{\omega} = (2\pi/T_\text{s})\sum_{m\in\integers}\delta(\omega-2m\pi/T_\text{s})$を直接的に導出してみる。
+        ここではDirichlet積分を用いて$\DTFTwithArg{1}{\omega} = (2\pi/\Tsamp)\sum_{m\in\integers}\delta(\omega-2m\pi/\Tsamp)$を直接的に導出してみる。
         DTFTの定義から次式が成り立つ。
         \[
-            \DTFTwithArg{1}{\omega} = \lim_{N\to\infty} \sum_{m=-N}^N e^{i\omega T_\text{s} m} = \frac{\sin(N+1/2)\omega T_\text{s}}{\sin(\omega T_\text{s}/2)}
+            \DTFTwithArg{1}{\omega} = \lim_{N\to\infty} \sum_{m=-N}^N e^{i\omega \Tsamp m} = \frac{\sin(N+1/2)\omega \Tsamp}{\sin(\omega \Tsamp/2)}
         \]
         最右辺は等比数列の和の公式を用いた後、分母と分子に$e^{-i\omega/2}$を掛けて整理すると得られる。
-        これが$N\to\infty$で$(2\pi/T_\text{s})\sum_{m\in\integers}\delta(\omega-2m\pi/T_\text{s})$として振る舞うことを確かめる。
-        $2\pi/T_\text{s}$周期性については明らかだから、$[-\pi/T_\text{s},\pi/T_\text{s})$の範囲で$(2\pi/T_\text{s})\delta(\omega)$として振る舞うことを確かめれば十分である。
+        これが$N\to\infty$で$(2\pi/\Tsamp)\sum_{m\in\integers}\delta(\omega-2m\pi/\Tsamp)$として振る舞うことを確かめる。
+        $2\pi/\Tsamp$周期性については明らかだから、$[-\pi/\Tsamp,\pi/\Tsamp)$の範囲で$(2\pi/\Tsamp)\delta(\omega)$として振る舞うことを確かめれば十分である。
         示すべきことは次の通りである。
         \begin{shadebox}
             $d\in\naturalNumbers$とする。
-            区間$\Omega \subseteq [-\pi/T_\text{s},\pi/T_\text{s})$上で連続な任意の関数$f:\Omega\to\complexNumbers^d$を考える。
+            区間$\Omega \subseteq [-\pi/\Tsamp,\pi/\Tsamp)$上で連続な任意の関数$f:\Omega\to\complexNumbers^d$を考える。
             $h>0$を$[-h,h) \subseteq \Omega$となるように任意にとる。
             このとき次式が成り立つ。
             \[
-                \lim_{N\to\infty} \integrate{-h}{h}{\frac{\sin(N+1/2)x T_\text{s}}{\sin(x T_\text{s}/2)} f(x)}{}{x} = \frac{2\pi}{T_\text{s}} f(0)
+                \lim_{N\to\infty} \integrate{-h}{h}{\frac{\sin(N+1/2)x \Tsamp}{\sin(x \Tsamp/2)} f(x)}{}{x} = \frac{2\pi}{\Tsamp} f(0)
             \]
         \end{shadebox}
         \begin{proof}
             \quad\par
             極限をとる前の積分を$I_N$とおく。
-            $y = x T_\text{s}/2$と変数変換すると次式を得る。
+            $y = x \Tsamp/2$と変数変換すると次式を得る。
             \[
-                I_N = \frac{2}{T_\text{s}}\integrate{-h T_\text{s}/2}{h T_\text{s}/2}{\frac{\sin(2N+1)y}{\sin y}f(2y/T_\text{s})}{}{y} = \frac{2}{T_\text{s}}\integrate{-h T_\text{s}/2}{h T_\text{s}/2}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{}{y}
+                I_N = \frac{2}{\Tsamp}\integrate{-h \Tsamp/2}{h \Tsamp/2}{\frac{\sin(2N+1)y}{\sin y}f(2y/\Tsamp)}{}{y} = \frac{2}{\Tsamp}\integrate{-h \Tsamp/2}{h \Tsamp/2}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{}{y}
             \]
             後に現れるDirichlet積分の性質から$N\to\infty$で積分の主要部分が$x=0$近傍に集中することがこの時点で推察できる。
-            そこで、十分に小さい正数$d'$を$0<d'<h T_\text{s}/2$となるようにとり、積分区間を$[-h T_\text{s}/2,-d']\cup[-d',d']\cup[d',h T_\text{s}/2]$と分割する。
+            そこで、十分に小さい正数$d'$を$0<d'<h \Tsamp/2$となるようにとり、積分区間を$[-h \Tsamp/2,-d']\cup[-d',d']\cup[d',h \Tsamp/2]$と分割する。
             \par
-            $[-h T_\text{s}/2,-d'], [d',h T_\text{s}/2]$に於いて$f(2y/T_\text{s})/\sin y$は一様連続であるので$N\to\infty$でこの2つの区間に於ける$(f(2y/T_\text{s})\sin(2N+1)y)/\sin y$の積分は0に収束する。
-            証明の方針としては、$\sin(2N+1)y$の符号が変化する点で積分区間を細分し、各区間内で$f(2y/T_\text{s})/\sin y$を定数で近似して全体の積分を近似すると、一様連続性から近似値と真の積分の差が0に収束し、かつ近似値が0に収束する。
+            $[-h \Tsamp/2,-d'], [d',h \Tsamp/2]$に於いて$f(2y/\Tsamp)/\sin y$は一様連続であるので$N\to\infty$でこの2つの区間に於ける$(f(2y/\Tsamp)\sin(2N+1)y)/\sin y$の積分は0に収束する。
+            証明の方針としては、$\sin(2N+1)y$の符号が変化する点で積分区間を細分し、各区間内で$f(2y/\Tsamp)/\sin y$を定数で近似して全体の積分を近似すると、一様連続性から近似値と真の積分の差が0に収束し、かつ近似値が0に収束する。
             \par
             つまり任意に小さい$\varepsilon>0$に対して、$d'$に依存して決まる十分大きい自然数$N_1$が存在して次式が成り立つ。
             \[
-                N\geq N_1 \Rightarrow \abs{\frac{2}{T_\text{s}}\integrate{[-h T_\text{s}/2,-d']\cup[d',h T_\text{s}/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y/T_\text{s})}{}{y}}<\varepsilon
+                N\geq N_1 \Rightarrow \abs{\frac{2}{\Tsamp}\integrate{[-h \Tsamp/2,-d']\cup[d',h \Tsamp/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y/\Tsamp)}{}{y}}<\varepsilon
             \]
             \par
             次に$[-d',d']$に於ける積分を評価する。
-            $y\to 0$で$y/\sin y\to 1,\;f(2y/T_\text{s})\to f(0)$であるから、$d'$を十分小さくとりなおすことで$|f(2y/T_\text{s})y/\sin y - f(0)| < \varepsilon$となり次式が成り立つ。
+            $y\to 0$で$y/\sin y\to 1,\;f(2y/\Tsamp)\to f(0)$であるから、$d'$を十分小さくとりなおすことで$|f(2y/\Tsamp)y/\sin y - f(0)| < \varepsilon$となり次式が成り立つ。
             \[
-                \abs{\frac{2}{T_\text{s}}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y/T_\text{s})}{}{y} - \frac{2}{T_\text{s}}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}} < \frac{2\varepsilon}{T_\text{s}}\abs{\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}}
+                \abs{\frac{2}{\Tsamp}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y/\Tsamp)}{}{y} - \frac{2}{\Tsamp}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}} < \frac{2\varepsilon}{\Tsamp}\abs{\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}}
             \]
             最後にDirichlet積分を用いて$(\sin(2N+1)y)/\sin y$の積分を評価する。
             \[
@@ -134,10 +135,10 @@
             \[ N\geq N_1 \Rightarrow \abs{\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} - \pi} < \varepsilon \]
             以上より、$d'>0$を十分に小さくとり、$N\geq\max(N_1,N_2)$とすれば次式が成り立つ。
             \begin{align*}
-                \abs{I_N - \frac{2\pi}{T_\text{s}} f(0)} &= \left|\underbrace{\left(\frac{2}{T_\text{s}}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} - \frac{2\pi}{T_\text{s}} f(0)\right)}_{(1)} \right. \\
-                &\phantom{=} \left.+ \underbrace{\left(\frac{2}{T_\text{s}}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{}{y} - \frac{2}{T_\text{s}}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}\right)}_{(2)} \right. \\
-                &\phantom{=} \left.+ \underbrace{\frac{2}{T_\text{s}}\integrate{[-h/2,-d']\cup[d',h/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{}{y}}_{(3)}\right| \\
-                &\leq |(1)| + |(2)| + |(3)| < \frac{2f(0)}{T_\text{s}}\varepsilon + \frac{2\varepsilon}{T_\text{s}}(\pi+\varepsilon) + \varepsilon
+                \abs{I_N - \frac{2\pi}{\Tsamp} f(0)} &= \left|\underbrace{\left(\frac{2}{\Tsamp}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} - \frac{2\pi}{\Tsamp} f(0)\right)}_{(1)} \right. \\
+                &\phantom{=} \left.+ \underbrace{\left(\frac{2}{\Tsamp}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{}{y} - \frac{2}{\Tsamp}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}\right)}_{(2)} \right. \\
+                &\phantom{=} \left.+ \underbrace{\frac{2}{\Tsamp}\integrate{[-h/2,-d']\cup[d',h/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{}{y}}_{(3)}\right| \\
+                &\leq |(1)| + |(2)| + |(3)| < \frac{2f(0)}{\Tsamp}\varepsilon + \frac{2\varepsilon}{\Tsamp}(\pi+\varepsilon) + \varepsilon
             \end{align*}
         \end{proof}
     \section{単一周波数波のDTFTの導出}
@@ -154,7 +155,7 @@
         \end{align*}
         上の結果を利用して、$\cos(\omega_0 \Ts n + \phi)$のDTFTは次式となる。
         \begin{align*}
-            \DTFT{\cos(\omega_0 \Ts n + \phi)}{\omega} &= \DTFTwithArg{\sin(\omega_0 T_\text{s} n + \phi + \pi/2)}{\omega} \\
+            \DTFT{\cos(\omega_0 \Ts n + \phi)}{\omega} &= \DTFTwithArg{\sin(\omega_0 \Tsamp n + \phi + \pi/2)}{\omega} \\
             &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i(\phi+\pi/2)}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i(\phi+\pi/2)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
             &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(ie^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + ie^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
             &= \frac{\pi}{\Ts}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + e^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
@@ -183,7 +184,7 @@
         \let\Ts\undefined
         \let\fsamp\undefined
     \section{システムの伝達関数と正弦波入力の関係}
-        \newcommand{\Ts}{T_\text{s}}
+        \newcommand{\Ts}{\Tsamp}
         \begin{shadebox}
             サンプリング時間を$\Ts>0$とする。
             実数値の入力に対して実数値を出力するシステムの伝達関数が$H:\omega\in\realNumbers\mapsto H(\omega)\in\complexNumbers$であるとき、このシステムに単一周波数の正弦波$f(n) := \sin(\omega_0 \Ts n + \phi)\;(-\pi/\Ts\leq\omega_0\leq\pi/\Ts)$を入力したときの出力$g(n)$は次式となる。
@@ -228,7 +229,7 @@
         \end{proof}
         \let\Ts\undefined
     \section{GaussianノイズのDTFT}
-        \newcommand{\Ts}{T_\text{s}}
+        \newcommand{\Ts}{\Tsamp}
         \subsection{パワースペクトルの性質}
             \label{GaussianノイズのDTFTのパワースペクトル}
             複素数のGaussian乱数のDTFTは周波数に依らない分布をもつことを示す。
