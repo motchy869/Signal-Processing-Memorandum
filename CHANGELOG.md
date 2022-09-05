@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added
   - continuous-time filter behavior observed from discrete-time system.
   - a lemma for comprehension of DCT basis orthogonality
+  - power spectrum of 0-order-held sinusoid
 
 ## [0.5.0]
 
