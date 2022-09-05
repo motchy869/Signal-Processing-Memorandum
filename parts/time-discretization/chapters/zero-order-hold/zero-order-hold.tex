@@ -78,3 +78,15 @@
         \subsection{背景}
             実用上、物理系をディジタル計算機で制御するために、連続系である制御対象と入力の間に「AD変換器」(0次ホールド回路+量子化器),「演算回路」,「DA変換器」(0次ホールド回路)が追加される。
             本節では、連続時間システムの入力に0次ホールド機構を追加したときのシステムの出力のうち、サンプリング時間の整数倍の時点に於いて出力が厳密に一致する離散時間システムのz変換を導出する。
+        \subsection{導出}
+            \newcommand{\ud}{u_\text{d}}
+            \renewcommand{\uH}{u_\text{H}}
+            \newcommand{\Ud}{U_\text{d}}
+            元の連続時間システムのインパルス応答を$h:\realNumbers\to\complexNumbers$とし、そのラプラス変換を$H:\complexNumbers\to\complexNumbers$とする。
+            この連続時間システムへの入力を$u:\realNumbers\to\complexNumbers$とする。
+            但し$u(t)=0\;(t<0)$とする。
+            サンプリング周期を$\Tsamp>0$とし、0次ホールドされた入力信号を$\ud:t\in\realNumbers\to u(\floor{t/\Tsamp}\Tsamp)$とする。
+            Heavisideの単位ステップ関数を$\uH$とすると$\ud$は次式で表せる。
+            \[ \ud(t) = \sum_{k=0}^\infty u(k\Tsamp)\left(\uH(t-k\Tsamp) - \uH(t-(k+1)\Tsamp)\right) \]
+            これのラプラス変換を$U_\text{d}$とすると次式で表される。
+            \[ \Ud(s) = \sum_{k=0}^\infty u(k\Tsamp)\frac{e^{-k\Tsamp s}}{s} \]
