@@ -4,12 +4,12 @@
             \begin{shadebox}
                 $H$をHeavisideの階段関数とする。
                 次式が成り立つ。
-                \[ H(x) = \lim_{\varepsilon\to +0}\frac{1}{2\pi i}\integrate{-\infty}{\infty}{\frac{1}{t-i\varepsilon}e^{ixt}}{}{t} \]
+                \[ H(x) = \lim_{\varepsilon\to +0}\frac{1}{2\pi i}\integrate{-\infty}{\infty}{\frac{1}{t-i\varepsilon}\NapierE^{ixt}}{}{t} \]
             \end{shadebox}
             \begin{proof}
                 \quad\par
                 複素積分を用いて示す。
-                $R>\varepsilon,\;f(z) := e^{ixz}/(z-i\varepsilon)$とする。
+                $R>\varepsilon,\;f(z) := \NapierE^{ixz}/(z-i\varepsilon)$とする。
                 $f$の極は$i\varepsilon$であり、位数1, 留数1である。
                 $x>0$のとき、積分路を$C_\mathrm{A}: C_1 + C_2,\; C_1 := [-R,R],\; C_2 := Re^{i\theta},\;\theta:0\to\pi$として$f$を$C_\mathrm{A}$上で積分する。
                 留数定理から次式が成り立つ。

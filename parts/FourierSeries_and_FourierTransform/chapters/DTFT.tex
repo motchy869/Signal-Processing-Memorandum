@@ -48,8 +48,8 @@
             $f,g$の積のDTFTは次式で求まる。
             \begin{align*}
                 \DTFTwithArg{fg}{\bm{\omega}} &= \sum_{\bm{n}\in\integers^d} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) = \sum_{\bm{n}\in\integers^d} \IDTFTwithArg{F}{\bm{n}} g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \\
-                &= \sum_{\bm{n}\in\integers^d} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})e^{i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\text{s})^\top\bm{n}}}{}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \\
-                &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{\bm{n}\in\integers^d} g(\bm{n})e^{-i\left((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\text{s}\right)^\top\bm{n}}\right)}{}{\tilde{\bm{\omega}}} \\
+                &= \sum_{\bm{n}\in\integers^d} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\NapierE^{i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\text{s})^\top\bm{n}}}{}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \\
+                &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{\bm{n}\in\integers^d} g(\bm{n})\NapierE^{-i\left((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\text{s}\right)^\top\bm{n}}\right)}{}{\tilde{\bm{\omega}}} \\
                 &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}} = (F*G)(\omega)
             \end{align*}
         \subsection{畳み込みのDTFT}
@@ -89,9 +89,9 @@
         ここではDirichlet積分を用いて$\DTFTwithArg{1}{\omega} = (2\pi/\Tsamp)\sum_{m\in\integers}\delta(\omega-2m\pi/\Tsamp)$を直接的に導出してみる。
         DTFTの定義から次式が成り立つ。
         \[
-            \DTFTwithArg{1}{\omega} = \lim_{N\to\infty} \sum_{m=-N}^N e^{i\omega \Tsamp m} = \frac{\sin(N+1/2)\omega \Tsamp}{\sin(\omega \Tsamp/2)}
+            \DTFTwithArg{1}{\omega} = \lim_{N\to\infty} \sum_{m=-N}^N \NapierE^{i\omega \Tsamp m} = \frac{\sin(N+1/2)\omega \Tsamp}{\sin(\omega \Tsamp/2)}
         \]
-        最右辺は等比数列の和の公式を用いた後、分母と分子に$e^{-i\omega/2}$を掛けて整理すると得られる。
+        最右辺は等比数列の和の公式を用いた後、分母と分子に$\NapierE^{-i\omega/2}$を掛けて整理すると得られる。
         これが$N\to\infty$で$(2\pi/\Tsamp)\sum_{m\in\integers}\delta(\omega-2m\pi/\Tsamp)$として振る舞うことを確かめる。
         $2\pi/\Tsamp$周期性については明らかだから、$[-\pi/\Tsamp,\pi/\Tsamp)$の範囲で$(2\pi/\Tsamp)\delta(\omega)$として振る舞うことを確かめれば十分である。
         示すべきことは次の通りである。
@@ -147,18 +147,18 @@
         $\sin(\omega_0 \Ts n + \phi)\;(\omega_0\in\realNumbers, n\in\integers)$のDTFTは\ref{定数関数1のDTFT}の結果を用いて次のようにして得られる。
         \begin{align*}
             \DTFTwithArg{\sin(\omega_0 \Ts n + \phi)}{\omega} &= \frac{1}{2i}\sum_{m\in\integers} \bigl(\exp(i(\omega_0\Ts m + \phi) - \exp(-i(\omega_0\Ts m + \phi))\bigr)\exp(-i\omega\Ts m) \\
-            &= \frac{1}{2i}\sum_{m\in\integers} \left(e^{i\phi}\exp(i(\omega_0-\omega)\Ts m) - e^{-i\phi}\exp(i(-\omega_0-\omega)\Ts m)\right) \\
-            &= \frac{1}{2i}e^{i\phi}\sum_{m\in\integers}\delta(\omega_0-\omega - 2\pi m/\Ts) - \frac{1}{2i}e^{-i\phi}\sum_{m\in\integers}\delta(-\omega_0-\omega - 2\pi m/\Ts) \\
-            &= \frac{1}{2i}e^{i\phi}\sum_{m\in\integers}\delta(-(\omega-\omega_0) - 2\pi m/\Ts) - \frac{1}{2i}e^{-i\phi}\sum_{m\in\integers}\delta(-(\omega+\omega_0) - 2\pi m/\Ts) \\
-            &= \frac{1}{2i}e^{i\phi}\frac{2\pi}{\Ts}\sum_{m\in\integers}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \frac{1}{2i}e^{-i\phi}\frac{2\pi}{\Ts}\sum_{m\in\integers}\delta(\omega+\omega_0 - 2\pi m/\Ts) \\
-            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
+            &= \frac{1}{2i}\sum_{m\in\integers} \left(\NapierE^{i\phi}\exp(i(\omega_0-\omega)\Ts m) - \NapierE^{-i\phi}\exp(i(-\omega_0-\omega)\Ts m)\right) \\
+            &= \frac{1}{2i}\NapierE^{i\phi}\sum_{m\in\integers}\delta(\omega_0-\omega - 2\pi m/\Ts) - \frac{1}{2i}\NapierE^{-i\phi}\sum_{m\in\integers}\delta(-\omega_0-\omega - 2\pi m/\Ts) \\
+            &= \frac{1}{2i}\NapierE^{i\phi}\sum_{m\in\integers}\delta(-(\omega-\omega_0) - 2\pi m/\Ts) - \frac{1}{2i}\NapierE^{-i\phi}\sum_{m\in\integers}\delta(-(\omega+\omega_0) - 2\pi m/\Ts) \\
+            &= \frac{1}{2i}\NapierE^{i\phi}\frac{2\pi}{\Ts}\sum_{m\in\integers}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \frac{1}{2i}\NapierE^{-i\phi}\frac{2\pi}{\Ts}\sum_{m\in\integers}\delta(\omega+\omega_0 - 2\pi m/\Ts) \\
+            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
         \end{align*}
         上の結果を利用して、$\cos(\omega_0 \Ts n + \phi)$のDTFTは次式となる。
         \begin{align*}
             \DTFT{\cos(\omega_0 \Ts n + \phi)}{\omega} &= \DTFTwithArg{\sin(\omega_0 \Tsamp n + \phi + \pi/2)}{\omega} \\
-            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i(\phi+\pi/2)}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i(\phi+\pi/2)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
+            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i(\phi+\pi/2)}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i(\phi+\pi/2)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
             &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(ie^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + ie^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
-            &= \frac{\pi}{\Ts}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + e^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
+            &= \frac{\pi}{\Ts}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + \NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
         \end{align*}
     \section{エイリアシングとの関係}
         \label{DTFTとエイリアシングとの関係}
@@ -168,8 +168,8 @@
         連続時間信号$f:\realNumbers\to\complexNumbers^d$をサンプリング周期$\Ts$でサンプリングした信号$\tilde{f}:\naturalNumbers\to\complexNumbers^d$のDTFTを求める。
         $F := \FT{f}$とする。
         \begin{align*}
-            \DTFTwithArg{\tilde{f}}{\omega} &= \sum_{n=-\infty}^\infty f(n\Ts)e^{-i\omega\Ts n} = \sum_{n=-\infty}^\infty \IFTwithArg{F}{n\Ts} e^{-i\omega\Ts n} \\
-            &= \sum_{n=-\infty}^\infty \left(\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')e^{i\omega'\Ts n}}{}{\omega'}\right)e^{-i\omega\Ts n} = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\sum_{n=-\infty}^\infty e^{i(\omega'-\omega)\Ts n}}{}{\omega'} \\
+            \DTFTwithArg{\tilde{f}}{\omega} &= \sum_{n=-\infty}^\infty f(n\Ts)\NapierE^{-i\omega\Ts n} = \sum_{n=-\infty}^\infty \IFTwithArg{F}{n\Ts} \NapierE^{-i\omega\Ts n} \\
+            &= \sum_{n=-\infty}^\infty \left(\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\NapierE^{i\omega'\Ts n}}{}{\omega'}\right)\NapierE^{-i\omega\Ts n} = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\sum_{n=-\infty}^\infty \NapierE^{i(\omega'-\omega)\Ts n}}{}{\omega'} \\
             &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\frac{2\pi}{\Ts}\sum_{n=-\infty}^\infty \delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} \quad (\text{\ref{定数関数1のDTFT}を用いた。}) \\
             &= \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty \integrate{-\infty}{\infty}{F(\omega')\delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} = \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty F(\omega + 2\pi n/\Ts)
         \end{align*}
@@ -218,11 +218,11 @@
         \begin{proof}
             \quad\par
             $f,g$のDTFTを$F,G$とすると
-            \[ G(\omega) = H(\omega)F(\omega) = H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \]
+            \[ G(\omega) = H(\omega)F(\omega) = H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \]
             これを逆変換して
             \begin{align*}
                 g(n) &= \text{IDTFT}(G,n) \\
-                &= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(e^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - e^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)\exp(i\omega\Ts n)}{}{\omega} \\
+                &= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)\exp(i\omega\Ts n)}{}{\omega} \\
                 &= \frac{1}{2i}\left(H(\omega_0)\exp\bigl(i(\omega_0\Ts n+\phi)\bigr) - H(-\omega_0)\exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\right)
             \end{align*}
             この先は「直接的で長い証明」と同じである。
@@ -244,8 +244,8 @@
                 \quad\par
                 $[\Re{X_n}, \Im{X_n}]^\top \sim N(\bm{0}, \sigma I_2)$である。
                 ここに$I_2$は2次の単位行列である。
-                $Y(\omega) = \sum_{n=0}^{N-1} X_n e^{-j\omega\Ts n}$
-                であるが、$X_n e^{-j\omega\Ts n}$は$X_n$を$-\omega\Ts n$だけ回転させたものであり、これもまた$N(\bm{0}, \sigma I_2)$に従う。
+                $Y(\omega) = \sum_{n=0}^{N-1} X_n \NapierE^{-j\omega\Ts n}$
+                であるが、$X_n \NapierE^{-j\omega\Ts n}$は$X_n$を$-\omega\Ts n$だけ回転させたものであり、これもまた$N(\bm{0}, \sigma I_2)$に従う。
                 正規分布の再生性から$Y(\omega)$は$N(\bm{0}, \sqrt{N}\sigma I_2)$に従う。
                 $Y(\omega)/(\sqrt{N}\sigma)$の実部と虚部は独立でそれぞれ標準正規分布に従うので、$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
             \end{proof}
