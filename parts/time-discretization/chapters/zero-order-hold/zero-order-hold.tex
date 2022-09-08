@@ -98,6 +98,12 @@
             このとき、システムのz領域の伝達関数は$(1-z^{-1})\Hdd(z)$となる。
             ここに$\Hdd(z)$は$H(s)/s$の逆ラプラス変換を周期$\Tsamp$でサンプリングして得られる離散時間信号のz変換である。
             つまり、このz領域の伝達関数の出力は$\Tsamp$の整数倍の時刻で連続時間システムの出力$\yd$と厳密に一致する。
+            \begin{figure}[H]
+                \centering
+                \includegraphics[keepaspectratio, scale=0.4]
+                {\currfiledir/z-transform_with_0-order-hold_input.eps}
+                \caption{連続時間系と、入力に0次ホールドを付加した系}
+            \end{figure}
         \subsection{導出}
             連続時間システムへの入力を$u:\realNumbers\to\complexNumbers$とする。
             但し$u(t)=0\;(t<0)$とする。
