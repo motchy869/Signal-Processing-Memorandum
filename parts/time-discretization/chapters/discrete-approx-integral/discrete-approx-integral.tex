@@ -28,4 +28,23 @@
                 &\phantom{=} \Xd(f) = \frac{1}{T} \integrate{0}{T}{\xd(t)\exp(-i 2\pi f t)}{}{t} = \sum_{k=0}^{N-1} \frac{1}{T} \integrate{k\Tsamp}{(k+1)\Tsamp}{\xd(t)\exp(-i 2\pi f t)}{}{t} \\
                 &= \frac{1}{i 2\pi f N}\times\frac{1-\exp(-i 2\pi f\Tsamp)}{1-\exp(i 2\pi f_0\Tsamp)} \left\{\frac{1-\exp(-i 2\pi f \Tsamp N)}{1-\exp(-i 2\pi f \Tsamp)} - \frac{1-\exp(-i 2\pi (f-f_0) \Tsamp N)}{1-\exp(-i 2\pi (f-f_0) \Tsamp)}\right\}
             \end{align*}
+            $v$中の、周波数が$f_0$である成分の振幅と位相を調べる。
+            $f\to f_0$の極限に関して次式が成り立つ。
+            \[ \lim_{f\to f_0} V(f) = \frac{1}{i2\pi f_0}\left[1 + \frac{\exp(-i 2\pi f_0 T)-1}{i 2\pi f_0 T}\right] \]
+            次に$\xd$中の、周波数が$f_0$である成分の振幅と位相を調べる。
+            但し、$f_0\Tsamp < 1$と仮定する。
+            次式が成り立つ。
+            \begin{align*}
+                \lim_{f\to f_0} \Xd(f) &= \frac{1}{i 2\pi f_0 N}\times\frac{1-\exp(-i 2\pi f_0\Tsamp)}{1-\exp(i 2\pi f_0\Tsamp)}\left\{\frac{1-\exp(-i 2\pi f_0 \Tsamp N)}{1-\exp(-i 2\pi f_0 \Tsamp)} - N\right\}
+            \end{align*}
+            サンプリング周波数が十分高い、すなわち$f_0\Tsamp\ll 1$であるとき、次の近似式が成り立つ。
+            \begin{align*}
+                \lim_{f\to f_0} \Xd(f) &\approx \frac{1}{i 2\pi f_0 N}\times(-1)\left[\frac{1-\exp(-i 2\pi f_0 \Tsamp N)}{i 2\pi f_0 \Tsamp} - N\right] \\
+                &= \frac{1}{i 2\pi f_0}\left[1 + \frac{\exp(-i 2\pi f_0 \Tsamp N)-1}{i 2\pi f_0 \Tsamp N}\right] = \frac{1}{i 2\pi f_0}\left[1 + \frac{\exp(-i 2\pi f_0 T)-1}{i 2\pi f_0 T}\right] \\
+                &=  \lim_{f\to f_0} V(f)
+            \end{align*}
         \subsection{数値例}
+            今、$f_0=10,\;\Tsamp=10^{-2},\;N=200$とする。
+            $f=f_0$に於ける$v$の振幅と位相の組は$(1/(20\pi),\;-\pi/2) \approx(1.59\times10^{-2},-1.57)$である。
+            一方、$\xd$の振幅と位相の組はおよそ$(1.59\times10^{-2},-2.20)$である。
+
