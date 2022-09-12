@@ -26,6 +26,6 @@
             但し計算は容易なので過程の多くを省略した。
             \begin{align*}
                 &\phantom{=} \Xd(f) = \frac{1}{T} \integrate{0}{T}{\xd(t)\exp(-i 2\pi f t)}{}{t} = \sum_{k=0}^{N-1} \frac{1}{T} \integrate{k\Tsamp}{(k+1)\Tsamp}{\xd(t)\exp(-i 2\pi f t)}{}{t} \\
-                &= \frac{1}{i 2\pi f N}\times\frac{1-\exp(-i 2\pi f\Tsamp)}{1-\exp(-i 2\pi f_0\Tsamp)} \left\{\frac{1-\exp(-i 2\pi f \Tsamp N)}{1-\exp(-i 2\pi f \Tsamp)} + \frac{1-\exp(-i 2\pi (f-f_0) \Tsamp N)}{1-\exp(-i 2\pi (f-f_0) \Tsamp)}\right\}
+                &= \frac{1}{i 2\pi f N}\times\frac{1-\exp(-i 2\pi f\Tsamp)}{1-\exp(i 2\pi f_0\Tsamp)} \left\{\frac{1-\exp(-i 2\pi f \Tsamp N)}{1-\exp(-i 2\pi f \Tsamp)} - \frac{1-\exp(-i 2\pi (f-f_0) \Tsamp N)}{1-\exp(-i 2\pi (f-f_0) \Tsamp)}\right\}
             \end{align*}
         \subsection{数値例}
