@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - a lemma for comprehension of DCT basis orthogonality
   - power spectrum of 0-order-held sinusoid
   - z-transform of continuous system with 0-order-hold input
+  - power spectrum of integral sinusoid by Euler method
 
 ## [0.5.0]
 
