@@ -47,4 +47,30 @@
             今、$f_0=10,\;\Tsamp=10^{-2},\;N=200$とする。
             $f=f_0$に於ける$v$の振幅と位相の組は$(1/(20\pi),\;-\pi/2) \approx(1.59\times10^{-2},-1.57)$である。
             一方、$\xd$の振幅と位相の組はおよそ$(1.59\times10^{-2},-2.20)$である。
-
+            \par
+            次の図は$f_0$近傍でのパワースペクトル$V,\Xd$を示したものである。
+            \begin{figure}[H]
+                \centering
+                \includegraphics[keepaspectratio, scale=0.8]
+                {\currfiledir/spectrum_in_the_neighborhood_of_original_frequency.eps}
+                \caption{元の周波数の近傍でのパワースペクトル}
+            \end{figure}
+            低周波領域では絶対値が良く一致していることがわかる。
+            \par
+            次に高調波を見る。
+            次の図はサンプリング周波数の3倍の範囲まで$V,\Xd$を示したものである。
+            \begin{figure}[H]
+                \centering
+                \includegraphics[keepaspectratio, scale=0.8]
+                {\currfiledir/power_spectrum_with_harmonics.eps}
+                \caption{高調波を含むパワースペクトル}
+            \end{figure}
+            低周波の領域では$V,\Xd$が重なって判別できない。
+            また、サンプリング周波数の整数倍の位置に高調波が生じていることが判る。
+            \par
+            この数値例を計算したMathematicaノートブックおよびMATLABスクリプトは下記のファイル名で保存されている。
+            Gitリポジトリ内でファイル名検索すれば発見できるであろう。
+            \begin{itemize}
+                \item \href{\currfiledir/spectrum_of_integral-sine-wave_by_Euler-method.nb}{spectrum\_of\_integral\-sine-wave\_by\_Euler-method.nb}
+                \item \href{\currfiledir/spectrum_of_integral_sine_wave_by_Euler_method.m}{spectrum\_of\_integral\_sine\_wave\_by\_Euler\_method.m}
+            \end{itemize}
