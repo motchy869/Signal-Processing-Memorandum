@@ -33,9 +33,7 @@
             次に$\xd$中の、周波数が$f_0$である成分の振幅と位相を調べる。
             但し、$f_0\Tsamp < 1$と仮定する。
             次式が成り立つ。
-            \begin{align*}
-                \lim_{f\to f_0} \Xd(f) &= \frac{1}{i 2\pi f_0 N}\times\frac{1-\exp(-i 2\pi f_0\Tsamp)}{1-\exp(i 2\pi f_0\Tsamp)}\left\{\frac{1-\exp(-i 2\pi f_0 \Tsamp N)}{1-\exp(-i 2\pi f_0 \Tsamp)} - N\right\}
-            \end{align*}
+            \[ \lim_{f\to f_0} \Xd(f) = \frac{1}{i 2\pi f_0 N}\times\frac{1-\exp(-i 2\pi f_0\Tsamp)}{1-\exp(i 2\pi f_0\Tsamp)}\left\{\frac{1-\exp(-i 2\pi f_0 \Tsamp N)}{1-\exp(-i 2\pi f_0 \Tsamp)} - N\right\} \]
             サンプリング周波数が十分高い、すなわち$f_0\Tsamp\ll 1$であるとき、次の近似式が成り立つ。
             \begin{align*}
                 \lim_{f\to f_0} \Xd(f) &\approx \frac{1}{i 2\pi f_0 N}\times(-1)\left[\frac{1-\exp(-i 2\pi f_0 \Tsamp N)}{i 2\pi f_0 \Tsamp} - N\right] \\
