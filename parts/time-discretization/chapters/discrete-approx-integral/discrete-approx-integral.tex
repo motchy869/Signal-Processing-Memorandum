@@ -15,7 +15,6 @@
                 &\phantom{=} V(f) = \frac{1}{T} \integrate{0}{T}{v(t)\exp(-i 2\pi f t)}{}{t} \\
                 &= \frac{1}{i 2\pi f_0 T} \left\{\frac{1}{i 2\pi (f-f_0)}\bigl[1 - \exp\bigl(-i 2\pi (f-f_0)T\bigr)\bigr] + \frac{1}{i 2\pi f}\bigl(\exp(-i 2\pi f T) - 1\bigr)\right\}
             \end{align*}
-            \par
             次に、$u$の積分をサンプリング周期$\Tsamp>0$のEuler法で近似したものを考える。
             Euler法で積分した結果の離散時間信号を$\xdd:\integers\to\complexNumbers$とすると、これは漸化式$\xdd(n) = \xdd(n-1) + \Tsamp u\bigl((n-1)\Tsamp\bigr)$に従う。
             但し初期条件として$\xdd(0)=0$とする。
