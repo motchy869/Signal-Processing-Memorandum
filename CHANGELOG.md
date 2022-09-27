@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - z-transform of continuous system with 0-order-hold input
   - power spectrum of integral sinusoid by Euler method
 
-## [0.5.0]
+## [0.5.0] - 2022-05-30
 
 - Fixed
   - typos and mistakes of sign in Sampling Theorem
@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - definition of cyclic correlation
   - DFT of cyclic correlation
 
-## [0.4.0]
+## [0.4.0] - 2022-04-01
 
 - Fixed
   - minor errors in DTFT
