@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.5.0]
+## [0.6.0] - 2022-09-27
+
+- Refactored
+  - Renamed title in title page: "motchyの信号処理備忘録" -> "信号処理備忘録"
+  - Renamed a part: "Fourier解析" -> "Fourier級数とFourier変換"
+  - Moved "Sampling Theorem" after "Fourier Transform"
+- Added
+  - continuous-time filter behavior observed from discrete-time system.
+  - a lemma for comprehension of DCT basis orthogonality
+  - power spectrum of 0-order-held sinusoid
+  - z-transform of continuous system with 0-order-hold input
+  - power spectrum of integral sinusoid by Euler method
+
+## [0.5.0] - 2022-05-30
 
 - Fixed
   - typos and mistakes of sign in Sampling Theorem
@@ -15,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - definition of cyclic correlation
   - DFT of cyclic correlation
 
-## [0.4.0]
+## [0.4.0] - 2022-04-01
 
 - Fixed
   - minor errors in DTFT

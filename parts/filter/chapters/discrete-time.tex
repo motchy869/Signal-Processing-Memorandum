@@ -1,0 +1,24 @@
+\chapter{離散時間フィルタ}
+    \section{連続時間系のフィルタ処理を離散時間系で観測したときの振る舞い}
+        ここでは、連続時間系でフィルタ処理を行った結果を離散時間系で観測したときの振る舞いを考える。
+        この問題は実用上興味深い。
+        物理系の状態をセンサでコンピュータに取り込み、有益な計算をする状況がこれに当てはまる。
+        具体的には、無線受信機の直交分離出力であるIQ信号(連続時間信号)をADCで一定周期でサンプリングしてCPUに取り込んで復調の計算を行う状況が考えられる。
+        \begin{shadebox}
+            $h:\realNumbers\to\realNumbers$を連続時間信号とする。
+            $H:\complexNumbers\to\complexNumbers$を$h$のLaplace変換とする。
+            インパルス応答が$h$である連続時間フィルタを連続時間系の複素正弦波信号$x(t) = A\exp i(\omega_0 t + \phi)\;(A>0,\omega_0,\phi\in\realNumbers)$に適用した出力を$y=h*x$とする。
+            $x,y$をサンプリング周期$\Ts$でサンプリングした離散時間信号を$\mathrm{x}: n\in\integers\mapsto x(n\Ts), \mathrm{y}: n\in\integers\mapsto y(n\Ts)$とする。
+            このとき次式が成り立つ。
+            \[ \DTFTwithArg{\mathrm{y}}{\bm{\omega}} = H(i\omega_0)\DTFTwithArg{\mathrm{x}}{\bm{\omega}} \]
+        \end{shadebox}
+        \begin{proof}
+            \begin{align*}
+                \DTFTwithArg{\mathrm{y}}{\bm{\omega}} &= \sum_{m=-\infty}^\infty y(n\Ts)\exp \left(-i n\Ts\omega\right) = \sum_{m=-\infty}^\infty (h*x)(n\Ts)\exp \left(-i n\Ts\omega\right) \\
+                &= \sum_{m=-\infty}^\infty \left(\integrate{-\infty}{\infty}{h(\tau)x(n\Ts-\tau)}{}{\tau}\right)\exp \left(-i n\Ts\omega\right) \\
+                &= \integrate{-\infty}{\infty}{h(\tau)\sum_{m=-\infty}^\infty x(n\Ts-\tau)\exp \left(-i n\Ts\omega\right)}{}{\tau} \\
+                &= \integrate{-\infty}{\infty}{h(\tau)\sum_{m=-\infty}^\infty A\exp i(\omega_0 (n\Ts-\tau) + \phi)\exp \left(-i n\Ts\omega\right)}{}{\tau} \\
+                &= \integrate{-\infty}{\infty}{h(\tau) \exp(-i\omega_0\tau)\sum_{m=-\infty}^\infty A\exp i(\omega_0 n\Ts + \phi)\exp \left(-i n\Ts\omega\right)}{}{\tau} \\
+                &= \DTFTwithArg{\mathrm{x}}{\omega} \integrate{-\infty}{\infty}{h(\tau) \exp(-i\omega_0\tau)}{}{\tau} = \DTFTwithArg{\mathrm{x}}{\omega}H(i\omega_0)
+            \end{align*}
+        \end{proof}
