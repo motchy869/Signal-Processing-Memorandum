@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - minor error in the final value theorem of Z-transform
 - Improved:
   - use Roman 'e' as exp function
+- Added:
+  - parity of Fourier transform
 
 ## [0.6.0] - 2022-09-27
 
