@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Improve:
+- Fixed:
+  - minor error in the final value theorem of Z-transform
+- Improved:
   - use Roman 'e' as exp function
 
 ## [0.6.0] - 2022-09-27
