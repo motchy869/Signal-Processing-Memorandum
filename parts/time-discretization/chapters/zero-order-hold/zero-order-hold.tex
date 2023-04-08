@@ -20,9 +20,24 @@
             \]
             $x$ は次式で表される。
             \[ x(t) = \sum_{n=-\infty}^\infty \xd(n)u(t-n\Ts) \]
-            $x$ のFourier変換 $X$ は次式である。
+            次の図は $\Ts=1,\xd(n) = \sin\parens{2\pi*n/12}\;(0\leq n\leq 24),\;\xd(n) = 0\;(n<0,24<n)$ の例である。
+            \begin{figure}[H]
+                \centering
+                \includegraphics[keepaspectratio, scale=0.8]
+                {parts/time-discretization/chapters/up-sampling/imgs/x1.pdf}
+                \caption{$x$の例}
+                \label{離散時間信号のDAC出力の例}
+            \end{figure}
+            以上の下、 $x$ のFourier変換 $X$ は次式である。
             \[ X(\omega) = \frac{\Ts}{\sqrt{2\pi}}\exp\parens*{-i\frac{\Ts}{2}\omega}\parens*{\sinc \frac{\Ts}{2}\omega}\Xd(\omega) \]
             $\Xd(\omega)$ が $2\pi$ 周期関数であることに注意すれば、$\Xd(\omega)$ の第1 Nyquist領域の形状が位相回転 $\exp\parens{-i \omega n\Ts}$ とレベル減衰 $\sinc\omega\Ts/2$ を伴いつつ周期 $2\pi$ で無限に繰り返されていることがわかる。
+            次の図は\ref{離散時間信号のDAC出力の例}に対応する $X$ の例である。
+            \begin{figure}[H]
+                \centering
+                \includegraphics[keepaspectratio, scale=0.8]
+                {parts/time-discretization/chapters/up-sampling/imgs/FT_of_x1.pdf}
+                \caption{$X$の例。横軸は正規化各周波数}
+            \end{figure}
         \subsection{導出}
             \begin{proof}
                 \quad\par
