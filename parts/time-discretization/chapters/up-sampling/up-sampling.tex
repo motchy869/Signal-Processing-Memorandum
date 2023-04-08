@@ -59,7 +59,7 @@
             \end{proof}
         \subsection{考察}
             アップサンプリング前の信号 $x_1$ については\ref{0次ホールドされた離散時間信号の周波数特性}より、そのFourier変換は次式である。
-            \[ X_1(\omega) = \frac{\Ts}{\sqrt{2\pi}}\exp\parens*{-i\frac{\Ts}{2}\omega}\parens*{\sinc \frac{\Ts}{2}\omega}\Xd(\omega) \tag{b} \]
+            \[ X_1(\omega) = \frac{\Ts}{\sqrt{2\pi}}\exp\parens*{-i\frac{\Ts}{2}\omega}\parens*{\sinc \frac{\Ts}{2}\omega}\Xda(\omega) \tag{b} \]
             式(a),(b)を見比べると $\Xda$ を共通して含んでおり、それ以外の箇所でアップサンプリングにより $\Ts$ が $\Ts/R$ に置き換わっていることがわかる。
             このことから、アップサンプリングにより高調波の位置は変わらず、広域の減衰や位相回転が緩やかになることがわかる。
             次の図は\ref{アップサンプリング前後のDAC出力の例}に対応するDTFTとFourier変換の絶対値の例である。
