@@ -1,4 +1,47 @@
 \chapter{0次ホールド}
+    \providecommand{\FT}[1]{\mathcal{F}\parens*{#1}}
+    \providecommand{\Ts}{T_\text{s}}
+    \section{0次ホールドされた離散時間信号の周波数特性}
+        \newcommand{\xd}{x_\text{d}}
+        \newcommand{\Xd}{X_\text{d}}
+        \subsection{動機}
+            離散時間信号を仮に量子化誤差なくDA変換できた場合の周波数スペクトルを計算したい。
+        \subsection{主張}
+            $\xd:\integers\to\complexNumbers$ を離散時間信号とする。
+            $\Xd$ を $\xd$ のDTFTとする。
+            $\Ts>0$ をサンプル周期として $\xd$ の0次ホールドで生成した階段状の連続時間信号を $x$ とする。
+            $u:\realNumbers\to\braces{0,1}$ を幅 $\Ts$ のパルスとする。
+            \[
+                u(t) = \begin{cases}
+                    1 & 0\leq t < \Ts \\
+                    0 & \text{otherwise}
+                \end{cases}
+            \]
+            $x$ は次式で表される。
+            \[ x(t) = \sum_{n=-\infty}^\infty \xd(n)u(t-n\Ts) \]
+            $x$ のFourier変換 $X$ は次式である。
+            \[ X(\omega) = \frac{\Ts}{\sqrt{2\pi}}\exp\parens*{-i\frac{\Ts}{2}\omega}\parens*{\sinc \frac{\Ts}{2}\omega}\Xd(\omega) \]
+            $\Xd(\omega)$ が $2\pi$ 周期関数であることに注意すれば、$\Xd(\omega)$ の第1 Nyquist領域の形状が位相回転 $\exp\parens{-i \omega n\Ts}$ とレベル減衰 $\sinc\omega\Ts/2$ を伴いつつ周期 $2\pi$ で無限に繰り返されていることがわかる。
+        \subsection{導出}
+            \begin{proof}
+                \quad\par
+                \[ X(\omega) = \FT{\sum_{n=-\infty}^\infty \xd(n)u(t-n\Ts)}(\omega) = \sum_{n=-\infty}^\infty \xd(n)\FT{u(t-n\Ts)}(\omega) \tag{1} \]
+                ここで次式が成り立つ。
+                \begin{align*}
+                    \FT{u(t-n\Ts)}(\omega) &= \exp\parens*{-i \omega n\Ts}\FT{u}(\omega) = \exp\parens*{-i \omega n\Ts}\frac{1}{\sqrt{2\pi}}\integrate{0}{\Ts}{\exp\parens*{-i\omega t}}{}{t} \\
+                    &= \frac{i}{\omega\sqrt{2\pi}}\parens*{\exp\parens*{-i \omega\Ts}-1}\exp\parens*{-i \omega n\Ts} \\
+                    &= \frac{i}{\omega\sqrt{2\pi}}\exp\parens{-i \omega n\Ts}\exp\parens{-i \omega\Ts/2}\parens*{\exp\parens*{-i \omega\Ts/2} - \exp\parens*{i \omega\Ts/2}} \\
+                    &= \frac{i}{\omega\sqrt{2\pi}}\exp\parens{-i \omega n\Ts}\exp\parens{-i \omega\Ts/2}(-2i)\sin\frac{\omega\Ts}{2} \\
+                    &= \frac{2}{\omega\sqrt{2\pi}}\exp\parens{-i \omega n\Ts}\exp\parens{-i \omega\Ts/2}\sin\frac{\omega\Ts}{2} \\
+                    &= \frac{\Ts}{\sqrt{2\pi}}\exp\parens{-i \omega n\Ts}\exp\parens{-i \omega\Ts/2}\sinc\frac{\omega\Ts}{2}
+                \end{align*}
+                これを式(1)に適用して次式を得る。
+                \begin{align*}
+                    X(\omega) &= \sum_{n=-\infty}^\infty \xd(n)\frac{\Ts}{\sqrt{2\pi}}\exp\parens{-i \omega n\Ts}\exp\parens{-i \omega\Ts/2}\sinc\frac{\omega\Ts}{2} \\
+                    &= \frac{\Ts}{\sqrt{2\pi}}\exp\parens{-i \omega\Ts/2}\sinc\frac{\omega\Ts}{2} \sum_{n=-\infty}^\infty \xd(n)\exp\parens{-i \omega n\Ts} \\
+                    &= \frac{\Ts}{\sqrt{2\pi}}\exp\parens*{-i\frac{\Ts}{2}\omega}\parens*{\sinc \frac{\Ts}{2}\omega}\Xd(\omega)
+                \end{align*}
+            \end{proof}
     \section{0次ホールドされた正弦波の周波数特性}
         \label{0次ホールドされた正弦波の周波数特性}
         \subsection{背景}

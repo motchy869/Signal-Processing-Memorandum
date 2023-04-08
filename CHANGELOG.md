@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - use Roman 'e' as exp function
 - Added:
   - parity of Fourier transform
+  - Frequency spectrum of ideal DA conversion
 
 ## [0.6.0] - 2022-09-27
 
