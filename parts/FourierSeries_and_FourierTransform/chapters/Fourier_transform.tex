@@ -1,5 +1,5 @@
 \chapter{Fourier変換}
-    \newcommand{\FT}[1]{\mathcal{F}\left(#1\right)}
+    \newcommand{\FT}[1]{\mathcal{F}\parens*{#1}}
     \newcommand{\FTwithArg}[2]{\FT{#1}\left(#2\right)}
     \newcommand{\IFT}[1]{\mathcal{F}^{-1}\left(#1\right)}
     \newcommand{\IFTwithArg}[2]{\IFT{#1}\left(#2\right)}
@@ -38,3 +38,29 @@
                     &= (2\pi)^{-d/2}\integrate{\realNumbers^d}{}{\FTwithArg{g}{\bm{\omega}}\exp (i\bm{\omega}^\top\bm{x})}{d}{\bm{\omega}} = \IFTwithArg{\FT{g}}{\bm{x}} = g(\bm{x})
                 \end{aligned}
             \end{gather*}
+    \section{関数とそのFourier変換の偶奇性}
+        \begin{shadebox}
+            $f:\realNumbers\to\complexNumbers$ とする。
+            このとき次が成り立つ
+            \begin{enumerate}
+                \item $f$ が偶関数であることと $\mathcal{F}(f)$ が偶関数であることは同値である。
+                \item $f$ が奇関数であることと $\mathcal{F}(f)$ が奇関数であることは同値である。
+            \end{enumerate}
+        \end{shadebox}
+        \begin{proof}
+            \quad\par
+            1を示す。2も全く同様にして示せる。
+            \newline
+            ($\Rightarrow$)
+            \newline
+            $\omega\in\realNumbers$ とする。
+            \begin{align*}
+                \mathcal{F}(f)(-\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(x)\exp\parens{i\omega x}}{}{x} = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(-x)\exp\parens{-i\omega (-x)}}{}{x} \\
+                &= \frac{-1}{\sqrt{2\pi}}\integrate{\infty}{-\infty}{f(y)\exp\parens{-i\omega y}}{}{y} \quad (\text{変数変換 }x = -y\text{ を施した}) \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(y)\exp\parens{-i\omega y}}{}{y} = \mathcal{F}(f)(\omega)
+            \end{align*}
+            \newline
+            ($\Leftarrow$)
+            \newline
+            Fourier変換の対称性から $\Rightarrow$ と全く同様にして示せる。
+        \end{proof}

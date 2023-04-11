@@ -10,14 +10,14 @@
 			\begin{proof}
 				\quad\par
 				$\alpha = \lim_{n\to\infty} x(n)$とする。
-				発想としては、十分大きい$N\in\naturalNumbers$に対して$\sum_{k=N}^\infty x(k)z^{-k} \sim \sum_{k=N}^\infty \alpha z^{-k} = \alpha z^{-N}\frac{z}{z-1}$となることを利用する。
+				発想としては、十分大きい$N\in\naturalNumbers$に対して$\sum_{k=N+1}^\infty x(k)z^{-k} \sim \sum_{k=N+1}^\infty \alpha z^{-k} = \alpha z^{-N}\frac{1}{z-1}$となることを利用する。
 				\par
 				任意の$\varepsilon \in (0,1)$に対してある$N\in\naturalNumbers$が存在して$\forall n\geq N,\;|x(n)-\alpha|<\varepsilon$となる。
 				\begin{align}
 					\quad &\lim_{z\to1}(z-1)F(z) - \alpha = \lim_{z\to1}(z-1)z^N F(z) - \alpha \nonumber \\
-					&= \lim_{z\to1}(z-1)z^N\left(\sum_{k=0}^{N-1} x(k)z^{-k} + \sum_{k=N}^\infty x(k)z^{-k}\right) - (z-1)z^N\sum_{k=N}^\infty \alpha z^{-k} \nonumber \\
-					&= \lim_{z\to1}(z-1)z^N \sum_{k=N}^\infty (x(n) - \alpha)z^{-k} \quad \left(\sum_{k=0}^{N-1}\text{の項は極限で消える}\right) \\
-					|(1)| &\leq \lim_{z\to1}(z-1)z^N \sum_{k=N}^\infty |x(n) - \alpha|z^{-k} < \lim_{z\to1}(z-1)z^N \sum_{k=N}^\infty \varepsilon z^{-k} = \varepsilon \nonumber
+					&= \lim_{z\to1}(z-1)z^N\left(\sum_{k=0}^{N-1} x(k)z^{-k} + \sum_{k=N+1}^\infty x(k)z^{-k}\right) - (z-1)z^N\sum_{k=N+1}^\infty \alpha z^{-k} \nonumber \\
+					&= \lim_{z\to1}(z-1)z^N \sum_{k=N+1}^\infty (x(n) - \alpha)z^{-k} \quad \left(\sum_{k=0}^{N-1}\text{の項は極限で消える}\right) \\
+					|(1)| &\leq \lim_{z\to1}(z-1)z^N \sum_{k=N+1}^\infty |x(n) - \alpha|z^{-k} < \lim_{z\to1}(z-1)z^N \sum_{k=N+1}^\infty \varepsilon z^{-k} = \varepsilon \nonumber
 				\end{align}
 			\end{proof}
 		\section{複素指数関数入力に対する伝達関数の作用}
@@ -53,7 +53,7 @@
 		\begin{figure}[H]
 			\centering
 			\includegraphics[keepaspectratio, scale=5]
-			{parts/Z-transform/imgs/IIR-filter/calculationMethod/blockDiagram.eps}
+			{parts/Z-transform/imgs/IIR-filter/calculationMethod/blockDiagram.pdf}
 			\caption{IIRフィルタのブロック図の例}
 		\end{figure}
 		上の例で示したIIRフィルタの出力は以下の手続きで計算できる(仕事で関わっていたデジタル無線機の信号処理部でそうやっていた)。
