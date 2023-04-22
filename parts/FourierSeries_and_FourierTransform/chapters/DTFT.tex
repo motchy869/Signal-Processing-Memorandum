@@ -173,8 +173,8 @@
             &= \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty \integrate{-\infty}{\infty}{F(\omega')\delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} = \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty F(\omega + 2\pi n/\Ts)
         \end{align*}
         このように、$\DTFT{\tilde{f}}$は$F$をスケーリングして$2\pi/\Ts$周期で重ね合わせたものになる。
-        $f$が帯域制限信号である、すなわちある$\omega_0\geq 0$が存在して$F$の台が$[-\omega_0,\omega_0]$の範囲に収まるとき、$\Ts$を十分に大きくとれば、$\DTFT{\tilde{f}}$の一意に区別可能な角周波数の区間$[-\pi/\Ts,\pi/\Ts]$で$\DTFT{\tilde{f}}$は$(\sqrt{2\pi}/\Ts)F$と一致する。
-        逆に$\Ts$が小さいとき、$[-\pi/\Ts,\pi/\Ts]$の区間の端部付近で$F(\omega+2\pi/\Ts)$や$F(\omega-2\pi/\Ts)$が0でない値をとる。
+        $f$が帯域制限信号である、すなわちある$\omega_0\geq 0$が存在して$F$の台が$[-\omega_0,\omega_0]$の範囲に収まるとき、$\Ts$を十分に小さくとれば、$\DTFT{\tilde{f}}$の一意に区別可能な角周波数の区間$[-\pi/\Ts,\pi/\Ts]$で$\DTFT{\tilde{f}}$は$(\sqrt{2\pi}/\Ts)F$と一致する。
+        逆に$\Ts$が大きいとき、$[-\pi/\Ts,\pi/\Ts]$の区間の端部付近で$F(\omega+2\pi/\Ts)$や$F(\omega-2\pi/\Ts)$が0でない値をとる。
         つまりサンプリングする前の連続時間信号には存在しなかった高周波成分が現れる。
         この現象を ``Aliasing'' (エイリアシング)と呼ぶ。
         \par
