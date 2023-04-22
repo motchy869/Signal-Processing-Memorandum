@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed:
   - a typo in VIII.4.1 frequency spectrum of up-sampling
+  - lost characters in figure IX.2.1.
 - Added:
   - heterodyne
+  - inverse-sinc filter
 
 ## [0.7.0] - 2023-04-11
 

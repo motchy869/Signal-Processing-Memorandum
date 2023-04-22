@@ -20,7 +20,7 @@
             \]
             $x$ は次式で表される。
             \[ x(t) = \sum_{n=-\infty}^\infty \xd(n)u(t-n\Ts) \]
-            次の図は $\Ts=1,\xd(n) = \sin\parens{2\pi*n/12}\;(0\leq n\leq 24),\;\xd(n) = 0\;(n<0,24<n)$ の例である。
+            次の図は $\Ts=1,\xd(n) = \sin\parens{2\pi n/12}\;(0\leq n\leq 24),\;\xd(n) = 0\;(n<0,24<n)$ の例である。
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.8]
@@ -58,6 +58,72 @@
                     &= \frac{\Ts}{\sqrt{2\pi}}\exp\parens*{-i\frac{\Ts}{2}\omega}\parens*{\sinc \frac{\Ts}{2}\omega}\Xd(\omega)
                 \end{align*}
             \end{proof}
+    \section{inverse-sinc-filter}
+        \subsection{背景}
+            離散時間信号を量子化誤差なく完璧にDA変換した結果のFourier変換には次式で表される変化が積の形で含まれることを\ref{0次ホールドされた離散時間信号の周波数特性}で述べた。
+            \[ \sinc \frac{\Ts}{2}\omega = \sinc \frac{\Omega}{2} \]
+            ここに $\Ts$ はサンプリング周期, $\Omega$ は正規化各周波数である。
+            変化の中には $\exp\parens*{-i\frac{\Ts}{2}\omega}$ という項も含まれるが、これは一定の群遅延が加わる（線形位相特性）だけであり、実用上無害なので無視する。
+            次の図は $\abs{\sinc \frac{\Omega}{2}}$ をプロットしたものである。
+            \begin{figure}[H]
+                \centering
+                \includegraphics[keepaspectratio, scale=0.6]
+                {\currfiledir/imgs/sinc-shaped_gain_distortion_with_ideal_DA.pdf}
+                \caption{量子化誤差のないDA変換結果の sinc 状ゲイン歪み}
+            \end{figure}
+            上の図から、第1 Nyquist 領域の端 $-\pi, \pi$ で約 -3dB のゲイン低下が生じていることが解る。
+            実は0次ホールドで出力する直前に、上手く設計された10タップ程度の FIR フィルタを掛けてこの影響を緩和し、下図のようなゲイン特性に変更できる。
+            このフィルタは一般に 「inverse-sinc フィルタ」と呼ばれる。
+            \begin{figure}[H]
+                \centering
+                \includegraphics[keepaspectratio, scale=0.6]
+                {\currfiledir/imgs/mitigated_distortion_with_inverse-sinc_filter.pdf}
+                \caption{inverse-sinc フィルタによって緩和されたゲイン歪み(凡例の3つ目の曲線)}
+                \label{inverse-sinc フィルタによって緩和されたゲイン歪み}
+            \end{figure}
+            inverse-sinc filter は $[-\pi, \pi]$ で sinc 状歪みの逆特性を近似するフィルタである。
+            DA変換の対象とする信号は通常、サンプリング定理を念頭に置いてスペクトラムが $[-\pi,\pi]$ の領域に収まる信号であるから、上述の補正が十分に機能する。
+            以下ではこのフィルタの設計方法の1つを述べる。
+        \subsection{係数の導出}
+            大雑把に言えば、フィルタ係数に対応する DTFT が $[-\pi,\pi]$ で $1/\sinc(\Omega/2)$ を近似するように最小二乗法で係数を決定する。
+            \par
+            フィルタ係数 $a:\integers\to\realNumbers$ は偶対称な実数値関数とし、非零の係数の個数を奇数とする。
+            数式で述べれば $N\in\naturalNumbers,\;\forall n\in\integers\;a(-n) = a(n),\forall n>N\;a(n) = 0$ である。
+            この制約条件が唯一の方法ではないだろうが、後に見るようにこれで十分な性能を得られる。
+            \par
+            $a$ の DTFT を $A$ とする。すなわち
+            \[ A(\Omega) = \sum_{n=-N}^N a(n)\exp(-i\Omega n) = a(0) + 2\sum_{n=1}^N\cos(\Omega n) = \bm{v}(\Omega)^\top\bm{a} \]
+            ここに $\bm{v}(\Omega) \coloneqq [1, 2\cos\Omega,\dots,2\cos N\Omega]^\top\in\realNumbers^{N+1},\;\bm{a} = [a(0),\dots,a(N)]^\top\in\realNumbers^{N+1}$ である。
+            $[-\pi,\pi]$ で $A$ が $1/\sinc(\Omega/2)$ を近似するように次式を最小化する $a$ を求める。
+            \[ \integrate{-\pi}{\pi}{\norm{A(\Omega) - 1/\sinc(\Omega/2)}_2^2}{}{\Omega} \tag{1} \]
+            被積分関数の中身を展開すると次式を得る。
+            \[ \norm{A(\Omega) - 1/\sinc(\Omega/2)}_2^2 = \bm{a}^\top\bm{v}(\Omega)\bm{v}(\Omega)^\top\bm{a} - \frac{2}{\sinc(\Omega/2)}\bm{v}(\Omega)^\top\bm{a} + 1/\sinc(\Omega/2)^2 \]
+            これを式(1)に適用すると次式を得る。
+            \[ (1) = \bm{a}^\top M\bm{a} - 2\bm{m}^\top\bm{a} + \integrate{-\pi}{\pi}{1/\sinc(\Omega/2)^2}{}{\Omega} \tag{2} \]
+            ここに $M,\bm{m}$ は次式で定義される数である。
+            \[ M \coloneqq \integrate{-\pi}{\pi}{\bm{v}(\Omega)\bm{v}(\Omega)^\top}{}{\Omega} = 2\pi\diag{1,2,2,\dots,2},\quad \bm{m} = \integrate{-\pi}{\pi}{\bm{v}(\Omega)^\top/\sinc(\Omega/2)}{}{\Omega} \]
+            $\bm{m}$ は数値計算で求める。
+            式(2)の中で $\bm{a}$ に依存しない項を無視すると、最小化すべき関数は次式である。
+            \[ f_\text{cost}(\bm{a}) = \bm{a}^\top M\bm{a} - 2\bm{m}^\top\bm{a} \]
+            これは狭義凸関数であり $(\nabla f)(\bm{a}) = 2(M\bm{a} - \bm{m})$ なので $f$ を最小化する $\bm{a}$ を $\bm{a}_\text{opt}$ は $M^{-1}\bm{m} = \diag{m_0,m_1 /2,\dots,m_N /2}/(2\pi)$ である。
+            ここに $m_i\;(i=0,1,\dots,N)$ は $\bm{m}$ の第 $i$ 要素である。
+        \subsection{数値例}
+            $N=5$ のとき $\bm{a}_\text{opt} \approx [1.166240, -0.106996, 0.034475, -0.016454, 0.009530, -0.006189]^\top$ を得る。
+            次の図はこの係数をプロットしたものである。
+            \begin{figure}[H]
+                \centering
+                \includegraphics[keepaspectratio, scale=0.6]
+                {\currfiledir/imgs/coeffs_of_inverse-sinc_filter.pdf}
+                \caption{inverse-sinc フィルタの係数($N$=5)}
+            \end{figure}
+            次の図は、この係数に対応するフィルタのインパルス応答の DTFT と $1/\sinc(\Omega/2)$ を比較したものである。
+            \begin{figure}[H]
+                \centering
+                \includegraphics[keepaspectratio, scale=0.6]
+                {\currfiledir/imgs/inverse-sinc_approximation.pdf}
+                \caption{inverse-sinc フィルタのインパルス応答の DTFT}
+            \end{figure}
+            このフィルタを使ってゲイン歪みを緩和したのが先に挙げた図\ref{inverse-sinc フィルタによって緩和されたゲイン歪み}である。
     \section{0次ホールドされた正弦波の周波数特性}
         \label{0次ホールドされた正弦波の周波数特性}
         \subsection{背景}
@@ -76,7 +142,7 @@
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.6]
-                {\currfiledir/0-order-held-sinusoid.pdf}
+                {\currfiledir/imgs/0-order-held-sinusoid.pdf}
                 \caption{元の信号とその0次ホールド}
             \end{figure}
             上の図より、$\xd$の基本周波数成分(周波数成分に於ける$f_0$に対応する成分)が$x$のそれより遅れることが予想される。
@@ -111,7 +177,7 @@
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.8]
-                {\currfiledir/spectrum_in_the_neighborhood_of_original_frequency.pdf}
+                {\currfiledir/imgs/spectrum_in_the_neighborhood_of_original_frequency.pdf}
                 \caption{元の周波数の近傍でのパワースペクトル}
             \end{figure}
             低周波領域では両者が良く一致していることがわかる。
@@ -121,7 +187,7 @@
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.8]
-                {\currfiledir/power_spectrum_with_harmonics.pdf}
+                {\currfiledir/imgs/power_spectrum_with_harmonics.pdf}
                 \caption{高調波を含むパワースペクトル}
             \end{figure}
             サンプリング周波数の整数倍の位置に高調波が生じていることが判る。
@@ -159,7 +225,7 @@
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.4]
-                {\currfiledir/z-transform_with_0-order-hold_input.pdf}
+                {\currfiledir/imgs/z-transform_with_0-order-hold_input.pdf}
                 \caption{連続時間系と、入力に0次ホールドを付加した系}
             \end{figure}
         \subsection{導出}
