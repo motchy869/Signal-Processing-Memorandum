@@ -7,15 +7,16 @@
             離散時間信号をアップサンプリングしてDACで出力したときの周波数スペクトルを計算したい。
             DACの量子化誤差は無視する。
         \subsection{主張}
-            $R\in\naturalNumbers,\;R\geq 2$ をアップサンプリングレートとする。
-            $\xda:\integers\to\complexNumbers$ を離散時間信号とする。
-            $\Ts>0$ を $\xda$ のサンプル周期とする。
-            $\Xda$ を $\xda$ のDTFTとする。
-            $\xda$ を $R$ 倍にアップサンプリング(元の信号のサンプル同士の間に $R-1$ 個の0を追加)した離散時間信号を $\xdb$ とする。
-            \par
-            $\Ts$ をサンプル周期として $\xda$ の0次ホールドで生成した階段状の連続時間信号を $x_1$ とする。
-            $\Ts/R$ をサンプル周期として $\xdb$ の0次ホールドで生成した階段状の連続時間信号を $x_2$ とする。
-            \par
+            記号を次のように定義する。
+            \begin{itemize}
+                \item $R\in\naturalNumbers,\;R\geq 2$ : アップサンプリングレート
+                \item $\xda:\integers\to\complexNumbers$ : 離散時間信号
+                \item $\Ts>0$ : $\xda$ のサンプル周期
+                \item $\Xda$ : $\xda$ のDTFT
+                \item $\xdb$ : $\xda$ を $R$ 倍にアップサンプリング(元の信号のサンプル同士の間に $R-1$ 個の0を追加)した離散時間信号
+                \item $x_1$ : $\Ts$ をサンプル周期として $\xda$ の0次ホールドで生成した階段状の連続時間信号
+                \item $x_2$ : $\Ts/R$ をサンプル周期として $\xdb$ の0次ホールドで生成した階段状の連続時間信号
+            \end{itemize}
             $u_1:\realNumbers\to\braces{0,1}$ を幅 $\Ts$ のパルスとする。
             \[
                 u_1(t) = \begin{cases}
@@ -38,7 +39,7 @@
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.8]
-                {parts/time-discretization/chapters/up-sampling/imgs/x1,x2.pdf}
+                {\currfiledir/imgs/x1,x2.pdf}
                 \caption{$x_1,x_2$の例}
                 \label{アップサンプリング前後のDAC出力の例}
             \end{figure}
@@ -66,12 +67,12 @@
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.8]
-                {parts/time-discretization/chapters/up-sampling/imgs/Xd1.pdf}
+                {\currfiledir/imgs/Xd1.pdf}
                 \caption{$\Xda$の例。横軸は正規化各周波数。}
             \end{figure}
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.8]
-                {parts/time-discretization/chapters/up-sampling/imgs/FT_of_x1,x2.pdf}
+                {\currfiledir/imgs/FT_of_x1,x2.pdf}
                 \caption{$X_1,X_2$の例。横軸は正規化各周波数。}
             \end{figure}
