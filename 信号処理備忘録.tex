@@ -6,6 +6,7 @@
 \usepackage{bbm}
 \usepackage{bigdelim}
 \usepackage{cases}
+\usepackage{chngcntr}
 \usepackage[usenames]{color}
 \usepackage{comment}
 \usepackage{currfile}
@@ -46,21 +47,9 @@
 
 \renewcommand{\theequation}{\arabic{equation}} % jsbook によって書き換えられた \theequation を元に戻す
 
-% part, chapter, section, subsection, subsubsection, subsubsubsection 毎に数式,図番号をリセットする
-\@addtoreset{equation}{part}
-\@addtoreset{equation}{chapter}
-\@addtoreset{equation}{section}
-\@addtoreset{equation}{subsection}
-\@addtoreset{equation}{subsubsection}
-\@addtoreset{equation}{subsubsubsection}
-
-\@addtoreset{figure}{part}
-\@addtoreset{figure}{chapter}
-\@addtoreset{figure}{section}
-\@addtoreset{figure}{subsection}
-\@addtoreset{figure}{subsubsection}
-\@addtoreset{figure}{subsubsubsection}
-
+% section 毎に数式, 図番号をリセットする。番号表示は「part.chapter.section.section内での通し番号」となる。
+\counterwithin{equation}{section}
+\counterwithin{figure}{section}
 
 % 目次の番号とタイトルが重ならないようにする
 % dottedtocline{A}{B}{C}のパラメータABC
