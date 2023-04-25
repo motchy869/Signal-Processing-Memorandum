@@ -1,9 +1,9 @@
 \chapter{離散時間Fourier変換(DTFT)}
     \newcommand{\Ts}{T_\text{s}}
-    \newcommand{\DTFT}[1]{\mathrm{DTFT}\left(#1\right)}
-    \newcommand{\DTFTwithArg}[2]{\DTFT{#1}\left(#2\right)}
-    \newcommand{\IDTFT}[1]{\mathrm{IDTFT}\left(#1\right)}
-    \newcommand{\IDTFTwithArg}[2]{\IDTFT{#1}\left(#2\right)}
+    \newcommand{\DTFT}[1]{\mathrm{DTFT}\parens*{#1}}
+    \newcommand{\DTFTwithArg}[2]{\DTFT{#1}\parens*{#2}}
+    \newcommand{\IDTFT}[1]{\mathrm{IDTFT}\parens*{#1}}
+    \newcommand{\IDTFTwithArg}[2]{\IDTFT{#1}\parens*{#2}}
     \section{直観的な説明}
         離散時間Fourier変換(Discrete Time Fourier Transform; DTFT)とは、直観的には、離散座標信号を、連続的な周波数をもつ無数の離散時間信号の重ね合わせとして表現するものである。
     \section{定義}
@@ -170,16 +170,26 @@
             \DTFTwithArg{\tilde{f}}{\omega} &= \sum_{n=-\infty}^\infty f(n\Ts)\NapierE^{-i\omega\Ts n} = \sum_{n=-\infty}^\infty \IFTwithArg{F}{n\Ts} \NapierE^{-i\omega\Ts n} \\
             &= \sum_{n=-\infty}^\infty \left(\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\NapierE^{i\omega'\Ts n}}{}{\omega'}\right)\NapierE^{-i\omega\Ts n} = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\sum_{n=-\infty}^\infty \NapierE^{i(\omega'-\omega)\Ts n}}{}{\omega'} \\
             &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\frac{2\pi}{\Ts}\sum_{n=-\infty}^\infty \delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} \quad (\text{\ref{定数関数1のDTFT}を用いた。}) \\
-            &= \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty \integrate{-\infty}{\infty}{F(\omega')\delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} = \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty F(\omega + 2\pi n/\Ts)
+            &= \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty \integrate{-\infty}{\infty}{F(\omega')\delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} = \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty F(\omega + 2\pi n/\Ts) \tag {1}
         \end{align*}
         このように、$\DTFT{\tilde{f}}$は$F$をスケーリングして$2\pi/\Ts$周期で重ね合わせたものになる。
-        $f$が帯域制限信号である、すなわちある$\omega_0\geq 0$が存在して$F$の台が$[-\omega_0,\omega_0]$の範囲に収まるとき、$\Ts$を十分に大きくとれば、$\DTFT{\tilde{f}}$の一意に区別可能な角周波数の区間$[-\pi/\Ts,\pi/\Ts]$で$\DTFT{\tilde{f}}$は$(\sqrt{2\pi}/\Ts)F$と一致する。
-        逆に$\Ts$が小さいとき、$[-\pi/\Ts,\pi/\Ts]$の区間の端部付近で$F(\omega+2\pi/\Ts)$や$F(\omega-2\pi/\Ts)$が0でない値をとる。
+        $f$が帯域制限信号である、すなわちある$\omega_0\geq 0$が存在して$F$の台が$[-\omega_0,\omega_0]$の範囲に収まるとき、$\Ts$を十分に小さくとれば、$\DTFT{\tilde{f}}$の一意に区別可能な角周波数の区間$[-\pi/\Ts,\pi/\Ts]$で$\DTFT{\tilde{f}}$は$(\sqrt{2\pi}/\Ts)F$と一致する。
+        逆に$\Ts$が大きいとき、$[-\pi/\Ts,\pi/\Ts]$の区間の端部付近で$F(\omega+2\pi/\Ts)$や$F(\omega-2\pi/\Ts)$が0でない値をとる。
         つまりサンプリングする前の連続時間信号には存在しなかった高周波成分が現れる。
         この現象を ``Aliasing'' (エイリアシング)と呼ぶ。
         \par
         エイリアシングが生じない条件は、$-\omega_0 + 2\pi/\Ts > \omega_0$すなわち$\Ts<\pi/\omega_0$である。
         周波数で表現するなら、帯域制限区間の端部の周波数$f_0 := \omega_0/(2\pi)$, サンプリング周波数$\fsamp := 1/\Ts$を用いて$\fsamp>2f_0$である。
+        \subsection{補足:式(1)のもう一つの導出}
+            \begin{align*}
+                \DTFTwithArg{\tilde{f}}{\omega} &= \sum_{n=-\infty}^\infty f(n\Ts)\NapierE^{-i\omega\Ts n} = \sum_{n=-\infty}^\infty\parens*{\integrate{-\infty}{\infty}{f(t)\delta(t-n\Ts)}{}{t}}\exp(-i\omega\Ts n) \\
+                &= \integrate{-\infty}{\infty}{f(t)\sum_{n=-\infty}^\infty\delta(t-n\Ts)\exp(-i\omega\Ts n)}{}{t} = \integrate{-\infty}{\infty}{f(t)\sum_{n=-\infty}^\infty\delta(t-n\Ts)\exp(-i\omega t)}{}{t} \\
+                &= \integrate{-\infty}{\infty}{f(t)\exp(-i\omega t)\sum_{n=-\infty}^\infty\delta(t-n\Ts)}{}{t} \\
+                &= \integrate{-\infty}{\infty}{f(t)\exp(-i\omega t)\frac{1}{\Ts}\sum_{n=-\infty}^\infty \exp\parens*{i t n\frac{2\pi}{\Ts}}}{}{t} \quad (\text{\ref{定数関数1のDTFT}を用いた。}) \\
+                &= \frac{1}{\Ts}\sum_{n=-\infty}^\infty\integrate{-\infty}{\infty}{f(t)\exp(-i\omega t)\exp\parens*{i t n\frac{2\pi}{\Ts}}}{}{t} \\
+                &= \frac{1}{\Ts}\sum_{n=-\infty}^\infty\integrate{-\infty}{\infty}{f(t)\exp(\bracks*{-i\parens*{\omega - n\frac{2\pi}{\Ts}}t})}{}{t} \\
+                &= \frac{\sqrt{2\pi}}{\Ts}\sum_{n=-\infty}^\infty F\parens*{\omega - n\frac{2\pi}{\Ts}}
+            \end{align*}
         \let\fsamp\undefined
     \section{システムの伝達関数と正弦波入力の関係}
         \begin{shadebox}

@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.7.0] - 2023-04-11
 
 - Fixed:
+  - Fixed bad figure numbering. Now the the figure number format is `<part>.<chapter>.<section>.<figure number in the section>`.
+  - a typo in VIII.4.1 frequency spectrum of up-sampling
+  - lost characters in figure IX.2.1.
+  - typos in IV.4.8: 「$\Ts$ を十分に大きく」→「$\Ts$ を十分に小さく」, 「逆に $\Ts$ が小さいとき」→「逆に $\Ts$ が大きいとき」
+- Added:
+  - heterodyne
+  - inverse-sinc filter
+  - another derivation of DTFT of sampled signal (IV.4.8)
+  - DTFT of down-sampled signal
+
+## [0.7.0] - 2023-04-11
+
+- Fixed:
   - minor error in the final value theorem of Z-transform
 - Improved:
   - use Roman 'e' as exp function
