@@ -1,0 +1,20 @@
+\chapter{ヘテロダイン}
+    元の信号が実数値か複素数値か、変換後の出力を複素数値のまま扱えるのか、それとも実数しか扱えないのか、状況設定次第で無数のパターンが考えられるが、ここでは登場頻度が高いケースについて記す。
+    \section{連続時間複素数値信号をアップコンバージョンして実数値信号を送信し、受信側で複素数値信号を復元する}
+        無線通信で使われる手法である。
+        \subsection{計算}
+            $I_0, Q_0:\realNumbers\to\realNumbers,\;x_0:\realNumbers\to\complexNumbers; t\in\realNumbers\mapsto I_0(t) + iQ_0(t),\;\omega > 0$ とする。
+            $x_0$ は所謂ベースバンド信号である。
+            送信側は次式でアップコンバージョンされた信号を $x_1$ 作る。
+            \[ x_1(t) = x(t)\exp(i\omega t) = I_0(t)\cos\omega t - Q_0(t)\sin\omega t + i\parens*{Q_0(t)\cos\omega t + I_0(t)\sin\omega t} \]
+            無線通信に於いては $x_1$ の実部が送信される。
+            受信側では次式でダウンコンバージョンされた信号 $x_2$ を得る。
+            \begin{align*}
+                x_2(t) &= \Re{x_1(t)}\exp(-i\omega t) \\
+                &= \frac{1}{2}\bracks*{I_0(t)(1+\cos 2\omega t) + Q_0(t)\sin 2\omega t - i(I_0(t)\sin 2\omega t - Q_0(t)(1-\cos 2\omega t))}
+            \end{align*}
+            これにLPFを掛けて $2\omega t$ で振動する成分を除去して次の信号を得る。
+            \[ x_3(t) \coloneqq \frac{1}{2}(I_0(t) + iQ_0(t)) \]
+        \subsection{サイドバンドの考察}
+            送信された $\Re{x_1}$ は実時間信号だからスペクトルは偶関数である。
+            前述の受信側の操作ではスペクトルの右半分を原点に向かって $\omega$ だけ平行移動させ、LPFで高周波を消している。
