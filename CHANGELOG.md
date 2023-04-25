@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Fixed bad figure numbering. Now the the figure number format is `<part>.<chapter>.<section>.<figure number in the section>`.
   - a typo in VIII.4.1 frequency spectrum of up-sampling
   - lost characters in figure IX.2.1.
-  - typos in IV.4.8: 「$\Ts$ を十分に大きく」→「$\Ts$ を十分に小さく」, 「逆に $\Ts$ が小さいとき」→「逆に $\Ts$ が大きいとき」
+  - typos in IV.4.8: 「 $T_\text{s}$ を十分に大きく」→「 $T_\text{s}$ を十分に小さく」, 「逆に $T_\text{s}$ が小さいとき」→「逆に $T_\text{s}$ が大きいとき」
 - Added:
   - heterodyne
   - inverse-sinc filter
