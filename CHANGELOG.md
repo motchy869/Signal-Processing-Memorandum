@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed:
   - wrong statement in IX.2.1 The frequency spectrum of 0-order-held discrete-time signal
 - Added:
-  - Fourier Transform of product and convolution of two signals
+  - Fourier transform of product and convolution of two signals
+  - Hilbert transform
 
 ## [0.8.0] - 2023-04-25
 
