@@ -17,7 +17,6 @@
         $d\in\naturalNumbers,\;\bm{x}\in\realNumbers^d$とする。
         $F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{x}$に関する連続座標信号を$F$の逆Fourier変換という。
         \[ \IFTwithArg{F}{\bm{x}} \coloneqq \integrate{\realNumbers^d}{}{W(\bm{\omega},\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (i\bm{\omega}^\top\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} \]
-
     \section{周波数表示されたFourier変換との関係}
         上述のFourier変換の定義はその数学的対称性の美しさから、理学系で主に用いられる。
         一方、工学系ではFourier変換結果の定義域を角周波数ではなく周波数にとることがしばしばある。
@@ -64,3 +63,21 @@
             \newline
             Fourier変換の対称性から $\Rightarrow$ と全く同様にして示せる。
         \end{proof}
+    \section{積と畳み込みとの関係}
+        簡単のため1次元の場合について示す。
+        $f,g;\realNumbers\to\complexNumbers$ とし、$F = \mathcal{F}(f),\;G = \mathcal{F}(g)$ とする。
+        \subsection{積のFourier変換}
+            \begin{align*}
+                \mathcal{F}(fg)(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(t)g(t)\NapierE^{-i\omega t}}{}{t} \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\mathcal{F}^{-1}(F)(t)g(t)\NapierE^{-i\omega t}}{}{t} \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\tilde{\omega})\NapierE^{i\tilde{\omega}t}}{}{\tilde{\omega}}}g(t)\NapierE^{-i\omega t}}{}{t} \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\tilde{\omega})\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{g(t)\NapierE^{-i(\omega\tilde{\omega})t}}{}{t}}{}{\tilde{\omega}} \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\tilde{\omega})G(\omega-\tilde{\omega})}{}{\tilde{\omega}} = \frac{1}{\sqrt{2\pi}}(F*G)(\omega)
+            \end{align*}
+        \subsection{畳み込みのFourier変換}
+            \begin{align*}
+                \mathcal{F}(f*g)(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\integrate{-\infty}{\infty}{f(\tau)g(t-\tau)}{}{\tau}\exp\parens{-i\omega t}}{}{t} \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\integrate{-\infty}{\infty}{f(\tau)\exp\parens{-i\omega\tau}g(t-\tau)\exp\parens{-i\omega (t-\tau)}}{}{\tau}}{}{t} \\
+                &= \integrate{-\infty}{\infty}{f(\tau)\exp\parens{-i\omega\tau}\parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{g(t-\tau)\exp\parens{-i\omega (t-\tau)}}{}{t}}}{}{\tau} \\
+                &= \sqrt{2\pi}F(\omega)G(\omega)
+            \end{align*}
