@@ -29,7 +29,7 @@
         \[ \tilde{\mathcal{F}}^{-1}(G)(\bm{x}) \coloneqq \integrate{\realNumbers^d}{}{\exp (i2\pi\bm{f}^\top\bm{x})G(\bm{f})}{d}{\bm{f}} \]
 
         \subsection{逆変換により元の関数に戻ること}
-            通常のFourier変換が$\mathcal{F}^{-1}(\mathcal{F}(f))(\bm{x}) = f(\bm{x})$を満たすことを既知として、周波数表示されたFourier変換が$\tilde{\mathcal{F}}^{-1}(\tilde{\mathcal{F}}(g))(\bm{x}) = g(\bm{x})$を満たすことは$\bm{\omega} = 2\pi\bm{f}$なる変数変換をを用いて確かめられる。
+            通常のFourier変換が$\mathcal{F}^{-1}(\FT{f})(\bm{x}) = f(\bm{x})$を満たすことを既知として、周波数表示されたFourier変換が$\tilde{\mathcal{F}}^{-1}(\tilde{\mathcal{F}}(g))(\bm{x}) = g(\bm{x})$を満たすことは$\bm{\omega} = 2\pi\bm{f}$なる変数変換をを用いて確かめられる。
             \begin{gather*}
                 G(\bm{f}) \coloneqq \tilde{\mathcal{F}}(g)(\bm{f}) = (2\pi)^{d/2}\FTwithArg{g}{\bm{\omega}} \\
                 \begin{aligned}
@@ -42,8 +42,8 @@
             $f:\realNumbers\to\complexNumbers$ とする。
             このとき次が成り立つ
             \begin{enumerate}
-                \item $f$ が偶関数であることと $\mathcal{F}(f)$ が偶関数であることは同値である。
-                \item $f$ が奇関数であることと $\mathcal{F}(f)$ が奇関数であることは同値である。
+                \item $f$ が偶関数であることと $\FT{f}$ が偶関数であることは同値である。
+                \item $f$ が奇関数であることと $\FT{f}$ が奇関数であることは同値である。
             \end{enumerate}
         \end{shadebox}
         \begin{proof}
@@ -54,9 +54,9 @@
             \newline
             $\omega\in\realNumbers$ とする。
             \begin{align*}
-                \mathcal{F}(f)(-\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(x)\exp\parens{i\omega x}}{}{x} = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(-x)\exp\parens{-i\omega (-x)}}{}{x} \\
+                \FT{f}(-\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(x)\exp\parens{i\omega x}}{}{x} = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(-x)\exp\parens{-i\omega (-x)}}{}{x} \\
                 &= \frac{-1}{\sqrt{2\pi}}\integrate{\infty}{-\infty}{f(y)\exp\parens{-i\omega y}}{}{y} \quad (\text{変数変換 }x = -y\text{ を施した}) \\
-                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(y)\exp\parens{-i\omega y}}{}{y} = \mathcal{F}(f)(\omega)
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(y)\exp\parens{-i\omega y}}{}{y} = \FT{f}(\omega)
             \end{align*}
             \newline
             ($\Leftarrow$)
@@ -65,10 +65,10 @@
         \end{proof}
     \section{積と畳み込みとの関係}
         簡単のため1次元の場合について示す。
-        $f,g;\realNumbers\to\complexNumbers$ とし、$F = \mathcal{F}(f),\;G = \mathcal{F}(g)$ とする。
+        $f,g;\realNumbers\to\complexNumbers$ とし、$F = \FT{f},\;G = \mathcal{F}(g)$ とする。
         \subsection{積のFourier変換}
             \begin{align*}
-                \mathcal{F}(fg)(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(t)g(t)\NapierE^{-i\omega t}}{}{t} \\
+                \FT{fg}(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(t)g(t)\NapierE^{-i\omega t}}{}{t} \\
                 &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\mathcal{F}^{-1}(F)(t)g(t)\NapierE^{-i\omega t}}{}{t} \\
                 &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\tilde{\omega})\NapierE^{i\tilde{\omega}t}}{}{\tilde{\omega}}}g(t)\NapierE^{-i\omega t}}{}{t} \\
                 &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\tilde{\omega})\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{g(t)\NapierE^{-i(\omega\tilde{\omega})t}}{}{t}}{}{\tilde{\omega}} \\
@@ -76,7 +76,7 @@
             \end{align*}
         \subsection{畳み込みのFourier変換}
             \begin{align*}
-                \mathcal{F}(f*g)(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\integrate{-\infty}{\infty}{f(\tau)g(t-\tau)}{}{\tau}\exp\parens{-i\omega t}}{}{t} \\
+                \FT{f*g}(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\integrate{-\infty}{\infty}{f(\tau)g(t-\tau)}{}{\tau}\exp\parens{-i\omega t}}{}{t} \\
                 &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\integrate{-\infty}{\infty}{f(\tau)\exp\parens{-i\omega\tau}g(t-\tau)\exp\parens{-i\omega (t-\tau)}}{}{\tau}}{}{t} \\
                 &= \integrate{-\infty}{\infty}{f(\tau)\exp\parens{-i\omega\tau}\parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{g(t-\tau)\exp\parens{-i\omega (t-\tau)}}{}{t}}}{}{\tau} \\
                 &= \sqrt{2\pi}F(\omega)G(\omega)
