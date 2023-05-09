@@ -81,3 +81,23 @@
                 &= \integrate{-\infty}{\infty}{f(\tau)\exp\parens{-i\omega\tau}\parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{g(t-\tau)\exp\parens{-i\omega (t-\tau)}}{}{t}}}{}{\tau} \\
                 &= \sqrt{2\pi}F(\omega)G(\omega)
             \end{align*}
+    \section{Fourier変換の関係式の早見表}
+        数学寄りの分野では各周波数を用いた形式が、通信分野では周波数を用いた形式が使われ、混乱しやすいので一覧表に整理しておく。
+        簡単のため、1次元の場合について記す。
+        まず記号を次のように定義する。
+        \begin{itemize}
+            \item $\omega,\;f\in\realNumbers$
+            \item $x,y:\realNumbers\to\complexNumbers$
+        \end{itemize}
+        以上の定義の下で次の表に示す関係が成り立つ。
+        \begin{table}[H]
+            \centering
+            \caption{Fourier変換の関係式の早見表}
+            \begin{tabular}[H]{l|c|c}
+                関係式 & 各周波数表示 & 周波数表示 \\ \hline
+                変換の定義 & $X(\omega) \coloneqq \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{x(t)\exp(-i\omega t)}{}{t}$ & $X(f) \coloneqq \integrate{-\infty}{\infty}{x(t)\exp(-i2\pi f t)}{}{t}$ \\
+                逆変換 & $x(t) = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{X(\omega)\exp(i\omega t)}{}{\omega}$ & $x(t) = \integrate{-\infty}{\infty}{X(f)\exp(i2\pi f t)}{}{f}$ \\
+                積のFourier変換 & $\mathcal{F}(xy)(\omega) = \frac{1}{\sqrt{2\pi}}(X*Y)(\omega)$ & $\mathcal{F}(xy)(f) = (X*Y)(f)$ \\
+                畳み込みのFourier変換 & $\mathcal{F}(x*y)(\omega) = \sqrt{2\pi}X(\omega)Y(\omega)$ & $\mathcal{F}(x*y)(f) = X(f)Y(f)$
+            \end{tabular}
+        \end{table}
