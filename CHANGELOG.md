@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Fourier transform of product and convolution of two signals
   - Hilbert transform
   - Quick Reference for Fourier Transform
+  - DTFT of up-sampled signal
 
 ## [0.8.0] - 2023-04-25
 
