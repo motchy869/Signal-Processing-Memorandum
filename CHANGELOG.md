@@ -5,13 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+- Fixed:
+  - wrong statement in IX.2.1 The frequency spectrum of 0-order-held discrete-time signal
+- Refactored:
+  - hierarchy structure of discrete-time, continuous-time and their mix domain
+- Added:
+  - Fourier transform of product and convolution of two signals
+  - Hilbert transform
+  - Quick Reference for Fourier Transform
+  - DTFT of up-sampled signal
+
 ## [0.8.0] - 2023-04-25
 
 - Fixed:
   - Fixed bad figure numbering. Now the the figure number format is `<part>.<chapter>.<section>.<figure number in the section>`.
   - a typo in VIII.4.1 frequency spectrum of up-sampling
   - lost characters in figure IX.2.1.
-  - typos in IV.4.8: 「$\Ts$ を十分に大きく」→「$\Ts$ を十分に小さく」, 「逆に $\Ts$ が小さいとき」→「逆に $\Ts$ が大きいとき」
+  - typos in IV.4.8: 「 $T_\text{s}$ を十分に大きく」→「 $T_\text{s}$ を十分に小さく」, 「逆に $T_\text{s}$ が小さいとき」→「逆に $T_\text{s}$ が大きいとき」
 - Added:
   - heterodyne
   - inverse-sinc filter
