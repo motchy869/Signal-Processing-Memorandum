@@ -1,4 +1,49 @@
 \part{その他}
+    \chapter{信号値の統計}
+        信号に対し、その値の統計を定義できる場合がある。
+        ここでは、連続時間の正弦波信号に対してその値の統計を考える。
+        \section{連続時間正弦波信号値の確率密度関数}
+            \begin{shadebox}
+                周期 $T>0$, 振幅 $A>0$ の正弦波信号 $x:t\in\realNumbers\mapsto A\sin\parens{2\pi t/T}$ を考える。
+                $x$ の確率密度関数 $p$ は次式である。
+                \[
+                    p(x) = \begin{cases}
+                        \frac{1}{A\pi\sqrt{1-(x/A)^2}} & \parens{\abs{x} \leq A} \\
+                        0 & \parens{\abs{x} > A} \\
+                    \end{cases}
+                \]
+            \end{shadebox}
+            \begin{proof}
+                \quad\par
+                1周期の範囲で統計を求めればよい。
+                累積分布関数 $P(x) = \abs{\{t|-T/2\leq t\leq T/2, x(t) \leq x\}}/T$ を考える。
+                まず $P(x) = 0\;(x < -A),\;P(x) = 1\;(x > A)$ は明らか。
+                \par
+                $-A \leq x \leq 0$ の場合を考える。
+                $x(t) \leq u\;(-A \leq u \leq 0)$ を満たす $t\in[-T/2,T/2]$ は $-T/2 - \frac{T}{2\pi}\arcsin\parens{u/A}\leq t \leq \frac{T}{2\pi}\arcsin\parens{u/A}$ を満たす全ての $t$ であるから、$P(x) = 1/2 + \frac{1}{\pi}\arcsin\parens{x/A}\;(-A\leq x\leq 0)$ である。
+                次に$0 \leq x \leq A$ の場合を考えると、$x$ のグラフの対称性から $P(x) = 1 - P(-x) = 1/2 + \frac{1}{\pi}\arcsin\parens{x/A}\;(0 \leq x \leq A)$ であることが解る。
+                結局 $P(x) = 1/2 + \frac{1}{\pi}\arcsin\parens{x/A}\;(\abs{x}\leq A)$ である。
+                これを $x$ について微分して $p$ を得る。
+            \end{proof}
+        \section{連続時間正弦波信号値の分散}
+            \begin{shadebox}
+                周期 $T>0$, 振幅 $A>0$ の正弦波信号 $x:t\in\realNumbers\mapsto A\sin\parens{2\pi t/T}$ を考える。
+                $x$ の分散は $A^2/2$ である。
+            \end{shadebox}
+            \begin{proof}
+                \quad\par
+                求めたい分散は次式である。
+                \[
+                    \integrate{-A}{A}{x^2 p(x)}{}{x} = 2\integrate{0}{A}{x^2 p(x)}{}{x} = \integrate{0}{A}{\frac{2 x^2}{\pi A\sqrt{1-(x/A)^2}}}{}{x} \tag{1}
+                \]
+                ここで
+                \[
+                    \derivLong{\sqrt{1-(x/A)^2}}{x}{} = -\frac{x}{A^2\sqrt{1-(x/A)^2}}
+                \]
+                を用いて (1) を変形して次式を得る。
+                \[ (1) = \integrate{0}{A}{\parens*{\derivLong{\sqrt{1-(x/A)^2}}{x}{}}\parens{-2x A/\pi}}{}{x} = \bracks*{\sqrt{1-(x/A)^2}\parens{-2x A/\pi}}_0^A + \integrate{0}{A}{\sqrt{1-(x/A)^2}\frac{2A}{\pi}}{}{x} \]
+                $x = A\sin\theta$ なる変数変換を用いて $(1) = A^2/2$ を得る。
+            \end{proof}
     \chapter{Heavisideの階段関数}
         \section{積分表示}
             \begin{shadebox}
