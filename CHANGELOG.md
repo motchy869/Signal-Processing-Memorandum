@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added:
   - NCO spurious caused by PAW truncation
+  - statistics of sin wave
 
 ## [0.9.0]  2023-05-12
 
