@@ -3,7 +3,9 @@
         "coloneqq",
         "dotsep",
         "dottedtocline",
+        "DTFT",
         "hyperref",
+        "imgs",
         "jsbook",
         "pnumwidth"
     ]
