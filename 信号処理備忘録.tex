@@ -1,6 +1,7 @@
 ﻿\RequirePackage{plautopatch}
-\documentclass[dvipdfmx,uplatex,report]{jsbook} % \documentclass[a4paper]{jsreport}
 \RequirePackage[l2tabu, orthodox]{nag} % 古いコマンド, パッケージに対する警告
+
+\documentclass[titlepage]{ltjsreport}
 \usepackage{amsmath, amssymb, amsfonts, amsthm}
 \usepackage{ascmac}
 \usepackage{bbm}
@@ -14,12 +15,12 @@
 \usepackage{fancybox}
 \usepackage{graphicx}
 \usepackage{here}
-\usepackage[dvipdfmx,colorlinks,linkcolor=Blue,urlcolor=blue,bookmarksopenlevel=4]{hyperref}
+\usepackage[unicode,bookmarksopenlevel=4,bookmarksnumbered=true,colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{cleveref} % must be included after hyperref
 \usepackage{ifthen}
 \usepackage{mathtools}
 \usepackage{multirow}
 \usepackage{nameref}
-\usepackage{pxjahyper}
 \usepackage{siunitx}
 \usepackage{tabularx, arydshln}
 \usepackage{udline}
@@ -47,7 +48,7 @@
 
 \renewcommand{\theequation}{\arabic{equation}} % jsbook によって書き換えられた \theequation を元に戻す
 
-% section 毎に数式, 図番号をリセットする。番号表示は「part.chapter.section.section内での通し番号」となる。
+% section 毎に数式, 図番号をリセットする。番号表示は「part.chapter.section.section 内での通し番号」となる。
 \counterwithin{equation}{section}
 \counterwithin{figure}{section}
 
