@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Changed:
   - Improved the derivation of down-sampling effect to DTFT.
+  - Migrated from UpLaTeX to LuaLaTeX.
 - Added:
   - NCO spurious caused by PAW truncation
   - statistics of sin wave
