@@ -14,7 +14,7 @@
                 \item $\Xd$ : $\xd$ のDTFT
                 \item $\Yd$ : $\yd$ のDTFT
             \end{itemize}
-            このとき $Y$ は次式で表される。
+            このとき $\Yd$ は次式で表される。
             \[ \Yd(\omega) = \frac{1}{R}\sum_{n=-\floor{R/2}}^{\floor{R/2}} \integrate{-\pi/\Ts}{\pi/\Ts}{\Xd(\omega-\tilde{\omega})\delta\parens*{\tilde{\omega}-n\frac{2\pi}{R\Ts}}}{}{\tilde{\omega}} \]
             $\Yd$ は $\omega$ に関する $2\pi/(R\Ts)$ 周期関数となり、$\Yd$ の第1 Nyquist 領域は $S_{\text{N},Y} \coloneqq [-\pi/(R\Ts),-\pi/(R\Ts))$ となる。
             \par
