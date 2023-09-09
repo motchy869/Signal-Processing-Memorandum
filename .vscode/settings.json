@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "cmdx",
         "coloneqq",
         "dotsc",
         "dotsep",
@@ -8,7 +9,10 @@
         "hyperref",
         "imgs",
         "jsbook",
+        "lualatex",
+        "nonstopmode",
         "pnumwidth",
-        "subsubsubsection"
+        "subsubsubsection",
+        "synctex"
     ]
 }
