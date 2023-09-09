@@ -1,9 +1,5 @@
 \chapter{ダウン・サンプリング}
     \section{ダウン・サンプリングされた信号のDTFT}
-        \newcommand{\xd}{x_\text{d}}
-        \newcommand{\yd}{y_\text{d}}
-        \newcommand{\Xd}{X_\text{d}}
-        \newcommand{\Yd}{Y_\text{d}}
         \subsection{主張}
             記号を次のように定義する。
             \begin{itemize}
@@ -53,6 +49,7 @@
             \end{figure}
         \subsection{数値例}
             いくつかの数値例が下記の Mathematica ノートブックにある。
+            下記の $x$ はサンプリング前の連続時間信号である。
             \begin{itemize}
                 \item \verb|DTFT_of_down-sampled_signal.nb|: $x(t) = A\exp(-t^2/(2\sigma^2))$
                 \item \verb|DTFT_of_down-sampled_signal_example2.nb|: $x(t) = e^{-12.5 t^2}\cos(10\pi t)$
