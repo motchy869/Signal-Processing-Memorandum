@@ -1,0 +1,3 @@
+[submodule "macros/LaTeX-motchyMacros"]
+	path = macros/LaTeX-motchyMacros
+	url = https://github.com/motchy869/LaTeX-motchyMacros.git

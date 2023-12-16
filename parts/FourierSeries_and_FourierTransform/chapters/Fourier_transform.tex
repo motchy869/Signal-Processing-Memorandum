@@ -1,0 +1,103 @@
+\chapter{Fourier変換}
+    \newcommand{\FT}[1]{\mathcal{F}\parens*{#1}}
+    \newcommand{\FTwithArg}[2]{\FT{#1}\left(#2\right)}
+    \newcommand{\IFT}[1]{\mathcal{F}^{-1}\left(#1\right)}
+    \newcommand{\IFTwithArg}[2]{\IFT{#1}\left(#2\right)}
+    \section{基底関数}
+        $d\in\naturalNumbers,\;\bm{x},\bm{\omega}\in\realNumbers^d$とする。
+        次のものを$d$次元Fourier変換に於ける基底関数という。
+        \[ W(\bm{\omega},\bm{x}) \coloneqq (2\pi)^{-d/2}\exp i\bm{\omega}^\top\bm{x} \]
+
+    \section{Fourier変換の定義}
+        $d\in\naturalNumbers,\;\bm{\omega}\in\realNumbers^d$とする。
+        $f:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{\omega}$に関する連続座標信号を$f$のFourier変換という。
+        \[ \FTwithArg{f}{\bm{\omega}} \coloneqq \integrate{\realNumbers^d}{}{\conj{W(\bm{\omega},\bm{x})}f(\bm{x})}{d}{\bm{x}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (-i\bm{\omega}^\top\bm{x})f(\bm{x})}{d}{\bm{x}} \]
+
+    \section{逆Fourier変換}
+        $d\in\naturalNumbers,\;\bm{x}\in\realNumbers^d$とする。
+        $F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{x}$に関する連続座標信号を$F$の逆Fourier変換という。
+        \[ \IFTwithArg{F}{\bm{x}} \coloneqq \integrate{\realNumbers^d}{}{W(\bm{\omega},\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\exp (i\bm{\omega}^\top\bm{x})F(\bm{\omega})}{d}{\bm{\omega}} \]
+    \section{周波数表示されたFourier変換との関係}
+        上述のFourier変換の定義はその数学的対称性の美しさから、理学系で主に用いられる。
+        一方、工学系ではFourier変換結果の定義域を角周波数ではなく周波数にとることがしばしばある。
+        本書では2種類のFourier変換を区別するために、周波数を定義域とするFourier変換を「周波数表示されたFourier変換」と呼び分けることにする。
+        \par
+        $d\in\naturalNumbers,\;\bm{x},\bm{f}\in\realNumbers^d$とする。
+        $g:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{f}$に関する連続座標信号を$g$の周波数表示されたFourier変換という。
+        \[ \tilde{\mathcal{F}}(g)(\bm{f}) \coloneqq \integrate{\realNumbers^d}{}{\exp (-i2\pi\bm{f}^\top\bm{x})g(\bm{x})}{d}{\bm{x}} \]
+        また、$G:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{x}$に関する連続座標信号を$G$の周波数表示された逆Fourier変換という。
+        \[ \tilde{\mathcal{F}}^{-1}(G)(\bm{x}) \coloneqq \integrate{\realNumbers^d}{}{\exp (i2\pi\bm{f}^\top\bm{x})G(\bm{f})}{d}{\bm{f}} \]
+
+        \subsection{逆変換により元の関数に戻ること}
+            通常のFourier変換が$\mathcal{F}^{-1}(\FT{f})(\bm{x}) = f(\bm{x})$を満たすことを既知として、周波数表示されたFourier変換が$\tilde{\mathcal{F}}^{-1}(\tilde{\mathcal{F}}(g))(\bm{x}) = g(\bm{x})$を満たすことは$\bm{\omega} = 2\pi\bm{f}$なる変数変換をを用いて確かめられる。
+            \begin{gather*}
+                G(\bm{f}) \coloneqq \tilde{\mathcal{F}}(g)(\bm{f}) = (2\pi)^{d/2}\FTwithArg{g}{\bm{\omega}} \\
+                \begin{aligned}
+                    \tilde{\mathcal{F}}^{-1}(G)(\bm{x}) &= \integrate{\realNumbers^d}{}{G(\bm{f})\exp (i2\pi\bm{f}^\top\bm{x})}{d}{\bm{f}} = \integrate{\realNumbers^d}{}{(2\pi)^{d/2}\FTwithArg{g}{\bm{\omega}}\exp (i\bm{\omega}^\top\bm{x})\det\left(\frac{1}{2\pi}I_d\right)}{d}{\bm{\omega}} \\
+                    &= (2\pi)^{-d/2}\integrate{\realNumbers^d}{}{\FTwithArg{g}{\bm{\omega}}\exp (i\bm{\omega}^\top\bm{x})}{d}{\bm{\omega}} = \IFTwithArg{\FT{g}}{\bm{x}} = g(\bm{x})
+                \end{aligned}
+            \end{gather*}
+    \section{関数とそのFourier変換の偶奇性}
+        \begin{shadebox}
+            $f:\realNumbers\to\complexNumbers$ とする。
+            このとき次が成り立つ
+            \begin{enumerate}
+                \item $f$ が偶関数であることと $\FT{f}$ が偶関数であることは同値である。
+                \item $f$ が奇関数であることと $\FT{f}$ が奇関数であることは同値である。
+            \end{enumerate}
+        \end{shadebox}
+        \begin{proof}
+            \quad\par
+            1を示す。2も全く同様にして示せる。
+            \newline
+            ($\Rightarrow$)
+            \newline
+            $\omega\in\realNumbers$ とする。
+            \begin{align*}
+                \FT{f}(-\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(x)\exp\parens{i\omega x}}{}{x} = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(-x)\exp\parens{-i\omega (-x)}}{}{x} \\
+                &= \frac{-1}{\sqrt{2\pi}}\integrate{\infty}{-\infty}{f(y)\exp\parens{-i\omega y}}{}{y} \quad (\text{変数変換 }x = -y\text{ を施した}) \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(y)\exp\parens{-i\omega y}}{}{y} = \FT{f}(\omega)
+            \end{align*}
+            \newline
+            ($\Leftarrow$)
+            \newline
+            Fourier変換の対称性から $\Rightarrow$ と全く同様にして示せる。
+        \end{proof}
+    \section{積と畳み込みとの関係}
+        簡単のため1次元の場合について示す。
+        $f,g;\realNumbers\to\complexNumbers$ とし、$F = \FT{f},\;G = \mathcal{F}(g)$ とする。
+        \subsection{積のFourier変換}
+            \begin{align*}
+                \FT{fg}(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{f(t)g(t)\NapierE^{-i\omega t}}{}{t} \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\mathcal{F}^{-1}(F)(t)g(t)\NapierE^{-i\omega t}}{}{t} \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\tilde{\omega})\NapierE^{i\tilde{\omega}t}}{}{\tilde{\omega}}}g(t)\NapierE^{-i\omega t}}{}{t} \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\tilde{\omega})\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{g(t)\NapierE^{-i(\omega\tilde{\omega})t}}{}{t}}{}{\tilde{\omega}} \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\tilde{\omega})G(\omega-\tilde{\omega})}{}{\tilde{\omega}} = \frac{1}{\sqrt{2\pi}}(F*G)(\omega)
+            \end{align*}
+        \subsection{畳み込みのFourier変換}
+            \begin{align*}
+                \FT{f*g}(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\integrate{-\infty}{\infty}{f(\tau)g(t-\tau)}{}{\tau}\exp\parens{-i\omega t}}{}{t} \\
+                &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\integrate{-\infty}{\infty}{f(\tau)\exp\parens{-i\omega\tau}g(t-\tau)\exp\parens{-i\omega (t-\tau)}}{}{\tau}}{}{t} \\
+                &= \integrate{-\infty}{\infty}{f(\tau)\exp\parens{-i\omega\tau}\parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{g(t-\tau)\exp\parens{-i\omega (t-\tau)}}{}{t}}}{}{\tau} \\
+                &= \sqrt{2\pi}F(\omega)G(\omega)
+            \end{align*}
+    \section{Fourier変換の関係式の早見表}
+        数学寄りの分野では各周波数を用いた形式が、通信分野では周波数を用いた形式が使われ、混乱しやすいので一覧表に整理しておく。
+        簡単のため、1次元の場合について記す。
+        まず記号を次のように定義する。
+        \begin{itemize}
+            \item $\omega,\;f\in\realNumbers$
+            \item $x,y:\realNumbers\to\complexNumbers$
+        \end{itemize}
+        以上の定義の下で次の表に示す関係が成り立つ。
+        \begin{table}[H]
+            \centering
+            \caption{Fourier変換の関係式の早見表}
+            \begin{tabular}[H]{l|c|c}
+                関係式 & 各周波数表示 & 周波数表示 \\ \hline
+                変換の定義 & $X(\omega) \coloneqq \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{x(t)\exp(-i\omega t)}{}{t}$ & $X(f) \coloneqq \integrate{-\infty}{\infty}{x(t)\exp(-i2\pi f t)}{}{t}$ \\
+                逆変換 & $x(t) = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{X(\omega)\exp(i\omega t)}{}{\omega}$ & $x(t) = \integrate{-\infty}{\infty}{X(f)\exp(i2\pi f t)}{}{f}$ \\
+                積のFourier変換 & $\mathcal{F}(xy)(\omega) = \frac{1}{\sqrt{2\pi}}(X*Y)(\omega)$ & $\mathcal{F}(xy)(f) = (X*Y)(f)$ \\
+                畳み込みのFourier変換 & $\mathcal{F}(x*y)(\omega) = \sqrt{2\pi}X(\omega)Y(\omega)$ & $\mathcal{F}(x*y)(f) = X(f)Y(f)$
+            \end{tabular}
+        \end{table}
