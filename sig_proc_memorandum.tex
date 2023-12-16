@@ -1,0 +1,118 @@
+﻿\RequirePackage{plautopatch}
+\RequirePackage[l2tabu, orthodox]{nag} % 古いコマンド, パッケージに対する警告
+
+\documentclass[titlepage]{ltjsreport}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{ascmac}
+\usepackage{bbm}
+\usepackage{bigdelim}
+\usepackage{cases}
+\usepackage{chngcntr}
+\usepackage[usenames]{color}
+\usepackage{comment}
+\usepackage{currfile}
+\usepackage{empheq}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{here}
+\usepackage[unicode,bookmarksopenlevel=4,bookmarksnumbered=true,colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{cleveref} % must be included after hyperref
+\usepackage{ifthen}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{nameref}
+\usepackage{siunitx}
+\usepackage{tabularx, arydshln}
+\usepackage{udline}
+\usepackage{url}
+\usepackage{zref-xr}
+
+% cross reference
+\zxrsetup{toltxlabel} % use normal LaTeX style \ref
+\zexternaldocument*[1:]{reference/Mathematics_Memorandum_v0.12.0} % usage: \zexternaldocument*[prefix]{path/to/aux/file/without/extension}[path/to/pdf/file] Only ascii name is allowed.
+
+\theoremstyle{definition} % 定理環境:斜体なし
+\newtheorem*{commentary}{解説}
+\newtheorem*{attention}{注意}
+\newtheorem*{solution}{解法}
+\newtheorem*{definition}{定義}
+\input{macros/subsubsubsection}
+
+% section, subsection, subsubsection の先頭に部番号が付くようにする
+\makeatletter
+\@addtoreset{chapter}{part}\renewcommand{\thechapter}{\thepart.\arabic{chapter}}
+\@addtoreset{section}{chapter}\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\@addtoreset{subsection}{section}\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\@addtoreset{subsubsection}{subsection}\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\@addtoreset{subsubsubsection}{subsubsection}\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
+
+\renewcommand{\theequation}{\arabic{equation}} % jsbook によって書き換えられた \theequation を元に戻す
+
+% section 毎に数式, 図番号をリセットする。番号表示は「part.chapter.section.section 内での通し番号」となる。
+\counterwithin{equation}{section}
+\counterwithin{figure}{section}
+
+% 目次の番号とタイトルが重ならないようにする
+% dottedtocline{A}{B}{C}のパラメータABC
+%   A：目次を生成するレベル(\chapterはレベル0、\sectionはレベル1...)
+%   B：一番外側からの左マージン
+%   C：見出し番号が入るボックスの幅
+\renewcommand{\l@chapter}{\@dottedtocline{0}{0em}{7em}}
+\renewcommand{\l@section}{\@dottedtocline{1}{1em}{7em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{2em}{6em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{3em}{5em}}
+\makeatother
+
+\setcounter{tocdepth}{4} % subsubsubsection まで目次に表示する
+
+% cleveref settings
+% see: [LaTeXの相互参照を賢くする (cleveref)](https://qiita.com/Hdan/items/8c59a7e0a3215ae32d74)
+\crefname{equation}{式}{式} % {環境名}{単数形}{複数形}
+\crefname{figure}{図}{図}
+\crefname{table}{表}{表}
+\crefname{section}{第}{第}
+\creflabelformat{section}{#2#1節#3}
+\crefname{subsection}{第}{第}
+\creflabelformat{subsection}{#2#1小節#3}
+\newcommand{\crefpairconjunction}{と}
+\newcommand{\crefrangeconjunction}{から}
+\newcommand{\crefmiddleconjunction}{，}
+\newcommand{\creflastconjunction}{，および}
+
+% document version number
+\def\docVerMajor{0}
+\def\docVerMinor{11}
+\def\docVerPatch{0}
+\def\docVerWip{} % \def\docVerWip{-wip}
+\def\docVer{\docVerMajor.\docVerMinor.\docVerPatch\docVerWip}
+
+\input{macros/LaTeX-motchyMacros/motchyMacros}
+
+\begin{document}
+	\title{信号処理備忘録}
+	\author{motchy}
+	\date{\西暦 2019年11月16日 $\sim$ \today \\ver \docVer}
+	\maketitle
+	{\scriptsize \tableofcontents}
+
+	\input{parts/notation/notation.tex}
+	\input{parts/convolution/convolution.tex}
+	\input{parts/correlation/correlation.tex}
+	\input{parts/FourierSeries_and_FourierTransform/FourierSeries_and_FourierTransform.tex}
+	\input{parts/HilbertTransform/HilbertTransform.tex}
+	\input{parts/LaplaceTransform/LaplaceTransform.tex}
+	\input{parts/Z-transform/Z-transform.tex}
+	\input{parts/frequency-conversion/frequency-conversion.tex}
+	\input{parts/discrete-time_domain/discrete-time_domain.tex}
+	\input{parts/filter/filter.tex}
+	\input{parts/dt2ct/dt2ct.tex}
+	\input{parts/ct2dt/ct2dt.tex}
+	\input{parts/ct2dt2ct/ct2dt2ct.tex}
+	\input{parts/application/application.tex}
+	\input{parts/others/others.tex}
+
+	\begin{thebibliography}{9}
+		\bibitem{digital-servo}本田 昭, 城谷 聡美 (2008) 『図解と演習で学ぶ ディジタルサーボの理論と実践』日刊工業新聞社
+		\bibitem{数学備忘録}motchy (2022) 『数学備忘録 v0.12.0』\url{https://github.com/motchy869/Mathematics-Memorandum/releases/tag/v0.12.0}
+	\end{thebibliography}
+\end{document}
