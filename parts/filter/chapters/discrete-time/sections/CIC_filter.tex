@@ -29,10 +29,10 @@
         このことから直ちに解るが、 CIC up-sampler の直流ゲインは $R^{N-1}$ である。
         \par
         入力と出力の DTFT をそれぞれ $\XNAF(\Omega), \YNAF(\Omega)$ ($\Omega$ は正規化角周波数) とする。
-        $H_\text{C,I}(z)$ に於いて $z = \exp(-i\Omega)$ とし、\ref{オーバー・サンプリングされた信号の DTFT}、および、先ほど Noble Identity を用いて移動したオーバー・サンプラが区間和の 1 つと相殺することによる直流ゲインの補正に注意して、周波数特性として次式を得る。
+        $H_\text{C,I}(z)$ に於いて $z = \exp(-i\Omega)$ とし、\ref{オーバー・サンプリングされた信号の DTFT} を適用し、周波数特性として次式を得る。
         \begin{align*}
             \YNAF(\Omega) &= \exp(-iN(R+1)\Omega)\frac{\parens*{1-\exp\parens*{-iR\Omega}}^N}{R\parens*{1-\exp\parens*{-i\Omega}}^N}\XNAF(R\Omega) \\
-            &= \frac{1}{R}\exp\parens*{-i\frac{\Omega}{2}N(3R+1)}\parens*{\frac{\sin(R\Omega/2)}{\sin(\Omega/2)}}^N \XNAF(R\Omega)
+            &= \exp\parens*{-i\frac{\Omega}{2}N(3R+1)}\parens*{\frac{\sin(R\Omega/2)}{\sin(\Omega/2)}}^N \XNAF(R\Omega)
         \end{align*}
         % ↓ 間違い。Noble Identity を用いて移動したオーバー・サンプラが区間和の 1 つと相殺することから勘違いした。ゲインが相殺するとはいえ、レートは元に戻らないのだから、完全に無視した式になるはずがない。
         % \begin{align*}
@@ -42,9 +42,15 @@
         % \end{align*}
         正規化周波数で表現しなおして $\XNF(F) = \XNAF(2\pi F), \YNF(F) = \YNAF(2\pi F)$ とすれば次式を得る。
         \begin{align}
-            \YNF(F) &= \frac{1}{R}\exp\parens*{-i\frac{2\pi F}{2}N(R-1)}\parens*{\frac{\sin(R 2\pi F/2)}{\sin(2\pi F/2)}}^N \XNF(R F) \nonumber \\
-            &= \frac{1}{R}\exp\parens*{-i\pi N(3R+1)F}\parens*{\frac{\sin(\pi R F)}{\sin(\pi F)}}^N \XNF(R F) \label{equation:CIC up-sampler の周波数特性}
+            \YNF(F) &= \exp\parens*{-i\frac{2\pi F}{2}N(R-1)}\parens*{\frac{\sin(R 2\pi F/2)}{\sin(2\pi F/2)}}^N \XNF(R F) \nonumber \\
+            &= \exp\parens*{-i\pi N(3R+1)F}\parens*{\frac{\sin(\pi R F)}{\sin(\pi F)}}^N \XNF(R F) \label{equation:CIC up-sampler の周波数特性}
         \end{align}
+        この式は $F\to 0$の極限で $R^N \XNF(0)$ となる。
+        しかし入力を直流としたときに出力の絶対値が $R^N$ 倍になるわけではない。
+        なぜならば既に述べたように、 Noble Identity を用いて移動したオーバー・サンプラが、伝達関数に含まれる長さ $R$ の区間和の 1 つと相殺するからである。
+        周波数特性と「振幅特性」（すぐ後に明かされるように、この単語は正しく定義されないので敢えて「」付きで示した）が一致しない原因は単純で、オーバー・サンプルという非線形な操作を加えた結果、正弦波入力に対する出力が正弦波とならないからである。
+        この状況では「振幅特性」自体が定義できない。
+        アップ・サンプルによって正弦波が緻密になって出力されたように見えても、それは「そう見える」だけであり、厳密には正弦波ではなく広がりをもったスペクトラムをもつ信号に変わっている。
     \subsection{差分器と積算器に必要なビット幅}
         \subsubsection{差分器のビット幅}
             差分器の出力の絶対値が最大となるのは、入力のビット幅が許す範囲の最大振幅の交代列が入力された場合である。
@@ -81,7 +87,7 @@
         \cref{equation:CIC up-sampler の周波数特性} より、アップ・サンプリングにより $\XNF$ には $F$ に依存する因子が掛かる。
         これをできるだけ補正するために、CIC up-sampler の直前で前記の因子の逆特性を近似する FIR フィルタの適用を考える（$F$ に依存しないスケーリング因子 $1/R$ は容易に補正できるので、今は無視する）。
         このフィルタの周波数特性を $\HCNF$ とすると次式が成り立つ。
-        \[ \YNF(F) = \frac{1}{R}\exp\parens*{-i\pi N(3R+1)F}\parens*{\frac{\sin(\pi R F)}{\sin(\pi F)}}^N \HCNF(R F)\XNF(R F) \]
+        \[ \YNF(F) = \exp\parens*{-i\pi N(3R+1)F}\parens*{\frac{\sin(\pi R F)}{\sin(\pi F)}}^N \HCNF(R F)\XNF(R F) \]
         $\HCNF(F)$ に求められるのは $F \in [-1/2,1/2]$ の範囲で次式を近似することである。
         \begin{equation}
             \exp\parens*{i\pi N\frac{R-1}{R}F}\parens*{\frac{\sin(\pi F/R)}{\sin(\pi F)}}^N \label{equation:CIC up-sampler 補償フィルタの理想的な周波数特性}
