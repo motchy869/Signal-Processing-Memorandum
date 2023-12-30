@@ -39,12 +39,11 @@
 \input{macros/subsubsubsection}
 
 % section, subsection, subsubsection の先頭に部番号が付くようにする
-\makeatletter
-\@addtoreset{chapter}{part}\renewcommand{\thechapter}{\thepart.\arabic{chapter}}
-\@addtoreset{section}{chapter}\renewcommand{\thesection}{\thechapter.\arabic{section}}
-\@addtoreset{subsection}{section}\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-\@addtoreset{subsubsection}{subsection}\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
-\@addtoreset{subsubsubsection}{subsubsection}\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
+\counterwithin{chapter}{part}\renewcommand{\thechapter}{\thepart.\arabic{chapter}}
+\counterwithin{section}{chapter}\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\counterwithin{subsection}{section}\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\counterwithin{subsubsection}{subsection}\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\counterwithin{subsubsubsection}{subsubsection}\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
 
 \renewcommand{\theequation}{\arabic{equation}} % jsbook によって書き換えられた \theequation を元に戻す
 
@@ -57,6 +56,7 @@
 %   A：目次を生成するレベル(\chapterはレベル0、\sectionはレベル1...)
 %   B：一番外側からの左マージン
 %   C：見出し番号が入るボックスの幅
+\makeatletter
 \renewcommand{\l@chapter}{\@dottedtocline{0}{0em}{7em}}
 \renewcommand{\l@section}{\@dottedtocline{1}{1em}{7em}}
 \renewcommand{\l@subsection}{\@dottedtocline{2}{2em}{6em}}
