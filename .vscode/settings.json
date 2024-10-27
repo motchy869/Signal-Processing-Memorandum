@@ -1,9 +1,13 @@
 {
     "cSpell.words": [
+        "bitboxes",
+        "bytefield",
         "cleveref",
         "cmdx",
         "coeffs",
         "coloneqq",
+        "counterwithin",
+        "datatool",
         "dotsc",
         "dotsep",
         "dottedtocline",
@@ -11,10 +15,14 @@
         "hyperref",
         "imgs",
         "jsbook",
+        "longtable",
         "lualatex",
         "nonstopmode",
+        "pdfauthor",
         "pnumwidth",
+        "stepnumber",
         "subsubsubsection",
-        "synctex"
+        "synctex",
+        "texname"
     ]
 }
