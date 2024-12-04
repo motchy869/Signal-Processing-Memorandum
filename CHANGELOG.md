@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - DFT of Hermitian signal is real-valued
     - IDFT of Hermitian signal is real-valued
   - missing conjugate symbol over 'DFT(g)(k)' in the equation 'DFT of cyclic correlation'
+- Added:
+  - DFT of cyclic convolution
 
 ## [0.11.1] - 2023-12-16
 
