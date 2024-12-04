@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+- Fixed:
+  - Refined words: changed from '時間' to '座標' in the following theorems:
+    - DFT of Hermitian signal is real-valued
+    - IDFT of Hermitian signal is real-valued
+
 ## [0.11.1] - 2023-12-16
 
 - Fixed:

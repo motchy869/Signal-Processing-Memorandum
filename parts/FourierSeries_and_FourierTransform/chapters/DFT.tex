@@ -12,8 +12,8 @@
         $f$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n})$とするとき、次式で定義される、$\bm{k}$に関する離散座標信号を$f$の離散Fourier変換(Discrete Fourier Transform; DFT)という。
         \[ \DFTwithArg{f}{\bm{k}} \coloneqq \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} f(\bm{n}) \]
 
-    \section{Hermiteな離散時間信号のDFTは実数である}
-        \label{Hermiteな離散時間信号のDFTは実数である}
+    \section{Hermiteな離散座標信号のDFTは実数である}
+        \label{Hermiteな離散座標信号のDFTは実数である}
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega,f$の定義は\ref{DFTの定義}と同じものとする。
             $f$にさらにHermite性: $\conj{f(\bm{n})} = f(-\bm{n})$を要請するとき、$\DFTwithArg{f}{\bm{k}}$は実数となる。
@@ -36,8 +36,8 @@
             \end{align*}
         \end{proof}
 
-    \subsection{系: Hermiteな離散時間信号のIDFTは実数である}
-        \ref{Hermiteな離散時間信号のDFTは実数である}と同様にして示せる。
+    \subsection{系: Hermiteな離散座標信号の IDFT は実数である}
+        \ref{Hermiteな離散座標信号のDFTは実数である}と同様にして示せる。
 
     \section{巡回畳み込みのDFTはDFTの積に比例する}
         \begin{shadebox}
