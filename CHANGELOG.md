@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Refined words: changed from '時間' to '座標' in the following theorems:
     - DFT of Hermitian signal is real-valued
     - IDFT of Hermitian signal is real-valued
+  - missing conjugate symbol over 'DFT(g)(k)' in the equation 'DFT of cyclic correlation'
 
 ## [0.11.1] - 2023-12-16
 
