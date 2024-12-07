@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Fixed:
+  - fix typos:
+    - '各周波数' -> '角周波数'
   - Refined words: changed from '時間' to '座標' in the following theorems:
     - DFT of Hermitian signal is real-valued
     - IDFT of Hermitian signal is real-valued
