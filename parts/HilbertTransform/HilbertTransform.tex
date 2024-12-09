@@ -4,7 +4,7 @@
         \begin{shadebox}
             $x:\realNumbers\to\complexNumbers$ を連続時間信号とし、$\hat{x} = \HilbertTransform{x},\;X = \FT{x}$ とする。
             次式が成り立つ。
-            \[ \FT{\hat{x}}(\omega) = -i\sgn{\omega}X(\omega) \]
+            \[ \FT{\hat{x}}(\omega) = -i\sgn(\omega)X(\omega) \]
         \end{shadebox}
         \begin{proof}
             \begin{align*}
@@ -12,6 +12,6 @@
                 &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\frac{1}{\pi}\PrincipalValue\integrate{-\infty}{\infty}{x(t-\tau)\NapierE^{-i\omega(t-\tau)}\frac{\NapierE^{-i\omega \tau}}{\tau}}{}{\tau}}{}{t} \\
                 &= \frac{1}{\pi}\PrincipalValue\integrate{-\infty}{\infty}{\frac{\NapierE^{-i\omega \tau}}{\tau}\parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{x(t-\tau)\NapierE^{-i\omega(t-\tau)}}{}{t}}}{}{\tau} \\
                 &= \frac{1}{\pi}\PrincipalValue\integrate{-\infty}{\infty}{\frac{\NapierE^{-i\omega \tau}}{\tau}X(\omega)}{}{\tau} \\
-                &= X(\omega)\frac{1}{\pi}\integrate{-\infty}{\infty}{\frac{-i\sin\omega\tau}{\tau}}{}{\tau} = -i\sgn{\omega}X(\omega)
+                &= X(\omega)\frac{1}{\pi}\integrate{-\infty}{\infty}{\frac{-i\sin\omega\tau}{\tau}}{}{\tau} = -i\sgn(\omega)X(\omega)
             \end{align*}
         \end{proof}

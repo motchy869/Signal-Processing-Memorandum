@@ -1,97 +1,188 @@
-﻿\RequirePackage{plautopatch}
-\RequirePackage[l2tabu, orthodox]{nag} % 古いコマンド, パッケージに対する警告
+﻿% ---------- SpiX build information ----------
+%$ lualatex --cmdx -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error $texname
+% Although this document can be built with SpiX, it is recommended to use LaTeX Workshop plugin for VSCode.
+% Above command is intended to show what to be done in the LaTeX Workshop recipe.
+% --------------------
+
+% ---------- document information ----------
+% document version number
+\def\docVerMajor{0}
+\def\docVerMinor{12}
+\def\docVerPatch{0}
+\def\docVerWip{-wip} % \def\docVerWip{-wip}
+\def\docVer{\docVerMajor.\docVerMinor.\docVerPatch\docVerWip}
+
+\title{信号処理備忘録}
+\author{motchy}
+\date{\西暦 2019年11月16日 $\sim$ \today \\ver \docVer}
+% --------------------
+
+\RequirePackage{plautopatch}
+\RequirePackage[l2tabu, orthodox]{nag} % check for obsolete commands
 
 \documentclass[titlepage]{ltjsreport}
+
+% packages
 \usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{array}
+\usepackage{arydshln}
 \usepackage{ascmac}
 \usepackage{bbm}
-\usepackage{bigdelim}
+%\usepackage{bytefield} % currently not used
 \usepackage{cases}
-\usepackage{chngcntr}
+\usepackage{chngcntr} % for counterwithin command
 \usepackage[usenames]{color}
-\usepackage{comment}
 \usepackage{currfile}
-\usepackage{empheq}
-\usepackage{fancybox}
-\usepackage{graphicx}
+% \usepackage{datatool} % currently not used
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage[top=20truemm,bottom=20truemm,left=15truemm,right=15truemm]{geometry}
 \usepackage{here}
 \usepackage[unicode,bookmarksopenlevel=4,bookmarksnumbered=true,colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
-\usepackage{cleveref} % must be included after hyperref
+\usepackage{cleveref} % must be included AFTER hyperref
 \usepackage{ifthen}
-\usepackage{mathtools}
-\usepackage{multirow}
-\usepackage{nameref}
-\usepackage{siunitx}
-\usepackage{tabularx, arydshln}
-\usepackage{udline}
-\usepackage{url}
+\usepackage{listingsutf8, jvlisting}
+% \usepackage{longtable} % currently not used
+% \usepackage{luacode} % currently not used
+\usepackage{makecell} % [How to add a forced line break inside a table cell](https://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell)
+% \usepackage{pdflscape} % currently not used
+\usepackage[group-separator={,}]{siunitx}
+
+% for \arrayrulecolor command
+% To know the colors defined, see: [All you need to know about colors in LaTeX](https://latex-tutorial.com/color-latex/)
+\usepackage[table,x11names]{xcolor}
+
+\usepackage{tocloft} % to remove paragraph indentation in table of contents
+\usepackage{xspace} % [Space after LaTeX commands](https://tex.stackexchange.com/questions/31091/space-after-latex-commands)
+\usepackage{xurl}
 \usepackage{zref-xr}
 
 % cross reference
 \zxrsetup{toltxlabel} % use normal LaTeX style \ref
 \zexternaldocument*[1:]{reference/Mathematics_Memorandum_v0.12.0} % usage: \zexternaldocument*[prefix]{path/to/aux/file/without/extension}[path/to/pdf/file] Only ascii name is allowed.
 
-\theoremstyle{definition} % 定理環境:斜体なし
-\newtheorem*{commentary}{解説}
-\newtheorem*{attention}{注意}
-\newtheorem*{solution}{解法}
-\newtheorem*{definition}{定義}
-\input{macros/subsubsubsection}
-
-% section, subsection, subsubsection の先頭に部番号が付くようにする
+% ---------- structure settings ----------
 \makeatletter
-\@addtoreset{chapter}{part}\renewcommand{\thechapter}{\thepart.\arabic{chapter}}
-\@addtoreset{section}{chapter}\renewcommand{\thesection}{\thechapter.\arabic{section}}
-\@addtoreset{subsection}{section}\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-\@addtoreset{subsubsection}{subsection}\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
-\@addtoreset{subsubsubsection}{subsubsection}\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
+\hypersetup{
+	pdftitle={\@title},
+	pdfauthor={\@author}
+}
+\makeatother
 
-\renewcommand{\theequation}{\arabic{equation}} % jsbook によって書き換えられた \theequation を元に戻す
+\setcounter{tocdepth}{5} % show table of contents up to subparagraph
+\setcounter{secnumdepth}{5} % show number up to subparagraph
 
-% section 毎に数式, 図番号をリセットする。番号表示は「part.chapter.section.section 内での通し番号」となる。
+\renewcommand*\thepart{\arabic{part}} % arabic numbers for part
+
+% Add part number to the beginning of section, subsection, and subsubsection numbers.
+\counterwithin{chapter}{part}\renewcommand{\thechapter}{\thepart.\arabic{chapter}}
+\counterwithin{section}{chapter}\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\counterwithin{subsection}{section}\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\counterwithin{subsubsection}{subsection}\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+% Store current level number and title (later used in header).
+\newcommand\currLevelNo{} % up to chapter
+\newcommand\currLevelTitle{NOT YET SET}
+\let\oldpart\part
+\renewcommand{\part}[1]{\oldpart{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % Set the the part name to the title storage at the beginning of each part because there is possibly no chapter in the part.
+\let\oldchapter\chapter
+\renewcommand{\chapter}[1]{\oldchapter{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
+
+% Reset equation and figure numbers at the beginning of each section. The number is displayed as "part.chapter.section.section-internal serial number".
 \counterwithin{equation}{section}
 \counterwithin{figure}{section}
 
-% 目次の番号とタイトルが重ならないようにする
-% dottedtocline{A}{B}{C}のパラメータABC
-%   A：目次を生成するレベル(\chapterはレベル0、\sectionはレベル1...)
-%   B：一番外側からの左マージン
-%   C：見出し番号が入るボックスの幅
-\renewcommand{\l@chapter}{\@dottedtocline{0}{0em}{7em}}
-\renewcommand{\l@section}{\@dottedtocline{1}{1em}{7em}}
-\renewcommand{\l@subsection}{\@dottedtocline{2}{2em}{6em}}
-\renewcommand{\l@subsubsection}{\@dottedtocline{3}{3em}{5em}}
-\makeatother
+% no upper case in header
+\fancyhead{\nouppercase{\rightmark}}
+\fancyhead{\nouppercase{\leftmark}}
 
-\setcounter{tocdepth}{4} % subsubsubsection まで目次に表示する
+% longtable settings
+% \setcounter{LTchunksize}{200} % currently not used
 
 % cleveref settings
 % see: [LaTeXの相互参照を賢くする (cleveref)](https://qiita.com/Hdan/items/8c59a7e0a3215ae32d74)
 \crefname{equation}{式}{式} % {環境名}{単数形}{複数形}
 \crefname{figure}{図}{図}
 \crefname{table}{表}{表}
-\crefname{section}{第}{第}
-\creflabelformat{section}{#2#1節#3}
-\crefname{subsection}{第}{第}
-\creflabelformat{subsection}{#2#1小節#3}
 \newcommand{\crefpairconjunction}{と}
 \newcommand{\crefrangeconjunction}{から}
 \newcommand{\crefmiddleconjunction}{，}
 \newcommand{\creflastconjunction}{，および}
 
-% document version number
-\def\docVerMajor{0}
-\def\docVerMinor{11}
-\def\docVerPatch{1}
-\def\docVerWip{} % \def\docVerWip{-wip}
-\def\docVer{\docVerMajor.\docVerMinor.\docVerPatch\docVerWip}
+% datatool settings
+%% currently not used
 
-\input{macros/LaTeX-motchyMacros/motchyMacros}
+% compile-switches
+%% currently not used
+% --------------------
+
+% ---------- style settings ----------
+	% header and footer settings
+	\fancypagestyle{plain}{
+		\cfoot{\thepage}
+		\rfoot{}
+	}
+	\pagestyle{fancy}
+		\lhead{
+			\ifthenelse{\equal{\currLevelTitle}{NOT YET SET}}
+			{}
+			{\currLevelNo.\;\currLevelTitle}
+		}
+		\chead{}
+		\rhead{}
+		\lfoot{}
+		\cfoot{\thepage}
+		\rfoot{}
+
+	% Avoid overlap of number and text in table of contents
+	\setlength{\cftchapnumwidth}{4em}
+	\setlength{\cftsecnumwidth}{3.0em}
+	\setlength{\cftsubsecnumwidth}{3.5em}
+	\setlength{\cftsubsubsecnumwidth}{4.0em}
+	\setlength{\cftparanumwidth}{4.5em}
+
+	% Place dots between chapter titles and page numbers in table of contents.
+	% see: [LaTeXにおいて体裁を整えるのに便利なパッケージ](https://qiita.com/shohirose/items/52f778ebd21f8e5f5c0e)
+	\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
+	\renewcommand{\cftchapdotsep}{\cftdotsep}
+
+	% theorem styles
+	\theoremstyle{definition} % non-italic font for definition
+	\newtheorem*{commentary}{解説}
+	\newtheorem*{attention}{注意}
+	\newtheorem*{solution}{解法}
+	\newtheorem*{definition}{定義}
+
+	% table settings
+	\renewcommand\theadfont{} % don't change the font
+
+	% % bytefield hack % not used for now
+	% % 1. [Combining color, bitboxes* and base alignment](https://tex.stackexchange.com/questions/371175/combining-color-bitboxes-and-base-alignment)
+	% % 2. [Colored custom bytefield](https://www.latex4technics.com/?note=3c6du2)
+	% \newcommand{\colorbitbox}[3]{%
+	% 	\rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
+	% 	\bitbox{#2}{#3}%
+	% }
+
+	% listings settings
+	\lstset{
+		basicstyle=\ttfamily,
+		identifierstyle=\small,
+		commentstyle=\smallitshape,
+		keywordstyle=\small\bfseries,
+		ndkeywordstyle=\small,
+		stringstyle=\small\ttfamily,
+		frame=lines,
+		breaklines=true,
+		columns=[l]{fullflexible},
+		numbers=left,
+		stepnumber=1,
+	}
+% --------------------
+
+\input{cmds/MtyLaTeXCmds/MtyLaTeXCmds.tex}
 
 \begin{document}
-	\title{信号処理備忘録}
-	\author{motchy}
-	\date{\西暦 2019年11月16日 $\sim$ \today \\ver \docVer}
 	\maketitle
 	{\scriptsize \tableofcontents}
 

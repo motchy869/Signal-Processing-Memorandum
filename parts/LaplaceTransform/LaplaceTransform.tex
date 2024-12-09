@@ -49,8 +49,8 @@
 				$H$を直前の定理と同じように定める。
 				伝達関数が$H(s)$である連続時間\textcolor{red}{実}システムに信号$f_1,f_2$を入力した時の出力をそれぞれ$g_1,g_2$とすると、十分大きい$t$に対して
 				\begin{align*}
-					g_1(t) &\sim |H(i\omega)|\cos(\omega t + \Arg{H(i\omega)}) \\
-					g_2(t) &\sim |H(i\omega)|\sin(\omega t + \Arg{H(i\omega)})
+					g_1(t) &\sim |H(i\omega)|\cos(\omega t + \Arg\parens*{H(i\omega)}) \\
+					g_2(t) &\sim |H(i\omega)|\sin(\omega t + \Arg\parens*{H(i\omega)})
 				\end{align*}
 				となる。
 			\end{shadebox}
@@ -60,7 +60,7 @@
 				$f_2$も同様に示せる。
 				$f_1(t) = \Re{A\NapierE^{i\omega t}}$であり、実数システムだから出力は$A\NapierE^{i\omega t}$を入力したときの出力の実部と等しい。
 				直前の定理の結果を用いて
-				\[ g_1(t) = \Re{H(i\omega)A\NapierE^{i\omega t}} = \Re{|H(i\omega)|\NapierE^{i\Arg{H(i\omega)}}A\NapierE^{i\omega t}} = |H(i\omega)|\cos (\omega t + \Arg{H(i\omega)}) \]
+				\[ g_1(t) = \Re{H(i\omega)A\NapierE^{i\omega t}} = \Re{|H(i\omega)|\NapierE^{i\Arg\parens*{H(i\omega)}}A\NapierE^{i\omega t}} = |H(i\omega)|\cos (\omega t + \Arg\parens*{H(i\omega)}) \]
 			\end{proof}
 			\begin{proof}
 				(直接的な証明)
@@ -83,13 +83,13 @@
 					&= \frac{As}{s^2+\omega^2}\times\frac{1}{2}(G(i\omega)+G(-i\omega)) + \frac{A\omega}{s^2+\omega^2}\times\frac{-1}{2i}(G(i\omega)-G(-i\omega))
 				\end{align}
 				$G(s)$は有理式なので$G(-i\omega) = \conj{G(i\omega)}$となることに注意して
-				\[ \frac{1}{2}(G(i\omega)+G(-i\omega)) = |G(i\omega)|\frac{1}{2}\left(\NapierE^{i\Arg{G(i\omega)}} + \NapierE^{-i\Arg{G(i\omega)}}\right) = |G(i\omega)|\cos\Arg{G(i\omega)} \]
+				\[ \frac{1}{2}(G(i\omega)+G(-i\omega)) = |G(i\omega)|\frac{1}{2}\left(\NapierE^{i\Arg\parens*{G(i\omega)}} + \NapierE^{-i\Arg\parens*{G(i\omega)}}\right) = |G(i\omega)|\cos\Arg\parens*{G(i\omega)} \]
 				同様に
-				\[ \frac{-1}{2i}(G(i\omega)-G(-i\omega)) = -|G(i\omega)|\sin\Arg{G(i\omega)} \]
+				\[ \frac{-1}{2i}(G(i\omega)-G(-i\omega)) = -|G(i\omega)|\sin\Arg\parens*{G(i\omega)} \]
 				以上より、
 				\begin{align*}
-					(1) &= |G(i\omega)|\left(\cos\Arg{G(i\omega)}\frac{As}{s^2+\omega^2} - \sin\Arg{G(i\omega)}\frac{A\omega}{s^2+\omega^2} \right) \\
-					g(t) &\sim \ILPLC{(1)}(t) = |G(i\omega)|\left(\cos\Arg{G(i\omega)}\cos\omega t - \sin\Arg{G(i\omega)}\sin\omega t \right) \\
-					&= |G(i\omega)|\cos\left(\omega t + \Arg{G(i\omega)}\right)
+					(1) &= |G(i\omega)|\left(\cos\Arg\parens*{G(i\omega)}\frac{As}{s^2+\omega^2} - \sin\Arg\parens*{G(i\omega)}\frac{A\omega}{s^2+\omega^2} \right) \\
+					g(t) &\sim \ILPLC{(1)}(t) = |G(i\omega)|\left(\cos\Arg\parens*{G(i\omega)}\cos\omega t - \sin\Arg\parens*{G(i\omega)}\sin\omega t \right) \\
+					&= |G(i\omega)|\cos\left(\omega t + \Arg\parens*{G(i\omega)}\right)
 				\end{align*}
 			\end{proof}

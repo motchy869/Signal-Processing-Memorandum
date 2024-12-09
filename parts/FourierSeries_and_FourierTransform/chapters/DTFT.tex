@@ -83,7 +83,8 @@
     \section{定数関数1のDTFT}
         \label{定数関数1のDTFT}
         簡単のため1次元の場合について考察する。
-        工学系の学生を対象とする講義では、$\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
+        工学系の学生を対象とする講義では、\\
+        $\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
         $\IDTFTwithArg{(2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)}{x}=1$の確認は簡単であり、DTFTの可逆性から$\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$を受け入れる説明がなされると思う。
         \par
         ここではDirichlet積分を用いて$\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$を直接的に導出してみる。
@@ -195,7 +196,7 @@
         \begin{shadebox}
             サンプリング時間を$\Ts>0$とする。
             実数値の入力に対して実数値を出力するシステムの伝達関数が$H:\omega\in\realNumbers\mapsto H(\omega)\in\complexNumbers$であるとき、このシステムに単一周波数の正弦波$f(n) := \sin(\omega_0 \Ts n + \phi)\;(-\pi/\Ts\leq\omega_0\leq\pi/\Ts)$を入力したときの出力$g(n)$は次式となる。
-            \[ g(n) = \abs{H(\omega_0)}\sin\bigl(\omega_0 \Ts n + \phi + \Arg{H(\omega_0)}\bigr) \]
+            \[ g(n) = \abs{H(\omega_0)}\sin\bigl(\omega_0 \Ts n + \phi + \Arg\parens*{H(\omega_0)}\bigr) \]
             $\omega_0<-\pi/\Ts, \pi/\Ts<\omega_0$のときは$\tilde{\omega}_0 := (\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts$とすると$\sin(\omega_0 \Ts n + \phi) = \sin(\tilde{\omega}_0 \Ts n + \phi)$となるので、$-\pi/\Ts\leq\omega_0\leq\pi/\Ts$の場合のみを考慮すればよい。
         \end{shadebox}
         (直接的で長い証明)
@@ -218,7 +219,7 @@
                 &= \frac{1}{2i}2i\Im{H(\omega_0)\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)} \\
                 &= \Re{H(\omega_0)}\Im{\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)} + \Im{H(\omega_0)}\Re{\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)} \\
                 &= \Re{H(\omega_0)}\sin(\omega_0\Ts n+\phi) + \Im{H(\omega_0)}\cos(\omega_0\Ts n+\phi) \\
-                &= |H(\omega)|\sin\bigl(\omega_0\Ts n+\phi + \Arg{H(\omega_0)}\bigr)
+                &= |H(\omega)|\sin\bigl(\omega_0\Ts n+\phi + \Arg\parens*{H(\omega_0)}\bigr)
             \end{align*}
         \end{proof}
         (DTFTを経由した短い証明)
