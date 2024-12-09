@@ -1,0 +1,10 @@
+\part{微分}
+    \chapter{複素数値信号の絶対値の 2 乗の微分}
+        些細な公式だが、反復アルゴリズに登場することがあるので記しておく。
+        \begin{shadebox}
+            複素数値信号 $x:\realNumbers\to\complexNumbers$ について次が成り立つ。
+            \[ \derivLong{\abs{x(t)}^2}{t}{} = 2\Re{x(t)\conj{x'(t)}} = 2\Re{x'(t)\conj{x(t)}} \]
+        \end{shadebox}
+        \begin{proof}
+            $\abs{x(t)}^2 = x(t)\conj{x(t)}$ であることを用いて容易に示せる。
+        \end{proof}

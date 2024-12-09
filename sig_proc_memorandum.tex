@@ -123,67 +123,67 @@
 % --------------------
 
 % ---------- style settings ----------
-	% header and footer settings
-	\fancypagestyle{plain}{
-		\cfoot{\thepage}
-		\rfoot{}
+% header and footer settings
+\fancypagestyle{plain}{
+	\cfoot{\thepage}
+	\rfoot{}
+}
+\pagestyle{fancy}
+	\lhead{
+		\ifthenelse{\equal{\currLevelTitle}{NOT YET SET}}
+		{}
+		{\currLevelNo.\;\currLevelTitle}
 	}
-	\pagestyle{fancy}
-		\lhead{
-			\ifthenelse{\equal{\currLevelTitle}{NOT YET SET}}
-			{}
-			{\currLevelNo.\;\currLevelTitle}
-		}
-		\chead{}
-		\rhead{}
-		\lfoot{}
-		\cfoot{\thepage}
-		\rfoot{}
+	\chead{}
+	\rhead{}
+	\lfoot{}
+	\cfoot{\thepage}
+	\rfoot{}
 
-	% Avoid overlap of number and text in table of contents
-	\setlength{\cftchapnumwidth}{4em}
-	\setlength{\cftsecnumwidth}{3.0em}
-	\setlength{\cftsubsecnumwidth}{3.5em}
-	\setlength{\cftsubsubsecnumwidth}{4.0em}
-	\setlength{\cftparanumwidth}{4.5em}
+% Avoid overlap of number and text in table of contents
+\setlength{\cftchapnumwidth}{4em}
+\setlength{\cftsecnumwidth}{3.0em}
+\setlength{\cftsubsecnumwidth}{3.5em}
+\setlength{\cftsubsubsecnumwidth}{4.0em}
+\setlength{\cftparanumwidth}{4.5em}
 
-	% Place dots between chapter titles and page numbers in table of contents.
-	% see: [LaTeXにおいて体裁を整えるのに便利なパッケージ](https://qiita.com/shohirose/items/52f778ebd21f8e5f5c0e)
-	\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
-	\renewcommand{\cftchapdotsep}{\cftdotsep}
+% Place dots between chapter titles and page numbers in table of contents.
+% see: [LaTeXにおいて体裁を整えるのに便利なパッケージ](https://qiita.com/shohirose/items/52f778ebd21f8e5f5c0e)
+\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
 
-	% theorem styles
-	\theoremstyle{definition} % non-italic font for definition
-	\newtheorem*{commentary}{解説}
-	\newtheorem*{attention}{注意}
-	\newtheorem*{solution}{解法}
-	\newtheorem*{definition}{定義}
+% theorem styles
+\theoremstyle{definition} % non-italic font for definition
+\newtheorem*{commentary}{解説}
+\newtheorem*{attention}{注意}
+\newtheorem*{solution}{解法}
+\newtheorem*{definition}{定義}
 
-	% table settings
-	\renewcommand\theadfont{} % don't change the font
+% table settings
+\renewcommand\theadfont{} % don't change the font
 
-	% % bytefield hack % not used for now
-	% % 1. [Combining color, bitboxes* and base alignment](https://tex.stackexchange.com/questions/371175/combining-color-bitboxes-and-base-alignment)
-	% % 2. [Colored custom bytefield](https://www.latex4technics.com/?note=3c6du2)
-	% \newcommand{\colorbitbox}[3]{%
-	% 	\rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
-	% 	\bitbox{#2}{#3}%
-	% }
+% % bytefield hack % not used for now
+% % 1. [Combining color, bitboxes* and base alignment](https://tex.stackexchange.com/questions/371175/combining-color-bitboxes-and-base-alignment)
+% % 2. [Colored custom bytefield](https://www.latex4technics.com/?note=3c6du2)
+% \newcommand{\colorbitbox}[3]{%
+% 	\rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
+% 	\bitbox{#2}{#3}%
+% }
 
-	% listings settings
-	\lstset{
-		basicstyle=\ttfamily,
-		identifierstyle=\small,
-		commentstyle=\smallitshape,
-		keywordstyle=\small\bfseries,
-		ndkeywordstyle=\small,
-		stringstyle=\small\ttfamily,
-		frame=lines,
-		breaklines=true,
-		columns=[l]{fullflexible},
-		numbers=left,
-		stepnumber=1,
-	}
+% listings settings
+\lstset{
+	basicstyle=\ttfamily,
+	identifierstyle=\small,
+	commentstyle=\smallitshape,
+	keywordstyle=\small\bfseries,
+	ndkeywordstyle=\small,
+	stringstyle=\small\ttfamily,
+	frame=lines,
+	breaklines=true,
+	columns=[l]{fullflexible},
+	numbers=left,
+	stepnumber=1,
+}
 % --------------------
 
 \input{cmds/MtyLaTeXCmds/MtyLaTeXCmds.tex}
@@ -193,6 +193,7 @@
 	{\scriptsize \tableofcontents}
 
 	\input{parts/notation/notation.tex}
+	\input{parts/deriv/deriv.tex}
 	\input{parts/convolution/convolution.tex}
 	\input{parts/correlation/correlation.tex}
 	\input{parts/FourierSeries_and_FourierTransform/FourierSeries_and_FourierTransform.tex}
