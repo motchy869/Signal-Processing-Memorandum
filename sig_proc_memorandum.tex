@@ -7,7 +7,7 @@
 % ---------- document information ----------
 % document version number
 \def\docVerMajor{0}
-\def\docVerMinor{12}
+\def\docVerMinor{13}
 \def\docVerPatch{0}
 \def\docVerWip{-wip} % \def\docVerWip{-wip}
 \def\docVer{\docVerMajor.\docVerMinor.\docVerPatch\docVerWip}
@@ -83,10 +83,16 @@
 % Store current level number and title (later used in header).
 \newcommand\currLevelNo{} % up to chapter
 \newcommand\currLevelTitle{NOT YET SET}
-\let\oldpart\part
-\renewcommand{\part}[1]{\oldpart{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % Set the the part name to the title storage at the beginning of each part because there is possibly no chapter in the part.
-\let\oldchapter\chapter
-\renewcommand{\chapter}[1]{\oldchapter{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
+\makeatletter
+\let\oldPart\part
+\newcommand{\countedPart}[1]{\oldPart{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % Set the the part name to the title storage at the beginning of each part because there is possibly no chapter in the part.
+\newcommand{\uncountedPart}[1]{\oldPart*{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % *-ed version is necessary. See: [https://tex.stackexchange.com/questions/639072/bibliography-title-prints-strange-asterisk-after-i-renewcommand-ed-the-ch]
+\renewcommand{\part}{\@ifstar\uncountedPart\countedPart}
+\let\oldChapter\chapter
+\newcommand{\countedChapter}[1]{\oldChapter{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
+\newcommand{\uncountedChapter}[1]{\oldChapter*{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
+\renewcommand{\chapter}{\@ifstar\uncountedChapter\countedChapter}
+\makeatother
 
 % Reset equation and figure numbers at the beginning of each section. The number is displayed as "part.chapter.section.section-internal serial number".
 \counterwithin{equation}{section}
