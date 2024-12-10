@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added:
   - Fourier Transform of time-inverted and conjugate signal
   - DFT of cyclic convolution
+  - Band-limited signals at regular intervals give a constant.
 
 ## [0.11.1] - 2023-12-16
 
