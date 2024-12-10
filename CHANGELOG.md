@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - spurious chapter whose name is printed as '*' just before the bibliography
 - Added:
   - (d/dt) |x(t)|^2 = 2Re(x(t)conj(x'(t)))
+  - derivative of convolution
 
 ## [0.12.0] - 2024-12-09
 

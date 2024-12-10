@@ -1,4 +1,24 @@
 \part{畳み込み}
+	\chapter{畳み込みの微分}
+		\section{関係式}
+			\begin{shadebox}
+				微分可能な複素数値信号 $x_1, x_2:\realNumbers\to\complexNumbers$ に畳み込みが存在するとき、次が成り立つ。
+				\[ \derivLong{(x_1*x_2)(t)}{t}{} = {x_1}'*x_2 = x_1*{x_2}' \]
+			\end{shadebox}
+			\begin{proof}
+				\quad\par
+				まず次式が成り立つ。
+				\begin{align*}
+					\derivLong{(x_1*x_2)(t)}{t}{} &= \derivLong{\integrate{-\infty}{\infty}{x_1(\tau)x_2(t-\tau)}{}{\tau}}{t}{} = \integrate{-\infty}{\infty}{x_1(\tau)\derivLong{x_2(t-\tau)}{t}{}}{}{\tau} \\
+					&= \integrate{-\infty}{\infty}{x_1(\tau){x_2}'(t-\tau)}{}{\tau} = (x_1*{x_2}')(t)
+				\end{align*}
+				$x_1*x_2 = x_2*x_1$ を用いて上記と同様の計算を行うと次式が成り立つ。
+				\[ \derivLong{(x_1*x_2)(t)}{t}{} = ({x_1}'*x_2)(t) \]
+			\end{proof}
+		\section{使いどころ}
+			例えばディジタル信号処理で役立つときがある。
+			前記の関係式の離散座標版も同様に成り立つ。
+			(a) 長い入力信号に(b) （それに比べて短い）時間的に変化しない信号（典型的には FIR フィルタの係数）を畳み込むとき、後者の時間微分（典型的には差分で近似）を予め計算しておいて (a) と畳み込めば、微分のオンライン計算が不要になる。
 	\chapter{巡回畳み込み}
 		\label{巡回畳み込み}
 		$\Omega \coloneqq \{0,1,\dots,N_1-1\}\times\{0,1,\dots,N_2-1\}\times\cdots\times\{0,1,\dots,N_d-1\}$とする。
