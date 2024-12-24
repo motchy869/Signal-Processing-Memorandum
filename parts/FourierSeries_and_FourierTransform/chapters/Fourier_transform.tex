@@ -88,17 +88,19 @@
         \begin{itemize}
             \item $\omega,\;f\in\realNumbers$
             \item $x,y:\realNumbers\to\complexNumbers$
+            \item $X,Y: x,y$ の Fourier 変換（各周波数表示，周波数表示のどちらであるかは文脈に依る）
         \end{itemize}
         以上の定義の下で次の表に示す関係が成り立つ。
         \begin{table}[H]
             \centering
             \caption{Fourier 変換の関係式の早見表}
-            \begin{tabular}[H]{c|c|c}
-                関係式 & 角周波数表示 & 周波数表示 \\ \hline
+            \begin{tabular}[H]{l|c|c}
+                \tblHead{関係式} & \tblHead{角周波数表示} & \tblHead{周波数表示} \\ \hline
                 変換の定義 & $X(\omega) \coloneqq \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{x(t)\exp(-i\omega t)}{}{t}$ & $X(f) \coloneqq \integrate{-\infty}{\infty}{x(t)\exp(-i2\pi f t)}{}{t}$ \\
                 逆変換 & $x(t) = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{X(\omega)\exp(i\omega t)}{}{\omega}$ & $x(t) = \integrate{-\infty}{\infty}{X(f)\exp(i2\pi f t)}{}{f}$ \\
                 積の Fourier 変換 & $\mathcal{F}(xy)(\omega) = \frac{1}{\sqrt{2\pi}}(X*Y)(\omega)$ & $\mathcal{F}(xy)(f) = (X*Y)(f)$ \\
                 畳み込みの Fourier 変換 & $\mathcal{F}(x*y)(\omega) = \sqrt{2\pi}X(\omega)Y(\omega)$ & $\mathcal{F}(x*y)(f) = X(f)Y(f)$ \\
-                時間反転 + 複素共役の Fourier 変換 & $\mathcal{F}(\conj{t\mapsto x(-t)})(\omega) = \conj{X(\omega)}$ & $\mathcal{F}(\conj{t\mapsto x(-t)})(f) = \conj{X(f)}$
+                時間反転 + 複素共役の Fourier 変換 & $\mathcal{F}(\conj{t\mapsto x(-t)})(\omega) = \conj{X(\omega)}$ & $\mathcal{F}(\conj{t\mapsto x(-t)})(f) = \conj{X(f)}$ \\
+                Parseval の等式 & \multicolumn{2}{c}{$\integrate{-\infty}{\infty}{x(t)\conj{y(t)}}{}{t} = \integrate{-\infty}{\infty}{X(\omega)\conj{Y(\omega)}}{}{\omega}\quad\parens*{\inprod{x}{y}_{L^2} = \inprod{X}{Y}_{L^2}}$}
             \end{tabular}
         \end{table}

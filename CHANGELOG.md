@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - (d/dt) |x(t)|^2 = 2Re(x(t)conj(x'(t)))
   - derivative of convolution
   - Nyquist ISI criterion
+  - Parseval's theorem
 
 ## [0.12.0] - 2024-12-09
 
