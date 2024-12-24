@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Fourier transform of only real/imaginary part
   - Nyquist ISI criterion
   - Parseval's theorem
+  - quadrature demodulation
 
 ## [0.12.0] - 2024-12-09
 

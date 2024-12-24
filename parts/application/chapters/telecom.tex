@@ -1,4 +1,20 @@
 \chapter{通信への応用}
+    \section{直交復調}
+        \newcommand{\fc}{f_\text{c}}
+        \subsection{直交復調は正の周波数側にある信号を取り出して中心周波数を 0 にする}
+            キャリア周波数を $\fc$ 、入力である実時間信号を $x:\realNumbers\to\realNumbers$ とすると、直交復調器は $x(t)\parens*{\cos(2\pi \fc t) - i\sin(2\pi \fc t)}$ を LPF に通してベースバンドの外側の周波数成分を取り除く。
+            その結果、ベースバンド信号として $X = \mathcal{F}(x)$ の正の周波数側の信号（複素数値信号）が得られる。
+            \par
+            そうなる理由を説明する。
+            LPF に入力される前の信号の周波数表示された Fourier 変換は次式である。
+            \[ \parens*{X*(\delta_{-\fc} + \delta_{\fc})/2}(f) - i\parens*{X*(\delta_{-\fc} - \delta_{\fc})/(2i)}(f) \]
+            ここに $\delta_a\;(a\in\realNumbers)$ は Dirac のデルタ関数を時間軸方向に $-a$ だけシフトしたものである。
+            計算を進めると次式を得る。
+            \[ \frac{1}{2}\parens*{X(f-\fc)+X(f+\fc)} - \frac{1}{2}\parens*{X(f-\fc)-X(f+\fc)} = X(f+\fc) \]
+            $x$ は実数値関数であるから $X$ は Hermite 対称である。
+            つまり適当な $X_+:\realNumbers\to\complexNumbers$ が存在して、$X(f) = X_+(f) + \conj{X_+(-f)}$ である。
+            さらに $X_+$ の台は $\fc$ を中心とするベースバンド帯域幅に制限されている。
+            よって $X(f+\fc)$ を LPF に通した結果は $X_+(f)$ である。
     \section{Nyquist ISI 基準}
         これは大雑把に言うと Fourier 変換が存在する連続時間信号 $h:\realNumbers\to\complexNumbers$ が時刻 0 を除いて、ある周期 $\Ts>0$ (s は symbol の意味)の整数倍の時刻で 0 になるための必要十分条件である。
         限定された周波数帯域を使って通信する際に受信側で情報を正しく復元するために重要な性質であり、詳細は \cite{Nyquist_ISI_crit} にある。
