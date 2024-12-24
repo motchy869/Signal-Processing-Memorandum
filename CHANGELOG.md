@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - application order of time-shift and time-scaling
   - (d/dt) |x(t)|^2 = 2Re(x(t)conj(x'(t)))
   - derivative of convolution
+  - Fourier transform of only real/imaginary part
   - Nyquist ISI criterion
   - Parseval's theorem
 

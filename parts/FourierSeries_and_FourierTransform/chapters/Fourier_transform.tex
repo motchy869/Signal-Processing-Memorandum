@@ -81,6 +81,26 @@
                 &= \integrate{-\infty}{\infty}{f(\tau)\exp\parens{-i\omega\tau}\parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{g(t-\tau)\exp\parens{-i\omega (t-\tau)}}{}{t}}}{}{\tau} \\
                 &= \sqrt{2\pi}F(\omega)G(\omega)
             \end{align*}
+    \section{実部または虚部のみの Fourier 変換}
+        簡単のため 1 次元の場合を扱う。
+        \begin{shadebox}
+            $x:\realNumbers\to\complexNumbers,\;x_\text{R} = \Re{x},\;x_\text{I} = \Im{x},\;X = \mathcal{F}(x),\;X_\text{R} = \Re{X},\;X_\text{I} = \Im{X},\;\omega\in\realNumbers$ とする。
+            次が成り立つ。
+            \begin{enumerate}
+                \item $X_\text{R}(\omega) = \frac{1}{2}X(\omega) + \frac{1}{2}\conj{X(-\omega)}$
+                \item $X_\text{I}(\omega) = \frac{1}{2i}X(\omega) - \frac{1}{2i}\conj{X(-\omega)}$
+                \item $X(\omega) = X_\text{R}(\omega) + i X_\text{I}(\omega)$
+            \end{enumerate}
+        \end{shadebox}
+        \begin{proof}
+            \quad\par
+            2 は 1 と同様にして示せる。3 は 1 と 2 を用いて容易に示せる。
+            そこで 1 のみを示す。
+            \begin{align*}
+                X_\text{R}(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\frac{1}{2}\parens*{x(t)+\conj{x(t)}}\exp(-i\omega t)}{}{t} = \frac{1}{2}X(\omega) + \frac{1}{2}\times\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\conj{x(t)\exp\parens*{-i(-\omega) t}}}{}{t} \\
+                &= \frac{1}{2}X(\omega) + \frac{1}{2}\times\frac{1}{\sqrt{2\pi}}\conj{\integrate{-\infty}{\infty}{x(t)\exp\parens*{-i(-\omega) t}}{}{t}} = \frac{1}{2}X(\omega) + \frac{1}{2}\conj{X(-\omega)}
+            \end{align*}
+        \end{proof}
     \section{Fourier 変換の関係式の早見表}
         数学寄りの分野では角周波数を用いた形式が、通信分野では周波数を用いた形式が使われ、混乱しやすいので一覧表に整理しておく。
         簡単のため、1 次元の場合について記す。
@@ -96,8 +116,8 @@
             \caption{Fourier 変換の関係式の早見表}
             \begin{tabular}[H]{l|c|c}
                 \tblHead{関係式} & \tblHead{角周波数表示} & \tblHead{周波数表示} \\ \hline
-                変換の定義 & $X(\omega) \coloneqq \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{x(t)\exp(-i\omega t)}{}{t}$ & $X(f) \coloneqq \integrate{-\infty}{\infty}{x(t)\exp(-i2\pi f t)}{}{t}$ \\
-                逆変換 & $x(t) = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{X(\omega)\exp(i\omega t)}{}{\omega}$ & $x(t) = \integrate{-\infty}{\infty}{X(f)\exp(i2\pi f t)}{}{f}$ \\
+                変換の定義 & $X(\omega) \coloneqq \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{x(t)\exp(-i\omega t)}{}{t}$ & $X(\omega) \coloneqq \integrate{-\infty}{\infty}{x(t)\exp(-i2\pi f t)}{}{t}$ \\
+                逆変換 & $x(t) = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{X(\omega)\exp(i\omega t)}{}{\omega}$ & $x(t) = \integrate{-\infty}{\infty}{X(\omega)\exp(i2\pi f t)}{}{f}$ \\
                 積の Fourier 変換 & $\mathcal{F}(xy)(\omega) = \frac{1}{\sqrt{2\pi}}(X*Y)(\omega)$ & $\mathcal{F}(xy)(f) = (X*Y)(f)$ \\
                 畳み込みの Fourier 変換 & $\mathcal{F}(x*y)(\omega) = \sqrt{2\pi}X(\omega)Y(\omega)$ & $\mathcal{F}(x*y)(f) = X(f)Y(f)$ \\
                 時間反転 + 複素共役の Fourier 変換 & $\mathcal{F}(\conj{t\mapsto x(-t)})(\omega) = \conj{X(\omega)}$ & $\mathcal{F}(\conj{t\mapsto x(-t)})(f) = \conj{X(f)}$ \\
