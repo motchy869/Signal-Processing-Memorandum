@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed:
   - spurious chapter whose name is printed as '*' just before the bibliography
 - Added:
+  - application order of time-shift and time-scaling
   - (d/dt) |x(t)|^2 = 2Re(x(t)conj(x'(t)))
   - derivative of convolution
   - Nyquist ISI criterion

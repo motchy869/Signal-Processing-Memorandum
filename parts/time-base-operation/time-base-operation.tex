@@ -1,0 +1,30 @@
+\part{時間軸の操作}
+    \chapter{時間のシフトとスケーリングの適用順序}
+        \section{結論}
+            \label{時間のシフトとスケーリングの適用順序.結論}
+            解り易さと信号処理に於ける登場頻度の理由から 1 次元の連続座標信号であって、座標軸がとくに時間であるもの（連続時間信号）を考える。
+            今 $x:\realNumbers\to\realNumbers$ をそのような信号とする。
+            これに対して次の 2 つの操作を行った結果は異なる。
+            \begin{enumerate}
+                \item 時間を $d\in\realNumbers$ だけ遅らせて得られる信号を時間軸方向に $a\;(a>0)$ 倍に引き延ばす
+                \item 時間軸方向に $a\;(a>0)$ 倍に引き延ばして得られる信号を時間的に $d$ だけ遅らせる
+            \end{enumerate}
+            正しい結果は次の通りである。
+            \begin{enumerate}
+                \item $x(t/a-d)$
+                \item $x\parens*{(t-d)/a}$
+            \end{enumerate}
+            冷静に考えれば納得できるが、時々混乱することがある。
+            そのときは次のようにして機械的に考えて導くとよい。
+        \section{機械的に導く方法}
+            記号を次のように定義する。
+            \begin{itemize}
+                \item $V:\setComprehension{x}{x:\realNumbers\to\complexNumbers}$: 実数から複素数への写像のベクトル空間
+                \item $f_\text{del}:x\in V\mapsto (t\in\realNumbers\mapsto x(t-d))\in V$: $V$ から $V$ への汎関数であり、連続時間信号を、時間的に $d$ だけ遅らせた連続時間信号に対応させる。
+                \item $f_\text{scl}:x\in V\mapsto (t\in\realNumbers\mapsto x(t/a))\in V$: $V$ から $V$ への汎関数であり、連続時間信号を、時間軸方向に $a$ 倍に引き延ばした連続時間信号に対応させる。
+            \end{itemize}
+            まず \ref{時間のシフトとスケーリングの適用順序.結論} の 1 を導いてみる。
+            結果として得られる連続時間信号は次式である。
+            \[ \parens*{f_\text{scl}\circ f_\text{del}}(x) = f_\text{scl}\parens*{f_\text{del}(x)} = f_\text{scl}\parens*{t\in\realNumbers\mapsto x(t-d)} = \tau\in\realNumbers\mapsto\bracks*{\parens*{t\in\realNumbers\mapsto x(t-d)}}(\tau/a) = \tau\in\realNumbers\mapsto x(\tau/a-d) \]
+            同様にして \ref{時間のシフトとスケーリングの適用順序.結論} の 2 も導ける。
+            \[ \parens*{f_\text{del}\circ f_\text{scl}}(x) = f_\text{del}\parens*{f_\text{scl}(x)} = f_\text{del}\parens*{t\in\realNumbers\mapsto x(t/a)} = \tau\in\realNumbers\mapsto\bracks*{\parens*{t\in\realNumbers\mapsto x(t/a)}}(\tau-d) = \tau\in\realNumbers\mapsto x\parens*{(\tau-d)/a} \]
