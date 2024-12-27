@@ -7,9 +7,9 @@
 % ---------- document information ----------
 % document version number
 \def\docVerMajor{0}
-\def\docVerMinor{12}
+\def\docVerMinor{13}
 \def\docVerPatch{0}
-\def\docVerWip{-wip} % \def\docVerWip{-wip}
+\def\docVerWip{} % \def\docVerWip{-wip}
 \def\docVer{\docVerMajor.\docVerMinor.\docVerPatch\docVerWip}
 
 \title{信号処理備忘録}
@@ -83,10 +83,16 @@
 % Store current level number and title (later used in header).
 \newcommand\currLevelNo{} % up to chapter
 \newcommand\currLevelTitle{NOT YET SET}
-\let\oldpart\part
-\renewcommand{\part}[1]{\oldpart{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % Set the the part name to the title storage at the beginning of each part because there is possibly no chapter in the part.
-\let\oldchapter\chapter
-\renewcommand{\chapter}[1]{\oldchapter{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
+\makeatletter
+\let\oldPart\part
+\newcommand{\countedPart}[1]{\oldPart{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % Set the the part name to the title storage at the beginning of each part because there is possibly no chapter in the part.
+\newcommand{\uncountedPart}[1]{\oldPart*{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % *-ed version is necessary. See: [https://tex.stackexchange.com/questions/639072/bibliography-title-prints-strange-asterisk-after-i-renewcommand-ed-the-ch]
+\renewcommand{\part}{\@ifstar\uncountedPart\countedPart}
+\let\oldChapter\chapter
+\newcommand{\countedChapter}[1]{\oldChapter{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
+\newcommand{\uncountedChapter}[1]{\oldChapter*{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
+\renewcommand{\chapter}{\@ifstar\uncountedChapter\countedChapter}
+\makeatother
 
 % Reset equation and figure numbers at the beginning of each section. The number is displayed as "part.chapter.section.section-internal serial number".
 \counterwithin{equation}{section}
@@ -117,67 +123,68 @@
 % --------------------
 
 % ---------- style settings ----------
-	% header and footer settings
-	\fancypagestyle{plain}{
-		\cfoot{\thepage}
-		\rfoot{}
+% header and footer settings
+\fancypagestyle{plain}{
+	\cfoot{\thepage}
+	\rfoot{}
+}
+\pagestyle{fancy}
+	\lhead{
+		\ifthenelse{\equal{\currLevelTitle}{NOT YET SET}}
+		{}
+		{\currLevelNo.\;\currLevelTitle}
 	}
-	\pagestyle{fancy}
-		\lhead{
-			\ifthenelse{\equal{\currLevelTitle}{NOT YET SET}}
-			{}
-			{\currLevelNo.\;\currLevelTitle}
-		}
-		\chead{}
-		\rhead{}
-		\lfoot{}
-		\cfoot{\thepage}
-		\rfoot{}
+	\chead{}
+	\rhead{}
+	\lfoot{}
+	\cfoot{\thepage}
+	\rfoot{}
 
-	% Avoid overlap of number and text in table of contents
-	\setlength{\cftchapnumwidth}{4em}
-	\setlength{\cftsecnumwidth}{3.0em}
-	\setlength{\cftsubsecnumwidth}{3.5em}
-	\setlength{\cftsubsubsecnumwidth}{4.0em}
-	\setlength{\cftparanumwidth}{4.5em}
+% Avoid overlap of number and text in table of contents
+\setlength{\cftchapnumwidth}{4em}
+\setlength{\cftsecnumwidth}{3.0em}
+\setlength{\cftsubsecnumwidth}{3.5em}
+\setlength{\cftsubsubsecnumwidth}{4.0em}
+\setlength{\cftparanumwidth}{4.5em}
 
-	% Place dots between chapter titles and page numbers in table of contents.
-	% see: [LaTeXにおいて体裁を整えるのに便利なパッケージ](https://qiita.com/shohirose/items/52f778ebd21f8e5f5c0e)
-	\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
-	\renewcommand{\cftchapdotsep}{\cftdotsep}
+% Place dots between chapter titles and page numbers in table of contents.
+% see: [LaTeXにおいて体裁を整えるのに便利なパッケージ](https://qiita.com/shohirose/items/52f778ebd21f8e5f5c0e)
+\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
 
-	% theorem styles
-	\theoremstyle{definition} % non-italic font for definition
-	\newtheorem*{commentary}{解説}
-	\newtheorem*{attention}{注意}
-	\newtheorem*{solution}{解法}
-	\newtheorem*{definition}{定義}
+% theorem styles
+\theoremstyle{definition} % non-italic font for definition
+\newtheorem*{commentary}{解説}
+\newtheorem*{attention}{注意}
+\newtheorem*{solution}{解法}
+\newtheorem*{definition}{定義}
 
-	% table settings
-	\renewcommand\theadfont{} % don't change the font
+% table settings
+\renewcommand\theadfont{} % don't change the font
+\newcommand{\tblHead}[1]{\multicolumn{1}{c}{#1}} % Use this for table headers with centered text.
 
-	% % bytefield hack % not used for now
-	% % 1. [Combining color, bitboxes* and base alignment](https://tex.stackexchange.com/questions/371175/combining-color-bitboxes-and-base-alignment)
-	% % 2. [Colored custom bytefield](https://www.latex4technics.com/?note=3c6du2)
-	% \newcommand{\colorbitbox}[3]{%
-	% 	\rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
-	% 	\bitbox{#2}{#3}%
-	% }
+% % bytefield hack % not used for now
+% % 1. [Combining color, bitboxes* and base alignment](https://tex.stackexchange.com/questions/371175/combining-color-bitboxes-and-base-alignment)
+% % 2. [Colored custom bytefield](https://www.latex4technics.com/?note=3c6du2)
+% \newcommand{\colorbitbox}[3]{%
+% 	\rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
+% 	\bitbox{#2}{#3}%
+% }
 
-	% listings settings
-	\lstset{
-		basicstyle=\ttfamily,
-		identifierstyle=\small,
-		commentstyle=\smallitshape,
-		keywordstyle=\small\bfseries,
-		ndkeywordstyle=\small,
-		stringstyle=\small\ttfamily,
-		frame=lines,
-		breaklines=true,
-		columns=[l]{fullflexible},
-		numbers=left,
-		stepnumber=1,
-	}
+% listings settings
+\lstset{
+	basicstyle=\ttfamily,
+	identifierstyle=\small,
+	commentstyle=\smallitshape,
+	keywordstyle=\small\bfseries,
+	ndkeywordstyle=\small,
+	stringstyle=\small\ttfamily,
+	frame=lines,
+	breaklines=true,
+	columns=[l]{fullflexible},
+	numbers=left,
+	stepnumber=1,
+}
 % --------------------
 
 \input{cmds/MtyLaTeXCmds/MtyLaTeXCmds.tex}
@@ -187,6 +194,8 @@
 	{\scriptsize \tableofcontents}
 
 	\input{parts/notation/notation.tex}
+	\input{parts/time-base-operation/time-base-operation.tex}
+	\input{parts/deriv/deriv.tex}
 	\input{parts/convolution/convolution.tex}
 	\input{parts/correlation/correlation.tex}
 	\input{parts/FourierSeries_and_FourierTransform/FourierSeries_and_FourierTransform.tex}
@@ -204,6 +213,7 @@
 
 	\begin{thebibliography}{9}
 		\bibitem{digital-servo}本田 昭, 城谷 聡美 (2008) 『図解と演習で学ぶ ディジタルサーボの理論と実践』日刊工業新聞社
+		\bibitem{Nyquist_ISI_crit}Nyquist ISI criterion \url{https://en.wikipedia.org/wiki/Nyquist_ISI_criterion}
 		\bibitem{数学備忘録}motchy (2022) 『数学備忘録 v0.12.0』\url{https://github.com/motchy869/Mathematics-Memorandum/releases/tag/v0.12.0}
 	\end{thebibliography}
 \end{document}

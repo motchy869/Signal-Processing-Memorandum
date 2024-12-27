@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.0] - 2024-12-27
+
+- Fixed:
+  - spurious chapter whose name is printed as '*' just before the bibliography
+- Added:
+  - application order of time-shift and time-scaling
+  - (d/dt) |x(t)|^2 = 2Re(x(t)conj(x'(t)))
+  - derivative of convolution
+  - Fourier transform of only real/imaginary part
+  - Nyquist ISI criterion
+  - Parseval's theorem
+  - quadrature demodulation
+
 ## [0.12.0] - 2024-12-09
 
 - Fixed:
@@ -17,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added:
   - Fourier Transform of time-inverted and conjugate signal
   - DFT of cyclic convolution
+  - Band-limited signals at regular intervals give a constant.
 
 ## [0.11.1] - 2023-12-16
 
