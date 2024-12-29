@@ -121,6 +121,6 @@
                 積の Fourier 変換 & $\mathcal{F}(xy)(\omega) = \frac{1}{\sqrt{2\pi}}(X*Y)(\omega)$ & $\mathcal{F}(xy)(f) = (X*Y)(f)$ \\
                 畳み込みの Fourier 変換 & $\mathcal{F}(x*y)(\omega) = \sqrt{2\pi}X(\omega)Y(\omega)$ & $\mathcal{F}(x*y)(f) = X(f)Y(f)$ \\
                 時間反転 + 複素共役の Fourier 変換 & $\mathcal{F}(\conj{t\mapsto x(-t)})(\omega) = \conj{X(\omega)}$ & $\mathcal{F}(\conj{t\mapsto x(-t)})(f) = \conj{X(f)}$ \\
-                Parseval の等式 & \multicolumn{2}{c}{$\integrate{-\infty}{\infty}{x(t)\conj{y(t)}}{}{t} = \integrate{-\infty}{\infty}{X(\omega)\conj{Y(\omega)}}{}{\omega}\quad\parens*{\inprod{x}{y}_{L^2} = \inprod{X}{Y}_{L^2}}$}
+                Parseval の等式 & $\integrate{-\infty}{\infty}{x(t)\conj{y(t)}}{}{t} = \integrate{-\infty}{\infty}{X(\omega)\conj{Y(\omega)}}{}{\omega}$ & $\integrate{-\infty}{\infty}{x(t)\conj{y(t)}}{}{t} = \integrate{-\infty}{\infty}{X(f)\conj{Y(f)}}{}{f}$
             \end{tabular}
         \end{table}
