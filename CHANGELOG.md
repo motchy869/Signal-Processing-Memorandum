@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+- Fixed:
+  - confusion between ESD (Energy Spectrum Density) and PSD (Power Spectrum Density)
+
 ## [0.13.0] - 2024-12-27
 
 - Fixed:
@@ -102,9 +107,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added
   - continuous-time filter behavior observed from discrete-time system.
   - a lemma for comprehension of DCT basis orthogonality
-  - power spectrum of 0-order-held sinusoid
+  - energy spectrum density of (time-limited) 0-order-held sinusoid
   - z-transform of continuous system with 0-order-hold input
-  - power spectrum of integral sinusoid by Euler method
+  - energy spectrum density of (time-limited) integral sinusoid by Euler method
 
 ## [0.5.0] - 2022-05-30
 
