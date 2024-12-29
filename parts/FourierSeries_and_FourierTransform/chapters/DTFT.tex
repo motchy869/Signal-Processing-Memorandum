@@ -236,8 +236,8 @@
             この先は「直接的で長い証明」と同じである。
         \end{proof}
     \section{GaussianノイズのDTFT}
-        \subsection{パワースペクトラムの性質}
-            \label{GaussianノイズのDTFTのパワースペクトラム}
+        \subsection{パワー・スペクトラムの性質}
+            \label{GaussianノイズのDTFTのパワー・スペクトラム}
             複素数のGaussian乱数のDTFTは周波数に依らない分布をもつことを示す。
             GaussianノイズがWhiteである(スペクトラムが平坦である)と言われる理由はここにある。
             \begin{shadebox}
@@ -263,4 +263,4 @@
             注目する時間区間(測定器で言えばGate time) $I := [t_0,t_1]$ に於いて確率変数としての連続時間ノイズ信号$X(t)$を周期$\Ts$でサンプリングした$N = \lfloor(t_1-t_0)/\Ts\rfloor$個のデータ$X_n := X(n\Ts)$に対して、区間$I$に於ける平均スペクトラムを次式で定義する。
             \[ Y(f) := \frac{1}{t_1-t_0}\sum_{n=0}^{N-1} \frac{t_1-t_0}{N} X_n \exp\left(-j2\pi f n\Ts\right) \]
             上式は$\Ts\to +0$のとき、$X$の台を$I$に制限したFourier変換の$1/(t_1-t_0)$倍に近付く($X$がRiemann可積分かどうか疑わしいので「一致する」とは言い難い)。
-            \ref{GaussianノイズのDTFTのパワースペクトラム}の証明と同様にして$Y(\omega)$の実部と虚部はそれぞれ独立に正規分布$N(0,\sigma)$に従い、$|Y(\omega)|^2/\sigma^2$は$\chi_2^2$分布に従うことがわかる。
+            \ref{GaussianノイズのDTFTのパワー・スペクトラム}の証明と同様にして$Y(\omega)$の実部と虚部はそれぞれ独立に正規分布$N(0,\sigma)$に従い、$|Y(\omega)|^2/\sigma^2$は$\chi_2^2$分布に従うことがわかる。
