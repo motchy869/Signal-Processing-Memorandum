@@ -1,5 +1,38 @@
 \part{Hilbert変換}
     \newcommand{\HilbertTransform}[1]{\mathrm{H}\parens*{#1}}
+    \chapter{Hilbert 変換の変数変換}
+        \label{Hilbert 変換の変数変換}
+        \begin{shadebox}
+            Hilbert 変換の定義式は次式である。
+            \[ H(u)(t)\coloneq\frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{u(\tau)}{t-\tau}}{}{\tau} \]
+            これは次式と等しい。
+            \[ \pv\integrate{-\infty}{\infty}{\frac{u(t-\tau)}{\tau}}{}{\tau} \]
+        \end{shadebox}
+        \begin{proof}
+            \quad\par
+            \begin{align*}
+                H(u)(t) &\coloneq\frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{u(\tau)}{t-\tau}}{}{\tau} \\
+                &= \frac{1}{\pi}\lim_{\varepsilon\to +0}\bracks*{\underbrace{\integrate{-\infty}{t-\varepsilon}{\frac{u(\tau)}{t-\tau}}{}{\tau}}_{(1.1)} + \underbrace{\integrate{t+\varepsilon}{\infty}{\frac{u(\tau)}{t-\tau}}{}{\tau}}_{(1.2)}} \tag{1}
+            \end{align*}
+            変数変換 $t-\tau = \tilde{\tau}$ を施して次式を得る。
+            \[ (1.1) = \frac{1}{\pi}\integrate{\varepsilon}{\infty}{\frac{u(t-\tilde{\tau})}{\tilde{\tau}}}{}{\tilde{\tau}},\quad (1.2) = \frac{1}{\pi}\integrate{-\infty}{-\varepsilon}{\frac{u(t-\tilde{\tau})}{\tilde{\tau}}}{}{\tilde{\tau}} \]
+            これらを (1) に適用して主張が示される。
+        \end{proof}
+    \chapter{sin, cos の Hilbert 変換}
+        \begin{shadebox}
+            \[ H(t\mapsto\sin\omega t)(t) = \sgn(\omega)\sin(\omega t-\pi/2),\quad H(t\mapsto\cos\omega t)(t) = \sgn(\omega)\cos(\omega t-\pi/2) \]
+        \end{shadebox}
+        \begin{proof}
+            \quad\par
+            sin の Hilbert 変換について示す。他方は同様にして示せる。
+            \ref{Hilbert 変換の変数変換} より次式が成り立つ。
+            \begin{align*}
+                H(t\mapsto\sin\omega t)(t) &= \frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{\sin\omega(t-\tau)}{\tau}}{}{\tau} = \frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{\sin\omega t\cos\omega\tau - \cos\omega t\sin\omega\tau}{\tau}}{}{\tau} \\
+                &= -\frac{\cos\omega t}{\pi}\pv\integrate{-\infty}{\infty}{\frac{\sin\omega\tau}{\tau}}{}{\tau} = -(\cos\omega t)\sgn(\omega) = \sgn(\omega)\sin(\omega t-\pi/2)
+            \end{align*}
+            最後から 3 番目の等号の成立には、$(\cos x)/x$ の $[a,\infty)\;(a>0)$ に於ける定積分が存在することを用いた。
+            最後から 2 番目の等号の成立には Dirichlet 積分を用いた。
+        \end{proof}
     \chapter{Hilbert変換のFourier変換}
         \begin{shadebox}
             $x:\realNumbers\to\complexNumbers$ を連続時間信号とし、$\hat{x} = \HilbertTransform{x},\;X = \FT{x}$ とする。

@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed:
   - confusion between ESD (Energy Spectrum Density) and PSD (Power Spectrum Density)
+- Added:
+  - Hilbert transform of sin and cos
+  - application of commutative low for Hilbert transform as convolution
 
 ## [0.13.0] - 2024-12-27
 
