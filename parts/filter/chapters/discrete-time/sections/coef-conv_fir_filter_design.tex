@@ -1,0 +1,30 @@
+\section{係数畳み込み型 FIR フィルタの設計}
+    \subsection{DTFT の誤差 2 乗積分最小化}
+        \newcommand{\Hideal}{H_\text{ideal}}
+        \newcommand{\vhOpt}{\bm{h}_\text{opt}}
+        ここではフィルタ係数が複素数であり、個数が指定された条件下で、所望の周波数特性に対して DTFT の差の誤差の 2 乗和が最小になるように係数を決定する方法を記す。
+        係数の個数について偶奇を区別せず、係数の添え字に関する対称性も指定していないため、線形位相特性は保証されない（意図的に線形位相特性を狙う方法については \cite{learn_sp_from_basic} 「8.3.1 線形位相 FIR フィルタの設計法」に詳細がある）。
+        線形位相特性に関心が無く、とにかく所望の周波数特性に近付けることを第一とする場面を想定している。
+        \begin{shadebox}
+            $N\in\naturalNumbers$ 個の複素数 $h_0,h_1,\dots,h_{N-1}$ を係数とする FIR フィルタの周波数特性（フィルタ係数列の DTFT）を $H:\realNumbers\to\complexNumbers$ と記し、所望の周波数特性を $\Hideal:\realNumbers\to\complexNumbers$ と記す。
+            但し $H$ と $\Hideal$ の引数はサンプル周波数について正規化された角周波数である（$\pi/2$ が Nyquist 周波数に対応する）。
+            $\bm{h}\coloneqq[h_0,h_1,\dots,h_{N-1}]^\top$ として次式で定義される $H$ と $\Hideal$ の誤差 2 乗積分の評価関数
+            \[ J(\bm{h}) \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{H(\Omega)-\Hideal(\Omega)}^2}{}{\Omega} \]
+            の最小点 $\vhOpt$ は次式である。
+            \[ \vhOpt[k] = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}\;(k=0,1,\dots,N-1) \]
+            $\Hideal$ の複素 Fourier 係数に似た形であることは注目に値する。
+        \end{shadebox}
+        \begin{proof}
+            \begin{align*}
+                J(\bm{h}) &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{H(\Omega)-\Hideal(\Omega)}\parens*{\conj{H(\Omega)-\Hideal(\Omega)}}}{}{\Omega} \\
+                &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{\sum_{k=0}^{N-1} h_k\NapierE^{-i\Omega k} -\Hideal(\Omega)}\parens*{\sum_{l=0}^{N-1} \conj{h_l}\NapierE^{i\Omega l} -\conj{\Hideal(\Omega)}}}{}{\Omega} \\
+                &= \frac{1}{2\pi}\sum_{k=0}^{N-1}\sum_{l=0}^{N-1} h_k\conj{h_l}\integrate{-\pi}{\pi}{\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}\sum_{k=0}^{N-1} h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega} \\
+                &\phantom{=}- \frac{1}{2\pi}\sum_{l=0}^{N-1} \conj{h_l}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega l}}{}{\Omega} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \\
+                &= \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\sum_{k=0}^{N-1} h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \tag{1}
+            \end{align*}
+            ここで $v_k\;(k=0,1,\dots,N-1)$ を次式で定義する。
+            \[ v_k \coloneqq \integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega} \]
+            式 (1) の第 3 項は $\bm{h}$ に依存しないので無視し、第 2 項までを取り出して次の評価関数を得る。
+            \[ J_2(\bm{h}) \coloneq \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\bm{v}^*\bm{h}} = \norm{\bm{h} - \frac{1}{2\pi}\bm{v}}_2^2 - \frac{1}{4\pi^2}\norm{\bm{v}}_2^2 \]
+            これの最小点が $\bm{v}/(2\pi)$ であるから主張が従う。
+        \end{proof}
