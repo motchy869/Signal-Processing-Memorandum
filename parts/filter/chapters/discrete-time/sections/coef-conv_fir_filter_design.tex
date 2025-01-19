@@ -15,10 +15,12 @@
             $\bm{h} \coloneq [h_0,h_1,\dots,h_{N-1}]^\top$ として次式で定義される $H$ と $\Hideal$ の誤差 2 乗積分の評価関数
             \[ J(\bm{h}) \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{H(\Omega)-\Hideal(\Omega)}^2}{}{\Omega} \]
             の最小点 $\vhOpt$ は次式である。
-            \[ \vhOpt[k] = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}\;(k=0,1,\dots,N-1) \]
-            $\Hideal$ の複素 Fourier 係数に似た形であることは注目に値する。
+            \[ \vhOpt[k] = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}\;(k=0,1,\dots,N-1) = \IDTFT{\Hideal}(k) \]
+            とくに $\Hideal$ が Hermite 対称であるとき（実数値信号の周波数特性）は $\vhOpt\in\realNumbers^N$ となる。
         \end{shadebox}
         \begin{proof}
+            \quad\par\noindent
+            （最小点の導出）
             \begin{align*}
                 J(\bm{h}) &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{H(\Omega)-\Hideal(\Omega)}\parens*{\conj{H(\Omega)-\Hideal(\Omega)}}}{}{\Omega} \\
                 &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{\sum_{k=0}^{N-1} h_k\NapierE^{-i\Omega k} -\Hideal(\Omega)}\parens*{\sum_{l=0}^{N-1} \conj{h_l}\NapierE^{i\Omega l} -\conj{\Hideal(\Omega)}}}{}{\Omega} \\
@@ -30,5 +32,13 @@
             \[ v_k \coloneq \integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega} \]
             式 (1) の第 3 項は $\bm{h}$ に依存しないので無視し、第 2 項までを取り出して次の評価関数を得る。
             \[ J_2(\bm{h}) \coloneq \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\bm{v}^*\bm{h}} = \norm{\bm{h} - \frac{1}{2\pi}\bm{v}}_2^2 - \frac{1}{4\pi^2}\norm{\bm{v}}_2^2 \]
-            これの最小点が $\bm{v}/(2\pi)$ であるから主張が従う。
+            これの最小点は $\bm{v}/(2\pi)$ であるから主張が従う。
+            \newline
+            \par\noindent
+            （$\Hideal$ が Hermite 対称であるときは $\vhOpt\in\realNumbers^N$ となること）
+            \[ \vhOpt[k] = \frac{1}{2\pi}\bracks*{\underbrace{\integrate{-\pi}{0}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}}_{(2)} + \integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}} \]
+            式 (2) に変数変換を施すと次式を得る。
+            \[ (2) = \integrate{0}{\pi}{\Hideal(-\Omega)\NapierE^{-i\Omega k}}{}{\Omega} = \conj{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}} \]
+            よって次式を得る。
+            \[ \vhOpt[k] = \frac{1}{\pi}\Re{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}}\in\realNumbers \]
         \end{proof}
