@@ -1,3 +1,13 @@
 \chapter{離散時間フィルタ}
+    離散時間フィルタは次のように分類される。
+    \begin{enumerate}
+        \item FIR 型
+        \begin{enumerate}
+            \item 係数畳み込み型 \label{enum:係数畳み込み型 FIR フィルタ}
+            \item 上記以外（例えば CIC フィルタ） \label{enum:非係数畳み込み型 FIR フィルタ}
+        \end{enumerate}
+        \item IIR 型
+    \end{enumerate}
+    本書では主張の正確さを重視し、努めて \ref{enum:非係数畳み込み型 FIR フィルタ} と \ref{enum:係数畳み込み型 FIR フィルタ} を区別して呼ぶ。
     \input{\currfiledir/sections/discretized-continuous-time_filter.tex}
     \input{\currfiledir/sections/CIC_filter.tex}
