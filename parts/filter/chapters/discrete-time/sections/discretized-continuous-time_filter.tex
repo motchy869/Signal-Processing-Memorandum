@@ -7,17 +7,17 @@
         $h:\realNumbers\to\realNumbers$を連続時間信号とする。
         $H:\complexNumbers\to\complexNumbers$を$h$のLaplace変換とする。
         インパルス応答が$h$である連続時間フィルタを連続時間系の複素正弦波信号$x(t) = A\exp i(\omega_0 t + \phi)\;(A>0,\omega_0,\phi\in\realNumbers)$に適用した出力を$y=h*x$とする。
-        $x,y$をサンプリング周期$\Ts$でサンプリングした離散時間信号を$\mathrm{x}: n\in\integers\mapsto x(n\Ts), \mathrm{y}: n\in\integers\mapsto y(n\Ts)$とする。
+        $x,y$をサンプリング周期$\Ts$でサンプリングした離散時間信号を$\xd: n\in\integers\mapsto x(n\Ts), \yd: n\in\integers\mapsto y(n\Ts)$とする。
         このとき次式が成り立つ。
-        \[ \DTFTwithArg{\mathrm{y}}{\bm{\omega}} = H(i\omega_0)\DTFTwithArg{\mathrm{x}}{\bm{\omega}} \]
+        \[ \DTFTwithArg{\yd}{\bm{\omega}} = H(i\omega_0)\DTFTwithArg{\xd}{\bm{\omega}} \]
     \end{shadebox}
     \begin{proof}
         \begin{align*}
-            \DTFTwithArg{\mathrm{y}}{\bm{\omega}} &= \sum_{m=-\infty}^\infty y(n\Ts)\exp \left(-i n\Ts\omega\right) = \sum_{m=-\infty}^\infty (h*x)(n\Ts)\exp \left(-i n\Ts\omega\right) \\
+            \DTFTwithArg{\yd}{\bm{\omega}} &= \sum_{m=-\infty}^\infty y(n\Ts)\exp \left(-i n\Ts\omega\right) = \sum_{m=-\infty}^\infty (h*x)(n\Ts)\exp \left(-i n\Ts\omega\right) \\
             &= \sum_{m=-\infty}^\infty \left(\integrate{-\infty}{\infty}{h(\tau)x(n\Ts-\tau)}{}{\tau}\right)\exp \left(-i n\Ts\omega\right) \\
             &= \integrate{-\infty}{\infty}{h(\tau)\sum_{m=-\infty}^\infty x(n\Ts-\tau)\exp \left(-i n\Ts\omega\right)}{}{\tau} \\
             &= \integrate{-\infty}{\infty}{h(\tau)\sum_{m=-\infty}^\infty A\exp i(\omega_0 (n\Ts-\tau) + \phi)\exp \left(-i n\Ts\omega\right)}{}{\tau} \\
             &= \integrate{-\infty}{\infty}{h(\tau) \exp(-i\omega_0\tau)\sum_{m=-\infty}^\infty A\exp i(\omega_0 n\Ts + \phi)\exp \left(-i n\Ts\omega\right)}{}{\tau} \\
-            &= \DTFTwithArg{\mathrm{x}}{\omega} \integrate{-\infty}{\infty}{h(\tau) \exp(-i\omega_0\tau)}{}{\tau} = \DTFTwithArg{\mathrm{x}}{\omega}H(i\omega_0)
+            &= \DTFTwithArg{\xd}{\omega} \integrate{-\infty}{\infty}{h(\tau) \exp(-i\omega_0\tau)}{}{\tau} = \DTFTwithArg{\xd}{\omega}H(i\omega_0)
         \end{align*}
     \end{proof}
