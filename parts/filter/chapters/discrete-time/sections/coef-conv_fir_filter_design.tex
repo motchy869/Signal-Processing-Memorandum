@@ -8,7 +8,7 @@
         \begin{shadebox}
             $N\in\naturalNumbers$ 個の複素数 $h_0,h_1,\dots,h_{N-1}$ を係数とする FIR フィルタの周波数特性（フィルタ係数列の DTFT）を $H:\realNumbers\to\complexNumbers$ と記し、所望の周波数特性を $\Hideal:\realNumbers\to\complexNumbers$ と記す。
             但し $H$ と $\Hideal$ の引数はサンプル周波数について正規化された角周波数である（$\pi/2$ が Nyquist 周波数に対応する）。
-            $\bm{h}\coloneqq[h_0,h_1,\dots,h_{N-1}]^\top$ として次式で定義される $H$ と $\Hideal$ の誤差 2 乗積分の評価関数
+            $\bm{h} \coloneq [h_0,h_1,\dots,h_{N-1}]^\top$ として次式で定義される $H$ と $\Hideal$ の誤差 2 乗積分の評価関数
             \[ J(\bm{h}) \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{H(\Omega)-\Hideal(\Omega)}^2}{}{\Omega} \]
             の最小点 $\vhOpt$ は次式である。
             \[ \vhOpt[k] = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}\;(k=0,1,\dots,N-1) \]
@@ -23,7 +23,7 @@
                 &= \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\sum_{k=0}^{N-1} h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \tag{1}
             \end{align*}
             ここで $v_k\;(k=0,1,\dots,N-1)$ を次式で定義する。
-            \[ v_k \coloneqq \integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega} \]
+            \[ v_k \coloneq \integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega} \]
             式 (1) の第 3 項は $\bm{h}$ に依存しないので無視し、第 2 項までを取り出して次の評価関数を得る。
             \[ J_2(\bm{h}) \coloneq \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\bm{v}^*\bm{h}} = \norm{\bm{h} - \frac{1}{2\pi}\bm{v}}_2^2 - \frac{1}{4\pi^2}\norm{\bm{v}}_2^2 \]
             これの最小点が $\bm{v}/(2\pi)$ であるから主張が従う。

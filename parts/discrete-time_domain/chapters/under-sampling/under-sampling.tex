@@ -13,7 +13,7 @@
             \end{itemize}
             このとき $\Yd$ は次式で表される。
             \[ \Yd(\omega) = \frac{1}{R}\sum_{n=0}^{R-1} \Xd\parens*{\omega-n\frac{2\pi}{R\Ts}} \]
-            $\Yd$ は $\omega$ に関する $2\pi/(R\Ts)$ 周期関数となり、$\Yd$ の第1 Nyquist 領域は $S_{\text{N},Y} \coloneqq [-\pi/(R\Ts),-\pi/(R\Ts))$ となる。
+            $\Yd$ は $\omega$ に関する $2\pi/(R\Ts)$ 周期関数となり、$\Yd$ の第1 Nyquist 領域は $S_{\text{N},Y} \coloneq [-\pi/(R\Ts),-\pi/(R\Ts))$ となる。
             \par
             全体に $1/R$ が掛けられているが、振幅が $1/R$ になるわけではない。
             DTFT の内積計算の対象となる点の数が $1/R$ に減ったことに起因する。
@@ -24,12 +24,12 @@
         \subsection{導出}
             \begin{align}
                 \Yd(\omega) &= \sum_{n=-\infty}^\infty \yd(n)\exp(-i\omega nR\Ts) = \sum_{n=-\infty}^\infty \xd(nR)\exp(-i\omega nR\Ts) \nonumber \\
-                &= \sum_{m=-\infty}^\infty u(m)\xd(m)\exp(-i\omega m\Ts) \quad \text{where} \quad u(m) \coloneqq \begin{cases}
+                &= \sum_{m=-\infty}^\infty u(m)\xd(m)\exp(-i\omega m\Ts) \quad \text{where} \quad u(m) \coloneq \begin{cases}
                     1 & (m\in R\integers) \\
                     0 & (\text{otherwise})
                 \end{cases} \nonumber  \\
                 &= \DTFTwithArg{u\xd}{\omega} \nonumber \\
-                &= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{\Xd(\omega-\tilde{\omega})U(\tilde{\omega})}{}{\tilde{\omega}} \quad \text{where} \quad U(\omega) \coloneqq \frac{2\pi}{R\Ts}\sum_{m=-\infty}^\infty\delta\parens*{\omega - n\frac{2\pi}{R\Ts}} \nonumber \\
+                &= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{\Xd(\omega-\tilde{\omega})U(\tilde{\omega})}{}{\tilde{\omega}} \quad \text{where} \quad U(\omega) \coloneq \frac{2\pi}{R\Ts}\sum_{m=-\infty}^\infty\delta\parens*{\omega - n\frac{2\pi}{R\Ts}} \nonumber \\
                 &= \frac{1}{R} \integrate{-\pi/\Ts}{\pi/\Ts}{\Xd(\omega-\tilde{\omega})\sum_{n=-\infty}^{\infty}\delta\parens*{\tilde{\omega}-n\frac{2\pi}{R\Ts}}}{}{\tilde{\omega}} \label{equation:アンダー・サンプリングされた信号の周波数特性 1}
             \end{align}
             被積分関数の $\Xd$ とデルタ関数列を次の図に示す。

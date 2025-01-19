@@ -12,7 +12,7 @@
         受信信号から参照信号を検出する方法として、直観的に次の2つの方法を思いつくだろう。
         \subsection{手法1: cos類似度の絶対値の最大化}
             \label{手法1: cos類似度の絶対値の最大化}
-            参照信号の長さを$L\in\naturalNumbers$, 参照信号を$\bm{d} \in \complexNumbers^L$, 受信信号中のテスト領域を$\bm{s}^{(i)} \coloneqq [s_i,s_{i+1},\dots,s_{i+L-1}]^\top \in \complexNumbers^L$とするとき、$\bm{d}$と$\bm{s}^{(i)}$の$\cos$類似度の複素数版
+            参照信号の長さを$L\in\naturalNumbers$, 参照信号を$\bm{d} \in \complexNumbers^L$, 受信信号中のテスト領域を$\bm{s}^{(i)} \coloneq [s_i,s_{i+1},\dots,s_{i+L-1}]^\top \in \complexNumbers^L$とするとき、$\bm{d}$と$\bm{s}^{(i)}$の$\cos$類似度の複素数版
             \[ \frac{\bm{d}^*\bm{s}^{(i)}}{\norm{\bm{d}}_2\norm{\bm{s}^{(i)}}_2} \]
             の位相を無視し、絶対値の2乗(2乗を使うのは、平方根の計算を無くして計算量を抑える為)で評価する。
             $\norm{\bm{d}}_2$は$\bm{s}^{(i)}$に依存しないので評価値同士の大小比較に必要ないから取り除く。
@@ -28,7 +28,7 @@
             正規化する理由は、テスト領域の強度の影響を減らすためである。
             テスト領域の形が参照信号と大きく異なっていても、テスト領域の強度が小さければ$\min_{\alpha \in \complexNumbers}\norm{\alpha\bm{d} - \bm{s}^{(i)}}_2^2$は小さくなり、誤った推定結果を導き得る。
             上の最小化問題の解は解析的に求められる。
-            $f(\alpha) \coloneqq \norm{\alpha\bm{d} - \bm{s}^{(i)}}_2^2$について微小な$\Delta\alpha$を考え、$f(\alpha+\Delta\alpha) - f(\alpha)$の変化量の$\Delta\alpha$の1次の項が0になるような$\mathring{\alpha}$が解である。これは次式である。
+            $f(\alpha) \coloneq \norm{\alpha\bm{d} - \bm{s}^{(i)}}_2^2$について微小な$\Delta\alpha$を考え、$f(\alpha+\Delta\alpha) - f(\alpha)$の変化量の$\Delta\alpha$の1次の項が0になるような$\mathring{\alpha}$が解である。これは次式である。
             \[
                 \mathring{\alpha} = \frac{\bm{d}^*\bm{s}^{(i)}}{\norm{\bm{d}}_2^2}
             \]
