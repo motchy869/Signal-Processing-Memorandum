@@ -10,9 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed:
   - confusion between ESD (Energy Spectrum Density) and PSD (Power Spectrum Density)
 - Added:
-  - Hilbert transform of sin and cos
-  - application of commutative low for Hilbert transform as convolution
-  - FIR filter coefficients design by minimizing DTFT total square error
+  - Hilbert transform
+    - Hilbert transform of sin and cos
+    - application of commutative low as convolution
+  - FIR filter coefficients design
+    - minimizing DTFT square error integral
+    - minimizing ∞-norm of DTFT error
 
 ## [0.13.0] - 2024-12-27
 

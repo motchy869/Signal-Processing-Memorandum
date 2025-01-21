@@ -42,3 +42,152 @@
             よって次式を得る。
             \[ \vhOpt[k] = \frac{1}{\pi}\Re{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}}\in\realNumbers \]
         \end{proof}
+    \subsection{DTFT の誤差の実部と虚部の∞ノルム最小化}
+        \newcommand{\Ntp}{N_{\text{tp}}}
+        \newcommand{\Hid}{H_{\text{id}}}
+        \newcommand{\HidR}{H_{\text{id,r}}}
+        \newcommand{\HidI}{H_{\text{id,i}}}
+        \newcommand{\HidH}{H_{\text{id,H}}}
+        \newcommand{\HidHr}{H_{\text{id,H,r}}}
+        \newcommand{\HidHi}{H_{\text{id,H,i}}}
+        \newcommand{\HidSH}{H_{\text{id,SH}}}
+        \newcommand{\HidSHr}{H_{\text{id,SH,r}}}
+        \newcommand{\HidSHi}{H_{\text{id,SH,i}}}
+        \newcommand{\hes}{h_{\text{es}}}
+        \newcommand{\hos}{h_{\text{os}}}
+        \newcommand{\Hes}{H_{\text{es}}}
+        \newcommand{\Hos}{H_{\text{os}}}
+        \newcommand{\hr}{h_{\text{r}}}
+        \newcommand{\hi}{h_{\text{i}}}
+        \newcommand{\hrEs}{h_{\text{r,es}}}
+        \newcommand{\hrOs}{h_{\text{r,os}}}
+        \newcommand{\hiEs}{h_{\text{i,es}}}
+        \newcommand{\hiOs}{h_{\text{i,os}}}
+        \newcommand{\hesOpt}{h_{\text{es,opt}}}
+        \newcommand{\hosOpt}{h_{\text{os,opt}}}
+        \newcommand{\hopt}{h_{\text{opt}}}
+        \newcommand{\hrEsOpt}{h_{\text{r,es,opt}}}
+        \newcommand{\hrOsOpt}{h_{\text{r,os,opt}}}
+        \newcommand{\hiEsOpt}{h_{\text{i,es,opt}}}
+        \newcommand{\hiOsOpt}{h_{\text{i,os,opt}}}
+        \newcommand{\HesOpt}{H_{\text{es,opt}}}
+        \newcommand{\HosOpt}{H_{\text{os,opt}}}
+        \newcommand{\Hopt}{H_{\text{opt}}}
+        \newcommand{\HrEsOpt}{H_{\text{r,es,opt}}}
+        \newcommand{\HrOsOpt}{H_{\text{r,os,opt}}}
+        \newcommand{\HiEsOpt}{H_{\text{i,es,opt}}}
+        \newcommand{\HiOsOpt}{H_{\text{i,os,opt}}}
+        \newcommand{\eEs}{\mathrm{e}_{\text{es}}}
+        \newcommand{\eOs}{\mathrm{e}_{\text{os}}}
+        \newcommand{\eOpt}{\mathrm{e}_{\text{opt}}}
+        \newcommand{\erEs}{\mathrm{e}_{\text{r,es}}}
+        \newcommand{\erOs}{\mathrm{e}_{\text{r,os}}}
+        \newcommand{\eiEs}{\mathrm{e}_{\text{i,es}}}
+        \newcommand{\eiOs}{\mathrm{e}_{\text{i,os}}}
+        フィルタ係数が複素数であり、個数が指定された条件下で、所望の周波数特性に対して DTFT の誤差の実，虚部それぞれの偶，奇対称成分の $L^\infty$-ノルムが最小になるように係数を決定する方法を記す。
+        $H$ が線形位相特性をもち、かつ偶対称か奇対称のいずれかである場合（★ 1）には Remez のアルゴリズムが知られている（例えば \cite{DSP_JL} の \inlineCode{remez} 関数）。
+        ここでは $H$ が★ 1 の条件を満たさない場合にも Remez のアルゴリズムを 4 回独立に実行してフィルタ係数を決定する方法を示す。
+        また特殊ケースとして、入力信号が実数（従ってフィルタ係数も実数）である場合に Remez のアルゴリズムを 2 回独立に実行してフィルタ係数を決定する方法も示す。
+        議論の見通しを良くするため、まず特殊ケースを導き、これを拡張して最終的な結論を導く。
+        \subsubsection{前提}
+            以下では周波数特性の補償用フィルタのように、 null を含まない穏やかな特性を持つフィルタを主な関心の対象としている。
+            そのため以下ではフィルタ係数の個数 $\Ntp\in\naturalNumbers$ は奇数であるとする。
+            そうでない場合も以下で述べる手法がそのまま使える。
+        \subsubsection{信号が実数の場合}
+            まず信号が実数であり、従ってフィルタ係数も実数である場合について述べる。
+            入力信号が実数であるから $\Hid$ は Hermite 対称である。
+            \paragraph{偶，奇対称の係数がもたらす周波数特性}
+                \label{偶，奇対称の係数がもたらす周波数特性}
+                Remez のアルゴリズムの適用を考える準備として、添え字に関して偶対称と奇対称な係数がもたらす周波数特性を見ておく。
+                いま、$\hes:\integers\to\realNumbers$ と $\hos:\integers\to\realNumbers$ をそれぞれ次式を満たす偶対称と奇対称（「対称」とは、中央の係数を中心にして言う）のフィルタ係数であって、係数列の長さが $\Ntp\in\naturalNumbers$ であるとする。
+                \begin{align*}
+                    \hes(m) &= \begin{cases}
+                        \hes(\Ntp-1-m) & \parens*{m =0,1,\dots,(\Ntp-1)/2} \\
+                        0 & (\text{otherwise})
+                    \end{cases} \\
+                    \hos(m) &= \begin{cases}
+                        -\hos(\Ntp-1-m) & \parens*{m =0,1,\dots,(\Ntp-1)/2} \\
+                        0 & (\text{otherwise})
+                    \end{cases}
+                \end{align*}
+                （上の条件から $\hos((\Ntp-1)/2) = 0$ である。）
+                \par
+                $\Hes,\;\Hos$ をそれぞれ $\hes,\;\hos$ に対応する周波数特性とする（但し引数は正規化角周波数）と、簡単な計算を経て次式を得る。
+                \begin{align*}
+                    \Hes(\Omega) &= \exp\parens*{-i\frac{\Ntp-1}{2}\Omega}\bracks{\hes\parens*{\frac{\Ntp-1}{2}} + 2\sum_{m=0}^{(\Ntp-1)/2-1}{\hes(m)\cos\Omega\parens*{\frac{\Ntp-1}{2}-m}}} \\
+                    \Hos(\Omega) &= 2i\exp\parens*{-i\frac{\Ntp-1}{2}\Omega}\sum_{m=0}^{(\Ntp-1)/2-1}{\hos(m)\sin\Omega\parens*{\frac{\Ntp-1}{2}-m}}
+                \end{align*}
+                両者とも線形位相特性である（その和については一般にそうならない）。
+                さらに $\Hos$ は $\Hes$ に比べて位相が $\pi/2$ だけ進んでいる。
+                $\exp\parens*{-i\frac{\Ntp-1}{2}\Omega}$ は因果律を満たすためにフィルタ係数の 0 番目の添え字の位置を時刻の基準にとった為の位相の線形な遅れである。
+                後述する Remez のアルゴリズムはこのような線形な位相遅れの部分が取り除かれた実数値関数を引数として受け取るため、適切に配慮すれば問題ない。
+                この位相遅れの部分を無視すれば $\Hes$ は偶対称、$\Hos$ は奇対称である。
+            \paragraph{Remez のアルゴリズムによる係数の決定}
+                \label{Remez のアルゴリズムによる係数の決定}
+                $\Hid$ の実部と虚部をそれぞれ $\HidR,\;\HidI$ とする。
+                $\Hid$ が Hermite 対称であるから $\HidR$ は偶対称、$i\HidI$ は奇対称である。
+                \ref{偶，奇対称の係数がもたらす周波数特性} の考察に従って $\HidR,\;i\HidI$ をそれぞれ近似する偶対称と奇対称の係数を求めればよいと解る。
+                \par
+                \cite{DSP_JL} の \inlineCode{remez} 関数は近似対象の周波数特性として偶対称と奇対称の実数値関数の両方を扱える（\inlineCode{neg} オプションで選択）。
+                さらにその関数をユーザが定義した関数オブジェクトで指定できる。
+                実装の都合上、奇対称の周波数特性を与えて得られる出力は実数係数であるが、これを DTFT すると、偶対称の周波数特性から得られる出力に比べて位相が $\pi/2$ 進んだ結果になる。
+                つまり \inlineCode{remez} 関数に $\HidI$ を与えて得られる係数の DTFT が近似するのは $\HidI$ ではなく $i\HidI$ である。
+                \par
+                上記の \inlineCode{remez} 関数を使って $\HidR,\;i\HidI$ を近似する係数 $\hesOpt,\;\hosOpt:\integers\to\realNumbers$ が求まる。
+                両者の和 $\hopt \coloneq \hesOpt + \hosOpt$ が所望の係数である。
+                \par
+                $\hesOpt,\;\hosOpt,\;\hopt$ に対応する周波数特性をそれぞれ $\HesOpt,\;\HosOpt,\;\Hopt$ とする（$\HosOpt(\Omega)\in i\realNumbers$ に注意）。
+                $\hesOpt,\;\hosOpt,\;\hopt$ の近似誤差、即ち次式で表される $L^\infty$-ノルム
+                \begin{align*}
+                    \eEs &\coloneq \Verts{\HesOpt - \HidR}_\infty = \max_{\Omega\in[-\pi,\pi]}\abs{\HesOpt(\Omega) - \HidR(\Omega)} \\
+                    \eOs &\coloneq \Verts{\HosOpt - i\HidI}_\infty = \max_{\Omega\in[-\pi,\pi]}\abs{\HosOpt(\Omega) - i\HidI(\Omega)} \\
+                    \eOpt &\coloneq \Verts{\Hopt - \Hid}_\infty = \max_{\Omega\in[-\pi,\pi]}\abs{\Hopt(\Omega ) -\Hid(\Omega)}
+                \end{align*}
+                に三角不等式を適用して次式を得る。
+                \[ \eOpt = \Verts{\Hopt - \Hid}_\infty = \Verts{\HesOpt - \HidR + (\HosOpt - i\HidI)}_\infty \leq \eEs + \eOs \]
+                Remez のアルゴリズム 1 回分の誤差の高々 2 倍程度に収まる。
+        \subsubsection{信号が複素数の場合}
+            フィルタ係数も複素数であるとする。
+            このときは $\Hid$ は Hermite 対称とは限らないが、次のように Hermite 対称，歪 Hermite 対称 (Skew-Hermitian) な 2 つの関数 $\HidH,\;\HidSH$ の和に分解できる。
+            \begin{gather*}
+                \Hid(\Omega) = \HidH(\Omega) + \HidSH(\Omega) \\
+                \text{where}\quad\HidH(\Omega)\coloneq\frac{1}{2}\parens*{\Hid(\Omega) + \conj{\Hid(-\Omega)}},\quad\HidSH(\Omega)\coloneq\frac{1}{2}\parens*{\Hid(\Omega) - \conj{\Hid(-\Omega)}}
+            \end{gather*}
+            $\HidH$ の実部と虚部をそれぞれ $\HidHr,\;\HidHi$ とすると前者は偶対称、後者は奇対称である。
+            また $\HidSH$ の実部と虚部をそれぞれ $\HidSHr,\;\HidSHi$ とすると前者は奇対称、後者は偶対称である。
+            これら 4 つに対して Remez のアルゴリズムを使って、近似するためのフィルタ係数（実数値）を求めて（適宜、虚数単位を掛けながら）和をとれば所望の係数となる。
+            \par
+            設計するフィルタ係数を $h:\integers\to\realNumbers$ とし、それらの実部と虚部をそれぞれ $\hr,\;\hi$ とする。
+            $\hr$ によって $\HidH$ を近似し、$\hi$ によって $\HidSH$ を近似する。
+            \par
+            $\hr$ を偶対称，奇対称な 2 つの成分に分解し、それぞれを $\hrEs,\;\hrOs$ とする。
+            この分解は常に可能である。具体的には $\hr$ とその左右反転の和の 1/2 倍を $\hrEs$ とし、$\hr$ とその左右反転の差の 1/2 倍を $\hrOs$ とすればよい。
+            $\hrEs,\;\hrOs$ については \ref{Remez のアルゴリズムによる係数の決定} と同じ方法で最適値 $\hrEsOpt,\;\hrOsOpt$ が求まる。
+            \par
+            次に $\hi$ の最適値を求める。
+            $\hi$ を偶対称，奇対称な 2 つの成分に分解し、それぞれを $\hiEs,\;\hiOs$ とする。
+            天下り的であるが（妥当性は以降の解説で直ぐに解る） Remez のアルゴリズムを使って $\hiEs$ によって $\HidSHi$ を近似して最適値を $\hiEsOpt$ とし、$\hiOs$ によって $-i\HidSHr$ を近似して最適値を $\hiOsOpt$ とする。
+            \par
+            $\hrEsOpt,\;\hrOsOpt,\;\hiEsOpt,\;\hiOsOpt$ に対応する周波数特性を $\HrEsOpt,\;\HrOsOpt,\;\HiEsOpt,\;\HiOsOpt$ とする（$\HrOsOpt(\Omega),\;\HiOsOpt(\Omega)\in i\realNumbers$ に注意）。
+            最終的な最適係数は $\hopt = \hrEsOpt + \hrOsOpt + i(\hiEsOpt + \hiOsOpt)$ である。
+            それに対応する周波数特性 $\Hopt$ は次式である。
+            但し因果律を満たすために生じる位相遅れ $\exp\parens*{-i\frac{\Ntp-1}{2}\Omega}$ は無害であるから無視する。
+            \begin{align*}
+                \Hopt &= \HrEsOpt + \HrOsOpt + i(\HiEsOpt + \HiOsOpt) = \HrEsOpt + \HrOsOpt + i\HiEsOpt + i\HiOsOpt \\
+                &\approx \HidHr + i\HidHi + i\HidSHi + \HidSHr = \Hid
+            \end{align*}
+            $\hrEsOpt,\;\hrOsOpt,\hiEsOpt,\;\hiOsOpt,\;\hopt$ の近似誤差、即ち次式で表される $L^\infty$-ノルム
+            \begin{align*}
+                \erEs &\coloneq \Verts{\HrEsOpt - \HidHr}_\infty = \max_{\Omega\in[-\pi,\pi]}\abs{\HrEsOpt(\Omega) - \HidHr(\Omega)} \\
+                \erOs &\coloneq \Verts{\HrOsOpt - i\HidHi}_\infty = \max_{\Omega\in[-\pi,\pi]}\abs{\HrOsOpt(\Omega) - i\HidHi(\Omega)} \\
+                \eiEs &\coloneq \Verts{\HiEsOpt - \HidSHi}_\infty = \max_{\Omega\in[-\pi,\pi]}\abs{\HiEsOpt(\Omega) - \HidSHi(\Omega)} \\
+                \eiOs &\coloneq \Verts{\HiOsOpt + i\HidSHr}_\infty = \max_{\Omega\in[-\pi,\pi]}\abs{\HiOsOpt(\Omega) + i\HidSHr(\Omega)} \\
+                \eOpt &\coloneq \Verts{\Hopt - \Hid}_\infty = \max_{\Omega\in[-\pi,\pi]}\abs{\Hopt(\Omega ) -\Hid(\Omega)}
+            \end{align*}
+            に三角不等式を適用して次式を得る。
+            \begin{align*}
+                \eOpt &= \Verts{\Hopt - \Hid}_\infty \\
+                &= \Verts{\HrEsOpt - \HidHr + (\HrOsOpt - i\HidHi) + i(\HiEsOpt - \HidSHi) + (i\HiOsOpt - \HidSHr)}_\infty \\
+                &\leq \erEs + \erOs + \eiEs + \eiOs
+            \end{align*}
+            Remez のアルゴリズム 1 回分の誤差の高々 4 倍程度に収まる。
