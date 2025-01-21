@@ -28,7 +28,7 @@
                 &\phantom{=}- \frac{1}{2\pi}\sum_{l=0}^{N-1} \conj{h_l}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega l}}{}{\Omega} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \\
                 &= \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\sum_{k=0}^{N-1} h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \tag{1}
             \end{align*}
-            ここで $v_k\;(k=0,1,\dots,N-1)$ を次式で定義する。
+            ここで $v_k\;(k=0,1,\dots,N-1)$ を次式で定義し、$\bm{v}\coloneq[v_0,v_1,\dots,v_{N-1}]^\top$ とする。
             \[ v_k \coloneq \integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega} \]
             式 (1) の第 3 項は $\bm{h}$ に依存しないので無視し、第 2 項までを取り出して次の評価関数を得る。
             \[ J_2(\bm{h}) \coloneq \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\bm{v}^*\bm{h}} = \norm{\bm{h} - \frac{1}{2\pi}\bm{v}}_2^2 - \frac{1}{4\pi^2}\norm{\bm{v}}_2^2 \]
