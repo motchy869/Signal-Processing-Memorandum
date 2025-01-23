@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Hilbert transform of sin and cos
     - application of commutative low as convolution
   - FIR filter coefficients design
-    - minimizing DTFT square error integral
+    - minimizing DTFT (weighted) square error integral
     - minimizing ∞-norm of DTFT error
 
 ## [0.13.0] - 2024-12-27
