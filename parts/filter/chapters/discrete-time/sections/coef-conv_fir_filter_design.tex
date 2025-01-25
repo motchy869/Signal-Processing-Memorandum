@@ -71,7 +71,7 @@
                 \[ v_n \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\Hideal(\Omega)\NapierE^{i\Omega n}}{}{\Omega} \]
                 上記を式 (5) に適用し、$\bm{h}$ に依存しない項を無視すると次の評価関数を得る。
                 \[ J_2(\bm{h}) \coloneq \bm{h}^*A\bm{h} - 2\Re{\bm{v}^*\bm{h}} \]
-                証明していないが $A$ は正定値であると期待され、以下ではそう仮定する。
+                証明していないが $A$ は正定値であると期待され\footnote{$w$ が偶関数であれば、区間 $[-\pi,\pi]$ に於ける $w$ の Fourier 級数展開を考えると $A$ が巡回行列となって固有値が容易に計算でき、正定性を示せるように思える。試してはいない。}、以下ではそう仮定する。
                 すると $J_2(\bm{h})$ は $\bm{h}$ の狭義凸 2 次形式であり、最小点が存在する。
                 それは $\bm{h}$ が微小量 $\Delta\bm{h}$ 変化するときの $J_2$ の増分 $\Delta J_2(\bm{h})$ が 0 となる $\bm{h}$ である。
                 \[ \Delta J_2(\bm{h}) = \bm{h}^*A\Delta\bm{h} + \Delta\bm{h}^*A\bm{h} - 2\Re{\bm{v}^*\Delta\bm{h}} + \underset{\norm{\Delta\bm{h}}_2\to 0}{o}(\norm{\Delta\bm{h}}_2) = 2\Re{(\bm{h}^*A-\bm{v}^*)\Delta\bm{h}} \]
