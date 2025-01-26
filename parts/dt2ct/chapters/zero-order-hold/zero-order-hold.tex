@@ -70,7 +70,7 @@
                 \caption{量子化誤差のないDA変換結果の sinc 状ゲイン歪み}
             \end{figure}
             上の図から、第1 Nyquist 領域の端 $-\pi, \pi$ で約 -3dB のゲイン低下が生じていることが解る。
-            実は0次ホールドで出力する直前に、上手く設計された10タップ程度の FIR フィルタを掛けてこの影響を緩和し、下図のようなゲイン特性に変更できる。
+            実は0次ホールドで出力する直前に、上手く設計された10タップ程度の畳み込み型 FIR フィルタを掛けてこの影響を緩和し、下図のようなゲイン特性に変更できる。
             このフィルタは「inverse-sinc フィルタ」と呼ばれる。
             \begin{figure}[H]
                 \centering
@@ -91,7 +91,7 @@
             \par
             $a$ の DTFT を $A$ とする。すなわち
             \[ A(\Omega) = \sum_{n=-N}^N a(n)\exp(-i\Omega n) = a(0) + 2\sum_{n=1}^N a(n)\cos(\Omega n) = \bm{v}(\Omega)^\top\bm{a} \]
-            ここに $\bm{v}(\Omega) \coloneqq [1, 2\cos\Omega,\dots,2\cos N\Omega]^\top\in\realNumbers^{N+1},\;\bm{a} = [a(0),\dots,a(N)]^\top\in\realNumbers^{N+1}$ である。
+            ここに $\bm{v}(\Omega) \coloneq [1, 2\cos\Omega,\dots,2\cos N\Omega]^\top\in\realNumbers^{N+1},\;\bm{a} = [a(0),\dots,a(N)]^\top\in\realNumbers^{N+1}$ である。
             $[-\pi,\pi]$ で $A$ が $1/\sinc(\Omega/2)$ を近似するように次式を最小化する $a$ を求める。
             \[ \integrate{-\pi}{\pi}{\norm{A(\Omega) - 1/\sinc(\Omega/2)}_2^2}{}{\Omega} \tag{1} \]
             被積分関数の中身を展開すると次式を得る。
@@ -99,7 +99,7 @@
             これを式(1)に適用すると次式を得る。
             \[ (1) = \bm{a}^\top M\bm{a} - 2\bm{m}^\top\bm{a} + \integrate{-\pi}{\pi}{1/\sinc(\Omega/2)^2}{}{\Omega} \tag{2} \]
             ここに $M,\bm{m}$ は次式で定義される数である。
-            \[ M \coloneqq \integrate{-\pi}{\pi}{\bm{v}(\Omega)\bm{v}(\Omega)^\top}{}{\Omega} = 2\pi\diag{1,2,2,\dots,2},\quad \bm{m} = \integrate{-\pi}{\pi}{\bm{v}(\Omega)^\top/\sinc(\Omega/2)}{}{\Omega} \]
+            \[ M \coloneq \integrate{-\pi}{\pi}{\bm{v}(\Omega)\bm{v}(\Omega)^\top}{}{\Omega} = 2\pi\diag{1,2,2,\dots,2},\quad \bm{m} = \integrate{-\pi}{\pi}{\bm{v}(\Omega)^\top/\sinc(\Omega/2)}{}{\Omega} \]
             $\bm{m}$ は数値計算で求める。
             式(2)の中で $\bm{a}$ に依存しない項を無視すると、最小化すべき関数は次式である。
             \[ f_\text{cost}(\bm{a}) = \bm{a}^\top M\bm{a} - 2\bm{m}^\top\bm{a} \]

@@ -5,12 +5,24 @@
 			\item $\integers$: 整数全体の集合
 			\item $\realNumbers$: 実数全体の集合
 			\item $\complexNumbers$: 複素数全体の集合
+			\item $\bm{x}[i]$：ベクトル $\bm{x}$ の第 $i$ 成分
 			\item $\bm{a} \HadamardDiv \bm{b}\;(d \in \naturalNumbers,\;\bm{a},\bm{b} \in \field^d,\;b_i\neq 0 \text{ for all }i)$: $[a_1/b_1,\dots,a_d/b_d]^\top$
 			\item $a\%b\;(a,b\in\integers,\;b\neq 0)$: $a$を$b$で割った余り。符号に2通り考えられるが、本書では結果を0以上$|a|$未満とする定義を採用する。
 			\item $\bm{a}\%\bm{b}\;(d\in\naturalNumbers,\;\bm{a},\bm{b} \in \integers^d,\; b_i\neq 0 \text{ for all }i)$: $[a_1\%b_1,\dots,a_d\%b_d]^\top$
 			\item $\bm{x} \leq \bm{y}\;(d\in\naturalNumbers,\;\bm{x},\bm{y} \in \realNumbers^d) :\Leftrightarrow x_i \leq y_i \text{ for all }i$。$\geq, <, >$についても同様。
 		\end{itemize}
-
+	\chapter{量の次元の扱い}
+		本書では数学との整合性と普遍性を重視して写像の引数は全て無次元量とし、座標や時間も無次元量とする。
+		本書で述べられる定理は量の次元や計量単位に依存せず、応用し易い。
+		\par
+		しかし、記号に量の次元を含めない姿勢を実用の場で徹底するのは難しい。
+		例えば何らかの開発プロジェクトに於いては、記号に次元を含めておく方が説明が簡便になるし、次元解析にも役立つ。
+		量の次元と数学との整合性を保つ現実的な方針は次のようであろう。
+		\begin{itemize}
+			\item 物理量を表す記号には必ず次元の量を含める
+			\item 写像の引数は必ず無次元量とする
+			\item 量の次元をもつ量を写像の引数の位置に‘書く’ときは、その量を計量単位の倍数で表したときの係数を引数と‘する’ものと約束する。
+		\end{itemize}
 	\chapter{連続座標信号の表現}
 		連続的な座標値$\bm{x}\in\realNumbers^{d_1}\;(d_1\in\naturalNumbers)$から$\realNumbers^{d_2}\;(d_2\in\naturalNumbers)$への写像を$d_1$次元連続座標信号という。
 		信号値は全ての座標に対して定義される必要はない。
@@ -18,7 +30,6 @@
 		例えばカセットテープレコーダーに記録された音声信号は$d_1=d_2=1$のものである。
 		\par
 		信号$f$の位置$\bm{x} = [x_1,x_2,\dots,x_{d_1}]^\top$での値を$f(\bm{x})$や$f(x_1,\dots,x_{d_1})$で表す。
-
 	\chapter{離散座標信号の表現}
 		離散的な座標値$\bm{x}\in\integers^{d_1}\;(d_1\in\naturalNumbers)$から$\realNumbers^{d_2}\;(d_2\in\naturalNumbers)$への写像を$d_1$次元離散座標信号という。
 		信号値は全ての座標に対して定義される必要はない。

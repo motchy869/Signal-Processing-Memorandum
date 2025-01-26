@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.14.0] - 2025-01-26
+
+- Fixed:
+  - confusion between ESD (Energy Spectrum Density) and PSD (Power Spectrum Density)
+- Deleted:
+  - chapter 'IIRフィルタの計算手順'
+- Added:
+  - rules for dimension of a quantity
+  - inequivalence between complex-coefficient filter and 'two real-coefficient filters + weighted-sum'
+  - Hilbert transform
+    - Hilbert transform of sin and cos
+    - application of commutative low as convolution
+  - FIR filter coefficients design
+    - minimizing DTFT (weighted) square error integral
+    - minimizing ∞-norm of DTFT error
+
 ## [0.13.0] - 2024-12-27
 
 - Fixed:
@@ -102,9 +118,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added
   - continuous-time filter behavior observed from discrete-time system.
   - a lemma for comprehension of DCT basis orthogonality
-  - power spectrum of 0-order-held sinusoid
+  - energy spectrum density of (time-limited) 0-order-held sinusoid
   - z-transform of continuous system with 0-order-hold input
-  - power spectrum of integral sinusoid by Euler method
+  - energy spectrum density of (time-limited) integral sinusoid by Euler method
 
 ## [0.5.0] - 2022-05-30
 

@@ -3,14 +3,14 @@
     \section{基底}
         $d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\dots,d),\;\bm{k},\bm{n}\in\integers^d$とする。
         次式で定義される、$\bm{n}$に関する離散座標信号を$d$次元DFTの第$\bm{k}$基底ベクトルという。
-        \[ W(\bm{k},\bm{n}) \coloneqq \left(\prod_{l=1}^d N_l\right)^{-1/2} \exp i\left(\sum_{l=1}^d \frac{k_l n_l}{N_l}2\pi\right)\]
+        \[ W(\bm{k},\bm{n}) \coloneq \left(\prod_{l=1}^d N_l\right)^{-1/2} \exp i\left(\sum_{l=1}^d \frac{k_l n_l}{N_l}2\pi\right)\]
 
     \section{DFTの定義}
         \label{DFTの定義}
         $d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\dots,d),\;\bm{k}\in\integers^d$とする。
-        $\Omega \coloneqq \{0,1,\dots,N_1-1\}\times\{0,1,\dots,N_2-1\}\times\cdots\times\{0,1,\dots,N_d-1\}$とする。
+        $\Omega \coloneq \{0,1,\dots,N_1-1\}\times\{0,1,\dots,N_2-1\}\times\cdots\times\{0,1,\dots,N_d-1\}$とする。
         $f$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n})$とするとき、次式で定義される、$\bm{k}$に関する離散座標信号を$f$の離散Fourier変換(Discrete Fourier Transform; DFT)という。
-        \[ \DFTwithArg{f}{\bm{k}} \coloneqq \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} f(\bm{n}) \]
+        \[ \DFTwithArg{f}{\bm{k}} \coloneq \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} f(\bm{n}) \]
 
     \section{Hermiteな離散座標信号のDFTは実数である}
         \label{Hermiteな離散座標信号のDFTは実数である}
@@ -23,7 +23,7 @@
                 2\Im{\DFTwithArg{f}{\bm{k}}} &= \DFTwithArg{f}{\bm{k}} - \conj{\DFTwithArg{f}{\bm{k}}} \\
                 &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})\conj{f(\bm{n})}
             \end{align*}
-            ここで$\bm{n}_\text{M} \coloneqq [N_1,\dots,N_d]^\top$とすると、
+            ここで$\bm{n}_\text{M} \coloneq [N_1,\dots,N_d]^\top$とすると、
             \[ \conj{W(\bm{k},\bm{n})} = W(\bm{k},-\bm{n}) = W(\bm{k},\bm{n}_\text{M}-\bm{n}) \]
             また、$f$のHermite性の仮定より
             \[ \conj{f(\bm{n})} = f(-\bm{n}) = f(\bm{n}_\text{M}-\bm{n}) \]
@@ -47,7 +47,7 @@
         \end{shadebox}
         \begin{proof}
             \quad\par
-            $\bm{N} \coloneqq [N_1,\dots,N_d]^\top$とする。
+            $\bm{N} \coloneq [N_1,\dots,N_d]^\top$とする。
             \begin{align*}
                 \DFTwithArg{\cycConv{f}{g}}{\bm{k}} &= \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \left(\cycConv{f}{g}\right)(\bm{n}) = \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \\
                 &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}g((\bm{n}-\bm{m})\%\bm{N}) \\
@@ -69,7 +69,7 @@
         \end{shadebox}
         \begin{proof}
             \quad\par
-            $\bm{N} \coloneqq [N_1,\dots,N_d]^\top$とする。
+            $\bm{N} \coloneq [N_1,\dots,N_d]^\top$とする。
             \begin{align*}
                 \DFTwithArg{R_{f,g}}{\bm{k}} &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})\conj{g((\bm{m}-\bm{n})\%\bm{N})} \\
                 &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}\conj{g((\bm{m}-\bm{n})\%\bm{N})} \tag{1}
@@ -101,8 +101,8 @@
             これのDFTを$G(k) = \DFTwithArg{F}{k}$とするとき、$G(k)\;(k=0,1,\dots,N-1)$もまた互いに独立で、複素正規分布$N(0,\sigma^2)$に従う。
         \end{shadebox}
         \begin{proof}
-            \[ P \in \complexNumbers^{N\times N},\; P_{k,n} \coloneqq W(k,n) \coloneqq \frac{1}{\sqrt{N}}\exp i\frac{kn}{N}2\pi\;(k,n \in \{0,1,\dots,N-1\}) \]
-            \[ \bm{F} \coloneqq [F(0), F(1), \dots, F(N-1)]^\top,\;\bm{G} \coloneqq [G(0), G(1), \dots, G(N-1)]^\top \]
+            \[ P \in \complexNumbers^{N\times N},\; P_{k,n} \coloneq W(k,n) \coloneq \frac{1}{\sqrt{N}}\exp i\frac{kn}{N}2\pi\;(k,n \in \{0,1,\dots,N-1\}) \]
+            \[ \bm{F} \coloneq [F(0), F(1), \dots, F(N-1)]^\top,\;\bm{G} \coloneq [G(0), G(1), \dots, G(N-1)]^\top \]
             と定義すると
             \[ \bm{G} = P^*\bm{F} \]
             となる。

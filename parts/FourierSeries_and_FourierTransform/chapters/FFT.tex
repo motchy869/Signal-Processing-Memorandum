@@ -9,17 +9,17 @@
             \begin{aligned}
                 X(k) &= \frac{1}{\sqrt{N}} \exp \left(\pi i\frac{-k^2}{N}\right) \sum_{n=0}^{N-1} x(n)\exp \left(\pi i\frac{-n^2}{N}\right) \exp \left(\pi i\frac{(k-n)^2}{N}\right) \\
                 &= \frac{1}{\sqrt{N}} \exp \left(\pi i\frac{-k^2}{N}\right) \sum_{n=0}^{N-1} u(n)v(k-n) \\
-                & \text{where} \quad u(n) \coloneqq x(n)\exp \left(\pi i\frac{-n^2}{N}\right),\;v(n) \coloneqq \exp \left(\pi i\frac{n^2}{N}\right)
+                & \text{where} \quad u(n) \coloneq x(n)\exp \left(\pi i\frac{-n^2}{N}\right),\;v(n) \coloneq \exp \left(\pi i\frac{n^2}{N}\right)
             \end{aligned}
         \end{align*}
         \[ \therefore\; X(k)\sqrt{N} \exp \left(\pi i\frac{k^2}{N}\right) = (u*v)(k) \]
         $u*v$を、長さが$2$のべき乗の信号に対して使えるFFT, IFFTを用いて計算する。
         そのために長さが$2$のべき乗の信号同士の**巡回畳み込み**の中に$u*v$が部分的に現れるような状況を以下のようにして作り出す。
         \par
-        $N_2 \coloneqq \min\{a|\exists b\in \mathbb{N}, a = 2^b \geq 2N\}$ とする。
+        $N_2 \coloneq \min\{a|\exists b\in \mathbb{N}, a = 2^b \geq 2N\}$ とする。
         長さ$N_2$の信号$u_2,v_2$を以下のように定義する。
         \[
-            u_2(n) \coloneqq \left\{
+            u_2(n) \coloneq \left\{
                 \begin{aligned}
                     u(n) &\quad (n \in [0,N-1]) \\
                     0 &\quad (n \in [N,N_2-1])
@@ -27,7 +27,7 @@
             \right.
         \]
         \[
-            v_2(n) \coloneqq \left\{
+            v_2(n) \coloneq \left\{
                 \begin{aligned}
                     v(n) &\quad (n \in [0,N-1]) \\
                     0 &\quad (n\in [N,N_2-N]) \\
