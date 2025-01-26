@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed:
   - confusion between ESD (Energy Spectrum Density) and PSD (Power Spectrum Density)
+- Deleted:
+  - chapter 'IIRフィルタの計算手順'
 - Added:
   - inequivalence between complex-coefficient filter and 'two real-coefficient filters + weighted-sum'
   - Hilbert transform

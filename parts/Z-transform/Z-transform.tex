@@ -49,22 +49,22 @@
 				\par
 				残りの項、すなわち$1/(1-\NapierE^{i\Omega}z^{-1})$に比例する項は$AH(\NapierE^{i\Omega})/(1-\NapierE^{i\Omega}z^{-1}) = H(\NapierE^{i\Omega})X(z)$となる。
 			\end{proof}
-	\chapter{IIRフィルタの計算手順}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[keepaspectratio, scale=5]
-			{\currfiledir/figs/IIR-filter/calculationMethod/blockDiagram.pdf}
-			\caption{IIRフィルタのブロック図の例}
-		\end{figure}
-		上の例で示したIIRフィルタの出力は以下の手続きで計算できる(仕事で関わっていたデジタル無線機の信号処理部でそうやっていた)。
-		\begin{enumerate}
-			\item $D_1,\cdots D_4 \leftarrow 0$
-			\item $n \leftarrow 0$
-			\item $\alpha \leftarrow a_1D_1 + \cdots a_4D_4$
-			\item $\beta \leftarrow b_1D_1 + \cdots b_4D_4$
-			\item $\gamma \leftarrow x(n) + \beta$
-			\item $y(n) \leftarrow \alpha + a_0\gamma$
-			\item $D_4 \leftarrow D_3,\;D_3 \leftarrow D_2,\;D_2 \leftarrow D_1,\;D_1 \leftarrow \gamma$
-			\item $n \leftarrow n+1$
-			\item $n$が$x$の定義域の末尾に達しているなら終了。そうでないなら3に戻る。
-		\end{enumerate}
+	% \chapter{IIRフィルタの計算手順}
+	% 	\begin{figure}[H]
+	% 		\centering
+	% 		\includegraphics[keepaspectratio, scale=5]
+	% 		{\currfiledir/figs/IIR-filter/calculationMethod/blockDiagram.pdf}
+	% 		\caption{IIRフィルタのブロック図の例}
+	% 	\end{figure}
+	% 	上の例で示したIIRフィルタの出力は以下の手続きで計算できる(仕事で関わっていたデジタル無線機の信号処理部でそうやっていた)。
+	% 	\begin{enumerate}
+	% 		\item $D_1,\cdots D_4 \leftarrow 0$
+	% 		\item $n \leftarrow 0$
+	% 		\item $\alpha \leftarrow a_1D_1 + \cdots a_4D_4$
+	% 		\item $\beta \leftarrow b_1D_1 + \cdots b_4D_4$
+	% 		\item $\gamma \leftarrow x(n) + \beta$
+	% 		\item $y(n) \leftarrow \alpha + a_0\gamma$
+	% 		\item $D_4 \leftarrow D_3,\;D_3 \leftarrow D_2,\;D_2 \leftarrow D_1,\;D_1 \leftarrow \gamma$
+	% 		\item $n \leftarrow n+1$
+	% 		\item $n$が$x$の定義域の末尾に達しているなら終了。そうでないなら3に戻る。
+	% 	\end{enumerate}
