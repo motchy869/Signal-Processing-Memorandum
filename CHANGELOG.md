@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deleted:
   - chapter 'IIRフィルタの計算手順'
 - Added:
+  - rules for dimension of a quantity
   - inequivalence between complex-coefficient filter and 'two real-coefficient filters + weighted-sum'
   - Hilbert transform
     - Hilbert transform of sin and cos
