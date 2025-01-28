@@ -1,0 +1,36 @@
+\part{雑音}
+    \newcommand{\rSN}{r_\text{SN}}
+    \newcommand{\bEff}{b_\text{e}}
+    \newcommand{\Afl}{A_\text{full}}
+    \newcommand{\An}{A_\text{n}}
+    \newcommand{\Psig}{P_\text{sig}}
+    \newcommand{\Pn}{P_\text{n}}
+    \chapter{ADC, DAC の SN 比で表される ENOB}
+        \begin{shadebox}
+            ADC（または DAC）の量子化誤差が（誤差の上限と下限の間で）一様分布すると仮定する。
+            ADC（または DAC）の SN 比が $\rSN$ [dB] であるとき、有効ビット数（Effective Number Of Bits, ENOB）$\bEff$ は次式である。
+            \[ \bEff = \frac{\rSN + 10(\log_{10} 2 - \log_{10} 3)}{20\log_{10} 2} \approx \frac{\rSN - 1.76}{6.02} \]
+        \end{shadebox}
+        \begin{proof}
+            \quad\par
+            ここでは ADC について示すが、DAC に於いても同じ議論ができる。\par
+            ADC を（量子化誤差以外の誤差を一切生じない）完璧な量子化ブロックとその前段にある雑音生成ブロックの組み合わせでモデル化する。
+            入力信号は雑音生成ブロックで生じる雑音が付加されて量子化ブロックに到達する。
+            （本物の ADC の雑音の発生機構はより複雑であろうが、それは利用者には殆ど不可知である。外部から見た挙動がよく一致していれば実用上問題が無い。）
+            \par
+            「ADC の SN 比」とは入力信号のパワーが 0 dBFS であるときの、入力信号のパワーと雑音のパワーの比である。
+            0 dBFS は full-scale の振幅 $\Afl>0$ の正弦波のパワー $\Psig$（周波数に依らず $\Afl^2/2$）であると定義されている(\cite{dBFS})。
+            即ちある入力信号のパワーが $P$ であるとき、その dBFS 表現は $10\log_{10} \frac{P}{Asig^2/2} = 10\log_{10} \frac{2P}{Asig^2}$ である。
+            \par
+            雑音信号 $x_\text{n}$ の標準偏差を $\An$ とすると雑音のパワー $\Pn$ は $\An^2$ である（なぜならば $T>0$ を十分長い観測時間として $\An\coloneq\sqrt{\frac{1}{T}\integrate{0}{T}{x_\text{n}^2}{}{t}} = \sqrt{\Pn}$）。
+            よって $\rSN = \Afl^2/(2\An^2)$ である。
+            \par
+            ADC のビット幅を $b$ とすると量子化誤差は区間 $[-\Afl/2^b,\Afl/2^b]$ 上の一様分布であり、標準偏差は $\Afl/(\sqrt{3}\;2^b)$ である。
+            これが量子化雑音の標準偏差である。
+            $b$ を 1 から始めて徐々に増やすとき、ある $\bEff$ を超えると量子化雑音が雑音信号を下回る。
+            この $\bEff$ が ENOB であり、次式が成り立つ。
+            \begin{align*}
+                \frac{\Afl}{\sqrt{3}\;2^{\bEff}} &= \An \quad \therefore 2^\bEff = \frac{\Afl}{\sqrt{3}\An} \\
+                \therefore \bEff &= \log_2 \frac{\Afl}{\sqrt{3}\An} = \frac{\log_{10}\frac{\Afl}{\An} - \log_{10}\sqrt{3}}{\log_{10} 2} = \frac{10\log_{10}\frac{\Afl^2}{2\An^2} - 10(\log_{10}2 - \log_{10}3)}{20\log_{10} 2} \approx \frac{\rSN - 1.76}{6.02}
+            \end{align*}
+        \end{proof}
