@@ -4,6 +4,7 @@
             有限長の離散時間信号（例えば係数畳み込み型 FIR フィルタ係数）が与えられたとき、その信号を連続時間信号に拡張して、任意の時刻での値を求めたいときがある。
             例えば FIR フィルタのインパルス応答が離散時間信号として既知であるとき、非整数の時刻に於ける合理的な値を考えたい（これはアップ・サンプリングの為の poly-phase フィルタの係数を計算する方法の一つである）。
         \subsection{方法}
+            \label{DTFT と IDTFT を用いた有限長信号の補間の方法}
             台有界な離散時間信号 $\xd:\integers\to\complexNumbers$ の DTFT を $\Xd:\realNumbers\to\complexNumbers$ とする。
             但し引数は正規化角周波数である。
             連続時間信号 $\hat{x}:\realNumbers\to\realNumbers$ を次式で定義する。
@@ -55,3 +56,5 @@
             Git リポジトリ内でファイル名検索すれば発見できるであろう。
             notebook 中では前記 $N$ が \inlineCode{N_tp} となっている。\newline
             \href{\currfiledir/calc/Interpolation_with_DTFT_and_IDTFT/Interpolation_with_DTFT_and_IDTFT.nb}{Interpolation\_with\_DTFT\_and\_IDTFT.nb}\newline
+        % \subsection{等間隔補間信号の周波数スペクトラム}
+        %     \ref{DTFT と IDTFT を用いた有限長信号の補間の方法} で

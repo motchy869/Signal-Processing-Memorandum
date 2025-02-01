@@ -1,5 +1,5 @@
 \chapter{オーバー・サンプリング}
-    \section{オーバー・サンプリングされた信号の周波数特性}
+    \section{オーバー・サンプリングされた信号の周波数スペクトラム}
         \newcommand{\xda}{x_{\text{d},1}}
         \newcommand{\Xda}{X_{\text{d},1}}
         \newcommand{\xdb}{x_{\text{d},2}}
@@ -77,7 +77,7 @@
                 \begin{proof}
                     \quad\par
                     \[ X_2(\omega) = \FT{\sum_{n=-\infty}^\infty \xda(n)u_2(t-n\Ts)}(\omega) = \sum_{n=-\infty}^\infty \xda(n)\FT{u_2(t-n\Ts)}(\omega) \]
-                    ここで\ref{0次ホールドされた離散時間信号の周波数特性}と同様にして次式が成り立つ。
+                    ここで\ref{0次ホールドされた離散時間信号の周波数スペクトラム}と同様にして次式が成り立つ。
                     \[ \FT{u_2(t-n\Ts)}(\omega) = \frac{\Ts}{R\sqrt{2\pi}}\exp\parens*{-i \omega n\Ts}\exp\parens*{-i\frac{\omega\Ts}{2R}}\sinc\frac{\omega\Ts}{2R} \]
                     よって次式が成り立つ。
                     \begin{align*}
@@ -87,7 +87,7 @@
                     \end{align*}
                 \end{proof}
             \subsubsection{考察}
-                オーバー・サンプリング前の信号 $x_1$ については\ref{0次ホールドされた離散時間信号の周波数特性}より、そのFourier変換は次式である。
+                オーバー・サンプリング前の信号 $x_1$ については\ref{0次ホールドされた離散時間信号の周波数スペクトラム}より、そのFourier変換は次式である。
                 \[ X_1(\omega) = \frac{\Ts}{\sqrt{2\pi}}\exp\parens*{-i\frac{\Ts}{2}\omega}\parens*{\sinc \frac{\Ts}{2}\omega}\Xda(\omega) \tag{b} \]
                 式(a),(b)を見比べると $\Xda$ を共通して含んでおり、それ以外の箇所でオーバー・サンプリングにより $\Ts$ が $\Ts/R$ に置き換わっていることがわかる。
                 このことから、オーバー・サンプリングにより高調波の位置は変わらず、広域の減衰や位相回転が緩やかになることがわかる。
