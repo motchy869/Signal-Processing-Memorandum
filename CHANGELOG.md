@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed:
   - Unified interchangeably-used two terms 'frequency characteristic' and 'frequency spectrum' to 'frequency spectrum'.
 - Added:
-  - interpolation with DTFT and IDTFT
+  - interpolation with IDTFT
   - ADC/DAC ENOB expression using SNR
 
 ## [0.14.0] - 2025-01-26

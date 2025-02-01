@@ -1,5 +1,6 @@
 \part{表記法}
 	\chapter{数学記号}
+		\newcommand*{\uBox}{u_\text{box}}
 		\begin{itemize}
 			\item $\field$: 体
 			\item $\integers$: 整数全体の集合
@@ -10,6 +11,7 @@
 			\item $a\%b\;(a,b\in\integers,\;b\neq 0)$: $a$を$b$で割った余り。符号に2通り考えられるが、本書では結果を0以上$|a|$未満とする定義を採用する。
 			\item $\bm{a}\%\bm{b}\;(d\in\naturalNumbers,\;\bm{a},\bm{b} \in \integers^d,\; b_i\neq 0 \text{ for all }i)$: $[a_1\%b_1,\dots,a_d\%b_d]^\top$
 			\item $\bm{x} \leq \bm{y}\;(d\in\naturalNumbers,\;\bm{x},\bm{y} \in \realNumbers^d) :\Leftrightarrow x_i \leq y_i \text{ for all }i$。$\geq, <, >$についても同様。
+			\item $\uBox$: 単位矩形関数。区間 $[-1/2,1/2]$ に属する数を 1 に移し、それ以外の数を 0 に移す。
 		\end{itemize}
 	\chapter{量の次元の扱い}
 		本書では数学との整合性と普遍性を重視して写像の引数は全て無次元量とし、座標や時間も無次元量とする。
