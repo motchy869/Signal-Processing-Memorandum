@@ -76,11 +76,11 @@
                 サンプル周期 $\Ts>0$ の離散時間信号 $\xd:\integers\to\complexNumbers$ を \ref{IDTFT を用いた有限長信号の補間>方法} の方法で等間隔に補間し、サンプル周期 $\Ts/L$ となった離散時間信号を $\yd$ とする。
                 但し $\xd,\;\yd$ 両方のサンプリング時刻が 0 を含むものとする。
                 $\Xd,\;\Yd$ を $\xd,\;\yd$ の DTFT とする。
-                次式が成り立つ。
+                $\omega\in\realNumbers$ について次式が成り立つ。
                 \[ \Yd(\omega) = L\sum_{n=-\infty}^\infty \Xd\parens*{\omega-n\frac{2\pi L}{\Ts}}\uBox\parens*{\frac{\Ts}{2\pi}\parens*{\omega-\frac{2\pi L}{\Ts}n}} \tag{1} \]
                 元のサンプル周期に於ける第 1 Nyquist 領域の外側で $\Xd$ を 0 としたものが、 $\Ts/(2\pi L)$ 周期拡張されている。
                 \par
-                $\Xdn,\;\Ydn$ を $\xd,\;\yd$ の DTFT であって引数が正規化角周波数であるものとする（前者と後者の正規化角周波数はスケールが異なる。それぞれ $\omega\Ts,\;\omega\Ts/L$）。
+                $\Xdn,\;\Ydn$ を $\xd,\;\yd$ の DTFT であって引数が正規化角周波数 $\Omega\in\realNumbers$ であるものとする（前者と後者の正規化角周波数はスケールが異なる。それぞれ $\omega\Ts,\;\omega\Ts/L$）。
                 これを用いて式 (1) を書き直すと次式である。
                 \[ \Ydn(\Omega) = L\sum_{n=-\infty}^\infty \Xdn\parens*{L(\Omega-2\pi n)}\uBox\parens*{\frac{L}{2\pi}\parens*{\Omega-2\pi n}} \tag{2} \]
                 元のサンプル周期に於ける第 1 Nyquist 領域の外側で $\Xdn$ を 0 とした後に角周波数軸方向に $1/L$ 倍に縮めたものが $2\pi$ 周期拡張されている。
@@ -130,6 +130,7 @@
             それに対し以下で述べる方法は DFT と IDFT および元の信号の周期に比例する計算量の操作で実行可能であり、DFT, IDFT は FFT を活用して高速に計算できる。
             ただし信号の周期 $N$ は奇数に限られ、FFT に最も都合の良い 2 の冪乗ではない（参考情報として $N$ が偶数のときに無理矢理適用して失敗した結果を \ref{N が偶数のときに無理矢理適用した結果} に記した）。
         \subsection{方法}
+            \label{IDFT を用いた周期信号の補間>方法}
             \newcommand{\Xtilded}{\tilde{X}_\text{d}}
             $N$ を奇数の自然数とする。$N$ 周期離散時間信号 $\xd:\integers\to\complexNumbers$ の DFT を $\Xd$ とする。
             連続時間信号 $\hat{x}$ を次式で定義する。
@@ -171,6 +172,7 @@
                 \end{align*}
             \end{proof}
         \subsection{数値例}
+            \label{IDFT を用いた周期信号の補間>数値例}
             次式で定義される 2 次元平面上の閉曲線 $C:r(t)\;;t:0\to 1$ を $1/N_\text{pt} \coloneq 1/33$ 間隔で $t=0$ から $(N_\text{pt}-1)/N_\text{pt}$ まで標本化した離散座標周期列を $r_\text{d}:\integers\to\realNumbers^2$ とする。
             \[
                 r: t\in\realNumbers\mapsto\begin{bmatrix}
@@ -209,5 +211,67 @@
             \end{itemize}
         \subsection{N が偶数のときに無理矢理適用した結果}
             \label{N が偶数のときに無理矢理適用した結果}
-            式 \eqref{IDFT を用いた周期信号の補間>公式} に於いて仮に $N$ を偶数とした場合の結果が次の Mathematica notebook に記されている。\newline
+            式 \eqref{IDFT を用いた周期信号の補間>公式} に於いて仮に $N$ を偶数とした場合の結果が次の Mathematica notebook に記されている。
+            大雑把にそれらしい結果が得られているが、補間結果が不自然に波打っている。\newline
             \href{\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=even/interpolation_with_IDFT_N=even.nb}{interpolation\_with\_IDFT\_N=even.nb}
+        \subsection{等間隔補間信号の周波数スペクトラム}
+            \ref{IDFT を用いた周期信号の補間>方法} の方法で等間隔に補間され $L\;(\in\naturalNumbers,L\geq 2)$ 倍の周期を持つ新たな信号の周波数スペクトラムの性質を述べる。
+            $L$ に偶奇の制約はない。
+            \begin{shadebox}
+                $L$ を 2 以上の自然数、$N$ を奇数の自然数とする。
+                周期 $N$ の離散時間信号 $\xd:\integers\to\complexNumbers$ を \ref{IDFT を用いた周期信号の補間>方法} の方法で等間隔に補間し、周期 $LN$ となった離散時間信号を $\yd$ とする。
+                但し $\yd(0) = \xd(0)$ とする。
+                $\Xd,\Yd$ を $\xd,\yd$ の DFT とする。$k\in\integers$ について次式が成り立つ。
+                \[ \Yd(k) = \sqrt{L}\sum_{n=-\infty}^{\infty}X(k-nLN)\uBox\parens*{\frac{k-nLN}{N-1}} \]
+                これは $\Xd$ を $\sqrt{L}$ 倍して台を $\{-(N-1)/2,-(N-1)/2+1,\dots,(N-1)/2\}$ に制限したものを $LN$ 間隔で無限に並べ、隙間に 0 を置いたものと等しい。
+            \end{shadebox}
+            \begin{proof}
+                \quad\par
+                DFT の性質から $\Yd$ が $LN$ 周期関数であることが解る。
+                そこで、まず集合 $I\coloneq\{-\floor{(LN-1)/2},\;-\floor{(LN-1)/2}+1,\;\dots,\;\floor{(LN-1)/2}-1\}$ （$LN$ の偶奇に関係なく適切な集合であることに注意すべし）上で $\Yd$ を評価し、それを $LN$ 周期拡張する。
+                $I$ に於いては次式が成り立つ。
+                \begin{align*}
+                    \Yd(k) &= \frac{1}{\sqrt{LN}}\sum_{n=0}^{LN-1}\yd(n)\exp\parens*{-i\frac{2\pi}{LN}kn} \\
+                    &= \frac{1}{\sqrt{LN}}\sum_{n=0}^{LN-1}\parens*{\frac{1}{\sqrt{N}}\sum_{l=-(N-1)/2}^{(N-1)/2}X(l)\exp\parens*{i\frac{2\pi}{N}l\frac{n}{L}}}\exp\parens*{-i\frac{2\pi}{LN}kn} \\
+                    &= \frac{1}{N\sqrt{L}}\sum_{l=-(N-1)/2}^{(N-1)/2}X(l)\sum_{n=0}^{LN-1}\exp\parens*{i\frac{2\pi}{LN}(l-k)n} = \frac{1}{N\sqrt{L}}\sum_{l=-(N-1)/2}^{(N-1)/2}X(l)LN\delta(l-k) \\
+                    &= \begin{cases}
+                        \sqrt{L}X(k) & (\abs{k}\leq (N-1)/2) \\
+                        0 & (k\in I\land\abs{k}>(N-1)/2)
+                    \end{cases}
+                \end{align*}
+                これを $LN$ 周期拡張すれば定理の主張が従う。
+            \end{proof}
+            \subsubsection{数値例}
+                \ref{IDFT を用いた周期信号の補間>数値例} の $x$ 成分について前述の性質を確認する。
+                次の図はそれぞれ $\xd$ と $\abs{\Xd}$ である。
+                \begin{figure}[H]
+                    \centering
+                    \begin{minipage}{0.49\hsize}
+                        \centering
+                        \includegraphics[keepaspectratio, scale=0.69]
+                        {\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=odd/x_d.pdf}
+                        \caption{$\xd$}
+                    \end{minipage}
+                    \begin{minipage}{0.49\hsize}
+                        \centering
+                        \includegraphics[keepaspectratio, scale=0.69]
+                        {\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=odd/abs_X_d.pdf}
+                        \caption{$\abs{\Xd}$}
+                    \end{minipage}
+                \end{figure}
+                $\xd$ を 4 倍に補間した信号 $\yd$ とその DTFT $\Yd$ の絶対値を次の図に示す。
+                \begin{figure}[H]
+                    \centering
+                    \begin{minipage}{0.49\hsize}
+                        \centering
+                        \includegraphics[keepaspectratio, scale=0.69]
+                        {\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=odd/y_d.pdf}
+                        \caption{$\yd$}
+                    \end{minipage}
+                    \begin{minipage}{0.49\hsize}
+                        \centering
+                        \includegraphics[keepaspectratio, scale=0.69]
+                        {\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=odd/abs_Y_d.pdf}
+                        \caption{$\abs{\Yd}$}
+                    \end{minipage}
+                \end{figure}
