@@ -1,6 +1,6 @@
 # Signal Processing Memorandum
 
-My note for signal processing.
+This is my note for (mainly digital) signal processing.
 I hope this helps someones like students and engineers.
 
 ## How to compile this document
