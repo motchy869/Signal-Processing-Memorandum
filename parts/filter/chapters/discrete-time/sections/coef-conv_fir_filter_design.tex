@@ -52,7 +52,9 @@
                 式 (1) を変更し、次の評価関数を考える。
                 \[ J(\bm{h}) \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\abs{H(\Omega)-\Hideal(\Omega)}^2}{}{\Omega}\tag{4} \]
                 これの最小点 $\vhOpt$ は次式である。
-                \[ \vhOpt[n] = \sum_{k=0}^{N-1}\frac{1}{4\pi^2}\parens*{\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(n-k)}}{}{\Omega}}\parens*{\integrate{-\pi}{\pi}{w(\tilde{\Omega})\Hideal(\tilde{\Omega})\NapierE^{i\tilde{\Omega}k}}{}{\tilde{\Omega}}} \]
+                \[ \vhOpt[n] = A^{-1}\bm{v} \]
+                ここに $A\in\complexNumbers^{N\times N},\;\bm{v}\in\complexNumbers^N$ はそれぞれ次式で定義される。
+                \[ A[l,k] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega},\quad v[n] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\Hideal(\Omega)\NapierE^{i\Omega n}}{}{\Omega} \]
                 とくに $\Hideal$ が Hermite 対称であり（実数値信号の周波数スペクトラム）、かつ $w$ が偶関数であるときは $\vhOpt\in\realNumbers^N$ となる。
             \end{shadebox}
             \begin{proof}
@@ -75,12 +77,12 @@
                 すると $J_2(\bm{h})$ は $\bm{h}$ の狭義凸 2 次形式であり、最小点が存在する。
                 それは $\bm{h}$ が微小量 $\Delta\bm{h}$ 変化するときの $J_2$ の増分 $\Delta J_2(\bm{h})$ が 0 となる $\bm{h}$ である。
                 \[ \Delta J_2(\bm{h}) = \bm{h}^*A\Delta\bm{h} + \Delta\bm{h}^*A\bm{h} - 2\Re{\bm{v}^*\Delta\bm{h}} + \underset{\norm{\Delta\bm{h}}_2\to 0}{o}(\norm{\Delta\bm{h}}_2) = 2\Re{(\bm{h}^*A-\bm{v}^*)\Delta\bm{h}} \]
-                $\Delta J_2(\bm{h}) = 0\iff\bm{h} = A\bm{v}$ であるから主張が従う。
+                $\Delta J_2(\bm{h}) = 0\iff\bm{h} = A^{-1}\bm{v}$ であるから主張が従う。
                 \newline
                 \par\noindent
                 （$\Hideal$ が Hermite 対称であり（実数値信号の周波数スペクトラム）、かつ $w$ が偶関数であるときは $\vhOpt\in\realNumbers^N$ となること）
                 \par
-                重みが一様である場合 (\cref{誤差の重みが一様である場合}) の導出と同じ要領で $A\in\realNumbers^{N\times N},\;\bm{v}\in\realNumbers^N$ であることが容易に示せて $\vhOpt=A\bm{v}\in\realNumbers^N$ である。
+                重みが一様である場合 (\cref{誤差の重みが一様である場合}) の導出と同じ要領で $A\in\realNumbers^{N\times N},\;\bm{v}\in\realNumbers^N$ であることが容易に示せて $\vhOpt=A^{-1}\bm{v}\in\realNumbers^N$ である。
             \end{proof}
     \subsection{DTFT の誤差の実部と虚部の∞ノルム最小化}
         \newcommand{\Ntp}{N_{\text{tp}}}
