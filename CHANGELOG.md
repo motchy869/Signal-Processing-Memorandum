@@ -9,7 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed:
   - trivial grammatical errors
-  - calculation error in 'FIR filter coefficients design' > 'minimizing DTFT (weighted) square error integral'
+  - 'FIR filter coefficients design'
+    - calculation error in 'minimizing DTFT (weighted) square error integral'
+    - missing negative time consideration
 - Changed:
   - Unified interchangeably-used two terms 'frequency characteristic' and 'frequency spectrum' to 'frequency spectrum'.
 - Added:

@@ -6,7 +6,9 @@
 			\item $\integers$: 整数全体の集合
 			\item $\realNumbers$: 実数全体の集合
 			\item $\complexNumbers$: 複素数全体の集合
-			\item $\bm{x}[i]$：ベクトル $\bm{x}$ の第 $i$ 成分
+			\item $\bm{x}[i]$：ベクトル $\bm{x}$ の第 $i$ 成分。本書では成分の番号は 0 または 1 から始める。どちらとするかは文脈に依る。\\
+			注意：例えば $\bm{x} = [x_{-2},x_{-1},\dots,x_2]^\top\in\realNumbers^5$ であるとき、$\bm{x}[0]$ は $x_{-2}$ を指す（$x_0$ ではない）。
+			\item $A[i,j]$：行列 $A$ の第 $'i,j)$ 成分。本書では成分の番号は 0 または 1 から始める。どちらとするかは文脈に依る。
 			\item $\bm{a} \HadamardDiv \bm{b}\;(d \in \naturalNumbers,\;\bm{a},\bm{b} \in \field^d,\;b_i\neq 0 \text{ for all }i)$: $[a_1/b_1,\dots,a_d/b_d]^\top$
 			\item $a\%b\;(a,b\in\integers,\;b\neq 0)$: $a$を$b$で割った余り。符号に2通り考えられるが、本書では結果を0以上$|a|$未満とする定義を採用する。
 			\item $\bm{a}\%\bm{b}\;(d\in\naturalNumbers,\;\bm{a},\bm{b} \in \integers^d,\; b_i\neq 0 \text{ for all }i)$: $[a_1\%b_1,\dots,a_d\%b_d]^\top$

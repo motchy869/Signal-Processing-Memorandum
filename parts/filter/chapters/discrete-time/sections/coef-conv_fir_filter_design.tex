@@ -10,15 +10,18 @@
         この方法で作られたフィルタの振幅周波数スペクトラムにはリップルが生じる可能性がある（激しさは所望の周波数スペクトラムの不連続性の強さに依る）。
         その際の緩和策として \cite{learn_sp_from_basic} 「8.3.2 窓関数を用いた設計法」が適用できると期待される。
         \subsubsection{誤差の重みが一様である場合}
+            \newcommand{\Nm}{{N_\text{m}}}
+            \newcommand{\Np}{{N_\text{p}}}
             \label{誤差の重みが一様である場合}
             ここでは全ての周波数に於いて誤差の重みを 1 としたときの最適係数を導く。
             \begin{shadebox}
-                $N\in\naturalNumbers$ 個の複素数 $h_0,h_1,\dots,h_{N-1}$ を係数とする FIR フィルタの周波数スペクトラム（フィルタ係数列の DTFT）を $H:\realNumbers\to\complexNumbers$ と記し、所望の周波数スペクトラムを $\Hideal:\realNumbers\to\complexNumbers$ と記す。
+                $\Nm,\Np\in\naturalNumbers\cup\{0\}$ とする。
+                $N\coloneq\Nm+\Np+1$ 個の複素数 $h_{-\Nm},h_{-\Nm+1},\dots,h_{\Np-1},h_\Np$ を係数とする FIR フィルタの周波数スペクトラム（フィルタ係数列の DTFT）を $H:\realNumbers\to\complexNumbers$ と記し、所望の周波数スペクトラムを $\Hideal:\realNumbers\to\complexNumbers$ と記す。
                 但し $H$ と $\Hideal$ の引数はサンプル周波数について正規化された角周波数である（$\pi/2$ が Nyquist 周波数に対応する）。
-                $\bm{h} \coloneq [h_0,h_1,\dots,h_{N-1}]^\top$ として次式で定義される $H$ と $\Hideal$ の誤差 2 乗積分の評価関数
+                $\bm{h} \coloneq [h_{-\Nm},h_{-\Nm+1},\dots,h_{\Np-1},h_\Np]^\top$ として次式で定義される $H$ と $\Hideal$ の誤差 2 乗積分の評価関数
                 \[ J(\bm{h}) \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{H(\Omega)-\Hideal(\Omega)}^2}{}{\Omega} \tag{1} \]
-                の最小点 $\vhOpt$ は次式である。
-                \[ \vhOpt[k] = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}\;(k=0,1,\dots,N-1) = \IDTFT{\Hideal}(k) \]
+                の最小点 $\vhOpt$ の第 $n\in\naturalNumbers\cup\{0\}$ 要素は次式である。
+                \[ \vhOpt[n] = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega} = \IDTFT{\Hideal}(n-\Nm) \]
                 とくに $\Hideal$ が Hermite 対称であるとき（実数値信号の周波数スペクトラム）は $\vhOpt\in\realNumbers^N$ となる。
             \end{shadebox}
             \begin{proof}
@@ -26,12 +29,12 @@
                 （最小点の導出）
                 \begin{align*}
                     J(\bm{h}) &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{H(\Omega)-\Hideal(\Omega)}\parens*{\conj{H(\Omega)-\Hideal(\Omega)}}}{}{\Omega} \\
-                    &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{\sum_{k=0}^{N-1} h_k\NapierE^{-i\Omega k} -\Hideal(\Omega)}\parens*{\sum_{l=0}^{N-1} \conj{h_l}\NapierE^{i\Omega l} -\conj{\Hideal(\Omega)}}}{}{\Omega} \\
-                    &= \frac{1}{2\pi}\sum_{k=0}^{N-1}\sum_{l=0}^{N-1} h_k\conj{h_l}\integrate{-\pi}{\pi}{\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}\sum_{k=0}^{N-1} h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega} \\
-                    &\phantom{=}- \frac{1}{2\pi}\sum_{l=0}^{N-1} \conj{h_l}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega l}}{}{\Omega} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \\
-                    &= \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\sum_{k=0}^{N-1} h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \tag{2}
+                    &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{\sum_{k=-\Nm}^\Np h_k\NapierE^{-i\Omega k} -\Hideal(\Omega)}\parens*{\sum_{l=-\Nm}^\Np \conj{h_l}\NapierE^{i\Omega l} -\conj{\Hideal(\Omega)}}}{}{\Omega} \\
+                    &= \frac{1}{2\pi}\sum_{k=-\Nm}^\Np\sum_{l=-\Nm}^\Np h_k\conj{h_l}\integrate{-\pi}{\pi}{\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega} \\
+                    &\phantom{=}- \frac{1}{2\pi}\sum_{l=-\Nm}^\Np \conj{h_l}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega l}}{}{\Omega} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \\
+                    &= \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \tag{2}
                 \end{align*}
-                ここで $v_k\;(k=0,1,\dots,N-1)$ を次式で定義し、$\bm{v}\coloneq[v_0,v_1,\dots,v_{N-1}]^\top$ とする。
+                ここで $v_k\;(k=-\Nm,\;-\Nm+1,\;\dots,\;\Np)$ を次式で定義し、$\bm{v}\coloneq[v_{-\Nm},\;v_{-\Nm+1},\;\dots,\;v_\Np]^\top$ とする。
                 \[ v_n \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega n}}{}{\Omega} \]
                 式 (2) の第 3 項は $\bm{h}$ に依存しないので無視し、第 2 項までを取り出して次の評価関数を得る。
                 \[ J_2(\bm{h}) \coloneq \norm{\bm{h}}_2^2 - 2\Re{\bm{v}^*\bm{h}} = \norm{\bm{h} - \bm{v}}_2^2 - \norm{\bm{v}}_2^2 \]
@@ -39,12 +42,16 @@
                 \newline
                 \par\noindent
                 （$\Hideal$ が Hermite 対称であるときは $\vhOpt\in\realNumbers^N$ となること）
-                \[ \vhOpt[k] = \frac{1}{2\pi}\bracks*{\underbrace{\integrate{-\pi}{0}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}}_{(3)} + \integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}} \]
+                \[ \vhOpt[n] = \frac{1}{2\pi}\bracks*{\underbrace{\integrate{-\pi}{0}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}}_{(3)} + \integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}} \]
                 式 (3) に変数変換を施すと次式を得る。
-                \[ (3) = \integrate{0}{\pi}{\Hideal(-\Omega)\NapierE^{-i\Omega k}}{}{\Omega} = \conj{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}} \]
+                \[ (3) = \integrate{0}{\pi}{\Hideal(-\Omega)\NapierE^{-i\Omega (n-\Nm)}}{}{\Omega} = \conj{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}} \]
                 よって次式を得る。
-                \[ \vhOpt[k] = \frac{1}{\pi}\Re{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}}\in\realNumbers \]
+                \[ \vhOpt[n] = \frac{1}{\pi}\Re{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}}\in\realNumbers \]
             \end{proof}
+            \paragraph{因果的フィルタとして実現する方法}
+                $\Nm>0$ のときは前記のフィルタ係数の添え字に負数が含まれ、因果的フィルタとして実現できない。
+                最小の添え字が 0 になるように時間的にシフトする必要がある。
+                フィルタの応答が時間的に遅れる（周波数領域に於いては遅れに比例した角周波数の複素指数関数が乗じられる）が、無線通信等の大抵の用途では問題にならない。
         \subsubsection{誤差の重みが一様ではない場合}
             ここでは、誤差の重みが周波数に依存する場合の最適係数を導く。
             \begin{shadebox}
@@ -52,9 +59,9 @@
                 式 (1) を変更し、次の評価関数を考える。
                 \[ J(\bm{h}) \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\abs{H(\Omega)-\Hideal(\Omega)}^2}{}{\Omega}\tag{4} \]
                 これの最小点 $\vhOpt$ は次式である。
-                \[ \vhOpt[n] = A^{-1}\bm{v} \]
+                \[ \vhOpt = A^{-1}\bm{v} \]
                 ここに $A\in\complexNumbers^{N\times N},\;\bm{v}\in\complexNumbers^N$ はそれぞれ次式で定義される。
-                \[ A[l,k] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega},\quad v[n] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\Hideal(\Omega)\NapierE^{i\Omega n}}{}{\Omega} \]
+                \[ A[m,n] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(m-n)}}{}{\Omega},\quad v[m] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\Hideal(\Omega)\NapierE^{i\Omega (m-\Nm)}}{}{\Omega} \]
                 とくに $\Hideal$ が Hermite 対称であり（実数値信号の周波数スペクトラム）、かつ $w$ が偶関数であるときは $\vhOpt\in\realNumbers^N$ となる。
             \end{shadebox}
             \begin{proof}
@@ -64,12 +71,12 @@
                 式 (1) と同じ要領で式変形を行うと次式を得る。
                 \begin{align*}
                     J(\bm{h}) &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\parens{H(\Omega)-\Hideal(\Omega)}\parens{\conj{H(\Omega)-\Hideal(\Omega)}}}{}{\Omega} \\
-                    &= \frac{1}{2\pi}\sum_{l=0}^{N-1}\sum_{k=0}^{N-1}h_k\conj{h_l}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}2\Re{\sum_{k=0}^{N-1}h_k\integrate{-\pi}{\pi}{w(\Omega)\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} \\
+                    &= \frac{1}{2\pi}\sum_{k=-\Nm}^\Np\sum_{l=-\Nm}^\Np h_k\conj{h_l}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}2\Re{\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{w(\Omega)\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} \\
                     &\phantom{=} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\abs{\Hideal(\Omega)}^2}{}{\Omega}\tag{5}
                 \end{align*}
                 $N\times N$ Hermite 対称行列 $A$ を、第 $(l,k)$ 要素が次式で定義されるものとする。
-                \[ A[l,k] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega} \]
-                また $v_n\;(n=0,1,\dots,N-1)$ を次式で定義し、$\bm{v}\coloneq[v_0,v_1,\dots,v_{N-1}]^\top$ とする。
+                \[ A[l,k] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega((l-\Nm)-(k-\Nm))}}{}{\Omega} = \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega} \]
+                また $v_n\;(n=-\Nm,\;-\Nm+1,\;\dots,\;\Np)$ を次式で定義し、$\bm{v}\coloneq[v_{-\Nm},\;v_{-\Nm+1},\;\dots,\;v_\Np]^\top$ とする。
                 \[ v_n \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\Hideal(\Omega)\NapierE^{i\Omega n}}{}{\Omega} \]
                 上記を式 (5) に適用し、$\bm{h}$ に依存しない項を無視すると次の評価関数を得る。
                 \[ J_2(\bm{h}) \coloneq \bm{h}^*A\bm{h} - 2\Re{\bm{v}^*\bm{h}} \]

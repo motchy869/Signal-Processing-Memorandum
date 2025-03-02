@@ -74,13 +74,13 @@
 
 \renewcommand*\thepart{\arabic{part}} % arabic numbers for part
 
-% Add part number to the beginning of section, subsection, and subsubsection numbers.
+% Adds part number to the beginning of section, subsection, and subsubsection numbers.
 \counterwithin{chapter}{part}\renewcommand{\thechapter}{\thepart.\arabic{chapter}}
 \counterwithin{section}{chapter}\renewcommand{\thesection}{\thechapter.\arabic{section}}
 \counterwithin{subsection}{section}\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \counterwithin{subsubsection}{subsection}\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 
-% Store current level number and title (later used in header).
+% Stores current level number and title (later used in header).
 \newcommand\currLevelNo{} % up to chapter
 \newcommand\currLevelTitle{NOT YET SET}
 \makeatletter
@@ -94,7 +94,7 @@
 \renewcommand{\chapter}{\@ifstar\uncountedChapter\countedChapter}
 \makeatother
 
-% Reset equation and figure numbers at the beginning of each section. The number is displayed as "part.chapter.section.section-internal serial number".
+% Resets equation and figure numbers at the beginning of each section. The number is displayed as "part.chapter.section.section-internal serial number".
 \counterwithin{equation}{section}
 \counterwithin{figure}{section}
 
@@ -140,17 +140,21 @@
 	\cfoot{\thepage}
 	\rfoot{}
 
-% Avoid overlap of number and text in table of contents
+% Avoids overlap of number and text in table of contents.
 \setlength{\cftchapnumwidth}{4em}
 \setlength{\cftsecnumwidth}{3.0em}
 \setlength{\cftsubsecnumwidth}{3.5em}
 \setlength{\cftsubsubsecnumwidth}{4.0em}
 \setlength{\cftparanumwidth}{4.5em}
 
-% Place dots between chapter titles and page numbers in table of contents.
+% Places dots between chapter titles and page numbers in table of contents.
 % see: [LaTeXにおいて体裁を整えるのに便利なパッケージ](https://qiita.com/shohirose/items/52f778ebd21f8e5f5c0e)
 \renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
 \renewcommand{\cftchapdotsep}{\cftdotsep}
+
+% Starts paragraph contents on a new line.
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}\\}
 
 % theorem styles
 \theoremstyle{definition} % non-italic font for definition
