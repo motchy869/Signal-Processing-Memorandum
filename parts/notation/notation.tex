@@ -1,15 +1,19 @@
 \part{表記法}
 	\chapter{数学記号}
+		\newcommand*{\uBox}{u_\text{box}}
 		\begin{itemize}
 			\item $\field$: 体
 			\item $\integers$: 整数全体の集合
 			\item $\realNumbers$: 実数全体の集合
 			\item $\complexNumbers$: 複素数全体の集合
-			\item $\bm{x}[i]$：ベクトル $\bm{x}$ の第 $i$ 成分
+			\item $\bm{x}[i]$：ベクトル $\bm{x}$ の第 $i$ 成分。本書では成分の番号は 0 または 1 から始める。どちらとするかは文脈に依る。\\
+			注意：例えば $\bm{x} = [x_{-2},x_{-1},\dots,x_2]^\top\in\realNumbers^5$ であるとき、$\bm{x}[0]$ は $x_{-2}$ を指す（$x_0$ ではない）。
+			\item $A[i,j]$：行列 $A$ の第 $'i,j)$ 成分。本書では成分の番号は 0 または 1 から始める。どちらとするかは文脈に依る。
 			\item $\bm{a} \HadamardDiv \bm{b}\;(d \in \naturalNumbers,\;\bm{a},\bm{b} \in \field^d,\;b_i\neq 0 \text{ for all }i)$: $[a_1/b_1,\dots,a_d/b_d]^\top$
 			\item $a\%b\;(a,b\in\integers,\;b\neq 0)$: $a$を$b$で割った余り。符号に2通り考えられるが、本書では結果を0以上$|a|$未満とする定義を採用する。
 			\item $\bm{a}\%\bm{b}\;(d\in\naturalNumbers,\;\bm{a},\bm{b} \in \integers^d,\; b_i\neq 0 \text{ for all }i)$: $[a_1\%b_1,\dots,a_d\%b_d]^\top$
 			\item $\bm{x} \leq \bm{y}\;(d\in\naturalNumbers,\;\bm{x},\bm{y} \in \realNumbers^d) :\Leftrightarrow x_i \leq y_i \text{ for all }i$。$\geq, <, >$についても同様。
+			\item $\uBox$: 単位矩形関数。区間 $[-1/2,1/2]$ に属する数を 1 に移し、それ以外の数を 0 に移す。
 		\end{itemize}
 	\chapter{量の次元の扱い}
 		本書では数学との整合性と普遍性を重視して写像の引数は全て無次元量とし、座標や時間も無次元量とする。
@@ -19,9 +23,9 @@
 		例えば何らかの開発プロジェクトに於いては、記号に次元を含めておく方が説明が簡便になるし、次元解析にも役立つ。
 		量の次元と数学との整合性を保つ現実的な方針は次のようであろう。
 		\begin{itemize}
-			\item 物理量を表す記号には必ず次元の量を含める
+			\item 物理量を表す記号には必ず量の次元を含める
 			\item 写像の引数は必ず無次元量とする
-			\item 量の次元をもつ量を写像の引数の位置に‘書く’ときは、その量を計量単位の倍数で表したときの係数を引数と‘する’ものと約束する。
+			\item 量の次元をもつ量を写像の引数の位置に‘書く’ときは、その量を計量単位で除した数を引数と‘する’ものと約束する。
 		\end{itemize}
 	\chapter{連続座標信号の表現}
 		連続的な座標値$\bm{x}\in\realNumbers^{d_1}\;(d_1\in\naturalNumbers)$から$\realNumbers^{d_2}\;(d_2\in\naturalNumbers)$への写像を$d_1$次元連続座標信号という。

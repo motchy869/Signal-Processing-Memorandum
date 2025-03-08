@@ -2,36 +2,39 @@
     \subsection{DTFT の誤差 2 乗積分最小化}
         \newcommand{\Hideal}{H_\text{ideal}}
         \newcommand{\vhOpt}{\bm{h}_\text{opt}}
-        ここではフィルタ係数が複素数であり、個数が指定された条件下で、所望の周波数特性に対して DTFT の誤差の重み付き 2 乗積分が最小になるように係数を決定する方法を記す。
+        ここではフィルタ係数が複素数であり、個数が指定された条件下で、所望の周波数スペクトラムに対して DTFT の誤差の重み付き 2 乗積分が最小になるように係数を決定する方法を記す。
         \par
         この方法は係数の個数について偶奇を区別せず、係数の添え字に関する対称性も指定していないため、線形位相特性は保証されない（意図的に線形位相特性を狙う方法については \cite{learn_sp_from_basic} 「8.3.1 線形位相 FIR フィルタの設計法」に詳細がある）。
-        周波数特性の補正のための逆特性フィルタの設計のように、所望のフィルタの周波数特性が必ずしも線形位相特性を持たない場面を想定している。
+        周波数スペクトラムの補正のための逆特性フィルタの設計のように、所望のフィルタの周波数スペクトラムが必ずしも線形位相特性を持たない場面を想定している。
         \par
-        この方法で作られたフィルタの振幅周波数特性にはリップルが生じる可能性がある（激しさは所望の周波数特性の不連続性の強さに依る）。
+        この方法で作られたフィルタの振幅周波数スペクトラムにはリップルが生じる可能性がある（激しさは所望の周波数スペクトラムの不連続性の強さに依る）。
         その際の緩和策として \cite{learn_sp_from_basic} 「8.3.2 窓関数を用いた設計法」が適用できると期待される。
         \subsubsection{誤差の重みが一様である場合}
+            \newcommand{\Nm}{{N_\text{m}}}
+            \newcommand{\Np}{{N_\text{p}}}
             \label{誤差の重みが一様である場合}
             ここでは全ての周波数に於いて誤差の重みを 1 としたときの最適係数を導く。
             \begin{shadebox}
-                $N\in\naturalNumbers$ 個の複素数 $h_0,h_1,\dots,h_{N-1}$ を係数とする FIR フィルタの周波数特性（フィルタ係数列の DTFT）を $H:\realNumbers\to\complexNumbers$ と記し、所望の周波数特性を $\Hideal:\realNumbers\to\complexNumbers$ と記す。
+                $\Nm,\Np\in\naturalNumbers\cup\{0\}$ とする。
+                $N\coloneq\Nm+\Np+1$ 個の複素数 $h_{-\Nm},h_{-\Nm+1},\dots,h_{\Np-1},h_\Np$ を係数とする FIR フィルタの周波数スペクトラム（フィルタ係数列の DTFT）を $H:\realNumbers\to\complexNumbers$ と記し、所望の周波数スペクトラムを $\Hideal:\realNumbers\to\complexNumbers$ と記す。
                 但し $H$ と $\Hideal$ の引数はサンプル周波数について正規化された角周波数である（$\pi/2$ が Nyquist 周波数に対応する）。
-                $\bm{h} \coloneq [h_0,h_1,\dots,h_{N-1}]^\top$ として次式で定義される $H$ と $\Hideal$ の誤差 2 乗積分の評価関数
+                $\bm{h} \coloneq [h_{-\Nm},h_{-\Nm+1},\dots,h_{\Np-1},h_\Np]^\top$ として次式で定義される $H$ と $\Hideal$ の誤差 2 乗積分の評価関数
                 \[ J(\bm{h}) \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{H(\Omega)-\Hideal(\Omega)}^2}{}{\Omega} \tag{1} \]
-                の最小点 $\vhOpt$ は次式である。
-                \[ \vhOpt[k] = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}\;(k=0,1,\dots,N-1) = \IDTFT{\Hideal}(k) \]
-                とくに $\Hideal$ が Hermite 対称であるとき（実数値信号の周波数特性）は $\vhOpt\in\realNumbers^N$ となる。
+                の最小点 $\vhOpt$ の第 $n\in\naturalNumbers\cup\{0\}$ 要素は次式である。
+                \[ \vhOpt[n] = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega} = \IDTFT{\Hideal}(n-\Nm) \]
+                とくに $\Hideal$ が Hermite 対称であるとき（実数値信号の周波数スペクトラム）は $\vhOpt\in\realNumbers^N$ となる。
             \end{shadebox}
             \begin{proof}
                 \quad\par\noindent
                 （最小点の導出）
                 \begin{align*}
                     J(\bm{h}) &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{H(\Omega)-\Hideal(\Omega)}\parens*{\conj{H(\Omega)-\Hideal(\Omega)}}}{}{\Omega} \\
-                    &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{\sum_{k=0}^{N-1} h_k\NapierE^{-i\Omega k} -\Hideal(\Omega)}\parens*{\sum_{l=0}^{N-1} \conj{h_l}\NapierE^{i\Omega l} -\conj{\Hideal(\Omega)}}}{}{\Omega} \\
-                    &= \frac{1}{2\pi}\sum_{k=0}^{N-1}\sum_{l=0}^{N-1} h_k\conj{h_l}\integrate{-\pi}{\pi}{\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}\sum_{k=0}^{N-1} h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega} \\
-                    &\phantom{=}- \frac{1}{2\pi}\sum_{l=0}^{N-1} \conj{h_l}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega l}}{}{\Omega} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \\
-                    &= \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\sum_{k=0}^{N-1} h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \tag{2}
+                    &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{\sum_{k=-\Nm}^\Np h_k\NapierE^{-i\Omega k} -\Hideal(\Omega)}\parens*{\sum_{l=-\Nm}^\Np \conj{h_l}\NapierE^{i\Omega l} -\conj{\Hideal(\Omega)}}}{}{\Omega} \\
+                    &= \frac{1}{2\pi}\sum_{k=-\Nm}^\Np\sum_{l=-\Nm}^\Np h_k\conj{h_l}\integrate{-\pi}{\pi}{\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega} \\
+                    &\phantom{=}- \frac{1}{2\pi}\sum_{l=-\Nm}^\Np \conj{h_l}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega l}}{}{\Omega} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \\
+                    &= \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \tag{2}
                 \end{align*}
-                ここで $v_k\;(k=0,1,\dots,N-1)$ を次式で定義し、$\bm{v}\coloneq[v_0,v_1,\dots,v_{N-1}]^\top$ とする。
+                ここで $v_k\;(k=-\Nm,\;-\Nm+1,\;\dots,\;\Np)$ を次式で定義し、$\bm{v}\coloneq[v_{-\Nm},\;v_{-\Nm+1},\;\dots,\;v_\Np]^\top$ とする。
                 \[ v_n \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega n}}{}{\Omega} \]
                 式 (2) の第 3 項は $\bm{h}$ に依存しないので無視し、第 2 項までを取り出して次の評価関数を得る。
                 \[ J_2(\bm{h}) \coloneq \norm{\bm{h}}_2^2 - 2\Re{\bm{v}^*\bm{h}} = \norm{\bm{h} - \bm{v}}_2^2 - \norm{\bm{v}}_2^2 \]
@@ -39,12 +42,16 @@
                 \newline
                 \par\noindent
                 （$\Hideal$ が Hermite 対称であるときは $\vhOpt\in\realNumbers^N$ となること）
-                \[ \vhOpt[k] = \frac{1}{2\pi}\bracks*{\underbrace{\integrate{-\pi}{0}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}}_{(3)} + \integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}} \]
+                \[ \vhOpt[n] = \frac{1}{2\pi}\bracks*{\underbrace{\integrate{-\pi}{0}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}}_{(3)} + \integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}} \]
                 式 (3) に変数変換を施すと次式を得る。
-                \[ (3) = \integrate{0}{\pi}{\Hideal(-\Omega)\NapierE^{-i\Omega k}}{}{\Omega} = \conj{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}} \]
+                \[ (3) = \integrate{0}{\pi}{\Hideal(-\Omega)\NapierE^{-i\Omega (n-\Nm)}}{}{\Omega} = \conj{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}} \]
                 よって次式を得る。
-                \[ \vhOpt[k] = \frac{1}{\pi}\Re{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega k}}{}{\Omega}}\in\realNumbers \]
+                \[ \vhOpt[n] = \frac{1}{\pi}\Re{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}}\in\realNumbers \]
             \end{proof}
+            \paragraph{因果的フィルタとして実現する方法}
+                $\Nm>0$ のときは前記のフィルタ係数の添え字に負数が含まれ、因果的フィルタとして実現できない。
+                最小の添え字が 0 になるように時間的にシフトする必要がある。
+                フィルタの応答が時間的に遅れる（周波数領域に於いては遅れに比例した角周波数の複素指数関数が乗じられる）が、無線通信等の大抵の用途では問題にならない。
         \subsubsection{誤差の重みが一様ではない場合}
             ここでは、誤差の重みが周波数に依存する場合の最適係数を導く。
             \begin{shadebox}
@@ -52,8 +59,10 @@
                 式 (1) を変更し、次の評価関数を考える。
                 \[ J(\bm{h}) \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\abs{H(\Omega)-\Hideal(\Omega)}^2}{}{\Omega}\tag{4} \]
                 これの最小点 $\vhOpt$ は次式である。
-                \[ \vhOpt[n] = \sum_{k=0}^{N-1}\frac{1}{4\pi^2}\parens*{\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(n-k)}}{}{\Omega}}\parens*{\integrate{-\pi}{\pi}{w(\tilde{\Omega})\Hideal(\tilde{\Omega})\NapierE^{i\tilde{\Omega}k}}{}{\tilde{\Omega}}} \]
-                とくに $\Hideal$ が Hermite 対称であり（実数値信号の周波数特性）、かつ $w$ が偶関数であるときは $\vhOpt\in\realNumbers^N$ となる。
+                \[ \vhOpt = A^{-1}\bm{v} \]
+                ここに $A\in\complexNumbers^{N\times N},\;\bm{v}\in\complexNumbers^N$ はそれぞれ次式で定義される。
+                \[ A[m,n] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(m-n)}}{}{\Omega},\quad v[m] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\Hideal(\Omega)\NapierE^{i\Omega (m-\Nm)}}{}{\Omega} \]
+                とくに $\Hideal$ が Hermite 対称であり（実数値信号の周波数スペクトラム）、かつ $w$ が偶関数であるときは $\vhOpt\in\realNumbers^N$ となる。
             \end{shadebox}
             \begin{proof}
                 \quad\par\noindent
@@ -62,12 +71,12 @@
                 式 (1) と同じ要領で式変形を行うと次式を得る。
                 \begin{align*}
                     J(\bm{h}) &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\parens{H(\Omega)-\Hideal(\Omega)}\parens{\conj{H(\Omega)-\Hideal(\Omega)}}}{}{\Omega} \\
-                    &= \frac{1}{2\pi}\sum_{l=0}^{N-1}\sum_{k=0}^{N-1}h_k\conj{h_l}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}2\Re{\sum_{k=0}^{N-1}h_k\integrate{-\pi}{\pi}{w(\Omega)\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} \\
+                    &= \frac{1}{2\pi}\sum_{k=-\Nm}^\Np\sum_{l=-\Nm}^\Np h_k\conj{h_l}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}2\Re{\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{w(\Omega)\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} \\
                     &\phantom{=} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\abs{\Hideal(\Omega)}^2}{}{\Omega}\tag{5}
                 \end{align*}
                 $N\times N$ Hermite 対称行列 $A$ を、第 $(l,k)$ 要素が次式で定義されるものとする。
-                \[ A[l,k] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega} \]
-                また $v_n\;(n=0,1,\dots,N-1)$ を次式で定義し、$\bm{v}\coloneq[v_0,v_1,\dots,v_{N-1}]^\top$ とする。
+                \[ A[l,k] \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega((l-\Nm)-(k-\Nm))}}{}{\Omega} = \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega} \]
+                また $v_n\;(n=-\Nm,\;-\Nm+1,\;\dots,\;\Np)$ を次式で定義し、$\bm{v}\coloneq[v_{-\Nm},\;v_{-\Nm+1},\;\dots,\;v_\Np]^\top$ とする。
                 \[ v_n \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\Hideal(\Omega)\NapierE^{i\Omega n}}{}{\Omega} \]
                 上記を式 (5) に適用し、$\bm{h}$ に依存しない項を無視すると次の評価関数を得る。
                 \[ J_2(\bm{h}) \coloneq \bm{h}^*A\bm{h} - 2\Re{\bm{v}^*\bm{h}} \]
@@ -75,12 +84,12 @@
                 すると $J_2(\bm{h})$ は $\bm{h}$ の狭義凸 2 次形式であり、最小点が存在する。
                 それは $\bm{h}$ が微小量 $\Delta\bm{h}$ 変化するときの $J_2$ の増分 $\Delta J_2(\bm{h})$ が 0 となる $\bm{h}$ である。
                 \[ \Delta J_2(\bm{h}) = \bm{h}^*A\Delta\bm{h} + \Delta\bm{h}^*A\bm{h} - 2\Re{\bm{v}^*\Delta\bm{h}} + \underset{\norm{\Delta\bm{h}}_2\to 0}{o}(\norm{\Delta\bm{h}}_2) = 2\Re{(\bm{h}^*A-\bm{v}^*)\Delta\bm{h}} \]
-                $\Delta J_2(\bm{h}) = 0\iff\bm{h} = A\bm{v}$ であるから主張が従う。
+                $\Delta J_2(\bm{h}) = 0\iff\bm{h} = A^{-1}\bm{v}$ であるから主張が従う。
                 \newline
                 \par\noindent
-                （$\Hideal$ が Hermite 対称であり（実数値信号の周波数特性）、かつ $w$ が偶関数であるときは $\vhOpt\in\realNumbers^N$ となること）
+                （$\Hideal$ が Hermite 対称であり（実数値信号の周波数スペクトラム）、かつ $w$ が偶関数であるときは $\vhOpt\in\realNumbers^N$ となること）
                 \par
-                重みが一様である場合 (\cref{誤差の重みが一様である場合}) の導出と同じ要領で $A\in\realNumbers^{N\times N},\;\bm{v}\in\realNumbers^N$ であることが容易に示せて $\vhOpt=A\bm{v}\in\realNumbers^N$ である。
+                重みが一様である場合 (\cref{誤差の重みが一様である場合}) の導出と同じ要領で $A\in\realNumbers^{N\times N},\;\bm{v}\in\realNumbers^N$ であることが容易に示せて $\vhOpt=A^{-1}\bm{v}\in\realNumbers^N$ である。
             \end{proof}
     \subsection{DTFT の誤差の実部と虚部の∞ノルム最小化}
         \newcommand{\Ntp}{N_{\text{tp}}}
@@ -124,21 +133,21 @@
         \newcommand{\erOs}{\mathrm{e}_{\text{r,os}}}
         \newcommand{\eiEs}{\mathrm{e}_{\text{i,es}}}
         \newcommand{\eiOs}{\mathrm{e}_{\text{i,os}}}
-        フィルタ係数が複素数であり、個数が指定された条件下で、所望の周波数特性に対して DTFT の誤差の実，虚部それぞれの偶，奇対称成分の $L^\infty$-ノルムが最小になるように係数を決定する方法を記す。
+        フィルタ係数が複素数であり、個数が指定された条件下で、所望の周波数スペクトラムに対して DTFT の誤差の実，虚部それぞれの偶，奇対称成分の $L^\infty$-ノルムが最小になるように係数を決定する方法を記す。
         $H$ が線形位相特性をもち、かつ偶対称か奇対称のいずれかである場合（★ 1）には Remez のアルゴリズムが知られている（例えば \cite{DSP_JL} の \inlineCode{remez} 関数）。
         ここでは $H$ が★ 1 の条件を満たさない場合にも Remez のアルゴリズムを 4 回独立に実行してフィルタ係数を決定する方法を示す。
         また特殊ケースとして、入力信号が実数（従ってフィルタ係数も実数）である場合に Remez のアルゴリズムを 2 回独立に実行してフィルタ係数を決定する方法も示す。
         議論の見通しを良くするため、まず特殊ケースを導き、これを拡張して最終的な結論を導く。
         \subsubsection{前提}
-            以下では周波数特性の補償用フィルタのように、 null を含まない穏やかな特性を持つフィルタを主な関心の対象としている。
+            以下では周波数スペクトラムの補償用フィルタのように、 null を含まない穏やかな特性を持つフィルタを主な関心の対象としている。
             そのため以下ではフィルタ係数の個数 $\Ntp\in\naturalNumbers$ は奇数であるとする。
             そうでない場合も以下で述べる手法がそのまま使える。
         \subsubsection{信号が実数の場合}
             まず信号が実数であり、従ってフィルタ係数も実数である場合について述べる。
             入力信号が実数であるから $\Hid$ は Hermite 対称である。
-            \paragraph{偶，奇対称の係数がもたらす周波数特性}
-                \label{偶，奇対称の係数がもたらす周波数特性}
-                Remez のアルゴリズムの適用を考える準備として、添え字に関して偶対称と奇対称な係数がもたらす周波数特性を見ておく。
+            \paragraph{偶，奇対称の係数がもたらす周波数スペクトラム}
+                \label{偶，奇対称の係数がもたらす周波数スペクトラム}
+                Remez のアルゴリズムの適用を考える準備として、添え字に関して偶対称と奇対称な係数がもたらす周波数スペクトラムを見ておく。
                 いま、$\hes:\integers\to\realNumbers$ と $\hos:\integers\to\realNumbers$ をそれぞれ次式を満たす偶対称と奇対称（「対称」とは、中央の係数を中心にして言う）のフィルタ係数であって、係数列の長さが $\Ntp\in\naturalNumbers$ であるとする。
                 \begin{align*}
                     \hes(m) &= \begin{cases}
@@ -152,7 +161,7 @@
                 \end{align*}
                 （上の条件から $\hos((\Ntp-1)/2) = 0$ である。）
                 \par
-                $\Hes,\;\Hos$ をそれぞれ $\hes,\;\hos$ に対応する周波数特性とする（但し引数は正規化角周波数）と、簡単な計算を経て次式を得る。
+                $\Hes,\;\Hos$ をそれぞれ $\hes,\;\hos$ に対応する周波数スペクトラムとする（但し引数は正規化角周波数）と、簡単な計算を経て次式を得る。
                 \begin{align*}
                     \Hes(\Omega) &= \exp\parens*{-i\frac{\Ntp-1}{2}\Omega}\bracks{\hes\parens*{\frac{\Ntp-1}{2}} + 2\sum_{m=0}^{(\Ntp-1)/2-1}{\hes(m)\cos\Omega\parens*{\frac{\Ntp-1}{2}-m}}} \\
                     \Hos(\Omega) &= 2i\exp\parens*{-i\frac{\Ntp-1}{2}\Omega}\sum_{m=0}^{(\Ntp-1)/2-1}{\hos(m)\sin\Omega\parens*{\frac{\Ntp-1}{2}-m}}
@@ -166,17 +175,17 @@
                 \label{Remez のアルゴリズムによる係数の決定}
                 $\Hid$ の実部と虚部をそれぞれ $\HidR,\;\HidI$ とする。
                 $\Hid$ が Hermite 対称であるから $\HidR$ は偶対称、$i\HidI$ は奇対称である。
-                \ref{偶，奇対称の係数がもたらす周波数特性} の考察に従って $\HidR,\;i\HidI$ をそれぞれ近似する偶対称と奇対称の係数を求めればよいと解る。
+                \ref{偶，奇対称の係数がもたらす周波数スペクトラム} の考察に従って $\HidR,\;i\HidI$ をそれぞれ近似する偶対称と奇対称の係数を求めればよいと解る。
                 \par
-                \cite{DSP_JL} の \inlineCode{remez} 関数は近似対象の周波数特性として偶対称と奇対称の実数値関数の両方を扱える（\inlineCode{neg} オプションで選択）。
+                \cite{DSP_JL} の \inlineCode{remez} 関数は近似対象の周波数スペクトラムとして偶対称と奇対称の実数値関数の両方を扱える（\inlineCode{neg} オプションで選択）。
                 さらにその関数をユーザが定義した関数オブジェクトで指定できる。
-                実装の都合上、奇対称の周波数特性を与えて得られる出力は実数係数であるが、これを DTFT すると、偶対称の周波数特性から得られる出力に比べて位相が $\pi/2$ 進んだ結果になる。
+                実装の都合上、奇対称の周波数スペクトラムを与えて得られる出力は実数係数であるが、これを DTFT すると、偶対称の周波数スペクトラムから得られる出力に比べて位相が $\pi/2$ 進んだ結果になる。
                 つまり \inlineCode{remez} 関数に $\HidI$ を与えて得られる係数の DTFT が近似するのは $\HidI$ ではなく $i\HidI$ である。
                 \par
                 上記の \inlineCode{remez} 関数を使って $\HidR,\;i\HidI$ を近似する係数 $\hesOpt,\;\hosOpt:\integers\to\realNumbers$ が求まる。
                 両者の和 $\hopt \coloneq \hesOpt + \hosOpt$ が所望の係数である。
                 \par
-                $\hesOpt,\;\hosOpt,\;\hopt$ に対応する周波数特性をそれぞれ $\HesOpt,\;\HosOpt,\;\Hopt$ とする（$\HosOpt(\Omega)\in i\realNumbers$ に注意）。
+                $\hesOpt,\;\hosOpt,\;\hopt$ に対応する周波数スペクトラムをそれぞれ $\HesOpt,\;\HosOpt,\;\Hopt$ とする（$\HosOpt(\Omega)\in i\realNumbers$ に注意）。
                 $\hesOpt,\;\hosOpt,\;\hopt$ の近似誤差、即ち次式で表される $L^\infty$-ノルム
                 \begin{align*}
                     \eEs &\coloneq \Verts{\HesOpt - \HidR}_\infty = \max_{\Omega\in[-\pi,\pi]}\abs{\HesOpt(\Omega) - \HidR(\Omega)} \\
@@ -208,9 +217,9 @@
             $\hi$ を偶対称，奇対称な 2 つの成分に分解し、それぞれを $\hiEs,\;\hiOs$ とする。
             天下り的であるが（妥当性は以降の解説で直ぐに解る） Remez のアルゴリズムを使って $\hiEs$ によって $\HidSHi$ を近似して最適値を $\hiEsOpt$ とし、$\hiOs$ によって $-i\HidSHr$ を近似して最適値を $\hiOsOpt$ とする。
             \par
-            $\hrEsOpt,\;\hrOsOpt,\;\hiEsOpt,\;\hiOsOpt$ に対応する周波数特性を $\HrEsOpt,\;\HrOsOpt,\;\HiEsOpt,\;\HiOsOpt$ とする（$\HrOsOpt(\Omega),\;\HiOsOpt(\Omega)\in i\realNumbers$ に注意）。
+            $\hrEsOpt,\;\hrOsOpt,\;\hiEsOpt,\;\hiOsOpt$ に対応する周波数スペクトラムを $\HrEsOpt,\;\HrOsOpt,\;\HiEsOpt,\;\HiOsOpt$ とする（$\HrOsOpt(\Omega),\;\HiOsOpt(\Omega)\in i\realNumbers$ に注意）。
             最終的な最適係数は $\hopt = \hrEsOpt + \hrOsOpt + i(\hiEsOpt + \hiOsOpt)$ である。
-            それに対応する周波数特性 $\Hopt$ は次式である。
+            それに対応する周波数スペクトラム $\Hopt$ は次式である。
             但し因果律を満たすために生じる位相遅れ $\exp\parens*{-i\frac{\Ntp-1}{2}\Omega}$ は無害であるから無視する。
             \begin{align*}
                 \Hopt &= \HrEsOpt + \HrOsOpt + i(\HiEsOpt + \HiOsOpt) = \HrEsOpt + \HrOsOpt + i\HiEsOpt + i\HiOsOpt \\

@@ -1,4 +1,4 @@
-\chapter{サンプリング定理}
+\chapter{標本化定理}
     \begin{shadebox}
         $d\in\naturalNumbers,\;W_l>0\;(l=1,2,,\dots,d),\;\Omega\coloneq\prod_{l=1}^d [-W_l,W_l]$とする。
         $f:\realNumbers^d\to\realNumbers$のFourier変換$\FT{f}(\bm{\omega})$が存在してその台が$\Omega$に含まれるとき、次式が成り立つ。
@@ -22,7 +22,7 @@
         \end{align*}
         $f$は$\FT{f}$のFourier逆変換で次のようにして求まる。
         \begin{align*}
-            f(\bm{x}) &= \mathcal{F}^{-1}\left(\FT{f},\bm{x}\right) = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\FT{f}(\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} = (2\pi)^{-d/2} \integrate{\Omega}{}{\FT{f}(\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} \\
+            f(\bm{x}) &= \mathcal{F}^{-1}(\FT{f})(\bm{x}) = (2\pi)^{-d/2} \integrate{\realNumbers^d}{}{\FT{f}(\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} = (2\pi)^{-d/2} \integrate{\Omega}{}{\FT{f}(\bm{\omega})\exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} \\
             &= (2\pi)^{-d/2} \integrate{\Omega}{}{\sum_{\bm{n}\in\integers^d} c(\FT{f},\bm{n}) \left(\exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi\right) \exp i\bm{\omega}^\top\bm{x}}{}{\bm{\omega}} \\
             &= (2\pi)^{-d/2} \sum_{\bm{n}\in\integers^d} \integrate{\Omega}{}{c(\FT{f},\bm{n}) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}} \\
             &= (2\pi)^{-d/2} \sum_{\bm{n}\in\integers^d} \integrate{\Omega}{}{(2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right) \exp i \bm{\omega}^\top\left(\bm{x} + \pi\bm{n}\HadamardDiv\bm{W}\right) }{}{\bm{\omega}} \\
