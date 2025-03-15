@@ -10,9 +10,9 @@
         この方法で作られたフィルタの振幅周波数スペクトラムにはリップルが生じる可能性がある（激しさは所望の周波数スペクトラムの不連続性の強さに依る）。
         その際の緩和策として \cite{learn_sp_from_basic} 「8.3.2 窓関数を用いた設計法」が適用できると期待される。
         \subsubsection{誤差の重みが一様である場合}
+            \label{誤差の重みが一様である場合}
             \newcommand{\Nm}{{N_\text{m}}}
             \newcommand{\Np}{{N_\text{p}}}
-            \label{誤差の重みが一様である場合}
             ここでは全ての周波数に於いて誤差の重みを 1 としたときの最適係数を導く。
             \begin{shadebox}
                 $\Nm,\Np\in\naturalNumbers\cup\{0\}$ とする。
@@ -52,6 +52,27 @@
                 $\Nm>0$ のときは前記のフィルタ係数の添え字に負数が含まれ、因果的フィルタとして実現できない。
                 最小の添え字が 0 になるように時間的にシフトする必要がある。
                 フィルタの応答が時間的に遅れる（周波数領域に於いては遅れに比例した角周波数の複素指数関数が乗じられる）が、無線通信等の大抵の用途では問題にならない。
+            \paragraph{Note：IDFT による係数設計との違い}
+                \newcommand{\kmin}{{k_\text{min}}}
+                \newcommand{\kmax}{{k_\text{max}}}
+                \newcommand{\HidealNA}{H_\text{ideal,NA}}
+                実用の場面では $\Hideal$ が等間隔の離散的な正規化角周波数についてのみ得られることがある。
+                その場合に $\bm{h}$ の決定によく用いられているのは IDFT である。
+                IDFT による結果と \ref{誤差の重みが一様である場合} の結果が一般には一致しないことを示しておく。
+                \par
+                $\Delta f>0,\;\kmin,\;\kmax\in\integers,\;\kmax>\kmin$ とする。
+                $\Hideal$ の値が $k\Delta f\;k=\kmin,\kmin+1,\dots,\kmax$ に関して得られているとする。
+                $\Hideal$ の Fourier 変換の台が $[-1/(2\Delta f),1/(2\Delta f)]$ に含まれいるものとする。
+                標本化定理から次式が成り立つ。
+                \[ \Hideal(f) = \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\sinc\frac{\pi}{\Delta f}(f-k\Delta f) \]
+                サンプル周波数を $\fsamp$ として $\Hideal$ を正規化角周波数で表したものを $\HidealNA$ とすると次式を得る。
+                \[ \HidealNA(\Omega) = \Hideal(\Omega\fsamp/(2\pi)) \]
+                これに対して \ref{誤差の重みが一様である場合} の方法を適用すると次式が成り立つ。
+                \begin{align*}
+                    \vhOpt[n] &= \IDTFT{\HidealNA}(n-\Nm) = \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\IDTFT{\Omega\mapsto\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(N-\Nm) \\
+                    &= \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\frac{1}{2\pi}\integrate{-\pi}{\pi}{\bracks*{\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(\exp i\Omega n)}{}{\Omega}
+                \end{align*}
+                これは一般には IDFT による結果と一致しない。
         \subsubsection{誤差の重みが一様ではない場合}
             ここでは、誤差の重みが周波数に依存する場合の最適係数を導く。
             \begin{shadebox}
