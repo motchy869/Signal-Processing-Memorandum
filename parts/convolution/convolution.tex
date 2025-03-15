@@ -2,7 +2,7 @@
 	\chapter{畳み込みの微分}
 		\section{関係式}
 			\begin{shadebox}
-				微分可能な複素数値信号 $x_1, x_2:\realNumbers\to\complexNumbers$ に畳み込みが存在するとき、次が成り立つ。
+				微分可能な複素数値信号 $x_1, x_2:\realNumbers\to\complexNumbers$ に畳み込みが存在するとき，次が成り立つ。
 				\[ \derivLong{(x_1*x_2)(t)}{t}{} = {x_1}'*x_2 = x_1*{x_2}' \]
 			\end{shadebox}
 			\begin{proof}
@@ -18,7 +18,7 @@
 		\section{使いどころ}
 			例えばディジタル信号処理で役立つときがある。
 			前記の関係式の離散座標版も同様に成り立つ。
-			(a) 長い入力信号に(b) （それに比べて短い）時間的に変化しない信号（典型的には FIR フィルタの係数）を畳み込むとき、後者の時間微分（典型的には差分で近似）を予め計算しておいて (a) と畳み込めば、微分のオンライン計算が不要になる。
+			(a) 長い入力信号に(b) （それに比べて短い）時間的に変化しない信号（典型的には FIR フィルタの係数）を畳み込むとき，後者の時間微分（典型的には差分で近似）を予め計算しておいて (a) と畳み込めば，微分のオンライン計算が不要になる。
 	\chapter{巡回畳み込み}
 		\label{巡回畳み込み}
 		$\Omega \coloneq \{0,1,\dots,N_1-1\}\times\{0,1,\dots,N_2-1\}\times\cdots\times\{0,1,\dots,N_d-1\}$とする。
@@ -29,7 +29,7 @@
 
 		\section{巡回畳み込みの可換則}
 			\begin{shadebox}
-				$\Omega,f,g$の定義を\ref{巡回畳み込み}と同じものとするとき、次が成り立つ。
+				$\Omega,f,g$の定義を\ref{巡回畳み込み}と同じものとするとき，次が成り立つ。
 				\[ \cycConv{f}{g} = \cycConv{g}{f} \]
 			\end{shadebox}
 			\begin{proof}
@@ -53,10 +53,10 @@
 		\chapter{諸定理}
 			\section{線形変換と畳み込みの順序交換}
 				\subsection{動機}
-					画像処理に於いてカーネルとの畳み込みを実行してから線形変換を施す場合と、事前に画像とカーネルの両方に線形変換を施してから畳み込む場合の結果の違いに関心がある。
+					画像処理に於いてカーネルとの畳み込みを実行してから線形変換を施す場合と，事前に画像とカーネルの両方に線形変換を施してから畳み込む場合の結果の違いに関心がある。
 				\subsection{理論}
-					$d\in\naturalNumbers$とし、$f:\bm{x}\in\realNumbers^d\mapsto f(\bm{x})\in\realNumbers$を$d$次元信号とする。
-					線形変換を表す正則行列を$A$とし、$A$による変換を$T_A$と表す。
+					$d\in\naturalNumbers$とし，$f:\bm{x}\in\realNumbers^d\mapsto f(\bm{x})\in\realNumbers$を$d$次元信号とする。
+					線形変換を表す正則行列を$A$とし，$A$による変換を$T_A$と表す。
 					$T_A$による変換は次式を以て定義する。
 					\[ T_A(f)(\bm{x}) = f(A^{-1}\bm{x}) \]
 					$G:\bm{x}\in\realNumbers^d\mapsto G(\bm{x})\in\realNumbers$を$d$次元信号とする。

@@ -1,12 +1,12 @@
 \chapter{NCO}
     \section{位相の下位ビット切り捨てとスプリアス}
-        数値制御発振器(Numerical Controlled Oscillator, NCO) の Look-up table (LUT) のサイズを減らすために位相の下位ビットを切り捨てて出力した場合、（離散時間信号として）スプリアスを生じる。
-        ここでは簡単のため、周波数が最小（1クロックでの位相の増加が1）の正弦波について考える。
+        数値制御発振器(Numerical Controlled Oscillator, NCO) の Look-up table (LUT) のサイズを減らすために位相の下位ビットを切り捨てて出力した場合，（離散時間信号として）スプリアスを生じる。
+        ここでは簡単のため，周波数が最小（1クロックでの位相の増加が1）の正弦波について考える。
         \subsection{主張}
             \begin{shadebox}
                 $N,W\in\naturalNumbers,\;N>W$とする。
-                位相加算器の語長が $N$ であり、1クロックあたりの位相の増加は1であるとする。
-                位相の下位 $W$ ビットを切り捨てた場合、DFT に於いて周波数が $1 + 2^{N-W}m\;(m\in\integers,\;0<m\geq 2^{W-1})$ のスプリアスが生じる。
+                位相加算器の語長が $N$ であり，1クロックあたりの位相の増加は1であるとする。
+                位相の下位 $W$ ビットを切り捨てた場合，DFT に於いて周波数が $1 + 2^{N-W}m\;(m\in\integers,\;0<m\geq 2^{W-1})$ のスプリアスが生じる。
             \end{shadebox}
         \subsection{導出}
             \begin{proof}
@@ -24,10 +24,10 @@
                     &= \frac{1}{\sqrt{2^N}} \exp\parens*{ik\frac{1-2^W}{2^N}\pi}\frac{\sin\parens*{\frac{k}{2^{N-W}}\pi}}{\sin\parens*{\frac{k}{2^N}\pi}}\exp\parens*{i(k-1)\parens*{\frac{1}{2^{N-W}}-1}\pi}\frac{\sin\parens*{(k-1)\pi}}{\sin\parens*{\frac{k-1}{2^{N-W}}\pi}} %\\
                     %&= \sqrt{2^N} \exp\parens*{ik\frac{1-2^W}{2^N}\pi}\frac{\sinc\parens*{\frac{k}{2^{N-W}}\pi}}{\sinc\parens*{\frac{k}{2^N}\pi}}\exp\parens*{i(k-1)\parens*{\frac{1}{2^{N-W}}-1}\pi}\frac{\sinc\parens*{(k-1)\pi}}{\sinc\parens*{\frac{k-1}{2^{N-W}}\pi}}
                 \end{align*}
-                但し、上式に於いて $\sin/\sin$ の部分で $0/0$ の不定形が生じるような $k$ の値 $k'$ に対しては、値域を一時的に実数に広げて $k\to k'$ の極限を取る。
-                このようにしても等式が成り立つことは、$k'$ に対して $\Sigma$ を直接計算することで容易に確かめられる。
+                但し，上式に於いて $\sin/\sin$ の部分で $0/0$ の不定形が生じるような $k$ の値 $k'$ に対しては，値域を一時的に実数に広げて $k\to k'$ の極限を取る。
+                このようにしても等式が成り立つことは，$k'$ に対して $\Sigma$ を直接計算することで容易に確かめられる。
                 \par
-                $\sin\parens*{(k-1)\pi}/\sin\parens*{\frac{k-1}{2^{N-W}}\pi}$ は $k$ に関する $2^{N-W}$ 周期関数であり、$k = 1 + 2^{N-W}m\;(m\in\integers,\;0<m\geq 2^{W-1}$ のときに $2^{N-W}$ となり、それ以外では 0 である。
+                $\sin\parens*{(k-1)\pi}/\sin\parens*{\frac{k-1}{2^{N-W}}\pi}$ は $k$ に関する $2^{N-W}$ 周期関数であり，$k = 1 + 2^{N-W}m\;(m\in\integers,\;0<m\geq 2^{W-1}$ のときに $2^{N-W}$ となり，それ以外では 0 である。
             \end{proof}
         \subsection{数値例}
             次の図は $N=8,\;W=0,2$ の例である。

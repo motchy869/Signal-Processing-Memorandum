@@ -1,13 +1,13 @@
 \chapter{連続時間フィルタ}
     \section{諸注意}
-        \subsection{複素係数フィルタは実，虚経路単独の実係数フィルタと後段の重み付き和とは等価でない}
-            数式を書けば直ぐに解ることではあるが、このことについて一度も考えたことが無ければ即答できないかもしれない。
+        \subsection{複素係数フィルタは実、虚経路単独の実係数フィルタと後段の重み付き和とは等価でない}
+            数式を書けば直ぐに解ることではあるが，このことについて一度も考えたことが無ければ即答できないかもしれない。
             \par
             系 1 は複素数値インパルス応答 $h:\realNumbers\to\complexNumbers$ をもつシステムである。
             入力信号 $x:\realNumbers\to\complexNumbers$ に対して出力信号 $y:\realNumbers\to\complexNumbers$ は $y = h*x$ である。
             $h$ の実部と虚部をそれぞれ $h_\text{R},\;h_\text{I}$ とすると $y = h_\text{R}*\Re{x} - h_\text{I}*\Im{x} + i(h_\text{R}*\Im{x} + h_\text{I}*\Re{x})$ である。
             \par
-            系 2 は実数値インパルス応答 $\tilde{h}_\text{R},\;\tilde{h}_\text{I}:\realNumbers\to\realNumbers$ を持つ 2 つの経路を持ち、その後段に実数値のゲイン $a_\text{R},\;b_\text{R},\;a_\text{I},\;b_\text{I}$ がある。
+            系 2 は実数値インパルス応答 $\tilde{h}_\text{R},\;\tilde{h}_\text{I}:\realNumbers\to\realNumbers$ を持つ 2 つの経路を持ち，その後段に実数値のゲイン $a_\text{R},\;b_\text{R},\;a_\text{I},\;b_\text{I}$ がある。
             入力信号 $x:\realNumbers\to\complexNumbers$ に対して出力信号 $y:\realNumbers\to\complexNumbers$ は $y = a_\text{R}h_\text{R}*\Re{x} + b_\text{R}h_\text{I}*\Im{x} + i(a_\text{I}h_\text{R}*\Re{x} + b_\text{I}h_\text{I}*\Im{x})$ である。
             \par
-            系 1 の方が系 2 よりも自由度が高いので、系 2 で系 1 を常には表現できない。
+            系 1 の方が系 2 よりも自由度が高いので，系 2 で系 1 を常には表現できない。

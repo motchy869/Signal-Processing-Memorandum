@@ -2,30 +2,30 @@
     \newcommand{\DFTwithArg}[2]{\DFT{#1}\left(#2\right)}
     \section{基底}
         $d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\dots,d),\;\bm{k},\bm{n}\in\integers^d$とする。
-        次式で定義される、$\bm{n}$に関する離散座標信号を$d$次元DFTの第$\bm{k}$基底ベクトルという。
+        次式で定義される，$\bm{n}$に関する離散座標信号を$d$次元DFTの第$\bm{k}$基底ベクトルという。
         \[ W(\bm{k},\bm{n}) \coloneq \left(\prod_{l=1}^d N_l\right)^{-1/2} \exp i\left(\sum_{l=1}^d \frac{k_l n_l}{N_l}2\pi\right)\]
 
     \section{DFTの定義}
         \label{DFTの定義}
         $d\in\naturalNumbers,\;N_l\in\naturalNumbers\;(l=1,2,\dots,d),\;\bm{k}\in\integers^d$とする。
         $\Omega \coloneq \{0,1,\dots,N_1-1\}\times\{0,1,\dots,N_2-1\}\times\cdots\times\{0,1,\dots,N_d-1\}$とする。
-        $f$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n})$とするとき、次式で定義される、$\bm{k}$に関する離散座標信号を$f$の離散Fourier変換(Discrete Fourier Transform, DFT)という。
+        $f$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n})$とするとき，次式で定義される，$\bm{k}$に関する離散座標信号を$f$の離散Fourier変換(Discrete Fourier Transform, DFT)という。
         \[ \DFTwithArg{f}{\bm{k}} \coloneq \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} f(\bm{n}) \]
 
     \section{Hermiteな離散座標信号のDFTは実数である}
         \label{Hermiteな離散座標信号のDFTは実数である}
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega,f$の定義は\ref{DFTの定義}と同じものとする。
-            $f$にさらにHermite性: $\conj{f(\bm{n})} = f(-\bm{n})$を要請するとき、$\DFTwithArg{f}{\bm{k}}$は実数となる。
+            $f$にさらにHermite性: $\conj{f(\bm{n})} = f(-\bm{n})$を要請するとき，$\DFTwithArg{f}{\bm{k}}$は実数となる。
         \end{shadebox}
         \begin{proof}
             \begin{align*}
                 2\Im{\DFTwithArg{f}{\bm{k}}} &= \DFTwithArg{f}{\bm{k}} - \conj{\DFTwithArg{f}{\bm{k}}} \\
                 &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})\conj{f(\bm{n})}
             \end{align*}
-            ここで$\bm{n}_\text{M} \coloneq [N_1,\dots,N_d]^\top$とすると、
+            ここで$\bm{n}_\text{M} \coloneq [N_1,\dots,N_d]^\top$とすると，
             \[ \conj{W(\bm{k},\bm{n})} = W(\bm{k},-\bm{n}) = W(\bm{k},\bm{n}_\text{M}-\bm{n}) \]
-            また、$f$のHermite性の仮定より
+            また，$f$のHermite性の仮定より
             \[ \conj{f(\bm{n})} = f(-\bm{n}) = f(\bm{n}_\text{M}-\bm{n}) \]
             以上より
             \begin{align*}
@@ -42,7 +42,7 @@
     \section{巡回畳み込みのDFTはDFTの積に比例する}
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
-            $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき、次が成り立つ。
+            $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき，次が成り立つ。
             \[ \DFTwithArg{\cycConv{f}{g}}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
         \end{shadebox}
         \begin{proof}
@@ -64,7 +64,7 @@
             $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
             $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とする。
             $f$と$g$の巡回相関を$R_{f,g}(n) = \cycCorrel{f}{g}(\bm{n})$とする。
-            このとき、次が成り立つ。
+            このとき，次が成り立つ。
             \[ \DFTwithArg{R_{f,g}}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\conj{\DFTwithArg{g}{\bm{k}}} \]
         \end{shadebox}
         \begin{proof}
@@ -88,7 +88,7 @@
     \section{巡回畳み込みのDFT}
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
-            $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき、次が成り立つ。
+            $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき，次が成り立つ。
             \[ \DFTwithArg{\cycConv{f}{g}}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
         \end{shadebox}
         \begin{proof}
@@ -97,8 +97,8 @@
         \end{proof}
     \section{GaussianノイズのDFT}
         \begin{shadebox}
-            $F(n) \in \complexNumbers\;(n=0,1,\dots,N-1)$は互いに独立で、複素正規分布$N(0,\sigma^2)$に従うとする$\left(\text{p}(f) = \frac{1}{2\pi\sigma^2}\exp\frac{-\Re{f}^2-\Im{f}^2}{2\sigma^2} = \frac{1}{2\pi\sigma^2}\exp\frac{-|f|^2}{2\sigma^2}\right)$。
-            これのDFTを$G(k) = \DFTwithArg{F}{k}$とするとき、$G(k)\;(k=0,1,\dots,N-1)$もまた互いに独立で、複素正規分布$N(0,\sigma^2)$に従う。
+            $F(n) \in \complexNumbers\;(n=0,1,\dots,N-1)$は互いに独立で，複素正規分布$N(0,\sigma^2)$に従うとする$\left(\text{p}(f) = \frac{1}{2\pi\sigma^2}\exp\frac{-\Re{f}^2-\Im{f}^2}{2\sigma^2} = \frac{1}{2\pi\sigma^2}\exp\frac{-|f|^2}{2\sigma^2}\right)$。
+            これのDFTを$G(k) = \DFTwithArg{F}{k}$とするとき，$G(k)\;(k=0,1,\dots,N-1)$もまた互いに独立で，複素正規分布$N(0,\sigma^2)$に従う。
         \end{shadebox}
         \begin{proof}
             \[ P \in \complexNumbers^{N\times N},\; P_{k,n} \coloneq W(k,n) \coloneq \frac{1}{\sqrt{N}}\exp i\frac{kn}{N}2\pi\;(k,n \in \{0,1,\dots,N-1\}) \]

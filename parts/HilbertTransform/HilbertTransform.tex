@@ -30,12 +30,12 @@
                 H(t\mapsto\sin\omega t)(t) &= \frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{\sin\omega(t-\tau)}{\tau}}{}{\tau} = \frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{\sin\omega t\cos\omega\tau - \cos\omega t\sin\omega\tau}{\tau}}{}{\tau} \\
                 &= -\frac{\cos\omega t}{\pi}\pv\integrate{-\infty}{\infty}{\frac{\sin\omega\tau}{\tau}}{}{\tau} = -(\cos\omega t)\sgn(\omega) = \sgn(\omega)\sin(\omega t-\pi/2)
             \end{align*}
-            最後から 3 番目の等号の成立には、$(\cos x)/x$ の $[a,\infty)\;(a>0)$ に於ける定積分が存在することを用いた。
+            最後から 3 番目の等号の成立には，$(\cos x)/x$ の $[a,\infty)\;(a>0)$ に於ける定積分が存在することを用いた。
             最後から 2 番目の等号の成立には Dirichlet 積分を用いた。
         \end{proof}
     \chapter{Hilbert変換のFourier変換}
         \begin{shadebox}
-            $x:\realNumbers\to\complexNumbers$ を連続時間信号とし、$\hat{x} = \HilbertTransform{x},\;X = \FT{x}$ とする。
+            $x:\realNumbers\to\complexNumbers$ を連続時間信号とし，$\hat{x} = \HilbertTransform{x},\;X = \FT{x}$ とする。
             次式が成り立つ。
             \[ \FT{\hat{x}}(\omega) = -i\sgn(\omega)X(\omega) \]
         \end{shadebox}

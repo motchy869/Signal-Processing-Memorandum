@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Changed:
+  - Distinguish '、' and '，' in Japanese text.
 - Added:
   - FIR filter coefficients design
     - difference between IDFT approach and minimizing DTFT square error integral

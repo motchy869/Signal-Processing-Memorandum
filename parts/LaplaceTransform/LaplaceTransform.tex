@@ -11,22 +11,22 @@
 				\end{cases}
 			\]
 			$H: s\in\complexNumbers \mapsto H(s) \in \complexNumbers$をproperで既約な有理関数とする。
-			また、$H$の極の実部は全て負であるとする。
-			伝達関数が$H(s)$である連続時間システムに信号$f$を入力した時の出力を$g$とすると、十分大きい$t$に対して
+			また，$H$の極の実部は全て負であるとする。
+			伝達関数が$H(s)$である連続時間システムに信号$f$を入力した時の出力を$g$とすると，十分大きい$t$に対して
 			$g(t) \sim H(i\omega)f(t)$となる。
 		\end{shadebox}
 		\begin{proof}
 			\quad\par
-			$N_\text{p}$を$H(s)$の分母多項式の相異なる零点の個数とし、それら零点を$p_0,\dots,p_{N_\text{p}}$とする。
-			零点$p_k$の次数を$N_{\text{p},k}$とし、$H(s)$の部分分数展開を
+			$N_\text{p}$を$H(s)$の分母多項式の相異なる零点の個数とし，それら零点を$p_0,\dots,p_{N_\text{p}}$とする。
+			零点$p_k$の次数を$N_{\text{p},k}$とし，$H(s)$の部分分数展開を
 			\[ H(s) = c_0 + \sum_{k=1}^{N_\mathrm{p}} \sum_{l=1}^{N_{\mathrm{p},k}} \frac{c_{k,l}}{(s-p_k)^l} \]
 			とする。
 			ここに$c_0,c_{k,l}\;(k=1,\dots,N_\mathrm{p},l=1,\dots,N_{\mathrm{p},k})$は適当な複素数である。
 			$f,g$のLaplace変換をそれぞれ$F,G$とすると$G(s) = H(s)F(s) = A H(s)/(s-i\omega)$である。
-			これの部分分数展開に現れる、$1/(s-p_k)^l\;(k=1,\dots,N_\mathrm{p},l=1,\dots,N_{\mathrm{p},k})$に比例する項は逆Laplace変換すると$t^{l-1}\NapierE^{p_k t}$に比例する関数となり、$t\to\infty$で0に収束する。\hfill \rule{10cm}{0.4pt}(1)
+			これの部分分数展開に現れる，$1/(s-p_k)^l\;(k=1,\dots,N_\mathrm{p},l=1,\dots,N_{\mathrm{p},k})$に比例する項は逆Laplace変換すると$t^{l-1}\NapierE^{p_k t}$に比例する関数となり，$t\to\infty$で0に収束する。\hfill \rule{10cm}{0.4pt}(1)
 			\par
-			残りの項、すなわち$1/(s-i\omega)$に比例する項は$AH(i\omega)/(s-i\omega) = H(i\omega)F(s)$となる。
-			以上より、十分大きい$t$に対して$g(t) \sim \ILPLC{H(i\omega)F(s)}(t) = H(i\omega)f(t)$となる。
+			残りの項，すなわち$1/(s-i\omega)$に比例する項は$AH(i\omega)/(s-i\omega) = H(i\omega)F(s)$となる。
+			以上より，十分大きい$t$に対して$g(t) \sim \ILPLC{H(i\omega)F(s)}(t) = H(i\omega)f(t)$となる。
 		\end{proof}
 		\section{系: 正弦波入力に対する伝達関数の作用}
 			\begin{shadebox}
@@ -47,7 +47,7 @@
 					\end{cases}
 				\]
 				$H$を直前の定理と同じように定める。
-				伝達関数が$H(s)$である連続時間\textcolor{red}{実}システムに信号$f_1,f_2$を入力した時の出力をそれぞれ$g_1,g_2$とすると、十分大きい$t$に対して
+				伝達関数が$H(s)$である連続時間\textcolor{red}{実}システムに信号$f_1,f_2$を入力した時の出力をそれぞれ$g_1,g_2$とすると，十分大きい$t$に対して
 				\begin{align*}
 					g_1(t) &\sim |H(i\omega)|\cos(\omega t + \Arg\parens*{H(i\omega)}) \\
 					g_2(t) &\sim |H(i\omega)|\sin(\omega t + \Arg\parens*{H(i\omega)})
@@ -58,7 +58,7 @@
 				\quad\par
 				$f_1$について示す。
 				$f_2$も同様に示せる。
-				$f_1(t) = \Re{A\NapierE^{i\omega t}}$であり、実数システムだから出力は$A\NapierE^{i\omega t}$を入力したときの出力の実部と等しい。
+				$f_1(t) = \Re{A\NapierE^{i\omega t}}$であり，実数システムだから出力は$A\NapierE^{i\omega t}$を入力したときの出力の実部と等しい。
 				直前の定理の結果を用いて
 				\[ g_1(t) = \Re{H(i\omega)A\NapierE^{i\omega t}} = \Re{|H(i\omega)|\NapierE^{i\Arg\parens*{H(i\omega)}}A\NapierE^{i\omega t}} = |H(i\omega)|\cos (\omega t + \Arg\parens*{H(i\omega)}) \]
 			\end{proof}
@@ -70,10 +70,10 @@
 				直前の定理の証明の(1)までは同じである。
 				$f_1,g_1$のLaplace変換をそれぞれ$F_1,G_1$とすると
 				\[ F_1(s) = \frac{As}{s^2+\omega^2} = \frac{A}{2}\left(\frac{1}{s+i\omega} + \frac{1}{s-i\omega}\right) \]
-				であるから、$G_1(s) = H(s)F(s)$の部分分数展開のうち$1/(s+i\omega),\;1/(s-i\omega)$に比例する項を詳しく調べれば良い。
+				であるから，$G_1(s) = H(s)F(s)$の部分分数展開のうち$1/(s+i\omega),\;1/(s-i\omega)$に比例する項を詳しく調べれば良い。
 				$1/(s+i\omega)$の係数は
 				\[ \left. G(s)X(s)(s+i\omega) \right|_{s\to-i\omega} = AG(-i\omega)/2\]
-				となり、$1/(s-i\omega)$の係数は
+				となり，$1/(s-i\omega)$の係数は
 				\[ \left. G(s)X(s)(s-i\omega) \right|_{s\to i\omega} = AG(i\omega)/2\]
 				となる。
 				よってこれらの項の和は
@@ -86,7 +86,7 @@
 				\[ \frac{1}{2}(G(i\omega)+G(-i\omega)) = |G(i\omega)|\frac{1}{2}\left(\NapierE^{i\Arg\parens*{G(i\omega)}} + \NapierE^{-i\Arg\parens*{G(i\omega)}}\right) = |G(i\omega)|\cos\Arg\parens*{G(i\omega)} \]
 				同様に
 				\[ \frac{-1}{2i}(G(i\omega)-G(-i\omega)) = -|G(i\omega)|\sin\Arg\parens*{G(i\omega)} \]
-				以上より、
+				以上より，
 				\begin{align*}
 					(1) &= |G(i\omega)|\left(\cos\Arg\parens*{G(i\omega)}\frac{As}{s^2+\omega^2} - \sin\Arg\parens*{G(i\omega)}\frac{A\omega}{s^2+\omega^2} \right) \\
 					g(t) &\sim \ILPLC{(1)}(t) = |G(i\omega)|\left(\cos\Arg\parens*{G(i\omega)}\cos\omega t - \sin\Arg\parens*{G(i\omega)}\sin\omega t \right) \\
