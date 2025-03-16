@@ -1,5 +1,22 @@
-\part{Z変換}
+\part{Z 変換}
 	\chapter{基礎理論}
+		\section{逆 Z 変換}
+			\label{inv_Z_trans}
+			\begin{shadebox}
+				$X:\complexNumbers\to\complexNumbers$ は離散時間信号 $x:\integers\to\complexNumbers$ の Z 変換であるとする。
+				このとき次式が成り立つ。
+				\begin{equation}
+					\label{eq:inv_Z_trans}
+					x(n) = \frac{1}{2\pi i}\oint_C X(z)z^{n-1}\mathrm{d}z
+				\end{equation}
+				ここに積分路 $C$ は $X(z)$ のすべての極を含む反時計回りの単純閉曲線である。
+			\end{shadebox}
+			\begin{proof}
+				\begin{align*}
+					\frac{1}{2\pi i}\oint_C X(z)z^{n-1}\mathrm{d}z &= \frac{1}{2\pi i}\oint_C \parens*{\sum_{k=-\infty}^\infty x(k)z^{-k}}z^{n-1}\mathrm{d}z \\
+					&= \sum_{k=-\infty}^\infty x(k)\frac{1}{2\pi i}\oint_C z^{n-k-1}\mathrm{d}z = \sum_{k=-\infty}^\infty x(k)\delta_{n,k} = x(n)
+				\end{align*}
+			\end{proof}
 		\section{最終値定理}
 			\begin{shadebox}
 				$X(z)\;(z\in\complexNumbers)$を離散時間信号$x(n)\;(n \in \integers,\;\forall n<0,x(n)=0)$のZ変換とする。

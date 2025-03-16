@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed:
   - Distinguish '、' and '，' in Japanese text.
 - Added:
+  - inverse Z-transform
   - FIR filter coefficients design
     - difference between IDFT approach and minimizing DTFT square error integral
 
@@ -141,7 +142,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - continuous-time filter behavior observed from discrete-time system.
   - a lemma for comprehension of DCT basis orthogonality
   - energy spectrum density of (time-limited) 0-order-held sinusoid
-  - z-transform of continuous system with 0-order-hold input
+  - Z-transform of continuous system with 0-order-hold input
   - energy spectrum density of (time-limited) integral sinusoid by Euler method
 
 ## [0.5.0] - 2022-05-30
