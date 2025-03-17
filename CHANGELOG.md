@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Changed:
+  - Categorized discrete-time filter into two types: feedforward and feedback.
   - Distinguish '、' and '，' in Japanese text.
 - Added:
   - inverse Z-transform
