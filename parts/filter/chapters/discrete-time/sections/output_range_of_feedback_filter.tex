@@ -1,0 +1,26 @@
+\section{feedback フィルタの出力値の範囲}
+    \newcommand{\Nff}{{N_{\text{ff}}}}
+    \newcommand{\Nfb}{{N_{\text{fb}}}}
+    \newcommand{\hInit}[1]{{h_{\text{init},#1}}}
+    \newcommand{\Minit}[1]{{M_{\text{init},#1}}}
+    feedback フィルタの入力の絶対値が制限されるときの出力の絶対値の最大値を求める。
+    この関係は feedback フィルタを実装する際に，内部の記憶素子と演算素子に必要なビット幅を決める際に役立つ。
+    ここでは拡張性を重視して信号の終域を $\complexNumbers$ としているが，用途に応じて $\realNumbers$ に制限してもよい。
+    \begin{shadebox}
+        F を feedback フィルタとし，$x,\;y:\integers\to\complexNumbers$ をそれぞれ入力と出力とする。
+        $x$ の絶対値が $M_x(\geq 0)$ 以下であるとする。
+        F の漸化式が次式であるとする。
+        \[ y(n) = \sum_{k=0}^\Nff a_k x(n-k) - \sum_{l=1}^\Nfb b_l y(n-l) \]
+        ここに $\Nff,\;\Nfb\in\naturalNumbers$ はそれぞれ feedforward 経路、feedback 経路のタップ数であり， $a_k,\;b_l\in\complexNumbers$ は係数である。
+        \par
+        $h:\integers\to\complexNumbers$ を F のインパルス応答とし，$\hInit{m}:\integers\to\complexNumbers$ を次式の逆 Z 変換とする。
+        \[ \frac{\sum_{\tilde{l}=m}^\Nfb b_{\tilde{l}} z^{-(\tilde{l}-m)}}{1+\sum_{l=1}^\Nfb b_l z^{-l}} \]
+        $\Minit{m}\coloneq\max_n {\abs{\hInit{m}(n)}}$ とする。
+        $y$ の値の範囲について次式が成り立つ。
+        \[ \max_{n\in\naturalNumbers\cup\{0\}}\abs{y(n)} \leq M_x\sum_{k=0}^\infty\abs{h(k)} + \sum_{l=1}^\Nfb\abs{y(-l)}\Minit{m} \]
+        とくに，負の時刻について $y$ の値が 0 であるならば次式が成り立つ。
+        \[ \max_{n\in\naturalNumbers\cup\{0\}}\abs{y(n)} \leq M_x\sum_{k=0}^\infty\abs{h(k)} \]
+    \end{shadebox}
+    \begin{proof}
+        % TODO: Write this.
+    \end{proof}

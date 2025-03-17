@@ -1,9 +1,13 @@
 \chapter{離散時間フィルタ}
     離散時間フィルタは次の通り分類される。
     \begin{enumerate}
-        \item feedforward フィルタ：出力がそれ以前の出力に依存しない。ディジタル計算機で実現するため，インパルス応答の長さは有限であると約束する。
-        \item feedback フィルタ：出力がそれ以前の出力に依存する。実用上の意味のあるフィルタは feedforward 構造を含み，そこに入力信号が入る。
+        \item feedforward フィルタ\\
+        出力がそれ以前の出力に依存しない。ディジタル計算機で実現するため，インパルス応答の長さは有限であると約束する。
+        \item feedback フィルタ\\
+        出力がそれ以前の出力に依存する。実用上の意味のあるフィルタは多くの場合 feedforward 構造を含み，そこに入力信号が入る。
+        インパルス応答の長さは無限である場合が多いが，有限の場合もある（例えば CIC フィルタ）。
     \end{enumerate}
     \input{\currfiledir/sections/discretized-continuous-time_filter.tex}
+    \input{\currfiledir/sections/output_range_of_feedback_filter.tex}
     \input{\currfiledir/sections/feedforward_filter_design.tex}
     \input{\currfiledir/sections/CIC_filter.tex}
