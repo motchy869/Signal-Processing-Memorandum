@@ -1,5 +1,5 @@
 \part{Z 変換}
-	\chapter{基礎理論}
+	\chapter{両側 Z 変換}
 		\section{逆 Z 変換}
 			\label{inv_Z_trans}
 			\begin{shadebox}
@@ -17,10 +17,6 @@
 					&= \sum_{k=-\infty}^\infty x(k)\frac{1}{2\pi i}\oint_C z^{n-k-1}\mathrm{d}z = \sum_{k=-\infty}^\infty x(k)\delta_{n,k} = x(n)
 				\end{align*}
 			\end{proof}
-		\section{信号とその片側 Z 変換の一対一対応}
-			離散時間信号 $x:\integers\to\complexNumbers$ とその片側 Z 変換 $X$ は非負の時間領域について一対一対応する。
-			このことは \ref{inv_Z_trans} の証明から明らかである。
-			片側 Z 変換の結果に対して式 \eqref{eq:inv_Z_trans} に於いて負の時刻を指定すると，結果は 0 である。
 		\section{最終値定理}
 			\begin{shadebox}
 				$X(z)\;(z\in\complexNumbers)$を離散時間信号$x(n)\;(n \in \integers,\;\forall n<0,x(n)=0)$のZ変換とする。
@@ -70,22 +66,21 @@
 				\par
 				残りの項，すなわち$1/(1-\NapierE^{i\Omega}z^{-1})$に比例する項は$AH(\NapierE^{i\Omega})/(1-\NapierE^{i\Omega}z^{-1}) = H(\NapierE^{i\Omega})X(z)$となる。
 			\end{proof}
-	% \chapter{IIRフィルタの計算手順}
-	% 	\begin{figure}[H]
-	% 		\centering
-	% 		\includegraphics[keepaspectratio, scale=5]
-	% 		{\currfiledir/figs/IIR-filter/calculationMethod/blockDiagram.pdf}
-	% 		\caption{IIRフィルタのブロック図の例}
-	% 	\end{figure}
-	% 	上の例で示したIIRフィルタの出力は以下の手続きで計算できる(仕事で関わっていたデジタル無線機の信号処理部でそうやっていた)。
-	% 	\begin{enumerate}
-	% 		\item $D_1,\cdots D_4 \leftarrow 0$
-	% 		\item $n \leftarrow 0$
-	% 		\item $\alpha \leftarrow a_1D_1 + \cdots a_4D_4$
-	% 		\item $\beta \leftarrow b_1D_1 + \cdots b_4D_4$
-	% 		\item $\gamma \leftarrow x(n) + \beta$
-	% 		\item $y(n) \leftarrow \alpha + a_0\gamma$
-	% 		\item $D_4 \leftarrow D_3,\;D_3 \leftarrow D_2,\;D_2 \leftarrow D_1,\;D_1 \leftarrow \gamma$
-	% 		\item $n \leftarrow n+1$
-	% 		\item $n$が$x$の定義域の末尾に達しているなら終了。そうでないなら3に戻る。
-	% 	\end{enumerate}
+	\chapter{片側 Z 変換}
+		\section{信号とその片側 Z 変換の一対一対応}
+			離散時間信号 $x:\integers\to\complexNumbers$ とその片側 Z 変換 $X$ は非負の時間領域について一対一対応する。
+			このことは \ref{inv_Z_trans} の証明から明らかである。
+			片側 Z 変換の結果に対して式 \eqref{eq:inv_Z_trans} に於いて負の時刻を指定すると，結果は 0 である。
+		\section{畳み込みの片側 Z 変換}
+			\begin{shadebox}
+				離散時間信号 $x,y:\integers\to\complexNumbers$ がともに負の時刻について 0 であるとし，それぞれの片側 Z 変換を $X,Y$ とする。
+				次式が成り立つ。
+				\[ \SSZTrans{x*y}(z) = X(z)Y(z) \]
+			\end{shadebox}
+			\begin{proof}
+				\begin{align*}
+					\SSZTrans{x*y}(z) &= \sum_{k=0}^\infty \sum_{l=-\infty}^\infty x(l)y(k-l) z^{-k} = \sum_{k=0}^\infty \sum_{l=0}^\infty x(l)y(k-l) z^{-k} \\
+					&= \sum_{l=0}^\infty x(l)z^{-l} \sum_{k=0}^\infty y(k-l) z^{-(k-l)} = \sum_{l=0}^\infty x(l)z^{-l} \sum_{k=l}^\infty y(k-l) z^{-(k-l)} \\
+					&= \sum_{l=0}^\infty x(l)z^{-l} Y(z) = X(z)Y(z)
+				\end{align*}
+			\end{proof}

@@ -11,7 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Distinguish '、' and '，' in Japanese text.
 - Added:
   - inverse Z-transform
-  - reversibility of single-sided Z-transform
+  - single-sided Z-transform
+    - reversibility of single-sided Z-transform
+    - single-sided Z-transform of convolution
   - FIR filter coefficients design
     - difference between IDFT approach and minimizing DTFT square error integral
 
