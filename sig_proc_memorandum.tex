@@ -85,12 +85,12 @@
 \newcommand\currLevelTitle{NOT YET SET}
 \makeatletter
 \let\oldPart\part
-\newcommand{\countedPart}[1]{\oldPart{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % Set the the part name to the title storage at the beginning of each part because there is possibly no chapter in the part.
-\newcommand{\uncountedPart}[1]{\oldPart*{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % *-ed version is necessary. See: [https://tex.stackexchange.com/questions/639072/bibliography-title-prints-strange-asterisk-after-i-renewcommand-ed-the-ch]
+\newcommand*{\countedPart}[1]{\oldPart{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % Set the the part name to the title storage at the beginning of each part because there is possibly no chapter in the part.
+\newcommand*{\uncountedPart}[1]{\oldPart*{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thepart}} % *-ed version is necessary. See: [https://tex.stackexchange.com/questions/639072/bibliography-title-prints-strange-asterisk-after-i-renewcommand-ed-the-ch]
 \renewcommand{\part}{\@ifstar\uncountedPart\countedPart}
 \let\oldChapter\chapter
-\newcommand{\countedChapter}[1]{\oldChapter{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
-\newcommand{\uncountedChapter}[1]{\oldChapter*{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
+\newcommand*{\countedChapter}[1]{\oldChapter{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
+\newcommand*{\uncountedChapter}[1]{\oldChapter*{#1}\edef\currLevelTitle{#1}\edef\currLevelNo{\thechapter}}
 \renewcommand{\chapter}{\@ifstar\uncountedChapter\countedChapter}
 \makeatother
 
@@ -154,7 +154,7 @@
 
 % Starts paragraph contents on a new line.
 \let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}\\}
+\renewcommand*{\paragraph}[1]{\oldparagraph{#1}\mbox{}\\}
 
 % theorem styles
 \theoremstyle{definition} % non-italic font for definition
@@ -165,12 +165,12 @@
 
 % table settings
 \renewcommand\theadfont{} % don't change the font
-\newcommand{\tblHead}[1]{\multicolumn{1}{c}{#1}} % Use this for table headers with centered text.
+\newcommand*{\tblHead}[1]{\multicolumn{1}{c}{#1}} % Use this for table headers with centered text.
 
 % % bytefield hack % not used for now
 % % 1. [Combining color, bitboxes* and base alignment](https://tex.stackexchange.com/questions/371175/combining-color-bitboxes-and-base-alignment)
 % % 2. [Colored custom bytefield](https://www.latex4technics.com/?note=3c6du2)
-% \newcommand{\colorbitbox}[3]{%
+% \newcommand*{\colorbitbox}[3]{%
 % 	\rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
 % 	\bitbox{#2}{#3}%
 % }
