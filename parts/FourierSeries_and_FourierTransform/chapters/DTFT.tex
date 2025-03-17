@@ -1,9 +1,9 @@
 \chapter{離散時間Fourier変換(DTFT)}
-    \newcommand{\Ts}{T_\text{s}}
-    \newcommand{\DTFT}[1]{\mathrm{DTFT}\parens*{#1}}
-    \newcommand{\DTFTwithArg}[2]{\DTFT{#1}\parens*{#2}}
-    \newcommand{\IDTFT}[1]{\mathrm{IDTFT}\parens*{#1}}
-    \newcommand{\IDTFTwithArg}[2]{\IDTFT{#1}\parens*{#2}}
+    \newcommand*{\Ts}{T_\text{s}}
+    \newcommand*{\DTFT}[1]{\mathrm{DTFT}\parens*{#1}}
+    \newcommand*{\DTFTwithArg}[2]{\DTFT{#1}\parens*{#2}}
+    \newcommand*{\IDTFT}[1]{\mathrm{IDTFT}\parens*{#1}}
+    \newcommand*{\IDTFTwithArg}[2]{\IDTFT{#1}\parens*{#2}}
     \section{直観的な説明}
         離散時間Fourier変換(Discrete Time Fourier Transform, DTFT)とは，直観的には，離散座標信号を，連続的な周波数をもつ無数の離散時間信号の重ね合わせとして表現するものである。
     \section{定義}
@@ -162,7 +162,7 @@
         \end{align*}
     \section{エイリアシングとの関係}
         \label{DTFTとエイリアシングとの関係}
-        \newcommand{\fsamp}{f_\text{s}}
+        \newcommand*{\fsamp}{f_\text{s}}
         簡単のため1次元の場合について考察する。
         $d\in\naturalNumbers$とする。
         連続時間信号$f:\realNumbers\to\complexNumbers^d$をサンプリング周期$\Ts$でサンプリングした信号$\tilde{f}:\naturalNumbers\to\complexNumbers^d$のDTFTを求める。

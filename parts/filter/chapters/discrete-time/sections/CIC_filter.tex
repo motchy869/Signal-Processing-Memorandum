@@ -1,11 +1,11 @@
 \section{CIC up-sampler}
     \label{CIC up-sampler}
-    \newcommand{\XNAF}{X_\text{NAF}}
-    \newcommand{\YNAF}{Y_\text{NAF}}
-    \newcommand{\tYNAF}{\tilde{Y}_\text{NAF}}
-    \newcommand{\XNF}{X_\text{NF}}
-    \newcommand{\YNF}{Y_\text{NF}}
-    \newcommand{\tYNF}{\tilde{Y}_\text{NF}}
+    \newcommand*{\XNAF}{X_\text{NAF}}
+    \newcommand*{\YNAF}{Y_\text{NAF}}
+    \newcommand*{\tYNAF}{\tilde{Y}_\text{NAF}}
+    \newcommand*{\XNF}{X_\text{NF}}
+    \newcommand*{\YNF}{Y_\text{NF}}
+    \newcommand*{\tYNF}{\tilde{Y}_\text{NF}}
 
     $R$ はアップ・サンプリング・レートを表し，$N$ は差分器と積算器それぞれの段数を表す。
     \par
@@ -82,7 +82,7 @@
             この系の応答の絶対値が最大となるような作為的な入力に対する応答を収容できるビット幅を確保すればよい。
             そのような最悪の応答は \cref{equation:CIC up-sampler の部分系の伝達関数} を計算機代数システムを用いて $z^{-1}$ の多項式として展開し，係数の絶対値の総和をとることで得られる。
     \subsection{CIC up-sampler 補償フィルタ}
-        \newcommand{\HCNF}{H_\text{C,NF}}
+        \newcommand*{\HCNF}{H_\text{C,NF}}
 
         \cref{equation:CIC up-sampler の周波数スペクトラム} より，アップ・サンプリングにより $\XNF$ には $F$ に依存する因子が掛かる。
         これをできるだけ補正するために，CIC up-sampler の直前で前記の因子の逆特性を近似する畳み込み型 FIR フィルタ（以下単に「FIR フィルタ」と呼ぶ）の適用を考える（$F$ に依存しないスケーリング因子 $1/R$ は容易に補正できるので，今は無視する）。

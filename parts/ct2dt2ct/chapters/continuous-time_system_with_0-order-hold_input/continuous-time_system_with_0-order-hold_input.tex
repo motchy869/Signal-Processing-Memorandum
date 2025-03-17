@@ -3,17 +3,17 @@
         実用上，物理系をディジタル計算機で制御するために，連続系である制御対象と入力の間に「AD変換器」(0次ホールド回路+量子化器),「演算回路」,「DA変換器」(0次ホールド回路)が追加される。
         本節では，連続時間システムの入力に0次ホールド機構を追加したときのシステムの出力のうち，サンプリング時間の整数倍の時点に於いて出力が厳密に一致する離散時間システムのz変換を導出する。
     \section{主張}
-        \renewcommand{\uH}{u_\text{H}}
-        \newcommand{\ud}{u_\text{d}}
-        \newcommand{\udd}{u_\text{dd}}
-        \newcommand{\ydd}{y_\text{dd}}
-        \newcommand{\hd}{h_\text{d}}
-        \newcommand{\hdd}{h_\text{dd}}
-        \newcommand{\Ud}{U_\text{d}}
-        \newcommand{\Udd}{U_\text{dd}}
-        \newcommand{\Hd}{H_\text{d}}
-        \newcommand{\Hdd}{H_\text{dd}}
-        \newcommand{\Ydd}{Y_\text{dd}}
+        \renewcommand*{\uH}{u_\text{H}}
+        \newcommand*{\ud}{u_\text{d}}
+        \newcommand*{\udd}{u_\text{dd}}
+        \newcommand*{\ydd}{y_\text{dd}}
+        \newcommand*{\hd}{h_\text{d}}
+        \newcommand*{\hdd}{h_\text{dd}}
+        \newcommand*{\Ud}{U_\text{d}}
+        \newcommand*{\Udd}{U_\text{dd}}
+        \newcommand*{\Hd}{H_\text{d}}
+        \newcommand*{\Hdd}{H_\text{dd}}
+        \newcommand*{\Ydd}{Y_\text{dd}}
         連続時間システムのインパルス応答を$h:\realNumbers\to\complexNumbers$とし，そのラプラス変換を$H:\complexNumbers\to\complexNumbers$とする。
         但しシステムは因果的である，すなわち$h(t)=0\;(t<0)$とする。
         入力信号をサンプリング周期$\Ts>0$で0次ホールドして与えるときの出力を$\yd:\realNumbers\to\complexNumbers$とする。

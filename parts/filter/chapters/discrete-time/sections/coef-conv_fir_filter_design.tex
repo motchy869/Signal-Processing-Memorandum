@@ -1,7 +1,7 @@
 \section{係数畳み込み型 FIR フィルタの設計}
     \subsection{DTFT の誤差 2 乗積分最小化}
-        \newcommand{\Hideal}{H_\text{ideal}}
-        \newcommand{\vhOpt}{\bm{h}_\text{opt}}
+        \newcommand*{\Hideal}{H_\text{ideal}}
+        \newcommand*{\vhOpt}{\bm{h}_\text{opt}}
         ここではフィルタ係数が複素数であり，個数が指定された条件下で，所望の周波数スペクトラムに対して DTFT の誤差の重み付き 2 乗積分が最小になるように係数を決定する方法を記す。
         \par
         この方法は係数の個数について偶奇を区別せず，係数の添え字に関する対称性も指定していないため，線形位相特性は保証されない（意図的に線形位相特性を狙う方法については \cite{learn_sp_from_basic} 「8.3.1 線形位相 FIR フィルタの設計法」に詳細がある）。
@@ -11,8 +11,8 @@
         その際の緩和策として \cite{learn_sp_from_basic} 「8.3.2 窓関数を用いた設計法」が適用できると期待される。
         \subsubsection{誤差の重みが一様である場合}
             \label{誤差の重みが一様である場合}
-            \newcommand{\Nm}{{N_\text{m}}}
-            \newcommand{\Np}{{N_\text{p}}}
+            \newcommand*{\Nm}{{N_\text{m}}}
+            \newcommand*{\Np}{{N_\text{p}}}
             ここでは全ての周波数に於いて誤差の重みを 1 としたときの最適係数を導く。
             \begin{shadebox}
                 $\Nm,\Np\in\naturalNumbers\cup\{0\}$ とする。
@@ -53,9 +53,9 @@
                 最小の添え字が 0 になるように時間的にシフトする必要がある。
                 フィルタの応答が時間的に遅れる（周波数領域に於いては遅れに比例した角周波数の複素指数関数が乗じられる）が，無線通信等の大抵の用途では問題にならない。
             \paragraph{Note：IDFT による係数設計との違い}
-                \newcommand{\kmin}{{k_\text{min}}}
-                \newcommand{\kmax}{{k_\text{max}}}
-                \newcommand{\HidealNA}{H_\text{ideal,NA}}
+                \newcommand*{\kmin}{{k_\text{min}}}
+                \newcommand*{\kmax}{{k_\text{max}}}
+                \newcommand*{\HidealNA}{H_\text{ideal,NA}}
                 実用の場面では $\Hideal$ が等間隔の離散的な正規化角周波数についてのみ得られることがある。
                 その場合に $\bm{h}$ の決定によく用いられているのは IDFT である。
                 IDFT による結果と \ref{誤差の重みが一様である場合} の結果が一般には一致しないことを示しておく。
@@ -113,47 +113,47 @@
                 重みが一様である場合 (\cref{誤差の重みが一様である場合}) の導出と同じ要領で $A\in\realNumbers^{N\times N},\;\bm{v}\in\realNumbers^N$ であることが容易に示せて $\vhOpt=A^{-1}\bm{v}\in\realNumbers^N$ である。
             \end{proof}
     \subsection{DTFT の誤差の実部と虚部の∞ノルム最小化}
-        \newcommand{\Ntp}{N_{\text{tp}}}
-        \newcommand{\Hid}{H_{\text{id}}}
-        \newcommand{\HidR}{H_{\text{id,r}}}
-        \newcommand{\HidI}{H_{\text{id,i}}}
-        \newcommand{\HidH}{H_{\text{id,H}}}
-        \newcommand{\HidHr}{H_{\text{id,H,r}}}
-        \newcommand{\HidHi}{H_{\text{id,H,i}}}
-        \newcommand{\HidSH}{H_{\text{id,SH}}}
-        \newcommand{\HidSHr}{H_{\text{id,SH,r}}}
-        \newcommand{\HidSHi}{H_{\text{id,SH,i}}}
-        \newcommand{\hes}{h_{\text{es}}}
-        \newcommand{\hos}{h_{\text{os}}}
-        \newcommand{\Hes}{H_{\text{es}}}
-        \newcommand{\Hos}{H_{\text{os}}}
-        \newcommand{\hr}{h_{\text{r}}}
-        \newcommand{\hi}{h_{\text{i}}}
-        \newcommand{\hrEs}{h_{\text{r,es}}}
-        \newcommand{\hrOs}{h_{\text{r,os}}}
-        \newcommand{\hiEs}{h_{\text{i,es}}}
-        \newcommand{\hiOs}{h_{\text{i,os}}}
-        \newcommand{\hesOpt}{h_{\text{es,opt}}}
-        \newcommand{\hosOpt}{h_{\text{os,opt}}}
-        \newcommand{\hopt}{h_{\text{opt}}}
-        \newcommand{\hrEsOpt}{h_{\text{r,es,opt}}}
-        \newcommand{\hrOsOpt}{h_{\text{r,os,opt}}}
-        \newcommand{\hiEsOpt}{h_{\text{i,es,opt}}}
-        \newcommand{\hiOsOpt}{h_{\text{i,os,opt}}}
-        \newcommand{\HesOpt}{H_{\text{es,opt}}}
-        \newcommand{\HosOpt}{H_{\text{os,opt}}}
-        \newcommand{\Hopt}{H_{\text{opt}}}
-        \newcommand{\HrEsOpt}{H_{\text{r,es,opt}}}
-        \newcommand{\HrOsOpt}{H_{\text{r,os,opt}}}
-        \newcommand{\HiEsOpt}{H_{\text{i,es,opt}}}
-        \newcommand{\HiOsOpt}{H_{\text{i,os,opt}}}
-        \newcommand{\eEs}{\mathrm{e}_{\text{es}}}
-        \newcommand{\eOs}{\mathrm{e}_{\text{os}}}
-        \newcommand{\eOpt}{\mathrm{e}_{\text{opt}}}
-        \newcommand{\erEs}{\mathrm{e}_{\text{r,es}}}
-        \newcommand{\erOs}{\mathrm{e}_{\text{r,os}}}
-        \newcommand{\eiEs}{\mathrm{e}_{\text{i,es}}}
-        \newcommand{\eiOs}{\mathrm{e}_{\text{i,os}}}
+        \newcommand*{\Ntp}{N_{\text{tp}}}
+        \newcommand*{\Hid}{H_{\text{id}}}
+        \newcommand*{\HidR}{H_{\text{id,r}}}
+        \newcommand*{\HidI}{H_{\text{id,i}}}
+        \newcommand*{\HidH}{H_{\text{id,H}}}
+        \newcommand*{\HidHr}{H_{\text{id,H,r}}}
+        \newcommand*{\HidHi}{H_{\text{id,H,i}}}
+        \newcommand*{\HidSH}{H_{\text{id,SH}}}
+        \newcommand*{\HidSHr}{H_{\text{id,SH,r}}}
+        \newcommand*{\HidSHi}{H_{\text{id,SH,i}}}
+        \newcommand*{\hes}{h_{\text{es}}}
+        \newcommand*{\hos}{h_{\text{os}}}
+        \newcommand*{\Hes}{H_{\text{es}}}
+        \newcommand*{\Hos}{H_{\text{os}}}
+        \newcommand*{\hr}{h_{\text{r}}}
+        \newcommand*{\hi}{h_{\text{i}}}
+        \newcommand*{\hrEs}{h_{\text{r,es}}}
+        \newcommand*{\hrOs}{h_{\text{r,os}}}
+        \newcommand*{\hiEs}{h_{\text{i,es}}}
+        \newcommand*{\hiOs}{h_{\text{i,os}}}
+        \newcommand*{\hesOpt}{h_{\text{es,opt}}}
+        \newcommand*{\hosOpt}{h_{\text{os,opt}}}
+        \newcommand*{\hopt}{h_{\text{opt}}}
+        \newcommand*{\hrEsOpt}{h_{\text{r,es,opt}}}
+        \newcommand*{\hrOsOpt}{h_{\text{r,os,opt}}}
+        \newcommand*{\hiEsOpt}{h_{\text{i,es,opt}}}
+        \newcommand*{\hiOsOpt}{h_{\text{i,os,opt}}}
+        \newcommand*{\HesOpt}{H_{\text{es,opt}}}
+        \newcommand*{\HosOpt}{H_{\text{os,opt}}}
+        \newcommand*{\Hopt}{H_{\text{opt}}}
+        \newcommand*{\HrEsOpt}{H_{\text{r,es,opt}}}
+        \newcommand*{\HrOsOpt}{H_{\text{r,os,opt}}}
+        \newcommand*{\HiEsOpt}{H_{\text{i,es,opt}}}
+        \newcommand*{\HiOsOpt}{H_{\text{i,os,opt}}}
+        \newcommand*{\eEs}{\mathrm{e}_{\text{es}}}
+        \newcommand*{\eOs}{\mathrm{e}_{\text{os}}}
+        \newcommand*{\eOpt}{\mathrm{e}_{\text{opt}}}
+        \newcommand*{\erEs}{\mathrm{e}_{\text{r,es}}}
+        \newcommand*{\erOs}{\mathrm{e}_{\text{r,os}}}
+        \newcommand*{\eiEs}{\mathrm{e}_{\text{i,es}}}
+        \newcommand*{\eiOs}{\mathrm{e}_{\text{i,os}}}
         フィルタ係数が複素数であり，個数が指定された条件下で，所望の周波数スペクトラムに対して DTFT の誤差の実、虚部それぞれの偶、奇対称成分の $L^\infty$-ノルムが最小になるように係数を決定する方法を記す。
         $H$ が線形位相特性をもち，かつ偶対称か奇対称のいずれかである場合（★ 1）には Remez のアルゴリズムが知られている（例えば \cite{DSP_JL} の \inlineCode{remez} 関数）。
         ここでは $H$ が★ 1 の条件を満たさない場合にも Remez のアルゴリズムを 4 回独立に実行してフィルタ係数を決定する方法を示す。

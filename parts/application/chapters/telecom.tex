@@ -1,6 +1,6 @@
 \chapter{通信への応用}
     \section{直交復調}
-        \newcommand{\fc}{f_\text{c}}
+        \newcommand*{\fc}{f_\text{c}}
         \subsection{直交復調は正の周波数側にある信号を取り出して中心周波数を 0 にする}
             キャリア周波数を $\fc$ ，入力である実時間信号を $x:\realNumbers\to\realNumbers$ とすると，直交復調器は $x(t)\parens*{\cos(2\pi \fc t) - i\sin(2\pi \fc t)}$ を LPF に通してベースバンドの外側の周波数成分を取り除く。
             その結果，ベースバンド信号として $X = \mathcal{F}(x)$ の正の周波数側の信号（複素数値信号）が得られる。

@@ -68,8 +68,8 @@
             notebook 中では前記 $N$ が \inlineCode{N_tp} となっている。\newline
             \href{\currfiledir/calc/Interpolation_with_IDTFT/Interpolation_with_IDTFT.nb}{Interpolation\_with\_IDTFT.nb}\newline
         \subsection{等間隔補間信号の周波数スペクトラム}
-            \newcommand{\Xdn}{X_\text{d,n}}
-            \newcommand{\Ydn}{Y_\text{d,n}}
+            \newcommand*{\Xdn}{X_\text{d,n}}
+            \newcommand*{\Ydn}{Y_\text{d,n}}
             \ref{IDTFT を用いた有限長信号の補間>方法} の方法で等間隔に補間され $L\;(\in\naturalNumbers,L\geq 2)$ 倍のサンプル周波数を持つ新たな信号の周波数スペクトラムの性質を述べる。
             \begin{shadebox}
                 $L$ を 2 以上の自然数とする。
@@ -131,7 +131,7 @@
             ただし信号の周期 $N$ は奇数に限られ，FFT に最も都合の良い 2 の冪乗ではない（参考情報として $N$ が偶数のときに無理矢理適用して失敗した結果を \ref{N が偶数のときに無理矢理適用した結果} に記した）。
         \subsection{方法}
             \label{IDFT を用いた周期信号の補間>方法}
-            \newcommand{\Xtilded}{\tilde{X}_\text{d}}
+            \newcommand*{\Xtilded}{\tilde{X}_\text{d}}
             $N$ を奇数の自然数とする。$N$ 周期離散時間信号 $\xd:\integers\to\complexNumbers$ の DFT を $\Xd$ とする。
             連続時間信号 $\hat{x}$ を次式で定義する。
             \[ \hat{x}(t) \coloneq \frac{1}{\sqrt{N}}\sum_{k=-(N-1)/2}^{(N-1)/2}\Xd(k\%N)\exp i2\pi\frac{1}{N}kt \tag{1} \]
