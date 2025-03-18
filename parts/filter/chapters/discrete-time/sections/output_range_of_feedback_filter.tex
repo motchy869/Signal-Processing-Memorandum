@@ -1,0 +1,43 @@
+\section{feedback フィルタの出力値の範囲}
+    \newcommand{\Nff}{{N_{\text{ff}}}}
+    \newcommand{\Nfb}{{N_{\text{fb}}}}
+    \newcommand{\hInit}[1]{{h_{\text{init},#1}}}
+    \newcommand{\HInit}[1]{{H_{\text{init},#1}}}
+    \newcommand{\Minit}[1]{{M_{\text{init},#1}}}
+    feedback フィルタの入力の絶対値が制限されるときの出力の絶対値の最大値を求める。
+    この関係は feedback フィルタを実装する際に，内部の記憶素子と演算素子に必要なビット幅を決める際に役立つ。
+    ここでは拡張性を重視して信号の終域を $\complexNumbers$ としているが，用途に応じて $\realNumbers$ に制限してもよい。
+    \begin{shadebox}
+        F を安定な feedback フィルタとし，$x,\;y:\integers\to\complexNumbers$ をそれぞれ入力と出力とする。
+        $x$ は負の時刻に於いて 0 であり，全ての時刻に於いて絶対値が $M_x(\geq 0)$ 以下であるとする。
+        F の漸化式が次式であるとする。
+        \[ y(n) = \sum_{k=0}^\Nff a_k x(n-k) - \sum_{l=1}^\Nfb b_l y(n-l) \]
+        ここに $\Nff,\;\Nfb\in\naturalNumbers$ はそれぞれ feedforward 経路、feedback 経路のタップ数であり， $a_k,\;b_l\in\complexNumbers$ は係数である。
+        \par
+        $h:\integers\to\complexNumbers$ を F の因果的なインパルス応答とし，$\hInit{l}:\integers\to\complexNumbers$ を次式の逆片側 Z 変換とする。
+        \[ \frac{\sum_{k=l}^\Nfb b_{k} z^{-(k-l)}}{1+\sum_{k=1}^\Nfb b_k z^{-k}} \]
+        $\Minit{l}\coloneq\max_n {\abs{\hInit{l}(n)}}$ とする。
+        $y$ の値の範囲について次式が成り立つ。
+        \[ \max_{n\in\naturalNumbers\cup\{0\}}\abs{y(n)} \leq M_x\sum_{k=0}^\infty\abs{h(k)} + \sum_{l=1}^\Nfb\abs{y(-l)}\Minit{l} \]
+        とくに，負の時刻について $y$ の値が 0 であるならば次式が成り立つ。
+        \[ \max_{n\in\naturalNumbers\cup\{0\}}\abs{y(n)} \leq M_x\sum_{k=0}^\infty\abs{h(k)} \]
+    \end{shadebox}
+    \begin{proof}
+        \quad\par
+        漸化式の両辺を片側 Z 変換して次式を得る。
+        \begin{align*}
+            Y(z) &= \parens*{\sum_{k=0}^\Nff a_k z^{-k}}X(z) - \sum_{l=1}^\Nfb b_l z^{-l}\parens*{\sum_{m=1}^l y(-m)z^m + Y(z)} \\
+            \parens*{1+\sum_{l=1}^\Nfb b_l z^{-l}}Y(z) &= \parens*{\sum_{k=0}^\Nff a_k z^{-k}}X(z) - \sum_{m=1}^\Nfb y(-m) \sum_{l=m}^\Nfb b_l z^{-(l-m)} \\
+            Y(z) &= \frac{\sum_{k=0}^\Nff a_k z^{-k}}{1+\sum_{l=1}^\Nfb b_l z^{-l}}X(z) - \parens*{\sum_{m=1}^\Nfb y(-m)}\frac{\sum_{l=m}^\Nfb b_l z^{-(l-m)}}{1+\sum_{l=1}^\Nfb b_l z^{-l}} \\
+            &= H(z)X(z) - \sum_{m=1}^\Nfb y(-m) \HInit{m}(z)
+        \end{align*}
+        ここに $H$ は F の伝達関数であり，$\HInit{m}$ は $\hInit{m}$ の片側 Z 変換である。
+        上式の両辺を逆片側 Z 変換して次式を得る\footnote{$h,\;x$ はともに因果的であるから \ref{single_sided_Z_transform_of_convolution} の結果が使える}。
+        \[ y(n) = (h*x)(n) - \sum_{m=1}^\Nfb y(-m) \hInit{m}(n) \quad \therefore\abs{y(n)} \leq \abs{(h*x)(n)} + \sum_{m=1}^\Nfb \abs{y(-m)} \Minit{m} \]
+        右辺第 1 項を評価する。
+        \begin{align*}
+            \abs{(h*x)(n)} &= \abs{\sum_{k=-\infty}^\infty h(k)x(n-k)} \leq \sum_{k=-\infty}^\infty \abs{h(k)}\abs{x(n-k)} \leq \sum_{k=0}^n \abs{h(k)}M_x\;(\because \forall n<0,\; h(n)=x(n)=0) \\
+            &\leq M_x\sum_{k=0}^\infty \abs{h(k)}
+        \end{align*}
+        以上より主張が成り立つ。
+    \end{proof}

@@ -15,8 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - single-sided Z-transform
     - reversibility of single-sided Z-transform
     - single-sided Z-transform of convolution
-  - FIR filter coefficients design
+  - discrete-time feedforward filter coefficients design
     - difference between IDFT approach and minimizing DTFT square error integral
+  - output range of discrete-time feedback filter with bounded input
 
 ## [0.15.0] - 2025-03-08
 
