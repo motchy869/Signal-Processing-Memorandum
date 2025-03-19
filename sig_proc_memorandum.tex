@@ -98,9 +98,8 @@
 \counterwithin{equation}{section}
 \counterwithin{figure}{section}
 
-% no upper case in header
-\fancyhead{\nouppercase{\rightmark}}
-\fancyhead{\nouppercase{\leftmark}}
+% Use arabic numbers for footnotes even in minipage (including shadebox).
+\renewcommand*\thempfootnote{\arabic{mpfootnote}}
 
 % longtable settings
 % \setcounter{LTchunksize}{200} % currently not used
@@ -139,6 +138,9 @@
 	\lfoot{}
 	\cfoot{\thepage}
 	\rfoot{}
+%% no upper case in header
+\fancyhead{\nouppercase{\rightmark}}
+\fancyhead{\nouppercase{\leftmark}}
 
 % Avoids overlap of number and text in table of contents.
 \setlength{\cftchapnumwidth}{4em}
