@@ -1,7 +1,7 @@
 \part{その他}
     \chapter{信号値の統計}
-        信号に対し、その値の統計を定義できる場合がある。
-        ここでは、連続時間の正弦波信号に対してその値の統計を考える。
+        信号に対し，その値の統計を定義できる場合がある。
+        ここでは，連続時間の正弦波信号に対してその値の統計を考える。
         \section{連続時間正弦波信号値の確率密度関数}
             \begin{shadebox}
                 周期 $T>0$, 振幅 $A>0$ の正弦波信号 $x:t\in\realNumbers\mapsto A\sin\parens{2\pi t/T}$ を考える。
@@ -20,8 +20,8 @@
                 まず $P(x) = 0\;(x < -A),\;P(x) = 1\;(x > A)$ は明らか。
                 \par
                 $-A \leq x \leq 0$ の場合を考える。
-                $x(t) \leq u\;(-A \leq u \leq 0)$ を満たす $t\in[-T/2,T/2]$ は $-T/2 - \frac{T}{2\pi}\arcsin\parens{u/A}\leq t \leq \frac{T}{2\pi}\arcsin\parens{u/A}$ を満たす全ての $t$ であるから、$P(x) = 1/2 + \frac{1}{\pi}\arcsin\parens{x/A}\;(-A\leq x\leq 0)$ である。
-                次に$0 \leq x \leq A$ の場合を考えると、$x$ のグラフの対称性から $P(x) = 1 - P(-x) = 1/2 + \frac{1}{\pi}\arcsin\parens{x/A}\;(0 \leq x \leq A)$ であることが解る。
+                $x(t) \leq u\;(-A \leq u \leq 0)$ を満たす $t\in[-T/2,T/2]$ は $-T/2 - \frac{T}{2\pi}\arcsin\parens{u/A}\leq t \leq \frac{T}{2\pi}\arcsin\parens{u/A}$ を満たす全ての $t$ であるから，$P(x) = 1/2 + \frac{1}{\pi}\arcsin\parens{x/A}\;(-A\leq x\leq 0)$ である。
+                次に$0 \leq x \leq A$ の場合を考えると，$x$ のグラフの対称性から $P(x) = 1 - P(-x) = 1/2 + \frac{1}{\pi}\arcsin\parens{x/A}\;(0 \leq x \leq A)$ であることが解る。
                 結局 $P(x) = 1/2 + \frac{1}{\pi}\arcsin\parens{x/A}\;(\abs{x}\leq A)$ である。
                 これを $x$ について微分して $p$ を得る。
             \end{proof}
@@ -55,14 +55,14 @@
                 \quad\par
                 複素積分を用いて示す。
                 $R>\varepsilon,\;f(z) := \NapierE^{ixz}/(z-i\varepsilon)$とする。
-                $f$の極は$i\varepsilon$であり、位数1, 留数1である。
-                $x>0$のとき、積分路を$C_\mathrm{A}: C_1 + C_2,\; C_1 := [-R,R],\; C_2 := Re^{i\theta},\;\theta:0\to\pi$として$f$を$C_\mathrm{A}$上で積分する。
+                $f$の極は$i\varepsilon$であり，位数1, 留数1である。
+                $x>0$のとき，積分路を$C_\mathrm{A}: C_1 + C_2,\; C_1 := [-R,R],\; C_2 := Re^{i\theta},\;\theta:0\to\pi$として$f$を$C_\mathrm{A}$上で積分する。
                 留数定理から次式が成り立つ。
                 \[ \integrate{C_\mathrm{A}}{}{f(z)}{}{z} = 2\pi i \quad \therefore \integrate{-R}{R}{f(z)}{}{z} = 2\pi i - \integrate{C_2}{}{f(z)}{}{z} \]
                 \cite{数学備忘録}\ref{1:ベクトルLaplacianの発散}と同様にして$\integrate{C_2}{}{f(z)}{}{z} \to 0 \text{ as }R\to\infty$であるので$\lim_{R\to\infty}\integrate{-R}{R}{f(z)}{}{z} = 2\pi i$である。
                 \par
-                $x<0$のとき、積分路を$C_\mathrm{B}: -C_1 + C_3,\; C_3 := Re^{i\theta},\;\theta:-\pi\to 0$として$f$を$C_\mathrm{B}$上で積分する。
-                $C_\mathrm{B}$が囲む領域に$f$の極が無いので、留数定理から次式が成り立つ。
+                $x<0$のとき，積分路を$C_\mathrm{B}: -C_1 + C_3,\; C_3 := Re^{i\theta},\;\theta:-\pi\to 0$として$f$を$C_\mathrm{B}$上で積分する。
+                $C_\mathrm{B}$が囲む領域に$f$の極が無いので，留数定理から次式が成り立つ。
                 \[ \integrate{C_\mathrm{B}}{}{f(z)}{}{z} = 0 \quad \therefore \integrate{-R}{R}{f(z)}{}{z} = \integrate{C_3}{}{f(z)}{}{z} \]
                 $C_\mathrm{2}$上の積分の評価と同様にして$\integrate{C_3}{}{f(z)}{}{z} \to 0 \text{ as }R\to\infty$であるので$\lim_{R\to\infty}\integrate{-R}{R}{f(z)}{}{z} = 0$である。
                 以上より定理の主張が従う。

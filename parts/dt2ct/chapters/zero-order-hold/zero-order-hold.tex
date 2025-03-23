@@ -26,9 +26,9 @@
                 \caption{$x$の例}
                 \label{figure:離散時間信号のDAC出力の例}
             \end{figure}
-            以上の下、 $x$ のFourier変換 $X$ は次式である。
+            以上の下， $x$ のFourier変換 $X$ は次式である。
             \[ X(\omega) = \frac{\Ts}{\sqrt{2\pi}}\exp\parens*{-i\frac{\Ts}{2}\omega}\parens*{\sinc \frac{\Ts}{2}\omega}\Xd(\omega) \]
-            $\Xd(\omega)$ が $2\pi/\Ts$ 周期関数であることに注意すれば、$\Xd(\omega)$ の第1 Nyquist領域の形状が位相回転 $\exp\parens{-i \omega n\Ts}$ とレベル減衰 $\sinc\omega\Ts/2$ を伴いつつ周期的に無限に繰り返されていることがわかる。
+            $\Xd(\omega)$ が $2\pi/\Ts$ 周期関数であることに注意すれば，$\Xd(\omega)$ の第1 Nyquist領域の形状が位相回転 $\exp\parens{-i \omega n\Ts}$ とレベル減衰 $\sinc\omega\Ts/2$ を伴いつつ周期的に無限に繰り返されていることがわかる。
             この現象は「アパーチャ効果」と呼ばれる。
             次の図は\ref{figure:離散時間信号のDAC出力の例}に対応する $X$ の例である。
             \begin{figure}[H]
@@ -62,7 +62,7 @@
             離散時間信号をDA変換した結果のFourier変換には次式で表される変化が積の形で含まれることを\ref{0次ホールドされた離散時間信号の周波数スペクトラム}で述べた。
             \[ \sinc \frac{\Ts}{2}\omega = \sinc \frac{\Omega}{2} \]
             ここに $\Ts$ はサンプリング周期, $\Omega$ は正規化角周波数である。
-            変化の中には上式の他に $\exp\parens*{-i\frac{\Ts}{2}\omega}$ という項も含まれるが、これは一定の群遅延が加わる（線形位相特性）だけであり、実用上無害なので無視する。
+            変化の中には上式の他に $\exp\parens*{-i\frac{\Ts}{2}\omega}$ という項も含まれるが，これは一定の群遅延が加わる（線形位相特性）だけであり，実用上無害なので無視する。
             次の図は $\abs{\sinc \frac{\Omega}{2}}$ をプロットしたものである。
             \begin{figure}[H]
                 \centering
@@ -70,8 +70,8 @@
                 {\currfiledir/figs/sinc-shaped_gain_distortion_with_ideal_DA.pdf}
                 \caption{量子化誤差のないDA変換結果の sinc 状ゲイン歪み}
             \end{figure}
-            上の図から、第1 Nyquist 領域の端 $-\pi, \pi$ で約 -3dB のゲイン低下が生じていることが解る。
-            実は0次ホールドで出力する直前に、上手く設計された10タップ程度の畳み込み型 FIR フィルタを掛けてこの影響を緩和し、下図のようなゲイン特性に変更できる。
+            上の図から，第1 Nyquist 領域の端 $-\pi, \pi$ で約 -3dB のゲイン低下が生じていることが解る。
+            実は0次ホールドで出力する直前に，上手く設計された10タップ程度の feedforward フィルタを掛けてこの影響を緩和し，下図のようなゲイン特性に変更できる。
             このフィルタは「inverse-sinc フィルタ」と呼ばれる。
             \begin{figure}[H]
                 \centering
@@ -81,14 +81,14 @@
                 \label{inverse-sinc フィルタによって緩和されたゲイン歪み}
             \end{figure}
             inverse-sinc フィルタは $[-\pi, \pi]$ で sinc 状歪みの逆特性を近似するフィルタである。
-            DA変換の対象とする信号は通常、標本化定理を念頭に置いてスペクトラムが $[-\pi,\pi]$ の領域に収まる信号であるから、上述の補正が十分に機能する。
+            DA変換の対象とする信号は通常，標本化定理を念頭に置いてスペクトラムが $[-\pi,\pi]$ の領域に収まる信号であるから，上述の補正が十分に機能する。
             以下ではこのフィルタの設計方法の1つを述べる。
         \subsection{係数の導出}
-            大雑把に言えば、フィルタ係数に対応する DTFT が $[-\pi,\pi]$ で $1/\sinc(\Omega/2)$ を近似するように最小二乗法で係数を決定する。
+            大雑把に言えば，フィルタ係数に対応する DTFT が $[-\pi,\pi]$ で $1/\sinc(\Omega/2)$ を近似するように最小二乗法で係数を決定する。
             \par
-            フィルタ係数 $a:\integers\to\realNumbers$ は偶対称な実数値関数とし、非零の係数の個数を奇数とする。
+            フィルタ係数 $a:\integers\to\realNumbers$ は偶対称な実数値関数とし，非零の係数の個数を奇数とする。
             数式で述べれば $N\in\naturalNumbers,\;\forall n\in\integers\;a(-n) = a(n),\forall n>N\;a(n) = 0$ である。
-            この制約条件が唯一の方法ではないだろうが、後に見るようにこれで十分な性能を得られる。
+            この制約条件が唯一の方法ではないだろうが，後に見るようにこれで十分な性能を得られる。
             \par
             $a$ の DTFT を $A$ とする。すなわち
             \[ A(\Omega) = \sum_{n=-N}^N a(n)\exp(-i\Omega n) = a(0) + 2\sum_{n=1}^N a(n)\cos(\Omega n) = \bm{v}(\Omega)^\top\bm{a} \]
@@ -102,7 +102,7 @@
             ここに $M,\bm{m}$ は次式で定義される数である。
             \[ M \coloneq \integrate{-\pi}{\pi}{\bm{v}(\Omega)\bm{v}(\Omega)^\top}{}{\Omega} = 2\pi\diag{1,2,2,\dots,2},\quad \bm{m} = \integrate{-\pi}{\pi}{\bm{v}(\Omega)^\top/\sinc(\Omega/2)}{}{\Omega} \]
             $\bm{m}$ は数値計算で求める。
-            式(2)の中で $\bm{a}$ に依存しない項を無視すると、最小化すべき関数は次式である。
+            式(2)の中で $\bm{a}$ に依存しない項を無視すると，最小化すべき関数は次式である。
             \[ f_\text{cost}(\bm{a}) = \bm{a}^\top M\bm{a} - 2\bm{m}^\top\bm{a} \]
             これは狭義凸関数であり $(\nabla f_\text{cost})(\bm{a}) = 2(M\bm{a} - \bm{m})$ なので $f$ を最小化する $\bm{a}$ を $\bm{a}_\text{opt}$ とするとこれは $M^{-1}\bm{m} = \diag{m_0,m_1 /2,\dots,m_N /2}/(2\pi)$ である。
             ここに $m_i\;(i=0,1,\dots,N)$ は $\bm{m}$ の第 $i$ 要素である。
@@ -115,7 +115,7 @@
                 {\currfiledir/figs/coeffs_of_inverse-sinc_filter.pdf}
                 \caption{inverse-sinc フィルタの係数($N$=5)}
             \end{figure}
-            次の図は、この係数に対応するフィルタのインパルス応答の DTFT と $1/\sinc(\Omega/2)$ を比較したものである。
+            次の図は，この係数に対応するフィルタのインパルス応答の DTFT と $1/\sinc(\Omega/2)$ を比較したものである。
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.6]

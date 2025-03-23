@@ -1,36 +1,36 @@
 \chapter{離散時間Fourier変換(DTFT)}
-    \newcommand{\Ts}{T_\text{s}}
-    \newcommand{\DTFT}[1]{\mathrm{DTFT}\parens*{#1}}
-    \newcommand{\DTFTwithArg}[2]{\DTFT{#1}\parens*{#2}}
-    \newcommand{\IDTFT}[1]{\mathrm{IDTFT}\parens*{#1}}
-    \newcommand{\IDTFTwithArg}[2]{\IDTFT{#1}\parens*{#2}}
+    \newcommand*{\Ts}{T_\text{s}}
+    \newcommand*{\DTFT}[1]{\mathrm{DTFT}\parens*{#1}}
+    \newcommand*{\DTFTwithArg}[2]{\DTFT{#1}\parens*{#2}}
+    \newcommand*{\IDTFT}[1]{\mathrm{IDTFT}\parens*{#1}}
+    \newcommand*{\IDTFTwithArg}[2]{\IDTFT{#1}\parens*{#2}}
     \section{直観的な説明}
-        離散時間Fourier変換(Discrete Time Fourier Transform, DTFT)とは、直観的には、離散座標信号を、連続的な周波数をもつ無数の離散時間信号の重ね合わせとして表現するものである。
+        離散時間Fourier変換(Discrete Time Fourier Transform, DTFT)とは，直観的には，離散座標信号を，連続的な周波数をもつ無数の離散時間信号の重ね合わせとして表現するものである。
     \section{定義}
         $d\in\naturalNumbers,\;\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0}$とする。
-        $f:\integers^d\to\complexNumbers$に対して、次式で定義される、$\bm{\omega}\in\realNumbers^d$に関する連続座標信号を$f$の離散時間Fourier変換という。
+        $f:\integers^d\to\complexNumbers$に対して，次式で定義される，$\bm{\omega}\in\realNumbers^d$に関する連続座標信号を$f$の離散時間Fourier変換という。
         \[ \DTFTwithArg{f}{\bm{\omega}} \coloneq \sum_{\bm{n}\in\integers^d} f(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \]
-        $\bm{\omega}$は各軸方向の角周波数をまとめて表したベクトルであり、$\bm{T}_\text{s}$は各軸方向のサンプリング周期である。
-        DTFTは$\bm{\omega}$に関する周期関数であり、その周期は$2\pi\bm{1}\HadamardDiv\bm{T}_\text{s}$である。
+        $\bm{\omega}$は各軸方向の角周波数をまとめて表したベクトルであり，$\bm{T}_\text{s}$は各軸方向のサンプリング周期である。
+        DTFTは$\bm{\omega}$に関する周期関数であり，その周期は$2\pi\bm{1}\HadamardDiv\bm{T}_\text{s}$である。
         \subsection{呼称について}
-            本書では関数の引数を時間や周波数に限定せず、より一般に座標と呼ぶ姿勢をとっている。
-            しかしDTFTは電気・電子系の信号処理の分野で発展したため、離散``時間''という呼称が浸透しており、これに敢えて逆らって離散``座標''と呼ぶのは本書と工学応用の相性を悪くするだけで無益である。
-            そこで、DTFTのような、歴史的な理由で呼称が定着しているものについては慣例に従うことにする。
+            本書では関数の引数を時間や周波数に限定せず，より一般に座標と呼ぶ姿勢をとっている。
+            しかしDTFTは電気・電子系の信号処理の分野で発展したため，離散``時間''という呼称が浸透しており，これに敢えて逆らって離散``座標''と呼ぶのは本書と工学応用の相性を悪くするだけで無益である。
+            そこで，DTFTのような，歴史的な理由で呼称が定着しているものについては慣例に従うことにする。
     \section{連続座標信号との関係}
         連続座標信号$f_\text{c}:\realNumbers^d\to\complexNumbers$をサンプリング周期$\bm{T}_\text{s} \coloneq [T_{\text{s},1}, T_{\text{s},2}, \dotsc, T_{\text{s},d}]^\top\in\realNumbers^d$すなわち周波数$\bm{f}_\text{s} \coloneq [f_{\text{s},1}, f_{\text{s},2}, \dotsc, f_{\text{s},d}]^\top \coloneq [1/T_{\text{s},1}, 1/T_{\text{s},2}, \dotsc, 1/T_{\text{s},d}]^\top\in\realNumbers^d$でサンプリングした離散座標信号を$f_\text{d}: \bm{n}\in\integers^d\mapsto f_\text{c}(\bm{T}^\top\bm{n})$とする。
         $f_\text{d}$のDTFTに於ける多次元の角周波数$\bm{\omega}$を周波数$\bm{f}$を用いて$\bm{\omega} \coloneq 2\pi\bm{f}$と表す。
         \par
-        $\bm{n}$の第$k$要素$n_k$が1だけ変化すると、元の連続座標信号の対応する座標は$T_k$だけ変化し、DTFTのカーネル関数$\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})$の偏角は$\omega_k T_{\text{s},k} = 2\pi f_k T_{\text{s},k}$だけ変化する。
-        つまりDTFTの定義域に於ける周波数$\bm{f}$の第$k$成分に対応する元の連続座標信号の周波数の第$k$成分は$f_k$であり、スケールは保たれている。
+        $\bm{n}$の第$k$要素$n_k$が1だけ変化すると，元の連続座標信号の対応する座標は$T_k$だけ変化し，DTFTのカーネル関数$\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})$の偏角は$\omega_k T_{\text{s},k} = 2\pi f_k T_{\text{s},k}$だけ変化する。
+        つまりDTFTの定義域に於ける周波数$\bm{f}$の第$k$成分に対応する元の連続座標信号の周波数の第$k$成分は$f_k$であり，スケールは保たれている。
         \par
-        DTFTの定義で述べたように、DTFTは周期が$2\pi\bm{1}\HadamardDiv\bm{T}_\text{s}$であるから、一意に区別できる角周波数は$-\bm{\pi}\HadamardDiv\bm{T}_\text{s} \leq \bm{\omega} < \bm{\pi}\HadamardDiv\bm{T}_\text{s}$、つまり一意に区別できる周波数は$-\bm{f}_\text{s}/2 \leq \bm{f} < \bm{f}_\text{s}/2$である。
-        この事実と、先程述べたDTFTと元の連続座標信号との周波数の関係から、DTFTに於いて一意に区別できる周波数に対応する元の連続座標信号の周波数$\tilde{\bm{f}}$は$-\bm{f}_\text{s}/2 \leq \tilde{\bm{f}} < \bm{f}_\text{s}/2$である。
+        DTFTの定義で述べたように，DTFTは周期が$2\pi\bm{1}\HadamardDiv\bm{T}_\text{s}$であるから，一意に区別できる角周波数は$-\bm{\pi}\HadamardDiv\bm{T}_\text{s} \leq \bm{\omega} < \bm{\pi}\HadamardDiv\bm{T}_\text{s}$，つまり一意に区別できる周波数は$-\bm{f}_\text{s}/2 \leq \bm{f} < \bm{f}_\text{s}/2$である。
+        この事実と，先程述べたDTFTと元の連続座標信号との周波数の関係から，DTFTに於いて一意に区別できる周波数に対応する元の連続座標信号の周波数$\tilde{\bm{f}}$は$-\bm{f}_\text{s}/2 \leq \tilde{\bm{f}} < \bm{f}_\text{s}/2$である。
     \section{逆離散時間Fourier変換(IDTFT)}
         $d\in\naturalNumbers,\;\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0},\;\Omega := \prod_{k=1}^d [-\pi/T_{\text{s},k},\pi/T_{\text{s},k})$とする。
-        $F:\realNumbers^d\to\complexNumbers$に対して、次式で定義される、$\bm{n}\in\integers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT, IDTFT)という。
+        $F:\realNumbers^d\to\complexNumbers$に対して，次式で定義される，$\bm{n}\in\integers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT, IDTFT)という。
         \[ \IDTFTwithArg{F}{\bm{n}} \coloneq \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \]
         \subsection{IDTFTがDTFTの逆変換であること}
-            厳密な導出はここでは述べないが、$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\IDTFTwithArg{\DTFT{f}}{\bm{n}} = f(\bm{n})$となることを簡単に証明できる。
+            厳密な導出はここでは述べないが，$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\IDTFTwithArg{\DTFT{f}}{\bm{n}} = f(\bm{n})$となることを簡単に証明できる。
             $\sum$と$\int$の順序交換が簡単に行えるからである。
     \section{積と畳み込みとの関係}
         以下では既出の記号の定義は上書きしない限り引き継ぐ。
@@ -60,7 +60,7 @@
                 &= F(\bm{\omega})G(\bm{\omega})
             \end{align*}
         \subsection{積のIDTFT}
-            DTFTの可逆性から直ちに言えるが、敢えて直接計算してみる。
+            DTFTの可逆性から直ちに言えるが，敢えて直接計算してみる。
             \begin{align*}
                 \IDTFTwithArg{FG}{\bm{n}} &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
                 &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\left(\DTFTwithArg{f}{\bm{\omega}}\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
@@ -69,7 +69,7 @@
                 &= \sum_{\bm{m}\in\integers^d} f(\bm{m})g(\bm{n}-\bm{m}) = (f*g)(\bm{n})
             \end{align*}
         \subsection{畳み込みのIDTFT}
-            DTFTの可逆性から直ちに言えるが、敢えて直接計算してみる。
+            DTFTの可逆性から直ちに言えるが，敢えて直接計算してみる。
             \begin{align*}
                 &\phantom{=} \IDTFTwithArg{F*G}{\bm{n}} \\
                 &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{(F*G)(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
@@ -83,18 +83,18 @@
     \section{定数関数1のDTFT}
         \label{定数関数1のDTFT}
         簡単のため1次元の場合について考察する。
-        工学系の学生を対象とする講義では、\\
+        工学系の学生を対象とする講義では，\\
         $\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
-        $\IDTFTwithArg{(2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)}{x}=1$の確認は簡単であり、DTFTの可逆性から$\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$を受け入れる説明がなされると思う。
+        $\IDTFTwithArg{(2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)}{x}=1$の確認は簡単であり，DTFTの可逆性から$\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$を受け入れる説明がなされると思う。
         \par
         ここではDirichlet積分を用いて$\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$を直接的に導出してみる。
         DTFTの定義から次式が成り立つ。
         \[
             \DTFTwithArg{1}{\omega} = \lim_{N\to\infty} \sum_{m=-N}^N \NapierE^{i\omega \Ts m} = \frac{\sin(N+1/2)\omega \Ts}{\sin(\omega \Ts/2)}
         \]
-        最右辺は等比数列の和の公式を用いた後、分母と分子に$\NapierE^{-i\omega/2}$を掛けて整理すると得られる。
+        最右辺は等比数列の和の公式を用いた後，分母と分子に$\NapierE^{-i\omega/2}$を掛けて整理すると得られる。
         これが$N\to\infty$で$(2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$として振る舞うことを確かめる。
-        $2\pi/\Ts$周期性については明らかだから、$[-\pi/\Ts,\pi/\Ts)$の範囲で$(2\pi/\Ts)\delta(\omega)$として振る舞うことを確かめれば十分である。
+        $2\pi/\Ts$周期性については明らかだから，$[-\pi/\Ts,\pi/\Ts)$の範囲で$(2\pi/\Ts)\delta(\omega)$として振る舞うことを確かめれば十分である。
         示すべきことは次の通りである。
         \begin{shadebox}
             $d\in\naturalNumbers$とする。
@@ -113,18 +113,18 @@
                 I_N = \frac{2}{\Ts}\integrate{-h \Ts/2}{h \Ts/2}{\frac{\sin(2N+1)y}{\sin y}f(2y/\Ts)}{}{y} = \frac{2}{\Ts}\integrate{-h \Ts/2}{h \Ts/2}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{}{y}
             \]
             後に現れるDirichlet積分の性質から$N\to\infty$で積分の主要部分が$x=0$近傍に集中することがこの時点で推察できる。
-            そこで、十分に小さい正数$d'$を$0<d'<h \Ts/2$となるようにとり、積分区間を$[-h \Ts/2,-d']\cup[-d',d']\cup[d',h \Ts/2]$と分割する。
+            そこで，十分に小さい正数$d'$を$0<d'<h \Ts/2$となるようにとり，積分区間を$[-h \Ts/2,-d']\cup[-d',d']\cup[d',h \Ts/2]$と分割する。
             \par
             $[-h \Ts/2,-d'], [d',h \Ts/2]$に於いて$f(2y/\Ts)/\sin y$は一様連続であるので$N\to\infty$でこの2つの区間に於ける$(f(2y/\Ts)\sin(2N+1)y)/\sin y$の積分は0に収束する。
-            証明の方針としては、$\sin(2N+1)y$の符号が変化する点で積分区間を細分し、各区間内で$f(2y/\Ts)/\sin y$を定数で近似して全体の積分を近似すると、一様連続性から近似値と真の積分の差が0に収束し、かつ近似値が0に収束する。
+            証明の方針としては，$\sin(2N+1)y$の符号が変化する点で積分区間を細分し，各区間内で$f(2y/\Ts)/\sin y$を定数で近似して全体の積分を近似すると，一様連続性から近似値と真の積分の差が0に収束し，かつ近似値が0に収束する。
             \par
-            つまり任意に小さい$\varepsilon>0$に対して、$d'$に依存して決まる十分大きい自然数$N_1$が存在して次式が成り立つ。
+            つまり任意に小さい$\varepsilon>0$に対して，$d'$に依存して決まる十分大きい自然数$N_1$が存在して次式が成り立つ。
             \[
                 N\geq N_1 \Rightarrow \abs{\frac{2}{\Ts}\integrate{[-h \Ts/2,-d']\cup[d',h \Ts/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y/\Ts)}{}{y}}<\varepsilon
             \]
             \par
             次に$[-d',d']$に於ける積分を評価する。
-            $y\to 0$で$y/\sin y\to 1,\;f(2y/\Ts)\to f(0)$であるから、$d'$を十分小さくとりなおすことで$|f(2y/\Ts)y/\sin y - f(0)| < \varepsilon$となり次式が成り立つ。
+            $y\to 0$で$y/\sin y\to 1,\;f(2y/\Ts)\to f(0)$であるから，$d'$を十分小さくとりなおすことで$|f(2y/\Ts)y/\sin y - f(0)| < \varepsilon$となり次式が成り立つ。
             \[
                 \abs{\frac{2}{\Ts}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y/\Ts)}{}{y} - \frac{2}{\Ts}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}} < \frac{2\varepsilon}{\Ts}\abs{\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}}
             \]
@@ -134,7 +134,7 @@
             \]
             すなわち$d'$に依存して決まる十分大きい自然数$N_2$が存在して次式が成り立つ。
             \[ N\geq N_1 \Rightarrow \abs{\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} - \pi} < \varepsilon \]
-            以上より、$d'>0$を十分に小さくとり、$N\geq\max(N_1,N_2)$とすれば次式が成り立つ。
+            以上より，$d'>0$を十分に小さくとり，$N\geq\max(N_1,N_2)$とすれば次式が成り立つ。
             \begin{align*}
                 \abs{I_N - \frac{2\pi}{\Ts} f(0)} &= \left|\underbrace{\left(\frac{2}{\Ts}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} - \frac{2\pi}{\Ts} f(0)\right)}_{(1)} \right. \\
                 &\phantom{=} \left.+ \underbrace{\left(\frac{2}{\Ts}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{}{y} - \frac{2}{\Ts}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}\right)}_{(2)} \right. \\
@@ -153,7 +153,7 @@
             &= \frac{1}{2i}\NapierE^{i\phi}\frac{2\pi}{\Ts}\sum_{m\in\integers}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \frac{1}{2i}\NapierE^{-i\phi}\frac{2\pi}{\Ts}\sum_{m\in\integers}\delta(\omega+\omega_0 - 2\pi m/\Ts) \\
             &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
         \end{align*}
-        上の結果を利用して、$\cos(\omega_0 \Ts n + \phi)$のDTFTは次式となる。
+        上の結果を利用して，$\cos(\omega_0 \Ts n + \phi)$のDTFTは次式となる。
         \begin{align*}
             \DTFT{\cos(\omega_0 \Ts n + \phi)}{\omega} &= \DTFTwithArg{\sin(\omega_0 \Ts n + \phi + \pi/2)}{\omega} \\
             &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i(\phi+\pi/2)}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i(\phi+\pi/2)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
@@ -162,7 +162,7 @@
         \end{align*}
     \section{エイリアシングとの関係}
         \label{DTFTとエイリアシングとの関係}
-        \newcommand{\fsamp}{f_\mathrm{s}}
+        \newcommand*{\fsamp}{f_\text{s}}
         簡単のため1次元の場合について考察する。
         $d\in\naturalNumbers$とする。
         連続時間信号$f:\realNumbers\to\complexNumbers^d$をサンプリング周期$\Ts$でサンプリングした信号$\tilde{f}:\naturalNumbers\to\complexNumbers^d$のDTFTを求める。
@@ -173,14 +173,14 @@
             &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\frac{2\pi}{\Ts}\sum_{n=-\infty}^\infty \delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} \quad (\text{\ref{定数関数1のDTFT}を用いた。}) \\
             &= \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty \integrate{-\infty}{\infty}{F(\omega')\delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} = \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty F(\omega + 2\pi n/\Ts) \tag {1}
         \end{align*}
-        このように、$\DTFT{\tilde{f}}$は$F$をスケーリングして$2\pi/\Ts$周期で重ね合わせたものになる。
-        $f$が帯域制限信号である、すなわちある$\omega_0\geq 0$が存在して$F$の台が$[-\omega_0,\omega_0]$の範囲に収まるとき、$\Ts$を十分に小さくとれば、$\DTFT{\tilde{f}}$の一意に区別可能な角周波数の区間$[-\pi/\Ts,\pi/\Ts]$で$\DTFT{\tilde{f}}$は$(\sqrt{2\pi}/\Ts)F$と一致する。
-        逆に$\Ts$が大きいとき、$[-\pi/\Ts,\pi/\Ts]$の区間の端部付近で$F(\omega+2\pi/\Ts)$や$F(\omega-2\pi/\Ts)$が0でない値をとる。
+        このように，$\DTFT{\tilde{f}}$は$F$をスケーリングして$2\pi/\Ts$周期で重ね合わせたものになる。
+        $f$が帯域制限信号である，すなわちある$\omega_0\geq 0$が存在して$F$の台が$[-\omega_0,\omega_0]$の範囲に収まるとき，$\Ts$を十分に小さくとれば，$\DTFT{\tilde{f}}$の一意に区別可能な角周波数の区間$[-\pi/\Ts,\pi/\Ts]$で$\DTFT{\tilde{f}}$は$(\sqrt{2\pi}/\Ts)F$と一致する。
+        逆に$\Ts$が大きいとき，$[-\pi/\Ts,\pi/\Ts]$の区間の端部付近で$F(\omega+2\pi/\Ts)$や$F(\omega-2\pi/\Ts)$が0でない値をとる。
         つまりサンプリングする前の連続時間信号には存在しなかった高周波成分が現れる。
         この現象を ``Aliasing'' (エイリアシング)と呼ぶ。
         \par
-        エイリアシングが生じない条件は、$-\omega_0 + 2\pi/\Ts > \omega_0$すなわち$\Ts<\pi/\omega_0$である。
-        周波数で表現するなら、帯域制限区間の端部の周波数$f_0 := \omega_0/(2\pi)$, サンプリング周波数$\fsamp := 1/\Ts$を用いて$\fsamp>2f_0$である。
+        エイリアシングが生じない条件は，$-\omega_0 + 2\pi/\Ts > \omega_0$すなわち$\Ts<\pi/\omega_0$である。
+        周波数で表現するなら，帯域制限区間の端部の周波数$f_0 := \omega_0/(2\pi)$, サンプリング周波数$\fsamp := 1/\Ts$を用いて$\fsamp>2f_0$である。
         \subsection{補足:式(1)のもう一つの導出}
             \begin{align*}
                 \DTFTwithArg{\tilde{f}}{\omega} &= \sum_{n=-\infty}^\infty f(n\Ts)\NapierE^{-i\omega\Ts n} = \sum_{n=-\infty}^\infty\parens*{\integrate{-\infty}{\infty}{f(t)\delta(t-n\Ts)}{}{t}}\exp(-i\omega\Ts n) \\
@@ -191,13 +191,12 @@
                 &= \frac{1}{\Ts}\sum_{n=-\infty}^\infty\integrate{-\infty}{\infty}{f(t)\exp(\bracks*{-i\parens*{\omega - n\frac{2\pi}{\Ts}}t})}{}{t} \\
                 &= \frac{\sqrt{2\pi}}{\Ts}\sum_{n=-\infty}^\infty F\parens*{\omega - n\frac{2\pi}{\Ts}}
             \end{align*}
-        \let\fsamp\undefined
     \section{システムの伝達関数と正弦波入力の関係}
         \begin{shadebox}
             サンプリング時間を$\Ts>0$とする。
-            実数値の入力に対して実数値を出力するシステムの伝達関数が$H:\omega\in\realNumbers\mapsto H(\omega)\in\complexNumbers$であるとき、このシステムに単一周波数の正弦波$f(n) := \sin(\omega_0 \Ts n + \phi)\;(-\pi/\Ts\leq\omega_0\leq\pi/\Ts)$を入力したときの出力$g(n)$は次式となる。
+            実数値の入力に対して実数値を出力するシステムの伝達関数が$H:\omega\in\realNumbers\mapsto H(\omega)\in\complexNumbers$であるとき，このシステムに単一周波数の正弦波$f(n) := \sin(\omega_0 \Ts n + \phi)\;(-\pi/\Ts\leq\omega_0\leq\pi/\Ts)$を入力したときの出力$g(n)$は次式となる。
             \[ g(n) = \abs{H(\omega_0)}\sin\bigl(\omega_0 \Ts n + \phi + \Arg\parens*{H(\omega_0)}\bigr) \]
-            $\omega_0<-\pi/\Ts, \pi/\Ts<\omega_0$のときは$\tilde{\omega}_0 := (\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts$とすると$\sin(\omega_0 \Ts n + \phi) = \sin(\tilde{\omega}_0 \Ts n + \phi)$となるので、$-\pi/\Ts\leq\omega_0\leq\pi/\Ts$の場合のみを考慮すればよい。
+            $\omega_0<-\pi/\Ts, \pi/\Ts<\omega_0$のときは$\tilde{\omega}_0 := (\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts$とすると$\sin(\omega_0 \Ts n + \phi) = \sin(\tilde{\omega}_0 \Ts n + \phi)$となるので，$-\pi/\Ts\leq\omega_0\leq\pi/\Ts$の場合のみを考慮すればよい。
         \end{shadebox}
         (直接的で長い証明)
         \begin{proof}
@@ -243,24 +242,24 @@
             \begin{shadebox}
                 $N\in\naturalNumbers,\;\sigma>0$とする。
                 連続時間信号$X:\realNumbers\to\complexNumbers$は確率変数であるとする。
-                これをサンプリング周期$\Ts>0$でサンプリングした$N$個の確率変数$X_n = X(n\Ts)\;(n=0,1,\dots,N-1)$は互いに独立であり、自身の実部と虚部も独立であり、それぞれ$N(0,\sigma)$に従うとする。
-                数列$\{X_n\}$のDTFTを$Y:\realNumbers\to\complexNumbers$とすると、$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
+                これをサンプリング周期$\Ts>0$でサンプリングした$N$個の確率変数$X_n = X(n\Ts)\;(n=0,1,\dots,N-1)$は互いに独立であり，自身の実部と虚部も独立であり，それぞれ$N(0,\sigma)$に従うとする。
+                数列$\{X_n\}$のDTFTを$Y:\realNumbers\to\complexNumbers$とすると，$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
             \end{shadebox}
             \begin{proof}
                 \quad\par
                 $[\Re{X_n}, \Im{X_n}]^\top \sim N(\bm{0}, \sigma I_2)$である。
                 ここに$I_2$は2次の単位行列である。
                 $Y(\omega) = \sum_{n=0}^{N-1} X_n \NapierE^{-j\omega\Ts n}$
-                であるが、$X_n \NapierE^{-j\omega\Ts n}$は$X_n$を$-\omega\Ts n$だけ回転させたものであり、これもまた$N(\bm{0}, \sigma I_2)$に従う。
+                であるが，$X_n \NapierE^{-j\omega\Ts n}$は$X_n$を$-\omega\Ts n$だけ回転させたものであり，これもまた$N(\bm{0}, \sigma I_2)$に従う。
                 正規分布の再生性から$Y(\omega)$は$N(\bm{0}, \sqrt{N}\sigma I_2)$に従う。
-                $Y(\omega)/(\sqrt{N}\sigma)$の実部と虚部は独立でそれぞれ標準正規分布に従うので、$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
+                $Y(\omega)/(\sqrt{N}\sigma)$の実部と虚部は独立でそれぞれ標準正規分布に従うので，$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
             \end{proof}
         \subsection{Fourier変換との関係}
             通信工学で現れるGaussianノイズの電力密度という言葉について説明を試みる。
             時間の不連続関数とも思えるノイズに対するFourier変換を通常の方法で定義できない。
-            ここでは、サンプリング周波数が極めて高い測定器を用いて計算されるDTFT由来のスペクトラムを考えることにする。
-            産業応用上はこのような測定結果を用いるので、極限を数学的に厳密に扱わなくても実用上困ることはない。
-            注目する時間区間(測定器で言えばGate time) $I := [t_0,t_1]$ に於いて確率変数としての連続時間ノイズ信号$X(t)$を周期$\Ts$でサンプリングした$N = \lfloor(t_1-t_0)/\Ts\rfloor$個のデータ$X_n := X(n\Ts)$に対して、区間$I$に於ける平均スペクトラムを次式で定義する。
+            ここでは，サンプリング周波数が極めて高い測定器を用いて計算されるDTFT由来のスペクトラムを考えることにする。
+            産業応用上はこのような測定結果を用いるので，極限を数学的に厳密に扱わなくても実用上困ることはない。
+            注目する時間区間(測定器で言えばGate time) $I := [t_0,t_1]$ に於いて確率変数としての連続時間ノイズ信号$X(t)$を周期$\Ts$でサンプリングした$N = \lfloor(t_1-t_0)/\Ts\rfloor$個のデータ$X_n := X(n\Ts)$に対して，区間$I$に於ける平均スペクトラムを次式で定義する。
             \[ Y(f) := \frac{1}{t_1-t_0}\sum_{n=0}^{N-1} \frac{t_1-t_0}{N} X_n \exp\left(-j2\pi f n\Ts\right) \]
-            上式は$\Ts\to +0$のとき、$X$の台を$I$に制限したFourier変換の$1/(t_1-t_0)$倍に近付く($X$がRiemann可積分かどうか疑わしいので「一致する」とは言い難い)。
-            \ref{GaussianノイズのDTFTのエネルギー・スペクトラム密度}の証明と同様にして$Y(\omega)$の実部と虚部はそれぞれ独立に正規分布$N(0,\sigma)$に従い、$|Y(\omega)|^2/\sigma^2$は$\chi_2^2$分布に従うことがわかる。
+            上式は$\Ts\to +0$のとき，$X$の台を$I$に制限したFourier変換の$1/(t_1-t_0)$倍に近付く($X$がRiemann可積分かどうか疑わしいので「一致する」とは言い難い)。
+            \ref{GaussianノイズのDTFTのエネルギー・スペクトラム密度}の証明と同様にして$Y(\omega)$の実部と虚部はそれぞれ独立に正規分布$N(0,\sigma)$に従い，$|Y(\omega)|^2/\sigma^2$は$\chi_2^2$分布に従うことがわかる。
