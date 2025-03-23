@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Categorized discrete-time filter into two types: feedforward and feedback.
   - Distinguish '、' and '，' in Japanese text.
 - Added:
+  - closed form expression for interpolation with IDTFT
   - inverse Z-transform
   - single-sided Z-transform
     - reversibility of single-sided Z-transform
