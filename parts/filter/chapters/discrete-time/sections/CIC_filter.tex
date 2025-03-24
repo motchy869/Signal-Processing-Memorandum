@@ -120,13 +120,21 @@
             &= \exp\parens*{-i\frac{\Omega}{2}N(3R+1)}\parens*{\frac{\sin(R\Omega/2)}{\sin(\Omega/2)}}^N \XNAF(\Omega)
         \end{align*}
         正規化周波数で表現しなおして $\XNF(F) = X(2\pi F), \tYNF(F) = \tYNAF(2\pi F)$ とすれば次式を得る。
-        \[ \tYNF(F) = \exp\parens*{-i\pi N(3R+1)F}\parens*{\frac{\sin(\pi R F)}{\sin(\pi F)}}^N \XNF(F) \]
+        \begin{equation}
+            \label{equation:CIC down-sampler のアンダー・サンプリング前の周波数特性}
+            \tYNF(F) = \exp\parens*{-i\pi N(3R+1)F}\underbrace{\parens*{\frac{\sin(\pi R F)}{\sin(\pi F)}}^N}_{(1)} \XNF(F)
+        \end{equation}
         これと \ref{アンダー・サンプリングされた信号の DTFT} より，$1/R$ 倍アンダー・サンプラの出力を正規化周波数で表現した周波数スペクトラムは次式である。
         \begin{align}
             \YNF(F) &= \frac{1}{R}\sum_{n=0}^{R-1} \tYNF((F-n)/R) \nonumber \\
             &= \frac{1}{R}\sum_{n=0}^{R-1} \exp\parens*{-i\pi N(F-n)(3R+1)/R}\parens*{\frac{\sin(\pi(F-n))}{\sin(\pi(F-n)/R)}}^N \XNF((F-n)/R) \label{equation:CIC down-sampler の周波数スペクトラム}
         \end{align}
         \ref{アンダー・サンプリングされた信号の DTFT} でも述べられているが，全体に掛けられている $1/R$ は DTFT の内積計算の対象となる点の数が $1/R$ に減ったことに由来しており，振幅が $1/R$ になるわけではない。
+        \par
+        式 \eqref{equation:CIC down-sampler のアンダー・サンプリング前の周波数特性} の伝達関数部分の特性をプロットする際に (1) の分母の零点が厄介である。
+        分子を見ると解るが，分母と分子の零点が相殺するため，全体としては有界である。
+        この特異点は $k\pi\;(k\in\integers)$ にあり，簡単な計算によって $F=k\pi$ のとき $(1) = [(-1)^R R]^N$ であることが確かめられる。
+        プログラムでは $\sin\pi F$ が小さいときだけ近似式に切り替えることで 0 除算を回避できる。
     \subsection{差分器と積算器に必要なビット幅}
         入力は固定小数点数であるが，全体を適当に2のべき乗倍したものとして見直して符号付整数として扱っても系としては等価なので，以後そうする。
         入力側（サンプル・レートが高い側）から入力される符号付整数のビット幅を $B$ とする。
