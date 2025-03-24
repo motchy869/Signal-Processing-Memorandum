@@ -123,6 +123,8 @@
 
 % ---------- style settings ----------
 % header and footer settings
+\fancyhead{\nouppercase{\rightmark}} % No upper case in header. This MUST be place before \pagestyle.
+\fancyhead{\nouppercase{\leftmark}}
 \fancypagestyle{plain}{
 	\cfoot{\thepage}
 	\rfoot{}
@@ -138,9 +140,6 @@
 	\lfoot{}
 	\cfoot{\thepage}
 	\rfoot{}
-%% no upper case in header
-\fancyhead{\nouppercase{\rightmark}}
-\fancyhead{\nouppercase{\leftmark}}
 
 % Avoids overlap of number and text in table of contents.
 \setlength{\cftchapnumwidth}{4em}
