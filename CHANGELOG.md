@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fixed:
+  - errors in Noble Identity under-sampling case
 - Improved:
   - CIC down-sampler: added tips for plotting transfer function
 

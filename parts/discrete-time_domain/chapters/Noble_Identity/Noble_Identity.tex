@@ -71,8 +71,8 @@
             \end{align*}
             図の右側のシステムに於いて，$\StH$ の出力を $\xRone$，最終出力を $\yR$ とすると次式が成り立つ。
             \begin{align*}
-                \xRone(n) &= \sum_{m=0}^\infty \tilde{h}(m)x(n-m) = \sum_{l=0}^\infty h(lN)x(n-lN) \\
-                \yR(n) &= \xRone(nN) = \sum_{l=0}^\infty h(lN)x((n-l)N)
+                \xRone(n) &= \sum_{m=0}^\infty \tilde{h}(m)x(n-m) = \sum_{l=0}^\infty \tilde{h}(lN)x(n-lN) = \sum_{l=0}^\infty h(l)x(n-lN) \\
+                \yR(n) &= \xRone(nN) = \sum_{l=0}^\infty h(l)x((n-l)N)
             \end{align*}
             $\yL$ と $\yR$ は一致する。
         \end{proof}
