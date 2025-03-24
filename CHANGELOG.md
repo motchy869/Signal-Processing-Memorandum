@@ -9,8 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed:
   - errors in Noble Identity under-sampling case
-- Improved:
-  - CIC down-sampler: added tips for plotting transfer function
+  - many errors in CIC down-sampler and CIC up-sampler
+- Added:
+  - CIC up-sampler, down-sampler:
+    - added tips for plotting transfer function
+    - parameter M, hop number of comb stage
 
 ## [0.16.0]
 
