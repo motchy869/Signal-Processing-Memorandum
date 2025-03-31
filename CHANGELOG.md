@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed:
   - errors in Noble Identity under-sampling case
   - many errors in CIC down-sampler and CIC up-sampler
+  - minor errors and typos
+- Improved:
+  - FIR filter coefficients design > minimizing DTFT (weighted) square error integral > state clearly that h_0 corresponds to time 0.
+  - interpolation with IDTFT > relationship to sampling theorem
 - Added:
   - CIC up-sampler, down-sampler:
     - added tips for plotting transfer function
@@ -34,7 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed:
   - trivial grammatical errors
-  - 'FIR filter coefficients design'
+  - FIR filter coefficients design
     - calculation error in 'minimizing DTFT (weighted) square error integral'
     - missing negative time consideration
 - Changed:
