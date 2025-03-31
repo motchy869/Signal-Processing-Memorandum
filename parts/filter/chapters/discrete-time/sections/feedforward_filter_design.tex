@@ -69,8 +69,8 @@
                 \[ \HidealNA(\Omega) = \Hideal(\Omega\fsamp/(2\pi)) \]
                 これに対して \ref{誤差の重みが一様である場合} の方法を適用すると次式が成り立つ。
                 \begin{align*}
-                    \vhOpt[n] &= \IDTFT{\HidealNA}(n-\Nm) = \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\IDTFT{\Omega\mapsto\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(N-\Nm) \\
-                    &= \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\frac{1}{2\pi}\integrate{-\pi}{\pi}{\bracks*{\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(\exp i\Omega n)}{}{\Omega}
+                    \vhOpt[n] &= \IDTFT{\HidealNA}(n-\Nm) = \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\IDTFT{\Omega\mapsto\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(n-\Nm) \\
+                    &= \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\frac{1}{2\pi}\integrate{-\pi}{\pi}{\bracks*{\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(\exp i\Omega(n-\Nm))}{}{\Omega}
                 \end{align*}
                 これは一般には IDFT による結果と一致しない。
         \subsubsection{誤差の重みが一様ではない場合}
