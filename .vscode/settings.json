@@ -1,4 +1,5 @@
 {
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build-out",
     "latex-workshop.latex.tools": [
         {
             "name": "lualatex",
@@ -9,6 +10,7 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-halt-on-error",
+                "-output-directory=%OUTDIR%",
                 "%DOC%"
             ]
         }
