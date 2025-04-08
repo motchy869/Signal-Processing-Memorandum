@@ -5,7 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.16.0]
+## [0.17.0] - 2025-04-08
+
+- Fixed:
+  - errors in Noble Identity under-sampling case
+  - many errors in CIC down-sampler and CIC up-sampler
+  - minor errors and typos
+- Improved:
+  - FIR filter coefficients design > minimizing DTFT (weighted) square error integral > state clearly that h_0 corresponds to time 0.
+  - interpolation with IDTFT > relationship to sampling theorem
+- Added:
+  - CIC up-sampler, down-sampler:
+    - added tips for plotting transfer function
+    - parameter M, hop number of comb stage
+
+## [0.16.0] - 2025-03-23
 
 - Changed:
   - Categorized discrete-time filter into two types: feedforward and feedback.
@@ -24,7 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed:
   - trivial grammatical errors
-  - 'FIR filter coefficients design'
+  - FIR filter coefficients design
     - calculation error in 'minimizing DTFT (weighted) square error integral'
     - missing negative time consideration
 - Changed:

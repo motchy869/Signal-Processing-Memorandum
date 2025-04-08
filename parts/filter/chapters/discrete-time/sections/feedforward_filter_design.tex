@@ -16,7 +16,9 @@
             ここでは全ての周波数に於いて誤差の重みを 1 としたときの最適係数を導く。
             \begin{shadebox}
                 $\Nm,\Np\in\naturalNumbers\cup\{0\}$ とする。
-                $N\coloneq\Nm+\Np+1$ 個の複素数 $h_{-\Nm},h_{-\Nm+1},\dots,h_{\Np-1},h_\Np$ を係数とする FIR フィルタの周波数スペクトラム（フィルタ係数列の DTFT）を $H:\realNumbers\to\complexNumbers$ と記し，所望の周波数スペクトラムを $\Hideal:\realNumbers\to\complexNumbers$ と記す。
+                $N\coloneq\Nm+\Np+1$ 個の複素数 $h_{-\Nm},h_{-\Nm+1},\dots,h_{\Np-1},h_\Np$ を係数とする FIR フィルタを考える。
+                $h_0$ はインパルス応答の時刻 0 に対応する（因果律に関する注意事項は \ref{因果的フィルタとして実現する方法} で述べられる）。
+                この周波数スペクトラム（フィルタ係数列の DTFT）を $H:\realNumbers\to\complexNumbers$ と記し，所望の周波数スペクトラムを $\Hideal:\realNumbers\to\complexNumbers$ と記す。
                 但し $H$ と $\Hideal$ の引数はサンプル周波数について正規化された角周波数である（$\pi/2$ が Nyquist 周波数に対応する）。
                 $\bm{h} \coloneq [h_{-\Nm},h_{-\Nm+1},\dots,h_{\Np-1},h_\Np]^\top$ として次式で定義される $H$ と $\Hideal$ の誤差 2 乗積分の評価関数
                 \[ J(\bm{h}) \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{H(\Omega)-\Hideal(\Omega)}^2}{}{\Omega} \tag{1} \]
@@ -49,6 +51,7 @@
                 \[ \vhOpt[n] = \frac{1}{\pi}\Re{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}}\in\realNumbers \]
             \end{proof}
             \paragraph{因果的フィルタとして実現する方法}
+                \label{因果的フィルタとして実現する方法}
                 $\Nm>0$ のときは前記のフィルタ係数の添え字に負数が含まれ，因果的フィルタとして実現できない。
                 最小の添え字が 0 になるように時間的にシフトする必要がある。
                 フィルタの応答が時間的に遅れる（周波数領域に於いては遅れに比例した角周波数の複素指数関数が乗じられる）が，無線通信等の大抵の用途では問題にならない。
@@ -62,15 +65,15 @@
                 \par
                 $\Delta f>0,\;\kmin,\;\kmax\in\integers,\;\kmax>\kmin$ とする。
                 $\Hideal$ の値が $k\Delta f\;k=\kmin,\kmin+1,\dots,\kmax$ に関して得られているとする。
-                $\Hideal$ の Fourier 変換の台が $[-1/(2\Delta f),1/(2\Delta f)]$ に含まれいるものとする。
+                $\Hideal$ の Fourier 変換の台が $[-1/(2\Delta f),1/(2\Delta f)]$ に含まれているものとする。
                 標本化定理から次式が成り立つ。
                 \[ \Hideal(f) = \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\sinc\frac{\pi}{\Delta f}(f-k\Delta f) \]
                 サンプル周波数を $\fsamp$ として $\Hideal$ を正規化角周波数で表したものを $\HidealNA$ とすると次式を得る。
                 \[ \HidealNA(\Omega) = \Hideal(\Omega\fsamp/(2\pi)) \]
                 これに対して \ref{誤差の重みが一様である場合} の方法を適用すると次式が成り立つ。
                 \begin{align*}
-                    \vhOpt[n] &= \IDTFT{\HidealNA}(n-\Nm) = \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\IDTFT{\Omega\mapsto\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(N-\Nm) \\
-                    &= \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\frac{1}{2\pi}\integrate{-\pi}{\pi}{\bracks*{\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(\exp i\Omega n)}{}{\Omega}
+                    \vhOpt[n] &= \IDTFT{\HidealNA}(n-\Nm) = \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\IDTFT{\Omega\mapsto\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(n-\Nm) \\
+                    &= \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\frac{1}{2\pi}\integrate{-\pi}{\pi}{\bracks*{\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(\exp i\Omega(n-\Nm))}{}{\Omega}
                 \end{align*}
                 これは一般には IDFT による結果と一致しない。
         \subsubsection{誤差の重みが一様ではない場合}
