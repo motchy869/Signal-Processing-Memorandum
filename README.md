@@ -16,7 +16,7 @@ I hope this helps someones like students and engineers.
 2. Run the following command to compile the document:
 
    ```bash
-   bash -c "cd src; lualatex --cmdx -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error -output-directory=../build-out sig_proc_memorandum.tex"
+   bash -c "cd src; lualatex -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error -output-directory=../build-out sig_proc_memorandum.tex"
    ```
 
 ### Way 2: (recommended) Using VSCode and LaTeX Workshop
