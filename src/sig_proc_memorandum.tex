@@ -41,12 +41,12 @@
 \usepackage{makecell} % [How to add a forced line break inside a table cell](https://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell)
 % \usepackage{pdflscape} % currently not used
 \usepackage[group-separator={,}]{siunitx}
+\usepackage{tocloft} % to remove paragraph indentation in table of contents
 
 % for \arrayrulecolor command
 % To know the colors defined, see: [All you need to know about colors in LaTeX](https://latex-tutorial.com/color-latex/)
 \usepackage[table,x11names]{xcolor}
 
-\usepackage{tocloft} % to remove paragraph indentation in table of contents
 \usepackage{xspace} % [Space after LaTeX commands](https://tex.stackexchange.com/questions/31091/space-after-latex-commands)
 \usepackage{xurl}
 \usepackage{zref-xr}
@@ -92,9 +92,6 @@
 \counterwithin{equation}{section}
 \counterwithin{figure}{section}
 
-% Use arabic numbers for footnotes even in minipage (including shadebox).
-\renewcommand*\thempfootnote{\arabic{mpfootnote}}
-
 % longtable settings
 % \setcounter{LTchunksize}{200} % currently not used
 
@@ -116,6 +113,9 @@
 % --------------------
 
 % ---------- style settings ----------
+% Use arabic numbers for footnotes even in minipage (including shadebox).
+\renewcommand*\thempfootnote{\arabic{mpfootnote}}
+
 % header and footer settings
 \fancyhead{\nouppercase{\rightmark}} % No upper case in header. This MUST be placed before \pagestyle.
 \fancyhead{\nouppercase{\leftmark}}
