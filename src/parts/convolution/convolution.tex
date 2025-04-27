@@ -24,17 +24,17 @@
 		$\Omega \coloneq \{0,1,\dots,N_1-1\}\times\{0,1,\dots,N_2-1\}\times\cdots\times\{0,1,\dots,N_d-1\}$とする。
 		$f,g$を周期が$(N_1,\dots,N_d)$であるような離散座標信号$f,g: \Omega\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とする。
 		$\bm{N} \coloneq [N_1,\dots,N_d]^\top$とする。
-		$f$と$g$の巡回畳み込み$\cycConv{f}{g}$を次式で定義する。
-		\[ \left(\cycConv{f}{g}\right)(\bm{n}) \coloneq \sum_{\bm{m} \in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \]
+		$f$と$g$の巡回畳み込み$f\circledast g$を次式で定義する。
+		\[ \left(f\circledast g\right)(\bm{n}) \coloneq \sum_{\bm{m} \in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \]
 
 		\section{巡回畳み込みの可換則}
 			\begin{shadebox}
 				$\Omega,f,g$の定義を\ref{巡回畳み込み}と同じものとするとき，次が成り立つ。
-				\[ \cycConv{f}{g} = \cycConv{g}{f} \]
+				\[ f\circledast g = g\circledast f \]
 			\end{shadebox}
 			\begin{proof}
 				\begin{align}
-					\left(\cycConv{g}{f}\right)(\bm{n}) &= \sum_{\bm{m}\in\Omega} g(\bm{m})f((\bm{n}-\bm{m})\%\bm{N}) \nonumber \\
+					\left(g\circledast f\right)(\bm{n}) &= \sum_{\bm{m}\in\Omega} g(\bm{m})f((\bm{n}-\bm{m})\%\bm{N}) \nonumber \\
 					&= \sum_{m_1=0}^{N_1-1}\sum_{\bm{m}_2\in\Omega_2}g(m_1,\bm{m}_2)f((n_1 - m_1)\%N_1,(\bm{n_2}-\bm{m_2})\%\bm{N_2})
 				\end{align}
 				ここに$\bm{n}_i \coloneq [n_i,\dots,n_d]^\top\;(\bm{m}_i,\bm{N}_i\text{も同様}),\;\Omega_i \coloneq \{0,1,\dots,N_i-1\}\times\cdots\times\{0,1,\dots,N_d-1\}$である。
@@ -48,7 +48,7 @@
 					&= \sum_{l_1=0}^{N_1-1} \sum_{\bm{m}_2\in\Omega_2}g((n_1-l_1)\%N_1,\bm{m}_2)f(l_1,(\bm{n_2}-\bm{m_2})\%\bm{N_2}) \\
 				\end{align*}
 				同様の変形を繰り返すと最終的に次のようになる。
-				\[ \left(\cycConv{g}{f}\right)(\bm{n}) = \sum_{\bm{l}\in\Omega} g((\bm{n}-\bm{l})\%\bm{N})f(\bm{l}) = \left(\cycConv{f}{g}\right)(\bm{n}) \]
+				\[ \left(g\circledast f\right)(\bm{n}) = \sum_{\bm{l}\in\Omega} g((\bm{n}-\bm{l})\%\bm{N})f(\bm{l}) = \left(f\circledast g\right)(\bm{n}) \]
 			\end{proof}
 		\chapter{諸定理}
 			\section{線形変換と畳み込みの順序交換}
