@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Changed:
-  - Separated source and output directories.
 - Deleted:
   - duplicated content about DTFT of over-sampled discrete-time signal
+- Changed:
+  - Separated source and output directories.
+- Improved:
+  - DTFT of under-sampled discrete-time signal
 - Added:
   - Z-transform of over-sampled discrete-time signal
 
