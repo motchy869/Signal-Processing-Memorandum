@@ -27,6 +27,7 @@
             \caption{連続時間系と，入力に0次ホールドを付加した系}
         \end{figure}
     \section{導出}
+        \newcommand*{\YLplc}{Y_\text{L}}
         連続時間システムへの入力を$u:\realNumbers\to\complexNumbers$とする。
         但し$u(t)=0\;(t<0)$とする。
         周期$\Ts$で0次ホールドされた入力信号を$\ud:t\in\realNumbers\to u(\floor{t/\Ts}\Ts)$とする。
@@ -34,9 +35,9 @@
         \[ \ud(t) = \sum_{k=0}^\infty u(k\Ts)\left(\uH(t-k\Ts) - \uH(t-(k+1)\Ts)\right) \]
         これのラプラス変換を$U_\text{d}$とすると次式で表される。
         \[ \Ud(s) = \sum_{k=0}^\infty u(k\Ts)\NapierE^{-k\Ts s}\frac{1-\NapierE^{-\Ts s}}{s} \]
-        これに対する出力$\yd$のラプラス変換を$\Yd$とすると，次式である。
+        これに対する出力$\yd$のラプラス変換を$\YLplc$とすると，次式である。
         \begin{align*}
-            \Yd(s) &= \sum_{k=0}^\infty u(k\Ts)\NapierE^{-k\Ts s}\frac{1-\NapierE^{-\Ts s}}{s}H(s) = \sum_{k=0}^\infty u(k\Ts)\NapierE^{-k\Ts s}\left(1-\NapierE^{-\Ts s}\right)\Hd(s) \\
+            \YLplc(s) &= \sum_{k=0}^\infty u(k\Ts)\NapierE^{-k\Ts s}\frac{1-\NapierE^{-\Ts s}}{s}H(s) = \sum_{k=0}^\infty u(k\Ts)\NapierE^{-k\Ts s}\left(1-\NapierE^{-\Ts s}\right)\Hd(s) \\
             &\phantom{=} \text{where} \quad \Hd(s) \coloneq H(s)/s
         \end{align*}
         $\Hd(s)$の逆ラプラス変換を$\hd$とすると，$\yd$は次式である。
