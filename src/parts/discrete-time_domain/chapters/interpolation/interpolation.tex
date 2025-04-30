@@ -148,7 +148,7 @@
             一見すると，次の式に於いて単純に $n$ を $t$ に置き換えれば上手くいくように思える。
             \[ \xd(n) = \IDFT{\XDTFT}(n) = \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}\XDTFT(k)\exp\parens*{i2\pi\frac{1}{N}kn} \]
             しかしこれは失敗する。
-            例えば $\xd$ が実数値信号であるとき $\XDTFT$ は Hermite 対称である $\parens*{\XDTFT(-k)=\XDTFT(N-k)=\conj{\XDTFT(k)}}$。
+            例えば $\xd$ が実数値信号であるとき $\XDTFT$ は Hermite 対称である ($\XDTFT(-k)=\XDTFT(N-k)=\conj{\XDTFT(k)}$)。
             $t=n+\Delta t,\;n=\floor{t},\;\Delta t\in[0,1)$ とすると $\xd(t)$ は $k\mapsto\XDTFT(k)\exp i2\pi k\Delta t/N$ の IDFT であるが，これは実数値ではなく，補間の結果として受け入れられない。
             期待通りの結果を得るには \ref{IDTFT を用いた有限長信号の補間>方法} のように総和の範囲を正負対称にし，$\XDTFT$ に手を加えた結果を少なくとも Hermite 対称にする必要がある。
         \subsection{性質 1 の導出}
