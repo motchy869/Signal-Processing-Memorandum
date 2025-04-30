@@ -31,7 +31,8 @@
             これを \cref{equation:アンダー・サンプリングされた信号の周波数スペクトラム 1} に代入して次式を得る。
             \begin{align}
                 \YDTFT(\omega) &= \sum_{m=-\infty}^\infty \frac{1}{R}\sum_{l=0}^{R-1}\exp(i2\pi ml/R)\xd(m)\exp(-i\omega m\Ts) \nonumber \\
-                &= \frac{1}{R}\sum_{l=0}^{R-1} \sum_{m=-\infty}^\infty \xd(m)\exp\parens*{-i\parens*{\omega - 2\pi \frac{l}{R\Ts}}m\Ts} \label{equation:アンダー・サンプリングされた信号の周波数スペクトラム 2}
+                &= \frac{1}{R}\sum_{l=0}^{R-1} \sum_{m=-\infty}^\infty \xd(m)\exp\parens*{-i\parens*{\omega - 2\pi \frac{l}{R\Ts}}m\Ts} \\
+                &= \frac{1}{R}\sum_{l=0}^{R-1} \XDTFT\parens*{\omega - 2\pi \frac{l}{R\Ts}} \label{equation:アンダー・サンプリングされた信号の周波数スペクトラム 2}
             \end{align}
             $\YDTFT$ を次の図に示す。
             \begin{figure}[H]
@@ -53,3 +54,23 @@
                 \item \verb|DTFT_of_under-sampled_signal.nb|: $x(t) = A\exp(-t^2/(2\sigma^2))$
                 \item \verb|DTFT_of_under-sampled_signal_example2.nb|: $x(t) = e^{-12.5 t^2}\cos(10\pi t)$
             \end{itemize}
+    \section{アンダー・サンプリングされた信号の Z 変換}
+        \ref{アンダー・サンプリングされた信号の DTFT} の定義を引き継ぎ，次の定義を加える。
+        \begin{itemize}
+            \item $\XZT$ : $\xd$ の Z 変換
+            \item $\YZT$ : $\yd$ の Z 変換
+        \end{itemize}
+        \begin{shadebox}
+            次式が成り立つ。
+            \[ \YZT(z) = \frac{1}{R}\sum_{l=0}^{R-1} \XZT\parens*{\exp(-i2\pi l/R)z^{1/R}} \]
+        \end{shadebox}
+        $z$ の分数冪が現れるが，マルチ・レート信号処理の議論に於いてはこれでも有用なときがある。
+        \begin{proof}
+            \quad\par
+            Z 変換にはサンプリング周波数の情報が含まれていないことに留意して，定義に従い機械的に計算する。
+            \begin{align*}
+                \YZT(z) &= \sum_{n=-\infty}^\infty \yd(n)z^{-n} = \sum_{n=-\infty}^\infty \xd(nR)z^{-n} = \sum_{n=-\infty}^\infty \delta_R(n)\xd(n)z^{-n/R} \\
+                &= \sum_{n=-\infty}^\infty \frac{1}{R}\sum_{l=0}^{R-1}\exp(i2\pi nl/R)\xd(n)z^{-n/R} = \frac{1}{R}\sum_{l=0}^{R-1}\sum_{n=-\infty}^\infty \exp(i2\pi nl/R)\xd(n)z^{-n/R} \\
+                &= \frac{1}{R}\sum_{l=0}^{R-1}\sum_{n=-\infty}^\infty \xd(n)\parens*{\exp(-i2\pi l/R)z^{1/R}}^{-n} = \frac{1}{R}\sum_{l=0}^{R-1} \XZT\parens*{\exp(-i2\pi l/R)z^{1/R}}
+            \end{align*}
+        \end{proof}

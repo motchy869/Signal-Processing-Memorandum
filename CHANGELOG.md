@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - DTFT of under-sampled discrete-time signal
 - Added:
   - Z-transform of over-sampled discrete-time signal
+  - Z-transform of under-sampled discrete-time signal
 
 ## [0.17.0] - 2025-04-08
 
