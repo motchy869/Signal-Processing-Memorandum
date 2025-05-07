@@ -9,7 +9,7 @@
             台有界な離散時間信号 $\xd:\integers\to\complexNumbers$ の DTFT を $\XDTFT:\realNumbers\to\complexNumbers$ とする。
             但し引数は正規化角周波数である。
             連続時間信号 $\hat{x}:\realNumbers\to\realNumbers$ を次式で定義する。
-            \[ \hat{x}(t)\coloneq\left.\IDTFT{\XDTFT}(n)\right|_{n\to t} = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\XDTFT(\Omega)\exp\parens*{i\Omega t}}{}{\Omega} = \sum_{m=-\infty}^\infty h(m)\sinc\pi(t-m) \]
+            \[ \hat{x}(t)\coloneq\left.\IDTFT{\XDTFT}(n)\right|_{n\to t} = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\XDTFT(\Omega)\exp\parens*{i\Omega t}}{}{\Omega} = \sum_{m=-\infty}^\infty \xd(m)\sinc\pi(t-m) \]
             $\hat{x}$ は全ての離散時刻に於いて $\xd$ と一致する連続関数である。
             これは \ref{標本化定理} に於いて $F_1=1/2$ とした場合の式と同じである。
             \par
@@ -43,7 +43,7 @@
                 \end{minipage}
             \end{figure}
             これを前小節の方法で実時間信号に拡張したものを $\tilde{h}$ とする。
-            図 \cref{fig:元の信号と IDTFT による連続時間補間信号} は $h$ と $\tilde{h}$ を重ねて描いたものである。
+            \cref{fig:元の信号と IDTFT による連続時間補間信号} は $h$ と $\tilde{h}$ を重ねて描いたものである。
             \par
             新たな離散時間信号 $h^\dagger:(d,n)\in\realNumbers\times\integers\mapsto\tilde{h}(n-d)$ を定義する。
             $h^\dagger$ は $h$ を仮想的に $d$ だけ遅らせたものである。
