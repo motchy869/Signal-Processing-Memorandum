@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fixed:
+  - typos in Fourier transform of only real/imaginary part of a given signal
 - Deleted:
   - duplicated content about DTFT of over-sampled discrete-time signal
 - Changed:
