@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed:
   - typos in Fourier transform of only real/imaginary part of a given signal
+  - missing minus symbol in CIC up-sampler and down-sampler block diagram
 - Deleted:
   - duplicated content about DTFT of over-sampled discrete-time signal
 - Changed:
