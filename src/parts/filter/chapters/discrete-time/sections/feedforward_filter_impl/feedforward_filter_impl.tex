@@ -35,11 +35,7 @@
             \newcommand*{\xBeta}{x_\text{\beta}}
             \newcommand*{\xGamma}{x_\text{\gamma}}
             ここで $\hSum,\;\hDiff,\;\xSum, \xAlpha,\;\xBeta,\;\xGamma$ を次の通り定義する。
-            \begin{gather*}
-                \hSum \coloneq \hReal + \hImag,\quad \hDiff \coloneq \hReal - \hImag \\
-                \xSum \coloneq \xInReal + \xInImag \\
-                \xAlpha \coloneq \hSum * \xInReal,\quad \xBeta \coloneq \hDiff * \xInImag, \quad \xGamma \coloneq \hImag * \xSum
-            \end{gather*}
+            \[ \hSum \coloneq \hReal + \hImag,\quad \hDiff \coloneq \hReal - \hImag,\quad \xSum \coloneq \xInReal + \xInImag,\quad \xAlpha \coloneq \hSum * \xInReal,\quad \xBeta \coloneq \hDiff * \xInImag, \quad \xGamma \coloneq \hImag * \xSum \]
             上記の下で次式が成り立つ（畳み込みの交換法則に留意すべし）。
             \begin{align*}
                 \xAlpha - \xGamma &= (\hReal + \hImag) * \xInReal - \hImag * (\xInReal + \xInImag) = \xOutReal \\
