@@ -1,10 +1,62 @@
 \chapter{通信への応用}
-    % \section{直交信号交差項フィルタ}
-    %     次のブロック図が示すフィルタを考える。
-    %     以下の議論は，連続時間系，離散時間系の両方に適用でき，フィルタのインパルス応答は有限，無限どちらでもよい。
-    %     よって以下では連続時間系の無限インパルス応答フィルタを対象にする。
-    % \subsection{複素係数フィルタと直交信号交差項フィルタの表現能力の違い}
-    % % TODO
+    \section{2 経路交差フィルタ}
+        \newcommand*{\xInI}{x_\text{i,I}}
+        \newcommand*{\xInQ}{x_\text{i,Q}}
+        \newcommand*{\xOutI}{x_\text{o,I}}
+        \newcommand*{\xOutQ}{x_\text{o,Q}}
+        \newcommand*{\hII}{h_\text{I,I}}
+        \newcommand*{\hIQ}{h_\text{I,Q}}
+        \newcommand*{\hQQ}{h_\text{Q,Q}}
+        \newcommand*{\hQI}{h_\text{Q,I}}
+        次のブロック図が示すフィルタを考える。
+        これを「2 経路交差フィルタ」と呼ぶことにする。\footnote{筆者が勝手に付けた名前である。もし広く了解された名前を知っている読者が居たら，教えてほしい。}
+        この構造は，典型的には直交変復調を用いる送信機に於いてアナログ回路の（余計な）周波数特性を補償するための DSP 機能として実装される。
+        \begin{figure}[H]
+            \centering
+            \includegraphics[keepaspectratio, scale=1]
+            {\currfiledir/figs/two_path_cross_term_filter.pdf}
+            \caption{2 経路交差フィルタのブロック図}
+        \end{figure}
+        ここに $\xInI,\;\xInQ,\;\xOutI,\;\xOutQ$ はそれぞれ入力の実数値信号，出力の実数値信号である。
+        $\hII,\;\hIQ,\;\hQQ,\;\hQI$ は実数係数フィルタのインパルス応答である。
+        \par
+        以下の議論は，連続時間系，離散時間系の両方に適用でき，フィルタのインパルス応答は有限，無限どちらでもよい。
+        そこで以下では連続時間系の無限インパルス応答フィルタを対象にする。
+        入出力の関係式は次の通りである。
+        \begin{equation}
+            \label{equation:2 経路交差フィルタの入出力関係式}
+            \begin{bmatrix}
+                \xOutI \\
+                \xOutQ
+            \end{bmatrix} = \begin{bmatrix}
+                \hII & \hIQ \\
+                \hQI & \hQQ
+            \end{bmatrix} *
+            \begin{bmatrix}
+                \xInI \\
+                \xInQ
+            \end{bmatrix}
+        \end{equation}
+        ここに，信号（$\realNumbers\to\realNumbers$）を成分とする行列 $A, B$ 同士の畳み込み $A*B$ とは，通常の行列の積に於ける成分毎の積を畳み込みで置き換えたものと約束する。
+    \subsection{複素係数フィルタと 2 経路交差フィルタの表現能力の違い}
+        \ref{複素係数 feedforward フィルタの乗算回路の削減_導出} で扱った複素係数フィルタと 2 経路交差フィルタは似ているが，等価ではない。
+        議論の解りやすさのために，前記複素係数フィルタを連続時間かつ無限インパルス応答に拡張する。入出力関係式は次式である。
+        \begin{equation}
+            \label{equation:複素係数フィルタの入出力関係式}
+            \begin{bmatrix}
+                \xOutReal \\
+                \xOutImag
+            \end{bmatrix} = \begin{bmatrix}
+                \hReal & -\hImag \\
+                \hImag & \hReal
+            \end{bmatrix} *
+            \begin{bmatrix}
+                \xInReal \\
+                \xInImag
+            \end{bmatrix}
+        \end{equation}
+        \cref{equation:2 経路交差フィルタの入出力関係式} と \cref{equation:複素係数フィルタの入出力関係式} を比べて直ちに解るが，複素係数フィルタは 2 経路交差フィルタの特殊な場合である。
+        前者は自由度が 4 ，後者は 2 である（係数列 1 個を 1 自由度と数える）。
     \section{直交復調}
         \newcommand*{\fc}{f_\text{c}}
         \subsection{直交復調は正の周波数側にある信号を取り出して中心周波数を 0 にする}
