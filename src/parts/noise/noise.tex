@@ -20,7 +20,7 @@
             \par
             「ADC の SN 比」とは入力信号のパワーが 0 dBFS であるときの，入力信号のパワーと雑音のパワーの比である。
             0 dBFS は full-scale の振幅 $\Afl>0$ の正弦波のパワー $\Psig$（周波数に依らず $\Afl^2/2$）であると定義されている(\cite{dBFS})。
-            即ちある入力信号のパワーが $P$ であるとき，その dBFS 表現は $10\log_{10} \frac{P}{Asig^2/2} = 10\log_{10} \frac{2P}{Asig^2}$ である。
+            即ちある入力信号のパワーが $P$ であるとき，その dBFS 表現は $10\log_{10} \frac{P}{\Afl^2/2} = 10\log_{10} \frac{2P}{\Afl^2}$ である。
             \par
             雑音信号 $x_\text{n}$ の標準偏差を $\An$ とすると雑音のパワー $\Pn$ は $\An^2$ である（なぜならば $T>0$ を十分長い観測時間として $\An\coloneq\sqrt{\frac{1}{T}\integrate{0}{T}{x_\text{n}^2}{}{t}} = \sqrt{\Pn}$）。
             よって $\rSN = \Afl^2/(2\An^2)$ である。

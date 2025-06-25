@@ -6,6 +6,7 @@
             本節では正弦波をEuler法で近似的に積分した際の出力の窓関数付きFourier変換を導出し，高周波領域での位相変化，エイリアシングについて考察する。
         \subsection{導出}
             \newcommand*{\xdd}{x_\text{dd}}
+            \newcommand*{\Xd}{X_\text{d}}
             $f_0>0$とし，連続時間の複素正弦波信号$u:t\in\realNumbers\mapsto\exp(i 2\pi f_0 t)$を考える。
             これを時刻$0$から$t\geq 0$まで積分した信号は$v(t) = \bigl(\exp(i 2\pi f_0 t)-1\bigr) / (i 2\pi f_0)$である。
             \ref{0次ホールドされた正弦波の周波数スペクトラム}と同様に，矩形窓を通した，周波数表示された$v$のFourier変換を考える(窓の幅をサンプリング周期の整数倍に限っても影響が少ないことの説明は\ref{0次ホールドされた正弦波の周波数スペクトラム}で述べられている)。
@@ -69,6 +70,6 @@
             この数値例を計算した Mathematica notebook およびMATLABスクリプトが下記のファイル名で保存されている。
             Gitリポジトリ内でファイル名検索すれば発見できるであろう。
             \begin{itemize}
-                \item \href{\currfiledir/spectrum_of_integral-sine-wave_by_Euler-method.nb}{spectrum\_of\_integral\-sine-wave\_by\_Euler-method.nb}
-                \item \href{\currfiledir/spectrum_of_integral_sine_wave_by_Euler_method.m}{spectrum\_of\_integral\_sine\_wave\_by\_Euler\_method.m}
+                \item \href{\currfiledir/spectrum_of_integral-sine-wave_by_Euler-method.nb}{\escapeUnderscore{spectrum_of_integral\-sine-wave_by_Euler-method.nb}}
+                \item \href{\currfiledir/spectrum_of_integral_sine_wave_by_Euler_method.m}{\escapeUnderscore{spectrum_of_integral_sine_wave_by_Euler_method.m}}
             \end{itemize}

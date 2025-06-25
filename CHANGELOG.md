@@ -5,10 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.18.0] - 2025-06-25
 
+- Fixed:
+  - typos in Fourier transform of only real/imaginary part of a given signal
+  - missing minus symbol in CIC up-sampler and down-sampler block diagram
+- Deleted:
+  - duplicated content about DTFT of over-sampled discrete-time signal
 - Changed:
   - Separated source and output directories.
+- Improved:
+  - DTFT of under-sampled discrete-time signal
+- Added:
+  - Z-transform of over-sampled discrete-time signal
+  - Z-transform of under-sampled discrete-time signal
+  - DFT length factorization
 
 ## [0.17.0] - 2025-04-08
 

@@ -1,0 +1,92 @@
+\chapter{高速Fourier変換(FFT)}
+    \section{長さが2のべき乗でない信号のDFTを長さが2のべき乗の信号のFFTに帰着する方法}
+        $N$を$2$のべき乗でない自然数とする。
+        長さ$N$の信号$x$のDFT
+        \[ X(k) = \frac{1}{\sqrt{N}} \sum_{n=0}^{N-1} x(n)\exp \left(2\pi i\frac{-kn}{N}\right) \quad k=1,2,\dots,N-1 \]
+        を長さが$2$のべき乗である信号のFFTに帰着する方法を考える。
+        $\forall a,b\in\mathbb{R},\;ab = \frac{a^2 + b^2 - (a-b)^2}{2}$を用いて上の式を次のように変形する。
+        \begin{align*}
+            \begin{aligned}
+                X(k) &= \frac{1}{\sqrt{N}} \exp \left(\pi i\frac{-k^2}{N}\right) \sum_{n=0}^{N-1} x(n)\exp \left(\pi i\frac{-n^2}{N}\right) \exp \left(\pi i\frac{(k-n)^2}{N}\right) \\
+                &= \frac{1}{\sqrt{N}} \exp \left(\pi i\frac{-k^2}{N}\right) \sum_{n=0}^{N-1} u(n)v(k-n) \\
+                & \text{where} \quad u(n) \coloneq x(n)\exp \left(\pi i\frac{-n^2}{N}\right),\;v(n) \coloneq \exp \left(\pi i\frac{n^2}{N}\right)
+            \end{aligned}
+        \end{align*}
+        \[ \therefore\; X(k)\sqrt{N} \exp \left(\pi i\frac{k^2}{N}\right) = (u*v)(k) \]
+        $u*v$を，長さが$2$のべき乗の信号に対して使えるFFT, IFFTを用いて計算する。
+        そのために長さが$2$のべき乗の信号同士の**巡回畳み込み**の中に$u*v$が部分的に現れるような状況を以下のようにして作り出す。
+        \par
+        $N_2 \coloneq \min\{a|\exists b\in \mathbb{N}, a = 2^b \geq 2N\}$ とする。
+        長さ$N_2$の信号$u_2,v_2$を以下のように定義する。
+        \[
+            u_2(n) \coloneq \left\{
+                \begin{aligned}
+                    u(n) &\quad (n \in [0,N-1]) \\
+                    0 &\quad (n \in [N,N_2-1])
+                \end{aligned}
+            \right.
+        \]
+        \[
+            v_2(n) \coloneq \left\{
+                \begin{aligned}
+                    v(n) &\quad (n \in [0,N-1]) \\
+                    0 &\quad (n\in [N,N_2-N]) \\
+                    v(N_2-n) &\quad (n \in [N_2-N+1,N_2-1])
+                \end{aligned}
+            \right.
+        \]
+        $u_2$は$u$の後ろに$0$を並べて長さ$N_2$に拡張した信号である。
+        $v_2$は長さ$N_2$の$0$が並んだ信号の前部を$v$で塗り替え，後部を$v$の第$1\sim N-1$要素をコピーして順番を逆にしたもので塗り替えた信号である。
+        下の図は$u_2,v_2$を視覚的に表現したものである。
+        \begin{figure}[H]
+            \centering
+            \includegraphics[keepaspectratio, scale=4]
+            {parts/FourierSeries_and_FourierTransform/figs/FFT/arbitraryLengthFFT_to_powerOf2_FFT/u2,v2.pdf}
+            \caption{$u_2,v_2$の構造}
+        \end{figure}
+        このようにすると$u_2*v_2$の先頭$N$要素が$u*v$と一致する。
+        \[ \text{FFT}(u_2*v_2) = \sqrt{N_2}\text{ FFT}(u_2) \text{ FFT}(v_2) \]
+        より
+        \[ \text{IFFT}(\sqrt{N_2}\text{ FFT}(u_2) \text{ FFT}(v_2)) \]
+        により$u_2*v_2$を高速に計算し，結果の先頭$N$要素を切り出せば$u*v$を得る。
+        得られた$u*v$の第$k$要素に$\frac{1}{\sqrt{N}} \exp \left(\pi i\frac{-k^2}{N}\right)$を掛ければ$x$のDFTが得られる。
+        $v_2$のFFTや$\frac{1}{\sqrt{N}} \exp \left(\pi i\frac{-k^2}{N}\right) \;(k=0,1,\dots,N-1)$は初回の計算結果を保存しておけば別の信号のDFTの計算で再利用できる。
+    \section{長さを 2 数の積に分解して複数回の DFT に分ける方法}
+        \subsection{目標}
+            $P,Q\in\naturalNumbers,\;P,Q\geq 2,\;N = PQ$ とし，$x$ を周期 $N$ の離散時間複素数値信号とする。
+            $x$ の DFT $X$ を長さ $Q$ の DFT $P$ 回と長さ $P$ の DFT $Q$ 回に分けて計算する方法を考える。
+            この手法は次の場面で有用である。
+            \begin{enumerate}
+                \item $Q$ が 2 の冪乗であるが $P$ はそうでないとき。 長さ $Q$ の DFT は通常の FFT で計算し，長さ $P$ の DFT は直接法で計算する。$P$ が合成数であれば素因数分解して再帰的に DFT 直接計算を実行すればさらに効率的である。
+                \item 例えばクロック同期式順序回路で DFT を行う場合。$N$ が 2 の冪乗であっても長さ $N$ の FFT を一度に計算するための乗算器や加算器を用意できないときがある（回路リソースを度外視してパイプライン回路を作れば時間計算量は $O(\log_2 N)$ で済むため，スループットは問題にならない）。FFT を多段階に分けて乗算器と加算器を使い回すことで回路リソースを削減できる。
+                \par
+                例えば $P=8,\;Q=16,\;N=128$ とする。一度に計算すると乗算器の個数は $128\log_2 128 = 896$ 個必要である。前記のように多段階に分ければ $\max(8\times 16\log_2 16,\;16\times 8\log_2 8) = 512$ 個に減る。時間計算量は変わらない。乗算に用いる係数は on-chip ROM に保持して必要なタイミングで読み出せばよい。
+            \end{enumerate}
+        \subsection{方法}
+            $k$ を整数とする。
+            \begin{align*}
+                X(k) &= \frac{1}{\sqrt{N}}\sum_{n=0}^{N-1}x(n)\exp\parens*{-i2\pi\frac{k n}{N}} = \frac{1}{\sqrt{N}}\sum_{n_0=0}^{P-1}\sum_{n_1=0}^{Q-1}x(n_1 P+n_0)\exp\parens*{-i2\pi\frac{k(n_1 P+n_0)}{N}} \\
+                &= \frac{1}{\sqrt{P}}\sum_{n_0=0}^{P-1}\parens*{\frac{1}{\sqrt{Q}}\sum_{n_1=0}^{Q-1}x(n_1 P+n_0)\exp\parens*{-i2\pi\frac{k n_1}{Q}}}\exp\parens*{-i2\pi\frac{k n_0}{N}} \\
+                &= \frac{1}{\sqrt{P}}\sum_{n_0=0}^{P-1}X_1(n_0,k)\exp\parens*{-i2\pi\frac{k n_0}{N}} \tag{1} \\
+                &\phantom{=}\text{where}\;X_1(n_0,k)\coloneq\frac{1}{\sqrt{Q}}\sum_{n_1=0}^{Q-1}x(n_1 P+n_0)\exp\parens*{-i2\pi\frac{k n_1}{Q}}
+            \end{align*}
+            $X_1(n_0,k)$ は各 $n_0$ について長さ $Q$ の DFT によって得られる（長さ $Q$ の DFT を $P$ 回行う）。
+            $k$ に関して周期が $Q$ であるから $X_1(n_0,k) = X_1(n_0,k\%Q)$ が成り立つことに留意する。
+            つまり計算機上では $X_1$ は各 $n_0$ について長さ $Q$ のベクトルとして表現される。
+            典型的には $n_0$ と行番号を対応させて $P\times Q$ の行列としてメモリ上に格納される。
+            \par
+            次に式 (1) の最も右側の指数関数を分解する。
+            $k = k_1 Q + k_0\;(k_1=0,1,\dots,P-1,\;k_0=0,1,\dots,Q-1)$ として次式を得る。
+            \[ \exp\parens*{-i2\pi\frac{k n_0}{N}} = \exp\parens*{-i2\pi\frac{k_1 n_0}{P}}\exp\parens*{-i2\pi\frac{k_0 n_0}{N}} \]
+            これを式 (1) に適用して次式を得る。
+            \begin{align*}
+                X(k) &= \frac{1}{\sqrt{P}}\sum_{n_0=0}^{P-1}\exp\parens*{-i2\pi\frac{k_0 n_0}{N}}X_1(n_0,k_0)\exp\parens*{-i2\pi\frac{k_1 n_0}{P}} = \frac{1}{\sqrt{P}}\sum_{n_0=0}^{P-1}\tilde{X}_1(n_0,k_0)\exp\parens*{-i2\pi\frac{k_1 n_0}{P}} \tag{2} \\
+                &\phantom{=}\text{where}\;\tilde{X}_1(n_0,k_0)\coloneq\exp\parens*{-i2\pi\frac{k_0 n_0}{N}}X_1(n_0,k_0)
+            \end{align*}
+            式 (2) の最右辺は各 $k_0$ について長さ $P$ の DFT によって得られる（長さ $P$ の DFT を $Q$ 回行う）。
+        \subsection{計算例}
+            計算例を記した Julia の Jupyter Notebook が下記のファイル名で保存されている。
+            Git リポジトリ内でファイル名検索すれば発見できるであろう。
+            \begin{itemize}
+                \item \href{\currfiledir/DFT_len_fact_expr.ipynb}{\escapeUnderscore{DFT_len_fact_expr.ipynb}}
+            \end{itemize}
