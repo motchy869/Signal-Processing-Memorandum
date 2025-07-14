@@ -37,7 +37,8 @@
 \usepackage{cleveref} % must be included AFTER hyperref
 \usepackage{ifthen}
 \usepackage{listingsutf8, jvlisting}
-% \usepackage{longtable} % currently not used
+% \usepackage{ltablex} % [tabularx 環境と longtable 環境を同時に使いたい](https://mrikc.hatenablog.com/entry/2015/09/04/020128)
+% \keepXColumns % needed to use X column type in ltablex environment
 % \usepackage{luacode} % currently not used
 \usepackage{makecell} % [How to add a forced line break inside a table cell](https://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell)
 % \usepackage{pdflscape} % currently not used
@@ -93,9 +94,6 @@
 \counterwithin{equation}{section}
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
-
-% longtable settings
-% \setcounter{LTchunksize}{200} % currently not used
 
 % cleveref settings
 % see: [LaTeXの相互参照を賢くする (cleveref)](https://qiita.com/Hdan/items/8c59a7e0a3215ae32d74)
