@@ -1,7 +1,7 @@
 ﻿% ---------- document information ----------
 % document version number
 \newcommand{\docVerMajor}{0}
-\newcommand{\docVerMinor}{18}
+\newcommand{\docVerMinor}{19}
 \newcommand{\docVerPatch}{0}
 \newcommand{\docVerWip}{} % -wip or nothing
 \newcommand{\docVer}{\docVerMajor.\docVerMinor.\docVerPatch\docVerWip}
@@ -28,6 +28,7 @@
 \usepackage[usenames]{color}
 \usepackage{currfile}
 % \usepackage{datatool} % currently not used
+\usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage[T1]{fontenc}
 \usepackage[top=20truemm,bottom=20truemm,left=15truemm,right=15truemm]{geometry}
@@ -36,11 +37,13 @@
 \usepackage{cleveref} % must be included AFTER hyperref
 \usepackage{ifthen}
 \usepackage{listingsutf8, jvlisting}
-% \usepackage{longtable} % currently not used
+% \usepackage{ltablex} % [tabularx 環境と longtable 環境を同時に使いたい](https://mrikc.hatenablog.com/entry/2015/09/04/020128)
+% \keepXColumns % needed to use X column type in ltablex environment
 % \usepackage{luacode} % currently not used
 \usepackage{makecell} % [How to add a forced line break inside a table cell](https://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell)
 % \usepackage{pdflscape} % currently not used
 \usepackage[group-separator={,}]{siunitx}
+\usepackage{tablefootnote}
 \usepackage{tocloft} % to remove paragraph indentation in table of contents
 
 % for \arrayrulecolor command
@@ -58,8 +61,8 @@
 % ---------- structure settings ----------
 \makeatletter
 \hypersetup{
-	pdftitle={\@title},
-	pdfauthor={\@author}
+    pdftitle={\@title},
+    pdfauthor={\@author}
 }
 \makeatother
 
@@ -93,9 +96,6 @@
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
 
-% longtable settings
-% \setcounter{LTchunksize}{200} % currently not used
-
 % cleveref settings
 % see: [LaTeXの相互参照を賢くする (cleveref)](https://qiita.com/Hdan/items/8c59a7e0a3215ae32d74)
 \crefname{equation}{式}{式} % {環境名}{単数形}{複数形}
@@ -121,20 +121,20 @@
 \fancyhead{\nouppercase{\rightmark}} % No upper case in header. This MUST be placed before \pagestyle.
 \fancyhead{\nouppercase{\leftmark}}
 \fancypagestyle{plain}{
-	\cfoot{\thepage}
-	\rfoot{}
+    \cfoot{\thepage}
+    \rfoot{}
 }
 \pagestyle{fancy}
-	\lhead{
-		\ifthenelse{\equal{\currLevelTitle}{NOT YET SET}}
-		{}
-		{\currLevelNo.\;\currLevelTitle}
-	}
-	\chead{}
-	\rhead{}
-	\lfoot{}
-	\cfoot{\thepage}
-	\rfoot{}
+    \lhead{
+        \ifthenelse{\equal{\currLevelTitle}{NOT YET SET}}
+        {}
+        {\currLevelNo.\;\currLevelTitle}
+    }
+    \chead{}
+    \rhead{}
+    \lfoot{}
+    \cfoot{\thepage}
+    \rfoot{}
 
 % Avoids overlap of number and text in table of contents.
 \setlength{\cftchapnumwidth}{4em}
@@ -167,57 +167,58 @@
 % % 1. [Combining color, bitboxes* and base alignment](https://tex.stackexchange.com/questions/371175/combining-color-bitboxes-and-base-alignment)
 % % 2. [Colored custom bytefield](https://www.latex4technics.com/?note=3c6du2)
 % \newcommand*{\colorbitbox}[3]{%
-% 	\rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
-% 	\bitbox{#2}{#3}%
+%     \rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
+%     \bitbox{#2}{#3}%
 % }
 
-% listings settings
 \lstset{
-	basicstyle=\ttfamily,
-	identifierstyle=\small,
-	commentstyle=\smallitshape,
-	keywordstyle=\small\bfseries,
-	ndkeywordstyle=\small,
-	stringstyle=\small\ttfamily,
-	frame=lines,
-	breaklines=true,
-	columns=[l]{fullflexible},
-	numbers=left,
-	stepnumber=1,
+    basicstyle=\ttfamily,
+    identifierstyle=\small,
+    commentstyle=\smallitshape,
+    keywordstyle=\small\bfseries,
+    ndkeywordstyle=\small,
+    stringstyle=\small\ttfamily,
+    frame=lines,
+    breaklines=true,
+    columns=[l]{fullflexible},
+    numbers=left,
+    stepnumber=1,
+    numbersep=1em,
+    lineskip=-0.5ex
 }
 % --------------------
 
 \input{cmds/MtyLaTeXCmds/MtyLaTeXCmds.tex}
 
 \begin{document}
-	\maketitle
-	{\scriptsize \tableofcontents}
-	\input{parts/preface.tex}
-	\input{parts/notation/notation.tex}
-	\input{parts/time-base-operation/time-base-operation.tex}
-	\input{parts/deriv/deriv.tex}
-	\input{parts/convolution/convolution.tex}
-	\input{parts/correlation/correlation.tex}
-	\input{parts/FourierSeries_and_FourierTransform/FourierSeries_and_FourierTransform.tex}
-	\input{parts/HilbertTransform/HilbertTransform.tex}
-	\input{parts/LaplaceTransform/LaplaceTransform.tex}
-	\input{parts/Z-transform/Z-transform.tex}
-	\input{parts/frequency-conversion/frequency-conversion.tex}
-	\input{parts/discrete-time_domain/discrete-time_domain.tex}
-	\input{parts/filter/filter.tex}
-	\input{parts/dt2ct/dt2ct.tex}
-	\input{parts/ct2dt/ct2dt.tex}
-	\input{parts/ct2dt2ct/ct2dt2ct.tex}
-	\input{parts/noise/noise.tex}
-	\input{parts/application/application.tex}
-	\input{parts/others/others.tex}
+    \maketitle
+    {\scriptsize \tableofcontents}
+    \input{parts/preface.tex}
+    \input{parts/notation/notation.tex}
+    \input{parts/time-base-operation/time-base-operation.tex}
+    \input{parts/deriv/deriv.tex}
+    \input{parts/convolution/convolution.tex}
+    \input{parts/correlation/correlation.tex}
+    \input{parts/FourierSeries_and_FourierTransform/FourierSeries_and_FourierTransform.tex}
+    \input{parts/HilbertTransform/HilbertTransform.tex}
+    \input{parts/LaplaceTransform/LaplaceTransform.tex}
+    \input{parts/Z-transform/Z-transform.tex}
+    \input{parts/frequency-conversion/frequency-conversion.tex}
+    \input{parts/discrete-time_domain/discrete-time_domain.tex}
+    \input{parts/filter/filter.tex}
+    \input{parts/dt2ct/dt2ct.tex}
+    \input{parts/ct2dt/ct2dt.tex}
+    \input{parts/ct2dt2ct/ct2dt2ct.tex}
+    \input{parts/noise/noise.tex}
+    \input{parts/application/application.tex}
+    \input{parts/others/others.tex}
 
-	\begin{thebibliography}{9}
-		\bibitem{learn_sp_from_basic}飯國洋二 (2009) 『基礎から学ぶ信号処理』培風館
-		\bibitem{digital-servo}本田 昭, 城谷 聡美 (2008) 『図解と演習で学ぶ ディジタルサーボの理論と実践』日刊工業新聞社
-		\bibitem{Nyquist_ISI_crit}Nyquist ISI criterion \url{https://en.wikipedia.org/wiki/Nyquist_ISI_criterion}
-		\bibitem{数学備忘録}motchy (2022) 『数学備忘録 v0.12.0』\url{https://github.com/motchy869/Mathematics-Memorandum/releases/tag/v0.12.0}
-		\bibitem{DSP_JL}DSP.jl \url{https://docs.juliadsp.org/dev/}
-		\bibitem{dBFS} dBFS \url{https://en.wikipedia.org/wiki/DBFS}
-	\end{thebibliography}
+    \begin{thebibliography}{9}
+        \bibitem{learn_sp_from_basic}飯國洋二 (2009) 『基礎から学ぶ信号処理』培風館
+        \bibitem{digital-servo}本田 昭, 城谷 聡美 (2008) 『図解と演習で学ぶ ディジタルサーボの理論と実践』日刊工業新聞社
+        \bibitem{Nyquist_ISI_crit}Nyquist ISI criterion \url{https://en.wikipedia.org/wiki/Nyquist_ISI_criterion}
+        \bibitem{数学備忘録}motchy (2022) 『数学備忘録 v0.12.0』\url{https://github.com/motchy869/Mathematics-Memorandum/releases/tag/v0.12.0}
+        \bibitem{DSP_JL}DSP.jl \url{https://docs.juliadsp.org/dev/}
+        \bibitem{dBFS} dBFS \url{https://en.wikipedia.org/wiki/DBFS}
+    \end{thebibliography}
 \end{document}
