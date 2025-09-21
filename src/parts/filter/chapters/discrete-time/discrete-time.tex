@@ -3,9 +3,15 @@
     \begin{enumerate}
         \item feedforward フィルタ\\
         出力がそれ以前の出力に依存しない。ディジタル計算機で実現するため，インパルス応答の長さは有限であると約束する。
+        \par
+        慣例的に FIR (Finite Impulse Response) フィルタと呼ばれる。
+        しかし厳密には feedforward 型であることと FIR であることは同値ではない。
         \item feedback フィルタ\\
         出力がそれ以前の出力に依存する。実用上の意味のあるフィルタは多くの場合 feedforward 構造を含み，そこに入力信号が入る。
         インパルス応答の長さは無限である場合が多いが，有限の場合もある（例えば CIC フィルタ）。
+        \par
+        慣例的に IIR (Infinite Impulse Response) フィルタと呼ばれる。
+        しかし厳密には feedback 型であることと IIR であることは同値ではない。
     \end{enumerate}
     \input{\currfiledir/sections/discretized-continuous-time_filter.tex}
     \input{\currfiledir/sections/output_range_of_feedback_filter.tex}
