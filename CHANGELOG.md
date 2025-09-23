@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed:
   - minor typo in the equation in sampling theorem
+- Added:
+  - resampling interpolation coefficient design principle
 
 ## [0.19.0] - 2025-08-04
 
