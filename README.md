@@ -3,14 +3,14 @@
 This is my note for (mainly digital) signal processing.
 I hope this helps someones like students and engineers.
 
-## Definitions
+## 1. Definitions
 
 - workspace directory: the directory where this README.md file is located.
 - build output directory: `<workspace directory>/build-out`. The output PDF file is generated here.
 
-## How to compile this document
+## 2. How to compile this document
 
-### Method 1: Using Command Line
+### 2.1. Method 1: Using Command Line
 
 1. Open a terminal and navigate to the workspace directory.
 2. Run the following command to compile the document:
@@ -19,7 +19,7 @@ I hope this helps someones like students and engineers.
    bash -c "cd src; lualatex -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error -output-directory=../build-out sig_proc_memorandum.tex"
    ```
 
-### Method 2: (recommended) Using VS Code and LaTeX Workshop
+### 2.2. Method 2: (recommended) Using VS Code and LaTeX Workshop
 
 We need to install [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop).
 
