@@ -22,7 +22,7 @@
             となる。$c(\FT{f},\bm{n})$は次式で求まる。
             \begin{align}
                 \label{equation:標本化定理の基本形::Fourier 係数}
-                c(\FT{f},\bm{n}) &= \left(\prod_{l=1}^d 2W_l\right)^{-1} \integrate{\IAF}{}{\mathcal{F}(f,\bm{\xi}) \exp (-i)\sum_{l=1}^d n_l\frac{\xi_l}{W_l}\pi}{}{\bm{\xi}} \\ \nonumber
+                c(\FT{f},\bm{n}) &= \left(\prod_{l=1}^d 2W_l\right)^{-1} \integrate{\IAF}{}{\mathcal{F}(f,\bm{\xi}) \exp\parens*{-i\sum_{l=1}^d n_l\frac{\xi_l}{W_l}\pi}}{}{\bm{\xi}} \\ \nonumber
                 &= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} (2\pi)^{-d/2} \integrate{\textcolor{darkpastelgreen}{\realNumbers^d}}{}{\mathcal{F}(f,\bm{\xi}) \exp i\sum_{l=1}^d \left(\frac{-n_l}{W_l}\pi\right)\xi_l}{}{\bm{\xi}} \\ \nonumber
                 &= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} \IFTwithArg{\FT{f}}{-\pi\bm{n}\HadamardDiv\bm{W}} \\ \nonumber
                 &= (2\pi)^{d/2} \left(\prod_{l=1}^d 2W_l\right)^{-1} f\left(-\pi\bm{n}\HadamardDiv\bm{W}\right)
