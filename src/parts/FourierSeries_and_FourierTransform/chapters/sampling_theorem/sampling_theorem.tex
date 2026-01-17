@@ -1,5 +1,4 @@
 \chapter{標本化定理}
-    \newcommand{\IAF}{I_\text{AF}}
     \section{基本形}
         \label{標本化定理の基本形}
         \begin{shadebox}
@@ -50,8 +49,6 @@
             \end{align*}
         \end{proof}
     \section{再標本化への応用}
-        \newcommand*{\Ts}{T_\text{s}}
-        \newcommand*{\fsampWithSubsc}[1]{f_{\text{s},#1}}
         \subsection{動機}
             実用の場面では，あるサンプリング周波数 $\fsampWithSubsc{1}$ で標本化された離散時間信号 $x:\integers\to\complexNumbers$ を別のサンプリング周波数 $\fsampWithSubsc{2}$ で再標本化することがある。
             その際に \cref{equation:標本化定理の基本形の周波数版} を直接適用すると，補間係数すなわち sinc 関数の部分が十分小さくなって計算誤差が許容できる程度に至るまで部分和の計算が必要である。
@@ -60,8 +57,6 @@
             その場合は，補間係数を sinc 関数より早く 0 に収束する別の係数で置き換えることができる。
             そのような係数は，feedforward フィルタの係数を得る方法として広く用いられている，Remez アルゴリズムで数値的に計算される場合が殆どである\footnote{Raised-Cosine フィルタでもよい。それなら解析的に求められる}。
         \subsection{主張}
-            \newcommand*{\omegaSamp}{\omega_\text{s}}
-            \newcommand*{\fsamp}{f_\text{s}}
             本質に焦点を当てるため 1 次元の場合 ($d=1$) を考えるが，$d>1$ への拡張は容易である。
             \begin{shadebox}
                 $\omegaSamp>0,\;\IAF\coloneq [-\omegaSamp/2,\omegaSamp/2]$ とする。

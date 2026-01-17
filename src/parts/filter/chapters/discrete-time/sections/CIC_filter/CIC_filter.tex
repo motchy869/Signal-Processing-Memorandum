@@ -1,11 +1,5 @@
 \section{CIC up-sampler}
     \label{CIC up-sampler}
-    \newcommand*{\XNAF}{X_\text{NAF}}
-    \newcommand*{\YNAF}{Y_\text{NAF}}
-    \newcommand*{\tYNAF}{\tilde{Y}_\text{NAF}}
-    \newcommand*{\XNF}{X_\text{NF}}
-    \newcommand*{\YNF}{Y_\text{NF}}
-    \newcommand*{\tYNF}{\tilde{Y}_\text{NF}}
     FPGA, ASIC による実装を前提として加算器（組み合わせ論理回路）の直後に Flip-flop を置く。
     Web 情報の多くはこれによる遅延を考慮しておらず，本書の結果と異なる数式を導いているが，影響があるのは遅延量だけであり，本質は変わらない。
     \par
@@ -88,7 +82,6 @@
             この系の応答の絶対値が最大となるような作為的な入力に対する応答を収容できるビット幅を確保すればよい。
             そのような最悪の応答は \cref{equation:CIC up-sampler の部分系の伝達関数} を計算機代数システムを用いて $z^{-1}$ の多項式として展開し，係数の絶対値の総和をとることで得られる。
     \subsection{CIC up-sampler 補償フィルタ}
-        \newcommand*{\HCNF}{H_\text{C,NF}}
         \cref{equation:CIC up-sampler の周波数スペクトラム} より，アップ・サンプリングにより $\XNF$ には $F$ に依存する因子が掛かる。
         これをできるだけ補正するために，CIC up-sampler の直前で前記の因子の逆特性を近似する feedforward フィルタ（以下単に「FIR フィルタ」と呼ぶ）の適用を考える。
         このフィルタの周波数スペクトラムを $\HCNF$ とすると次式が成り立つ。

@@ -1,13 +1,5 @@
 \chapter{通信への応用}
     \section{2 経路交差フィルタ}
-        \newcommand*{\xInI}{x_\text{i,I}}
-        \newcommand*{\xInQ}{x_\text{i,Q}}
-        \newcommand*{\xOutI}{x_\text{o,I}}
-        \newcommand*{\xOutQ}{x_\text{o,Q}}
-        \newcommand*{\hII}{h_\text{I,I}}
-        \newcommand*{\hIQ}{h_\text{I,Q}}
-        \newcommand*{\hQQ}{h_\text{Q,Q}}
-        \newcommand*{\hQI}{h_\text{Q,I}}
         次のブロック図が示すフィルタを考える。
         これを「2 経路交差フィルタ」と呼ぶことにする。\footnote{筆者が勝手に付けた名前である。もし広く了解された名前を知っている読者が居たら，教えてほしい。}
         この構造は，典型的には直交変復調を用いる送信機に於いてアナログ回路の（余計な）周波数特性を補償するための DSP 機能として実装される。
@@ -58,7 +50,6 @@
         \cref{equation:2 経路交差フィルタの入出力関係式} と \cref{equation:複素係数フィルタの入出力関係式} を比べて直ちに解るが，複素係数フィルタは 2 経路交差フィルタの特殊な場合である。
         前者は自由度が 4 ，後者は 2 である（係数列 1 個を 1 自由度と数える）。
     \section{直交復調}
-        \newcommand*{\fc}{f_\text{c}}
         \subsection{直交復調は正の周波数側にある信号を取り出して中心周波数を 0 にする}
             キャリア周波数を $\fc$ ，入力である実時間信号を $x:\realNumbers\to\realNumbers$ とすると，直交復調器は $x(t)\parens*{\cos(2\pi \fc t) - i\sin(2\pi \fc t)}$ を LPF に通してベースバンドの外側の周波数成分を取り除く。
             その結果，ベースバンド信号として $X = \mathcal{F}(x)$ の正の周波数側の信号（複素数値信号）が得られる。
