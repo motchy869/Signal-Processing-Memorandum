@@ -2,7 +2,7 @@
     \section{直観的な説明}
         離散時間Fourier変換(Discrete Time Fourier Transform, DTFT)とは，直観的には，離散座標信号を，連続的な周波数をもつ無数の離散時間信号の重ね合わせとして表現するものである。
     \section{定義}
-        $d\in\naturalNumbers,\;\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0}$とする。
+        $d\in\naturalNumbers,\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0}$とする。
         $f:\integers^d\to\complexNumbers$に対して，次式で定義される，$\bm{\omega}\in\realNumbers^d$に関する連続座標信号を$f$の離散時間Fourier変換という。
         \[ \DTFTwithArg{f}{\bm{\omega}} \coloneq \sum_{\bm{n}\in\integers^d} f(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \]
         $\bm{\omega}$は各軸方向の角周波数をまとめて表したベクトルであり，$\bm{T}_\text{s}$は各軸方向のサンプリング周期である。
@@ -21,7 +21,7 @@
         DTFTの定義で述べたように，DTFTは周期が$2\pi\bm{1}\HadamardDiv\bm{T}_\text{s}$であるから，一意に区別できる角周波数は$-\bm{\pi}\HadamardDiv\bm{T}_\text{s} \leq \bm{\omega} < \bm{\pi}\HadamardDiv\bm{T}_\text{s}$，つまり一意に区別できる周波数は$-\bm{f}_\text{s}/2 \leq \bm{f} < \bm{f}_\text{s}/2$である。
         この事実と，先程述べたDTFTと元の連続座標信号との周波数の関係から，DTFTに於いて一意に区別できる周波数に対応する元の連続座標信号の周波数$\tilde{\bm{f}}$は$-\bm{f}_\text{s}/2 \leq \tilde{\bm{f}} < \bm{f}_\text{s}/2$である。
     \section{逆離散時間Fourier変換(IDTFT)}
-        $d\in\naturalNumbers,\;\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0},\;\Omega := \prod_{k=1}^d [-\pi/T_{\text{s},k},\pi/T_{\text{s},k})$とする。
+        $d\in\naturalNumbers,\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0},\Omega := \prod_{k=1}^d [-\pi/T_{\text{s},k},\pi/T_{\text{s},k})$とする。
         $F:\realNumbers^d\to\complexNumbers$に対して，次式で定義される，$\bm{n}\in\integers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT, IDTFT)という。
         \[ \IDTFTwithArg{F}{\bm{n}} \coloneq \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \]
         \subsection{IDTFTがDTFTの逆変換であること}
@@ -119,7 +119,7 @@
             \]
             \par
             次に$[-d',d']$に於ける積分を評価する。
-            $y\to 0$で$y/\sin y\to 1,\;f(2y/\Ts)\to f(0)$であるから，$d'$を十分小さくとりなおすことで$|f(2y/\Ts)y/\sin y - f(0)| < \varepsilon$となり次式が成り立つ。
+            $y\to 0$で$y/\sin y\to 1,f(2y/\Ts)\to f(0)$であるから，$d'$を十分小さくとりなおすことで$|f(2y/\Ts)y/\sin y - f(0)| < \varepsilon$となり次式が成り立つ。
             \[
                 \abs{\frac{2}{\Ts}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y/\Ts)}{}{y} - \frac{2}{\Ts}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}} < \frac{2\varepsilon}{\Ts}\abs{\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}}
             \]
@@ -234,7 +234,7 @@
             複素数のGaussian乱数のDTFTは周波数に依らない分布をもつことを示す。
             GaussianノイズがWhiteである(スペクトラムが平坦である)と言われる理由はここにある。
             \begin{shadebox}
-                $N\in\naturalNumbers,\;\sigma>0$とする。
+                $N\in\naturalNumbers,\sigma>0$とする。
                 連続時間信号$X:\realNumbers\to\complexNumbers$は確率変数であるとする。
                 これをサンプリング周期$\Ts>0$でサンプリングした$N$個の確率変数$X_n = X(n\Ts)\;(n=0,1,\dots,N-1)$は互いに独立であり，自身の実部と虚部も独立であり，それぞれ$N(0,\sigma)$に従うとする。
                 数列$\{X_n\}$のDTFTを$Y:\realNumbers\to\complexNumbers$とすると，$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。

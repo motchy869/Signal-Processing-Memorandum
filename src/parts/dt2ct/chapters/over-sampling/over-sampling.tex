@@ -5,7 +5,7 @@
         \subsection{主張}
             記号を次のように定義する。
             \begin{itemize}
-                \item $R\in\naturalNumbers,\;R\geq 2$ : オーバー・サンプリング・レート
+                \item $R\in\naturalNumbers,R\geq 2$ : オーバー・サンプリング・レート
                 \item $\xda:\integers\to\complexNumbers$ : 離散時間信号
                 \item $\Ts>0$ : $\xda$ のサンプル周期
                 \item $\Xda$ : $\xda$ のDTFT
@@ -31,7 +31,7 @@
             \[ x_1(t) = \sum_{n=-\infty}^\infty \xda(n)u_1(t-n\Ts) \]
             $x_2$ は次式で表される。
             \[ x_2(t) = \sum_{n=-\infty}^\infty \xdb(n)u_2(t-n\Ts/R) = \sum_{m=-\infty}^\infty \xdb(R m)u_2(t-m\Ts) = \sum_{n=-\infty}^\infty \xda(n)u_2(t-n\Ts) \]
-            次の図は $\Ts=1,R=4,\xda(n) = \sin\parens{2\pi*n/12}\;(0\leq n\leq 24),\;\xda(n) = 0\;(n<0,24<n)$ の例である。
+            次の図は $\Ts=1,R=4,\xda(n) = \sin\parens{2\pi*n/12}\;(0\leq n\leq 24),\xda(n) = 0\;(n<0,24<n)$ の例である。
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.8]

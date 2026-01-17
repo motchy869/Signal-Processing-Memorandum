@@ -3,11 +3,11 @@
     この関係は feedback フィルタを実装する際に，内部の記憶素子と演算素子に必要なビット幅を決める際に役立つ。
     ここでは拡張性を重視して信号の終域を $\complexNumbers$ としているが，用途に応じて $\realNumbers$ に制限してもよい。
     \begin{shadebox}
-        F を安定な feedback フィルタとし，$x,\;y:\integers\to\complexNumbers$ をそれぞれ入力と出力とする。
+        F を安定な feedback フィルタとし，$x,y:\integers\to\complexNumbers$ をそれぞれ入力と出力とする。
         $x$ は負の時刻に於いて 0 であり，全ての時刻に於いて絶対値が $M_x(\geq 0)$ 以下であるとする。
         F の漸化式が次式であるとする。
         \[ y(n) = \sum_{k=0}^\Nff a_k x(n-k) - \sum_{l=1}^\Nfb b_l y(n-l) \]
-        ここに $\Nff,\;\Nfb\in\naturalNumbers$ はそれぞれ feedforward 経路、feedback 経路のタップ数であり， $a_k,\;b_l\in\complexNumbers$ は係数である。
+        ここに $\Nff,\Nfb\in\naturalNumbers$ はそれぞれ feedforward 経路、feedback 経路のタップ数であり， $a_k,b_l\in\complexNumbers$ は係数である。
         \par
         $h:\integers\to\complexNumbers$ を F の因果的なインパルス応答とし，$\hInit{l}:\integers\to\complexNumbers$ を次式の逆片側 Z 変換とする。
         \[ \frac{\sum_{k=l}^\Nfb b_{k} z^{-(k-l)}}{1+\sum_{k=1}^\Nfb b_k z^{-k}} \]
@@ -27,11 +27,11 @@
             &= H(z)X(z) - \sum_{m=1}^\Nfb y(-m) \HInit{m}(z)
         \end{align*}
         ここに $H$ は F の伝達関数であり，$\HInit{m}$ は $\hInit{m}$ の片側 Z 変換である。
-        上式の両辺を逆片側 Z 変換して次式を得る\footnote{$h,\;x$ はともに因果的であるから \ref{single_sided_Z_transform_of_convolution} の結果が使える}。
+        上式の両辺を逆片側 Z 変換して次式を得る\footnote{$h,x$ はともに因果的であるから \ref{single_sided_Z_transform_of_convolution} の結果が使える}。
         \[ y(n) = (h*x)(n) - \sum_{m=1}^\Nfb y(-m) \hInit{m}(n) \quad \therefore\abs{y(n)} \leq \abs{(h*x)(n)} + \sum_{m=1}^\Nfb \abs{y(-m)} \Minit{m} \]
         右辺第 1 項を評価する。
         \begin{align*}
-            \abs{(h*x)(n)} &= \abs{\sum_{k=-\infty}^\infty h(k)x(n-k)} \leq \sum_{k=-\infty}^\infty \abs{h(k)}\abs{x(n-k)} \leq \sum_{k=0}^n \abs{h(k)}M_x\;(\because \forall n<0,\; h(n)=x(n)=0) \\
+            \abs{(h*x)(n)} &= \abs{\sum_{k=-\infty}^\infty h(k)x(n-k)} \leq \sum_{k=-\infty}^\infty \abs{h(k)}\abs{x(n-k)} \leq \sum_{k=0}^n \abs{h(k)}M_x\;(\because \forall n<0, h(n)=x(n)=0) \\
             &\leq M_x\sum_{k=0}^\infty \abs{h(k)}
         \end{align*}
         以上より主張が成り立つ。

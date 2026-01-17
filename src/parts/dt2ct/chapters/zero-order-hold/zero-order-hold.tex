@@ -16,7 +16,7 @@
             \]
             $x$ は次式で表される。
             \[ x(t) = \sum_{n=-\infty}^\infty \xd(n)u(t-n\Ts) \]
-            次の図は $\Ts=1,\xd(n) = \sin\parens{2\pi n/12}\;(0\leq n\leq 24),\;\xd(n) = 0\;(n<0,24<n)$ の例である。
+            次の図は $\Ts=1,\xd(n) = \sin\parens{2\pi n/12}\;(0\leq n\leq 24),\xd(n) = 0\;(n<0,24<n)$ の例である。
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.8]
@@ -85,12 +85,12 @@
             大雑把に言えば，フィルタ係数に対応する DTFT が $[-\pi,\pi]$ で $1/\sinc(\Omega/2)$ を近似するように最小二乗法で係数を決定する。
             \par
             フィルタ係数 $a:\integers\to\realNumbers$ は偶対称な実数値関数とし，非零の係数の個数を奇数とする。
-            数式で述べれば $N\in\naturalNumbers,\;\forall n\in\integers\;a(-n) = a(n),\forall n>N\;a(n) = 0$ である。
+            数式で述べれば $N\in\naturalNumbers,\forall n\in\integers\;a(-n) = a(n),\forall n>N\;a(n) = 0$ である。
             この制約条件が唯一の方法ではないだろうが，後に見るようにこれで十分な性能を得られる。
             \par
             $a$ の DTFT を $A$ とする。すなわち
             \[ A(\Omega) = \sum_{n=-N}^N a(n)\exp(-i\Omega n) = a(0) + 2\sum_{n=1}^N a(n)\cos(\Omega n) = \bm{v}(\Omega)^\top\bm{a} \]
-            ここに $\bm{v}(\Omega) \coloneq [1, 2\cos\Omega,\dots,2\cos N\Omega]^\top\in\realNumbers^{N+1},\;\bm{a} = [a(0),\dots,a(N)]^\top\in\realNumbers^{N+1}$ である。
+            ここに $\bm{v}(\Omega) \coloneq [1, 2\cos\Omega,\dots,2\cos N\Omega]^\top\in\realNumbers^{N+1},\bm{a} = [a(0),\dots,a(N)]^\top\in\realNumbers^{N+1}$ である。
             $[-\pi,\pi]$ で $A$ が $1/\sinc(\Omega/2)$ を近似するように次式を最小化する $a$ を求める。
             \[ \integrate{-\pi}{\pi}{\norm{A(\Omega) - 1/\sinc(\Omega/2)}_2^2}{}{\Omega} \tag{1} \]
             被積分関数の中身を展開すると次式を得る。
