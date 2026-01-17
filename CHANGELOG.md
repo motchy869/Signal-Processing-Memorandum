@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed:
   - minor typo in the equation in sampling theorem
+  - severe typos in 'continuous-time filter' > 'cautions'
 - Added:
   - resampling interpolation coefficient design principle
 
