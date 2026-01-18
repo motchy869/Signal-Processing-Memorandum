@@ -12,11 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - severe typos in 'continuous-time filter' > 'cautions'
 - Added:
   - resampling interpolation coefficient design principle
+  - Remez algorithm for complex-valued coefficients
 
 ## [0.19.0] - 2025-08-04
 
 - Added:
-  - Realize complex feedforward filter with 3 real feedforward filters.
+  - Realize complex-valued feedforward filter with 3 real feedforward filters.
   - two routes cross filter
 
 ## [0.18.0] - 2025-06-25

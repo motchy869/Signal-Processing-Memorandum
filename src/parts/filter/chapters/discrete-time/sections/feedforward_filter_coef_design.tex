@@ -108,7 +108,34 @@
                 \par
                 重みが一様である場合 (\cref{誤差の重みが一様である場合}) の導出と同じ要領で $A\in\realNumbers^{N\times N},\bm{v}\in\realNumbers^N$ であることが容易に示せて $\vhOpt=A^{-1}\bm{v}\in\realNumbers^N$ である。
             \end{proof}
-    % \subsection{DTFT の誤差の実部と虚部の∞ノルム最小化}
+    \subsection{Remez のアルゴリズムを使う方法}
+        実数係数の場合に於いて Remez のアルゴリズムが使えることはよく知られている。
+        ここでは，複素係数の場合に於いて係数の実部と虚部に独立に Remez のアルゴリズムを適用して係数を得る方法を記す。
+        \begin{shadebox}
+            フィルタの周波数特性（係数列の DTFT）の理想の形を $\Hideal:\realNumbers\to\complexNumbers$ とする。
+            但し $\Hideal$ の引数はサンプル周波数について正規化された角周波数である（$\pi/2$ が Nyquist 周波数に対応する）。
+            $\HidealS,\HidealA$ をそれぞれ $\Hideal$ の Hermite 対称成分，反 Hermite 対称成分とする。
+            $\HidealS,-i\HidealA$ に対してそれぞれ Remez のアルゴリズムで最適な実数係数を求めて $\hrOpt,\hiOpt:\integers\to\realNumbers$ とする。
+            $\hrOpt,\hiOpt$ をそれぞれ実部，虚部とする係数が所望の周波数特性を近似する。
+        \end{shadebox}
+        \begin{proof}
+            \quad\par
+            $h:\integers\to\complexNumbers$ を任意の複素フィルタ係数とする。
+            $\hr,\hi$ をそれぞれ $h$ の実部，虚部とする。
+            係数の個数を $\Ntp$ とする $\parens{h(m)=0\;(m>\Ntp)}$。
+            $h,\hr,\hi$ の DTFT を $H,\Hr,\Hi$ とする。
+            但し $H,\Hr,\Hi$ の引数はサンプル周波数について正規化された角周波数である。
+            $H$ の Hermite 対称成分，反 Hermite 対称成分をそれぞれ $\Hs,\Ha$ とする（分解は一意である (\cite{数学備忘録}\ref{1:decomp_into_Hermite_sym_and_anti_Hermite_sym_fxns})）。
+            \par
+            次式が成り立つ。
+            \begin{gather*}
+                H(\Omega) = \sum_{m=0}^{\Ntp-1}h(m)\exp(-i\Omega m) = \sum_{m=0}^{\Ntp-1}\hr(m)\exp(-i\Omega m) + i\sum_{m=0}^{\Ntp-1}\hi(m)\exp(-i\Omega m) \\
+                \therefore\Hs(\Omega) + \Ha(\Omega) = \Hr(\Omega) + i\Hi(\Omega)
+            \end{gather*}
+            任意の関数の Hermite 対称成分，反 Hermite 対称成分への分解は一意である (\cite{数学備忘録}\ref{1:decomp_into_Hermite_sym_and_anti_Hermite_sym_fxns}) から，$\Hr(\Omega) = \Hs(\Omega),\Hi(\Omega) = -i\Ha(\Omega)$ である。
+            よって，$\Hr(\Omega)\approx\HidealS,\Hi(\Omega)\approx -i\HidealA$ となるように Remez のアルゴリズムで $\hr,\hi$ を求めればよい。
+        \end{proof}
+    % \subsection{DTFT の誤差の実部と虚部の∞ノルム最小化} % 無用と化した。「Remez のアルゴリズムを使う方法」に劣る
     %     \newcommand*{\Ntp}{N_{\text{tp}}}
     %     \newcommand*{\Hid}{H_{\text{id}}}
     %     \newcommand*{\HidR}{H_{\text{id,r}}}
