@@ -125,14 +125,14 @@
             係数の個数を $\Ntp$ とする $\parens{h(m)=0\;(m>\Ntp)}$。
             $h,\hr,\hi$ の DTFT を $H,\Hr,\Hi$ とする。
             但し $H,\Hr,\Hi$ の引数はサンプル周波数について正規化された角周波数である。
-            $H$ の Hermite 対称成分，反 Hermite 対称成分をそれぞれ $\Hs,\Ha$ とする（分解は一意である (\cite{数学備忘録}\ref{1:decomp_into_Hermite_sym_and_anti_Hermite_sym_fxns})）。
+            $H$ の Hermite 対称成分，反 Hermite 対称成分をそれぞれ $\Hs,\Ha$ とする（分解は一意である (\cite{数学備忘録} \ref{1:decomp_into_Hermite_sym_and_anti_Hermite_sym_fxns})）。
             \par
             次式が成り立つ。
             \begin{gather*}
                 H(\Omega) = \sum_{m=0}^{\Ntp-1}h(m)\exp(-i\Omega m) = \sum_{m=0}^{\Ntp-1}\hr(m)\exp(-i\Omega m) + i\sum_{m=0}^{\Ntp-1}\hi(m)\exp(-i\Omega m) \\
                 \therefore\Hs(\Omega) + \Ha(\Omega) = \Hr(\Omega) + i\Hi(\Omega)
             \end{gather*}
-            任意の関数の Hermite 対称成分，反 Hermite 対称成分への分解は一意である (\cite{数学備忘録}\ref{1:decomp_into_Hermite_sym_and_anti_Hermite_sym_fxns}) から，$\Hr(\Omega) = \Hs(\Omega),\Hi(\Omega) = -i\Ha(\Omega)$ である。
+            任意の関数の Hermite 対称成分，反 Hermite 対称成分への分解は一意である (\cite{数学備忘録} \ref{1:decomp_into_Hermite_sym_and_anti_Hermite_sym_fxns}) から，$\Hr(\Omega) = \Hs(\Omega),\Hi(\Omega) = -i\Ha(\Omega)$ である。
             よって，$\Hr(\Omega)\approx\HidealS,\Hi(\Omega)\approx -i\HidealA$ となるように Remez のアルゴリズムで $\hr,\hi$ を求めればよい。
         \end{proof}
     % \subsection{DTFT の誤差の実部と虚部の∞ノルム最小化} % 無用と化した。「Remez のアルゴリズムを使う方法」に劣る
