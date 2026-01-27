@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Fixed:
-  - minor typo in the equation in sampling theorem
+  - a typo in Fourier transform lookup table
+  - minor typos in the equation in sampling theorem
   - severe typos in 'continuous-time filter' > 'cautions'
 - Added:
   - resampling interpolation coefficient design principle
