@@ -1,5 +1,6 @@
 \section{Nyquist N-th Band Filter}
     \subsection{定義}
+        \label{Nyquist N-th Band Filter の定義}
         $N\in\naturalNumbers,\;N\geq 2,\;\INyq\coloneq\cup_{k\in\integers}2\pi\parens*{\bracks{-1/N,1/N}+k}$ とする。
         係数 $h:\integers\to\complexNumbers$ の DTFT を $\HDTFT$ とする。
         但し引数は正規化角周波数である。
@@ -16,7 +17,7 @@
             \item $\HDTFT(\pi/N) = 1/2$
             \item $h(0)=1/N$
             \item $h(n)=0\quad(N\mid n,\;n\neq 0)$
-            \item $m_1,m_2$ を 2 以上の自然数とし，$m_3=m_1m_2$ とする。$m_1$-th Band Filter の係数 $h_1$ を標本化定理に従って $m_2$ 倍に補間して得られる係数 $h_3$ は $m_3$-th Band Filter の係数である。
+            \item $m_1,m_2$ を 2 以上の自然数とし，$m_3=m_1m_2$ とする。$m_1$-th Band Filter の係数 $h_1$ を標本化定理に従って $m_2$ 倍に補間した後に $1/m_2$ を乗じて得られる係数 $h_3$ は $m_3$-th Band Filter の係数である。
         \end{itemize}
         以下で各性質を導出する。
         \subsubsection{性質1}
@@ -38,4 +39,9 @@
             上式に於いて $n=0$ のときは $1 = Nh(0)$ であるので，$h(0)=1/N$ が従う。
             また，$n=mN\;(m\in\integers,\;m\neq 0)$ のとき $0 = Nh(n)$ であるので，$h(n)=0$ が従う。
         \subsubsection{性質5}
-            % TODO: T.B.W.
+            $h_1$ の DTFT を $\HDTFTwithSs{1}$ とする。
+            $h_1$ を標本化定理に従って連続時間信号に拡張したものを $\hc$ とし，その Fourier 変換を $\Hc$ とする（引数は正規化角周波数）。
+            \ref{DTFTとエイリアシングとの関係} より，$\Hc$ は $[-\pi,\pi]$ に於いて $(\Ts/\sqrt{2\pi})\HDTFTwithSs{1}$ に等しく，$(-\infty,\pi),(\pi,\infty)$ に於いて 0 である。
+            $h_3$ は $\hcWithSs{2}:t\mapsto\hc(t/m_2)/m_2$ を標本化したものと等しい。
+            $\HcWithSs{2}\coloneq\FT{\hcWithSs{2}}$ とすると，$\HcWithSs{2}(\Omega) = \Hc(m_2\Omega)$ が成り立つ。
+            再び \ref{DTFTとエイリアシングとの関係} より，$\DTFTwithArg{h_3}{\Omega} = \HDTFTwithSs{1}(m_2\Omega)$ が成り立ち，\ref{Nyquist N-th Band Filter の定義} の条件を満たす。

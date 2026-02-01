@@ -182,7 +182,7 @@
                 &= \integrate{-\infty}{\infty}{f(t)\exp(-i\omega t)\sum_{n=-\infty}^\infty\delta(t-n\Ts)}{}{t} \\
                 &= \integrate{-\infty}{\infty}{f(t)\exp(-i\omega t)\frac{1}{\Ts}\sum_{n=-\infty}^\infty \exp\parens*{i t n\frac{2\pi}{\Ts}}}{}{t} \quad (\text{\ref{定数関数1のDTFT}を用いた。}) \\
                 &= \frac{1}{\Ts}\sum_{n=-\infty}^\infty\integrate{-\infty}{\infty}{f(t)\exp(-i\omega t)\exp\parens*{i t n\frac{2\pi}{\Ts}}}{}{t} \\
-                &= \frac{1}{\Ts}\sum_{n=-\infty}^\infty\integrate{-\infty}{\infty}{f(t)\exp(\bracks*{-i\parens*{\omega - n\frac{2\pi}{\Ts}}t})}{}{t} \\
+                &= \frac{1}{\Ts}\sum_{n=-\infty}^\infty\integrate{-\infty}{\infty}{f(t)\exp\parens*{\bracks*{-i\parens*{\omega - n\frac{2\pi}{\Ts}}t}}}{}{t} \\
                 &= \frac{\sqrt{2\pi}}{\Ts}\sum_{n=-\infty}^\infty F\parens*{\omega - n\frac{2\pi}{\Ts}}
             \end{align*}
     \section{システムの伝達関数と正弦波入力の関係}
