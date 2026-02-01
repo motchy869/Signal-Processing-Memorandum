@@ -1,0 +1,41 @@
+\section{Nyquist N-th Band Filter}
+    \subsection{定義}
+        $N\in\naturalNumbers,\;N\geq 2,\;\INyq\coloneq\cup_{k\in\integers}2\pi\parens*{\bracks{-1/N,1/N}+k}$ とする。
+        係数 $h:\integers\to\complexNumbers$ の DTFT を $\HDTFT$ とする。
+        但し引数は正規化角周波数である。
+        次の性質を満たすフィルタを Nyquist N-th Band Filter と呼ぶ。
+        \begin{enumerate}
+            \item $\HDTFT(-\Omega) = \HDTFT(\Omega)$
+            \item $\Omega\in\realNumbers\setminus\INyq\Rightarrow\HDTFT(\Omega)=0$
+            \item $\sum_{k=0}^{N-1}\HDTFT\parens*{\Omega-\frac{k}{N}2\pi} = 1$
+        \end{enumerate}
+        このフィルタは $1/N$ ダウンサンプリング処理に於けるアンチエイリアシング・フィルタとして用いられる。
+    \subsection{性質}
+        \begin{itemize}
+            \item $h$ は偶関数である
+            \item $\HDTFT(\pi/N) = 1/2$
+            \item $h(0)=1/N$
+            \item $h(n)=0\quad(N\mid n,\;n\neq 0)$
+            \item $m_1,m_2$ を 2 以上の自然数とし，$m_3=m_1m_2$ とする。$m_1$-th Band Filter の係数 $h_1$ を標本化定理に従って $m_2$ 倍に補間して得られる係数 $h_3$ は $m_3$-th Band Filter の係数である。
+        \end{itemize}
+        以下で各性質を導出する。
+        \subsubsection{性質1}
+            \begin{align*}
+                h(-n) &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\HDTFT(\Omega)\exp\parens*{-i\Omega n}}{}{\Omega} = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\HDTFT(-\Omega)\exp\parens*{i(-\Omega) n}}{}{\Omega} \\
+                &= -\frac{1}{2\pi}\integrate{\pi}{-\pi}{\HDTFT(\Omega')\exp\parens*{i\Omega' n}}{}{\Omega'} \quad (\text{変数変換：}\Omega = -\Omega') \\
+                &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\HDTFT(\Omega')\exp\parens*{i\Omega' n}}{}{\Omega'} = h(n)
+            \end{align*}
+        \subsubsection{性質2}
+            定義の条件 3 で $\Omega=\pi/N$ として定義の条件 2 を適用すると $1 = \HDTFT(\pi/N) + \HDTFT(-\pi/N)$ である。
+            これと定義の条件 2 より性質が従う。
+        \subsubsection{性質3,4}
+            定義の条件 3 の両辺を逆 DTFT する。任意の整数 $n$ に対して次式が成り立つ。
+            \begin{align*}
+                \text{RHS} &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\exp(i\Omega n)}{}{\Omega} \\
+                \text{LHS} &= \sum_{k=0}^{N-1} \IDTFT{\Omega\mapsto\HDTFT\parens*{\Omega-\frac{k}{N}2\pi}}(n) = \sum_{k=0}^{N-1} \IDTFT{\DTFT{m\mapsto h(m)\exp\parens*{i\frac{k}{N}2\pi m}}}(n) \\
+                &= \sum_{k=0}^{N-1}h(n)\exp\parens*{i\frac{k}{N}2\pi n} = h(n)\sum_{k=0}^{N-1}\exp\parens*{i\frac{k}{N}2\pi n}
+            \end{align*}
+            上式に於いて $n=0$ のときは $1 = Nh(0)$ であるので，$h(0)=1/N$ が従う。
+            また，$n=mN\;(m\in\integers,\;m\neq 0)$ のとき $0 = Nh(n)$ であるので，$h(n)=0$ が従う。
+        \subsubsection{性質5}
+            % TODO: T.B.W.
