@@ -39,9 +39,9 @@
             上式に於いて $n=0$ のときは $1 = Nh(0)$ であるので，$h(0)=1/N$ が従う。
             また，$n=mN\;(m\in\integers,\;m\neq 0)$ のとき $0 = Nh(n)$ であるので，$h(n)=0$ が従う。
         \subsubsection{性質5}
-            $h_1$ の DTFT を $\HDTFTwithSs{1}$ とする。
+            $h_1$ の DTFT を $\HDTFTss{1}$ とする。
             $h_1$ を標本化定理に従って連続時間信号に拡張したものを $\hc$ とし，その Fourier 変換を $\Hc$ とする（引数は正規化角周波数）。
-            \ref{DTFTとエイリアシングとの関係} より，$\Hc$ は $[-\pi,\pi]$ に於いて $(\Ts/\sqrt{2\pi})\HDTFTwithSs{1}$ に等しく，$(-\infty,\pi),(\pi,\infty)$ に於いて 0 である。
-            $h_3$ は $\hcWithSs{2}:t\mapsto\hc(t/m_2)/m_2$ を標本化したものと等しい。
-            $\HcWithSs{2}\coloneq\FT{\hcWithSs{2}}$ とすると，$\HcWithSs{2}(\Omega) = \Hc(m_2\Omega)$ が成り立つ。
-            再び \ref{DTFTとエイリアシングとの関係} より，$\DTFTwithArg{h_3}{\Omega} = \HDTFTwithSs{1}(m_2\Omega)$ が成り立ち，\ref{Nyquist N-th Band Filter の定義} の条件を満たす。
+            \ref{DTFTとエイリアシングとの関係} より，$\Hc$ は $[-\pi,\pi]$ に於いて $(\Ts/\sqrt{2\pi})\HDTFTss{1}$ に等しく，$(-\infty,\pi),(\pi,\infty)$ に於いて 0 である。
+            $h_3$ は $\hcSs{2}:t\mapsto\hc(t/m_2)/m_2$ を標本化したものと等しい。
+            $\HcSs{2}\coloneq\FT{\hcSs{2}}$ とすると，$\HcSs{2}(\Omega) = \Hc(m_2\Omega)$ が成り立つ。
+            再び \ref{DTFTとエイリアシングとの関係} より，$\DTFTwithArg{h_3}{\Omega} = \HDTFTss{1}(m_2\Omega)$ が成り立ち，\ref{Nyquist N-th Band Filter の定義} の条件を満たす。
