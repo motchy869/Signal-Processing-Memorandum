@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - a typo in Fourier transform lookup table
   - minor typos in the equation in sampling theorem
   - severe typos in 'continuous-time filter' > 'cautions'
+- Improved:
+  - Refined preface.
 - Added:
   - resampling interpolation coefficient design principle
   - Remez algorithm for complex-valued coefficients
