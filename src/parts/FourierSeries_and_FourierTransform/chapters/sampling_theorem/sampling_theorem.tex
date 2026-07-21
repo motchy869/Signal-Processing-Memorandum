@@ -63,7 +63,7 @@
                 $x:\realNumbers\to\complexNumbers$ の Fourier 変換 $\FT{x}$ が存在して，その台が $\IAF$ に含まれるとする。
                 \par
                 さらに，$H:\realNumbers\to\complexNumbers$ が存在して，その台が $\IAF$ に含まれ，かつ $H\FT{x} = \FT{x}\;(\omega\in\IAF)$ が成り立つとする。
-                サンプリング周期 $\Ts\coloneqq 2\pi/\omegaSamp$ に於ける $H$ の逆 DTFT を \ref{IDTFT を用いた有限長信号の補間} の方法で連続時間に拡張したもの $h:\realNumbers\to\complexNumbers$ とする。
+                サンプル周期 $\Ts\coloneqq 2\pi/\omegaSamp$ に於ける $H$ の逆 DTFT を \ref{IDTFT を用いた有限長信号の補間} の方法で連続時間に拡張したもの $h:\realNumbers\to\complexNumbers$ とする。
                 \par
                 このとき次式が成り立つ。
                 \[ x(t) = \sum_{n\in\integers} x\parens*{\frac{2\pi}{\omegaSamp}n}h\parens*{t-\frac{2\pi}{\omegaSamp}n} = \sum_{n\in\integers} x\parens*{n\Ts}h\parens*{t-n\Ts} = \sum_{n\in\integers} x\parens*{\frac{n}{\fsamp}}h\parens*{t-\frac{n}{\fsamp}} \]

@@ -112,3 +112,35 @@
                 &= \prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2} \exp \frac{-|g_i|^2}{2\sigma^2}
             \end{align*}
         \end{proof}
+    \section{DTFT を DFT で表す}
+        \newcommand*{\XprdDFT}{\mathring{X}_\text{DFT}}
+        有限長の信号は周期拡張によって DFT と一対一対応し，かつ DTFT とも一対一対応するので，信号が有限長であれば DTFT と DFT は一対一対応する。
+        一次元の場合について示すが，多次元の場合にも容易に拡張できる。
+        \begin{shadebox}
+            $L\in\naturalNumbers$ とする。
+            台が $I\coloneq\{0,1,\dots,L-1\}$ に含まれる離散時間信号 $x$ を周期 $L$ で周期的に拡張した信号を $\mathring{x}$ とする。
+            $\XDTFT,\XprdDFT$ をそれぞれ $x$ の DTFT, $\mathring{x}$ の DFT とする。
+            次式が成り立つ。
+            ここに $F$ は正規化周波数であり，$x$ のサンプル周期 $\Ts$，周波数 $f$ を用いて $F = f\Ts$ と定義される。
+            また $F = l/L\;(l\in\integers)$ に於ける値は $F$ がその値に近付く極限の値として定義される。
+            \[ \XDTFT(F) = \frac{1}{\sqrt{L}}\sum_{k=0}^{L-1}\bracks*{\exp i(L-1)(k/L-F)\pi}\frac{\sin L(k/L-F)\pi}{\sin(k/L-F)\pi}\XprdDFT(k) \]
+            とくに $F = l/L\;(l\in\integers)$ については次式が成り立つ。
+            \[ \XDTFT(l/L) = \sqrt{L}\XprdDFT(l) \]
+        \end{shadebox}
+        \begin{proof}
+            \begin{align*}
+                \XDTFT(F) &= \sum_{m=0}^{L-1}\IDFT{\XprdDFT}(m)\exp(-i 2\pi F m) \\
+                &= \sum_{m=0}^{L-1}\frac{1}{\sqrt{L}}\sum_{k=0}^{L-1}\XprdDFT(k)\parens*{\exp i\frac{m}{L}k 2\pi}\exp(-i 2\pi F m) \\
+                &= \frac{1}{\sqrt{L}}\sum_{k=0}^{L-1}\XprdDFT(k)\sum_{m=0}^{L-1}\exp i m(k/L-F)2\pi \tag{1}
+            \end{align*}
+            $F = l/L\;(l\in\integers)$ のとき $\sum_{m=0}^{L-1}\exp i m(k/L-F)2\pi = \delta_{k,l}$ となる（等比数列の和の公式から容易に導ける）ので，$\XDTFT(l/L) = \sqrt{L}\XprdDFT(l)$ である。
+            \par
+            $F \neq l/L\;(l\in\integers)$ のとき，次式が成り立つ。
+            \begin{align*}
+                &\phantom{=} \sum_{m=0}^{L-1}\exp i m(k/L-F)2\pi = \frac{1 - \exp i L(k/L-F)2\pi}{1 - \exp i(k/L-F)2\pi} \\
+                &= \frac{\exp iL(k/L-F)\pi}{\exp i(k/L-F)\pi}\times\frac{\exp(-i L(k/L-F)\pi) - \exp i L(k/L-F)\pi}{\exp(-i(k/L-F)\pi) - \exp i(k/L-F)\pi} \\
+                &= [\exp i(L-1)(k/L-F)\pi]\times\underbrace{\frac{\sin L(k/L-F)\pi}{\sin(k/L-F)\pi}}_{(2)}
+            \end{align*}
+            これを式 (1) に適用して主張が得られる。
+        \end{proof}
+        数値計算に於いて，$\abs{k/L-F}\pi\ll 1$ のときに式 (2) の分数を安定的に計算するには，Taylor 展開 $(\sin Lx)/\sin x \approx L(1-(L^2-1)x^2/6)$ を用いるとよい。

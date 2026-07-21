@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Refined preface.
 - Added:
   - resampling interpolation coefficient design principle
+  - represent DTFT by DFT
   - Remez algorithm for complex-valued coefficients
   - Nyquist N-th Band Filter
   - IQ imbalance
