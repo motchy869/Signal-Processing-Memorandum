@@ -11,13 +11,13 @@
             連続時間信号 $\hat{x}:\realNumbers\to\realNumbers$ を次式で定義する。
             \[ \hat{x}(t)\coloneq\left.\IDTFT{\XDTFT}(n)\right|_{n\to t} = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\XDTFT(\Omega)\exp\parens*{i\Omega t}}{}{\Omega} = \sum_{m=-\infty}^\infty \xd(m)\sinc\pi(t-m) \]
             $\hat{x}$ は全ての離散時刻に於いて $\xd$ と一致する連続関数である。
-            これは \ref{標本化定理} に於いて $F_1=1/2$ とした場合の式と同じである。
+            これは \ref{標本化定理の基本形} に於いて $F_1=1/2$ とした場合の式と同じである。
             \par
             例えば $\xd$ が既知であって，それをある時間 $d\in(0,1)$ だけ仮想的に遅らせた（サンプリング時刻が仮想的に $d$ だけ早まった）離散時間信号は $n\in\integers\mapsto\hat{x}(n-d)$ である。
             殆ど自明なことだが，この信号の DTFT の絶対値は $\xd$ のそれと等しい。
         \subsection{数値例}
             \label{IDTFT を用いた有限長信号の補間>数値例}
-            $N=33,\;\alpha=0.4$ とし，有限長の離散時間信号 $h:\integers\to\realNumbers$ を次式で定義する。
+            $N=33,\alpha=0.4$ とし，有限長の離散時間信号 $h:\integers\to\realNumbers$ を次式で定義する。
             これは視覚的な解り易さから \cite{learn_sp_from_basic} 式 (8.41) から流用したものである。
             \[
                 h(n) = \begin{cases}
@@ -43,25 +43,25 @@
                 \end{minipage}
             \end{figure}
             これを前小節の方法で実時間信号に拡張したものを $\tilde{h}$ とする。
-            \cref{fig:元の信号と IDTFT による連続時間補間信号} は $h$ と $\tilde{h}$ を重ねて描いたものである。
+            \cref{figure:元の信号と IDTFT による連続時間補間信号} は $h$ と $\tilde{h}$ を重ねて描いたものである。
             \par
             新たな離散時間信号 $h^\dagger:(d,n)\in\realNumbers\times\integers\mapsto\tilde{h}(n-d)$ を定義する。
             $h^\dagger$ は $h$ を仮想的に $d$ だけ遅らせたものである。
-            図 \cref{fig:元の信号と IDTFT による実数時間遅延離散時間信号} 2 通りの $d$ について $h^\dagger$ を描いたものである。
+            図 \cref{figure:元の信号と IDTFT による実数時間遅延離散時間信号} 2 通りの $d$ について $h^\dagger$ を描いたものである。
             \begin{figure}[H]
                 \centering
                 \begin{minipage}{0.49\hsize}
                     \includegraphics[keepaspectratio, scale=0.69]
                     {\currfiledir/calc/Interpolation_with_IDTFT/h_and_h_tilde.pdf}
                     \caption{$h$ と $\tilde{h}$}
-                    \label{fig:元の信号と IDTFT による連続時間補間信号}
+                    \label{figure:元の信号と IDTFT による連続時間補間信号}
                 \end{minipage}
                 \begin{minipage}{0.49\hsize}
                     \centering
                     \includegraphics[keepaspectratio, scale=0.69]
                     {\currfiledir/calc/Interpolation_with_IDTFT/h_dag.pdf}
-                    \caption{$h^\dagger,\quad d=-0.25,\;0.75$}
-                    \label{fig:元の信号と IDTFT による実数時間遅延離散時間信号}
+                    \caption{$h^\dagger,\quad d=-0.25,0.75$}
+                    \label{figure:元の信号と IDTFT による実数時間遅延離散時間信号}
                 \end{minipage}
             \end{figure}
             この数値例を計算した Mathematica notebook が下記のファイル名で保存されている。
@@ -69,19 +69,17 @@
             notebook 中では前記 $N$ が \inlineCode{N_tp} となっている。\newline
             \href{\currfiledir/calc/Interpolation_with_IDTFT/Interpolation_with_IDTFT.nb}{\escapeUnderscore{Interpolation_with_IDTFT.nb}}\newline
         \subsection{等間隔補間信号の周波数スペクトラム}
-            \newcommand*{\Xdn}{X_\text{d,n}}
-            \newcommand*{\Ydn}{Y_\text{d,n}}
             \ref{IDTFT を用いた有限長信号の補間>方法} の方法で等間隔に補間され $L\;(\in\naturalNumbers,L\geq 2)$ 倍のサンプル周波数を持つ新たな信号の周波数スペクトラムの性質を述べる。
             \begin{shadebox}
                 $L$ を 2 以上の自然数とする。
                 サンプル周期 $\Ts>0$ の離散時間信号 $\xd:\integers\to\complexNumbers$ を \ref{IDTFT を用いた有限長信号の補間>方法} の方法で等間隔に補間し，サンプル周期 $\Ts/L$ となった離散時間信号を $\yd$ とする。
-                但し $\xd,\;\yd$ 両方のサンプリング時刻が 0 を含むものとする。
-                $\XDTFT,\;\YDTFT$ を $\xd,\;\yd$ の DTFT とする。
+                但し $\xd,\yd$ 両方のサンプリング時刻が 0 を含むものとする。
+                $\XDTFT,\YDTFT$ を $\xd,\yd$ の DTFT とする。
                 $\omega\in\realNumbers$ について次式が成り立つ。
                 \[ \YDTFT(\omega) = L\sum_{n=-\infty}^\infty \XDTFT\parens*{\omega-n\frac{2\pi L}{\Ts}}\uBox\parens*{\frac{\Ts}{2\pi}\parens*{\omega-\frac{2\pi L}{\Ts}n}} \tag{1} \]
                 元のサンプル周期に於ける第 1 Nyquist 領域の外側で $\XDTFT$ を 0 としたものが， $\Ts/(2\pi L)$ 周期拡張されている。
                 \par
-                $\Xdn,\;\Ydn$ を $\xd,\;\yd$ の DTFT であって引数が正規化角周波数 $\Omega\in\realNumbers$ であるものとする（前者と後者の正規化角周波数はスケールが異なる。それぞれ $\omega\Ts,\;\omega\Ts/L$）。
+                $\Xdn,\Ydn$ を $\xd,\yd$ の DTFT であって引数が正規化角周波数 $\Omega\in\realNumbers$ であるものとする（前者と後者の正規化角周波数はスケールが異なる。それぞれ $\omega\Ts,\omega\Ts/L$）。
                 これを用いて式 (1) を書き直すと次式である。
                 \[ \Ydn(\Omega) = L\sum_{n=-\infty}^\infty \Xdn\parens*{L(\Omega-2\pi n)}\uBox\parens*{\frac{L}{2\pi}\parens*{\Omega-2\pi n}} \tag{2} \]
                 元のサンプル周期に於ける第 1 Nyquist 領域の外側で $\Xdn$ を 0 とした後に角周波数軸方向に $1/L$ 倍に縮めたものが $2\pi$ 周期拡張されている。
@@ -119,7 +117,7 @@
                         \centering
                         \includegraphics[keepaspectratio, scale=0.69]
                         {\currfiledir/calc/Interpolation_with_IDTFT/abs_of_H_and_H_itp.pdf}
-                        \caption{$h,\;h_\text{itp}$ の DTFT。横軸は正規化角周波数}
+                        \caption{$h,h_\text{itp}$ の DTFT。横軸は正規化角周波数}
                     \end{minipage}
                 \end{figure}
     \section{IDFT を用いた周期信号の補間}
@@ -132,12 +130,11 @@
             ただし信号の周期 $N$ は奇数に限られ，FFT に最も都合の良い 2 の冪乗ではない（参考情報として $N$ が偶数のときに無理矢理適用して失敗した結果を \ref{N が偶数のときに無理矢理適用した結果} に記した）。
         \subsection{方法}
             \label{IDFT を用いた周期信号の補間>方法}
-            \newcommand*{\Xtilded}{\tilde{X}_\text{d}}
             $N$ を奇数の自然数とする。$N$ 周期離散時間信号 $\xd:\integers\to\complexNumbers$ の DFT を $\XDTFT$ とする。
             連続時間信号 $\hat{x}$ を次式で定義する。
             \[ \hat{x}(t) \coloneq \frac{1}{\sqrt{N}}\sum_{k=-(N-1)/2}^{(N-1)/2}\XDTFT(k\%N)\exp i2\pi\frac{1}{N}kt \tag{1} \]
             これは $t\in\integers$ のとき $\xd(t)$ と一致する（性質 1）。
-            特に $n\in\integers,\;\Delta t\in[0,1)$ であるとき次式が成り立つ（性質 2）。
+            特に $n\in\integers,\Delta t\in[0,1)$ であるとき次式が成り立つ（性質 2）。
             \begin{gather}
                 \hat{x}(n+\Delta t) = \parens*{\exp i\pi\frac{1-N}{N}n}\IDFT{\Xtilded}(n) \label{IDFT を用いた周期信号の補間>公式}\\
                 \text{where} \quad \Xtilded:k\in\integers\mapsto\XDTFT\parens*{\parens*{k-\frac{N-1}{2}}\%N}\bracks*{\exp i2\pi\frac{1}{N}\parens*{k-\frac{N-1}{2}}\Delta t} \nonumber
@@ -149,7 +146,7 @@
             \[ \xd(n) = \IDFT{\XDTFT}(n) = \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}\XDTFT(k)\exp\parens*{i2\pi\frac{1}{N}kn} \]
             しかしこれは失敗する。
             例えば $\xd$ が実数値信号であるとき $\XDTFT$ は Hermite 対称である ($\XDTFT(-k)=\XDTFT(N-k)=\conj{\XDTFT(k)}$)。
-            $t=n+\Delta t,\;n=\floor{t},\;\Delta t\in[0,1)$ とすると $\xd(t)$ は $k\mapsto\XDTFT(k)\exp i2\pi k\Delta t/N$ の IDFT であるが，これは実数値ではなく，補間の結果として受け入れられない。
+            $t=n+\Delta t,n=\floor{t},\Delta t\in[0,1)$ とすると $\xd(t)$ は $k\mapsto\XDTFT(k)\exp i2\pi k\Delta t/N$ の IDFT であるが，これは実数値ではなく，補間の結果として受け入れられない。
             期待通りの結果を得るには \ref{IDTFT を用いた有限長信号の補間>方法} のように総和の範囲を正負対称にし，$\XDTFT$ に手を加えた結果を少なくとも Hermite 対称にする必要がある。
         \subsection{性質 1 の導出}
             \begin{proof}
@@ -229,7 +226,7 @@
             \begin{proof}
                 \quad\par
                 DFT の性質から $\YDTFT$ が $LN$ 周期関数であることが解る。
-                そこで，まず集合 $I\coloneq\{-\floor{(LN-1)/2},\;-\floor{(LN-1)/2}+1,\;\dots,\;\floor{(LN-1)/2}-1\}$ （$LN$ の偶奇に関係なく適切な集合であることに注意すべし）上で $\YDTFT$ を評価し，それを $LN$ 周期拡張する。
+                そこで，まず集合 $I\coloneq\{-\floor{(LN-1)/2},-\floor{(LN-1)/2}+1,\dots,\floor{(LN-1)/2}-1\}$ （$LN$ の偶奇に関係なく適切な集合であることに注意すべし）上で $\YDTFT$ を評価し，それを $LN$ 周期拡張する。
                 $I$ に於いては次式が成り立つ。
                 \begin{align*}
                     \YDTFT(k) &= \frac{1}{\sqrt{LN}}\sum_{n=0}^{LN-1}\yd(n)\exp\parens*{-i\frac{2\pi}{LN}kn} \\

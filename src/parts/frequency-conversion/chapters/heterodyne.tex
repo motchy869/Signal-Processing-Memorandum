@@ -3,7 +3,7 @@
     \section{連続時間複素数値信号を上方変換して実数値信号を送信し，受信側で複素数値信号を復元する}
         無線通信で使われる手法である。
         \subsection{計算}
-            $I_0, Q_0:\realNumbers\to\realNumbers,\;x_0:\realNumbers\to\complexNumbers; t\in\realNumbers\mapsto I_0(t) + iQ_0(t),\;\omega > 0$ とする。
+            $I_0, Q_0:\realNumbers\to\realNumbers,x_0:\realNumbers\to\complexNumbers; t\in\realNumbers\mapsto I_0(t) + iQ_0(t),\omega > 0$ とする。
             $x_0$ は所謂ベースバンド信号である。
             送信側は次式で上方変換された信号を $x_1$ 作る。
             \[ x_1(t) = x(t)\exp(i\omega t) = I_0(t)\cos\omega t - Q_0(t)\sin\omega t + i\parens*{Q_0(t)\cos\omega t + I_0(t)\sin\omega t} \]

@@ -1,15 +1,11 @@
 \chapter{オーバー・サンプリング}
     \section{オーバー・サンプリングされた信号の DA 変換の周波数スペクトラム}
-        \newcommand*{\xda}{x_{\text{d},1}}
-        \newcommand*{\Xda}{X_{\text{d},1}}
-        \newcommand*{\xdb}{x_{\text{d},2}}
-        \newcommand*{\Xdb}{X_{\text{d},2}}
         離散時間信号をオーバー・サンプリングしてDACで出力したときの周波数スペクトラムを計算したい。
         DACの量子化誤差は無視する。
         \subsection{主張}
             記号を次のように定義する。
             \begin{itemize}
-                \item $R\in\naturalNumbers,\;R\geq 2$ : オーバー・サンプリング・レート
+                \item $R\in\naturalNumbers,R\geq 2$ : オーバー・サンプリング・レート
                 \item $\xda:\integers\to\complexNumbers$ : 離散時間信号
                 \item $\Ts>0$ : $\xda$ のサンプル周期
                 \item $\Xda$ : $\xda$ のDTFT
@@ -35,7 +31,7 @@
             \[ x_1(t) = \sum_{n=-\infty}^\infty \xda(n)u_1(t-n\Ts) \]
             $x_2$ は次式で表される。
             \[ x_2(t) = \sum_{n=-\infty}^\infty \xdb(n)u_2(t-n\Ts/R) = \sum_{m=-\infty}^\infty \xdb(R m)u_2(t-m\Ts) = \sum_{n=-\infty}^\infty \xda(n)u_2(t-n\Ts) \]
-            次の図は $\Ts=1,R=4,\xda(n) = \sin\parens{2\pi*n/12}\;(0\leq n\leq 24),\;\xda(n) = 0\;(n<0,24<n)$ の例である。
+            次の図は $\Ts=1,R=4,\xda(n) = \sin\parens{2\pi*n/12}\;(0\leq n\leq 24),\xda(n) = 0\;(n<0,24<n)$ の例である。
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.8]
@@ -62,7 +58,7 @@
             オーバー・サンプリング前の信号 $x_1$ については\ref{0次ホールドされた離散時間信号の周波数スペクトラム}より，そのFourier変換は次式である。
             \[ X_1(\omega) = \frac{\Ts}{\sqrt{2\pi}}\exp\parens*{-i\frac{\Ts}{2}\omega}\parens*{\sinc \frac{\Ts}{2}\omega}\Xda(\omega) \tag{b} \]
             式(a),(b)を見比べると $\Xda$ を共通して含んでおり，それ以外の箇所でオーバー・サンプリングにより $\Ts$ が $\Ts/R$ に置き換わっていることがわかる。
-            このことから，オーバー・サンプリングにより高調波の位置は変わらず，広域の減衰や位相回転が緩やかになることがわかる。
+            このことから，オーバー・サンプリングにより高調波の位置は変わらず，広域の減衰や位相シフトが緩やかになることがわかる。
             次の図は\ref{figure:オーバー・サンプリング前後のDAC出力の例}に対応するDTFTとFourier変換の絶対値の例である。
             \begin{figure}[H]
                 \centering

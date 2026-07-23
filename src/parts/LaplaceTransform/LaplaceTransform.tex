@@ -1,7 +1,7 @@
 \part{Laplace変換}
     \chapter{複素指数関数入力に対する伝達関数の作用}
         \begin{shadebox}
-            $A>0,\;\omega \in \realNumbers$とする。
+            $A>0,\omega \in \realNumbers$とする。
             連続時間信号$f: \realNumbers \to \complexNumbers$を次のように定める。
             \[
                 f(t) =
@@ -30,7 +30,7 @@
         \end{proof}
         \section{系: 正弦波入力に対する伝達関数の作用}
             \begin{shadebox}
-                $A>0,\;\omega \in \realNumbers$とする。
+                $A>0,\omega \in \realNumbers$とする。
                 連続時間信号$f_1,f_2: \realNumbers \to \realNumbers$を次のように定める。
                 \[
                     f_1(t) =
@@ -70,7 +70,7 @@
                 直前の定理の証明の(1)までは同じである。
                 $f_1,g_1$のLaplace変換をそれぞれ$F_1,G_1$とすると
                 \[ F_1(s) = \frac{As}{s^2+\omega^2} = \frac{A}{2}\left(\frac{1}{s+i\omega} + \frac{1}{s-i\omega}\right) \]
-                であるから，$G_1(s) = H(s)F(s)$の部分分数展開のうち$1/(s+i\omega),\;1/(s-i\omega)$に比例する項を詳しく調べれば良い。
+                であるから，$G_1(s) = H(s)F(s)$の部分分数展開のうち$1/(s+i\omega),1/(s-i\omega)$に比例する項を詳しく調べれば良い。
                 $1/(s+i\omega)$の係数は
                 \[ \left. G(s)X(s)(s+i\omega) \right|_{s\to-i\omega} = AG(-i\omega)/2\]
                 となり，$1/(s-i\omega)$の係数は

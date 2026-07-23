@@ -1,9 +1,9 @@
 ﻿% ---------- document information ----------
 % document version number
 \newcommand{\docVerMajor}{0}
-\newcommand{\docVerMinor}{19}
+\newcommand{\docVerMinor}{20}
 \newcommand{\docVerPatch}{0}
-\newcommand{\docVerWip}{} % -wip or nothing
+\newcommand{\docVerWip}{} % -wip for work in progress, empty string for stable version
 \newcommand{\docVer}{\docVerMajor.\docVerMinor.\docVerPatch\docVerWip}
 
 \title{信号処理備忘録}
@@ -23,11 +23,11 @@
 \usepackage{ascmac}
 \usepackage{bbm}
 %\usepackage{bytefield} % currently not used
-\usepackage{cases}
 \usepackage{chngcntr} % for counterwithin command
 \usepackage[usenames]{color}
 \usepackage{currfile}
 % \usepackage{datatool} % currently not used
+\usepackage{empheq}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage[T1]{fontenc}
@@ -50,13 +50,14 @@
 % To know the colors defined, see: [All you need to know about colors in LaTeX](https://latex-tutorial.com/color-latex/)
 \usepackage[table,x11names]{xcolor}
 
+\usepackage{ulem} % for \uline etc.
 \usepackage{xspace} % [Space after LaTeX commands](https://tex.stackexchange.com/questions/31091/space-after-latex-commands)
 \usepackage{xurl}
 \usepackage{zref-xr}
 
 % cross reference
 \zxrsetup{toltxlabel} % use normal LaTeX style \ref
-\zexternaldocument*[1:]{reference/Mathematics_Memorandum_v0.12.0} % usage: \zexternaldocument*[prefix]{path/to/aux/file/without/extension}[path/to/pdf/file] Only ascii name is allowed.
+\zexternaldocument*[1:]{reference/Mathematics_Memorandum_v0.23.0} % usage: \zexternaldocument*[prefix]{path/to/aux/file/without/extension}[path/to/pdf/file] Only ascii name is allowed.
 
 % ---------- structure settings ----------
 \makeatletter
@@ -137,11 +138,12 @@
     \rfoot{}
 
 % Avoids overlap of number and text in table of contents.
-\setlength{\cftchapnumwidth}{4em}
+\setlength{\cftpartnumwidth}{2.0em}
+\setlength{\cftchapnumwidth}{3.0em}
 \setlength{\cftsecnumwidth}{3.0em}
-\setlength{\cftsubsecnumwidth}{3.5em}
-\setlength{\cftsubsubsecnumwidth}{4.0em}
-\setlength{\cftparanumwidth}{4.5em}
+\setlength{\cftsubsecnumwidth}{4.0em}
+\setlength{\cftsubsubsecnumwidth}{5.0em}
+\setlength{\cftparanumwidth}{6.0em}
 
 % Places dots between chapter titles and page numbers in table of contents.
 % see: [LaTeXにおいて体裁を整えるのに便利なパッケージ](https://qiita.com/shohirose/items/52f778ebd21f8e5f5c0e)
@@ -186,9 +188,14 @@
     numbersep=1em,
     lineskip=-0.5ex
 }
+
+\sisetup{
+    group-minimum-digits=4 % use group separator for numbers with 4 or more digits
+}
 % --------------------
 
 \input{cmds/MtyLaTeXCmds/MtyLaTeXCmds.tex}
+\input{cmds/common_cmd.tex}
 
 \begin{document}
     \maketitle
@@ -217,7 +224,7 @@
         \bibitem{learn_sp_from_basic}飯國洋二 (2009) 『基礎から学ぶ信号処理』培風館
         \bibitem{digital-servo}本田 昭, 城谷 聡美 (2008) 『図解と演習で学ぶ ディジタルサーボの理論と実践』日刊工業新聞社
         \bibitem{Nyquist_ISI_crit}Nyquist ISI criterion \url{https://en.wikipedia.org/wiki/Nyquist_ISI_criterion}
-        \bibitem{数学備忘録}motchy (2022) 『数学備忘録 v0.12.0』\url{https://github.com/motchy869/Mathematics-Memorandum/releases/tag/v0.12.0}
+        \bibitem{数学備忘録}motchy (2022) 『数学備忘録 v0.23.0』\url{https://github.com/motchy869/Mathematics-Memorandum/releases/tag/v0.23.0}
         \bibitem{DSP_JL}DSP.jl \url{https://docs.juliadsp.org/dev/}
         \bibitem{dBFS} dBFS \url{https://en.wikipedia.org/wiki/DBFS}
     \end{thebibliography}
