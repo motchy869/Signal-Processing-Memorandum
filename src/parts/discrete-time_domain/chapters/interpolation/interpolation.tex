@@ -273,3 +273,57 @@
                         \caption{$\abs{\YDTFT}$}
                     \end{minipage}
                 \end{figure}
+    \section{不等間隔サンプルの補間}
+        \subsection{動機}
+            次のように量を定義する。
+            \[L\in\naturalNumbers,t_i\in\realNumbers\;(i=0,1,\dots,L-1),t_i<t_j\;(i<j),x_i\in\complexNumbers\;(i=0,1,\dots,L-1)\]
+            $x_i$ は連続時間信号 $x:\realNumbers\to\complexNumbers$ の時刻 $t_i$ に於ける値であり，サンプリングは $x$ の周波数スペクトラムの台を考慮して十分に細かい間隔で行われているとする。
+            任意の時刻 $t$ に於ける $x$ の値 $x(t)$ として妥当な値を求めたい。
+        \subsection{手法}
+            \noindent
+            概略：仮想的な連続時間信号 $\tilde{x}$ を考え，それを等間隔でサンプリングして得られる点列 $\tilde{x}_i$ を考える。それを標本化定理で補間して $\tilde{x}(t_i)\;(i=0,1,\dots,L-1)$ を求め，$\tilde{x}(t_i)-x_i$ の二乗誤差の総和を最小化する $\tilde{x}_i$ を求める。\par
+            解くべき変量を $\tilde{x}$ そのものではなく $\tilde{x}(t_i)$ という有限個の値にするところが特徴である。
+            \newline
+            詳細：
+            \par\noindent
+            次のように量を定義する。
+            \[ M\in\naturalNumbers,\tilde{T}>0,\tilde{t}_i\in\realNumbers\;(i=0,1,\dots,M-1),\tilde{t}_{i+1}-\tilde{t}_i = \tilde{T}\;(i=0,1,\dots,M-2),\tilde{x}_i\in\complexNumbers\;(i=0,1,\dots,M-1) \]
+            $t_0$ と $\tilde{t}_0$ の大小関係と $t_{L-1}$ と $\tilde{t}_{M-1}$ の大小関係は問わない。
+            $\tilde{x}_i$ は連続時間信号 $\tilde{x}$ の時刻 $\tilde{t}_i$ に於ける値であるとし，時間間隔 $\tilde{T}$ は標本化定理を満たす十分に小さい値であるとする。
+            標本化定理から次式が成り立つ。
+            \[ \tilde{x}(t) \coloneq \sum_{m=0}^{M-1}\parens*{\sinc\frac{\pi}{\tilde{T}}\parens*{t-m\tilde{T}}}\tilde{x}_m \tag{1} \]
+            $a_{l,m}\coloneq\sinc\frac{\pi}{\tilde{T}}\parens*{t_l - m\tilde{T}}$ とし，$L\times M$ 実行列 $A$ の第 $l,m$ 成分を $a_{l,m}$ とする。
+            $\hat{\bm{x}}\coloneq [\tilde{x}(t_0),\tilde{x}(t_1),\dots,\tilde{x}(t_{L-1})]^\top,\tilde{\bm{x}}\coloneq [\tilde{x}_0,\tilde{x}_1,\dots,\tilde{x}_{M-1}]^\top$ とすると $\hat{\bm{x}} = A\tilde{\bm{x}}$ が成り立つ。
+            評価関数 $f(\tilde{\bm{x}})\coloneq\norm{A\tilde{\bm{x}} - \bm{x}}_2^2$ を最小化する $\tilde{\bm{x}}$ を求めればよい。
+            状況は $A$ の特性によって分けられる。
+            \par\noindent
+            (1) $A$ が正則のとき
+            \par
+            解は一意に定まり，$\tilde{\bm{x}} = A^{-1}\bm{x}$
+            \par\noindent
+            (2) $L<M$ であり $A$ が行フルランクのとき
+            \par
+            解は一意に定まらないが，$f$ の最小値は 0 である。最小ノルム解は $\tilde{\bm{x}} = A^\top(AA^\top)^{-1}\bm{x}$
+            \par\noindent
+            (3) $L>M$ であり $A$ が列フルランクのとき
+            \par
+            解は一意に定まるが，$f$ の最小値は 0 とは限らない。解は $\tilde{\bm{x}} = (A^\top A)^{-1}A^\top\bm{x}$
+            \par\noindent
+            (4) $A$ がランク落ちのとき
+            \par
+            解は一意に定まらず，$f$ の最小値は 0 とは限らない。最小ノルム解は $\tilde{\bm{x}} = A^\dagger\bm{x}$（$A^\dagger$ は Moore--Penrose の疑逆行列）
+            \par\vspace{\baselineskip}\noindent
+            以上で求めた $\tilde{\bm{x}}$ を用いて式 (1) を評価すれば，任意の時刻 $t$ に於ける $x(t)$ の妥当な値が求まる。
+        \subsection{数値例}
+            次の Mathematica notebook に記されている。：\href{\currfiledir/calc/interpolate_unequally-spaced_samples/interpolate_unequally-spaced_samples.nb}{\escapeUnderscore{interpolate_unequally-spaced_samples.nb}}
+            \par
+            この例では $L=M=11,\tilde{T}=1,\tilde{t}_i=i\tilde{T}$ であり，$x(t)=\exp(t/4)\sin(\pi t/2)$ を $t=0,1.5,2.1,3,3.8,5,5.7,6.7,8,9.1,10$ でサンプリングして $x_i$ としている。
+            $A$ の特性は前述の (1) である。
+            次の図中の \escapeUnderscore{x_tld_arr} が推定された $\tilde{x}_i$ であり，\escapeUnderscore{x_tld} が $\tilde{x}(t)$ である。
+            spline 補間も示している。結果は spline 補間の方が優秀であった。
+            \begin{figure}[H]
+                \centering
+                \includegraphics[keepaspectratio, scale=1]
+                {\currfiledir/calc/interpolate_unequally-spaced_samples/plot_all.pdf}
+                \caption{不等間隔サンプルの補間結果}
+            \end{figure}
