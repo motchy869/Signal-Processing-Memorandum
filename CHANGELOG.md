@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added:
   - ~~interpolation for unequally-spaced samples~~
+  - Rx IF signal
 
 ## [0.20.0] - 2026-07-24
 
