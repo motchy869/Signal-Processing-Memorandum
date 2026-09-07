@@ -45,7 +45,6 @@
             \[ \DFTwithArg{f\circledast g}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
         \end{shadebox}
         \begin{proof}
-            \quad\par
             $\bm{N} \coloneq [N_1,\dots,N_d]^\top$とする。
             \begin{align*}
                 \DFTwithArg{f\circledast g}{\bm{k}} &= \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \left(f\circledast g\right)(\bm{n}) = \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \\
@@ -67,7 +66,6 @@
             \[ \DFTwithArg{R_{f,g}}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\conj{\DFTwithArg{g}{\bm{k}}} \]
         \end{shadebox}
         \begin{proof}
-            \quad\par
             $\bm{N} \coloneq [N_1,\dots,N_d]^\top$とする。
             \begin{align*}
                 \DFTwithArg{R_{f,g}}{\bm{k}} &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})\conj{g((\bm{m}-\bm{n})\%\bm{N})} \\
@@ -91,7 +89,6 @@
             \[ \DFTwithArg{f\circledast g}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
         \end{shadebox}
         \begin{proof}
-            \quad\par
             \ref{巡回相関のDFT} と同じ要領で示せる。
         \end{proof}
     \section{GaussianノイズのDFT}

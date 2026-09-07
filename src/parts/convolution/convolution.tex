@@ -6,7 +6,6 @@
                 \[ \derivLong{(x_1*x_2)(t)}{t}{} = {x_1}'*x_2 = x_1*{x_2}' \]
             \end{shadebox}
             \begin{proof}
-                \quad\par
                 まず次式が成り立つ。
                 \begin{align*}
                     \derivLong{(x_1*x_2)(t)}{t}{} &= \derivLong{\integrate{-\infty}{\infty}{x_1(\tau)x_2(t-\tau)}{}{\tau}}{t}{} = \integrate{-\infty}{\infty}{x_1(\tau)\derivLong{x_2(t-\tau)}{t}{}}{}{\tau} \\
@@ -63,7 +62,6 @@
                     このとき次式が成り立つ。
                     \[ T_A(G)*T_A(f) = |A|T_A(G*f) \]
                     \begin{proof}
-                        \quad\par
                         $\mu$をJordan測度とする。
                         \begin{align*}
                             T_A(G)*T_A(f)(\bm{x}) &= \LebInteg{\realNumbers^d}{T_A(G)(\bm{x}-\bm{u})T_A(f)(\bm{u})}{\mu}{\bm{u}} = \LebInteg{\realNumbers^d}{G(A^{-1}(\bm{x}-\bm{u}))f(A^{-1}\bm{u})}{\mu}{\bm{u}} \\

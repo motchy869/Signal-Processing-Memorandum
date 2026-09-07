@@ -8,7 +8,6 @@
             \[ \pv\integrate{-\infty}{\infty}{\frac{u(t-\tau)}{\tau}}{}{\tau} \]
         \end{shadebox}
         \begin{proof}
-            \quad\par
             \begin{align*}
                 H(u)(t) &\coloneq\frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{u(\tau)}{t-\tau}}{}{\tau} \\
                 &= \frac{1}{\pi}\lim_{\varepsilon\to +0}\bracks*{\underbrace{\integrate{-\infty}{t-\varepsilon}{\frac{u(\tau)}{t-\tau}}{}{\tau}}_{(1.1)} + \underbrace{\integrate{t+\varepsilon}{\infty}{\frac{u(\tau)}{t-\tau}}{}{\tau}}_{(1.2)}} \tag{1}
@@ -22,7 +21,6 @@
             \[ H(t\mapsto\sin\omega t)(t) = \sgn(\omega)\sin(\omega t-\pi/2),\quad H(t\mapsto\cos\omega t)(t) = \sgn(\omega)\cos(\omega t-\pi/2) \]
         \end{shadebox}
         \begin{proof}
-            \quad\par
             sin の Hilbert 変換について示す。他方は同様にして示せる。
             \ref{Hilbert 変換の変数変換} より次式が成り立つ。
             \begin{align*}

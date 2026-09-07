@@ -43,7 +43,6 @@
             \[ X_2(\omega) = \frac{\Ts}{R\sqrt{2\pi}}\exp\parens*{-i\frac{\Ts}{2R}\omega}\parens*{\sinc \frac{\Ts}{2R}\omega}\Xda(\omega) \]
         \subsection{導出}
             \begin{proof}
-                \quad\par
                 \[ X_2(\omega) = \FT{\sum_{n=-\infty}^\infty \xda(n)u_2(t-n\Ts)}(\omega) = \sum_{n=-\infty}^\infty \xda(n)\FT{u_2(t-n\Ts)}(\omega) \]
                 ここで\ref{0次ホールドされた離散時間信号の周波数スペクトラム}と同様にして次式が成り立つ。
                 \[ \FT{u_2(t-n\Ts)}(\omega) = \frac{\Ts}{R\sqrt{2\pi}}\exp\parens*{-i \omega n\Ts}\exp\parens*{-i\frac{\omega\Ts}{2R}}\sinc\frac{\omega\Ts}{2R} \]

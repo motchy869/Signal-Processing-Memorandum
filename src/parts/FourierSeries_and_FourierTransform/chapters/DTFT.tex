@@ -101,7 +101,6 @@
             \]
         \end{shadebox}
         \begin{proof}
-            \quad\par
             極限をとる前の積分を$I_N$とおく。
             $y = x \Ts/2$と変数変換すると次式を得る。
             \[
@@ -194,7 +193,6 @@
         \end{shadebox}
         (直接的で長い証明)
         \begin{proof}
-            \quad\par
             システムのインパルス応答を$h(n)(\in\realNumbers) = \IDTFTwithArg{H}{n}$とすると$g(n) = (h*f)(n)$と表される。
             \begin{align*}
                 g(n) &= (h*f)(n) = \sum_{m=-\infty}^\infty h(m)f(n-m) = \sum_{m=-\infty}^\infty \left(\frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp(i\omega\Ts m)}{}{\omega}\right)f(n-m) \\
@@ -217,7 +215,6 @@
         \end{proof}
         (DTFTを経由した短い証明)
         \begin{proof}
-            \quad\par
             $f,g$のDTFTを$F,G$とすると
             \[ G(\omega) = H(\omega)F(\omega) = H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \]
             これを逆変換して
@@ -240,7 +237,6 @@
                 数列$\{X_n\}$のDTFTを$Y:\realNumbers\to\complexNumbers$とすると，$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
             \end{shadebox}
             \begin{proof}
-                \quad\par
                 $[\Re{X_n}, \Im{X_n}]^\top \sim N(\bm{0}, \sigma I_2)$である。
                 ここに$I_2$は2次の単位行列である。
                 $Y(\omega) = \sum_{n=0}^{N-1} X_n \NapierE^{-j\omega\Ts n}$

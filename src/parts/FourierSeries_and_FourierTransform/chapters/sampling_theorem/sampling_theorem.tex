@@ -14,7 +14,6 @@
             \end{equation}
         \end{shadebox}
         \begin{proof}
-            \quad\par
             $\FT{f}$の台が超直方体$\IAF$に含まれるから$\FT{f}$はFourier級数展開できる。
             第 $\bm{n}$ Fourier 係数を$c(\FT{f},\bm{n})$とすると
             \[ \FT{f}(\bm{\omega}) = \sum_{\bm{n}\in\integers^d} c(\FT{f},\bm{n}) \exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi \]
@@ -83,7 +82,6 @@
             sub-sample timing 毎に，$h$ を（十分減衰するまで）有限時間区間に亘り標本化した補間係数ベクトルを用意しておき，入力系列 $x(n\Ts)$ と内積をとって出力を得る。
         \subsection{導出}
             \begin{proof}
-                \quad\par
                 \cref{equation:標本化定理の基本形::Fourier 係数} と同様にして $\FT{x}$ の第 $n$ Fourier 係数 $c(\FT{x},n)$ は次式である。
                 \begin{align*}
                     c(\FT{x},n) = \frac{\sqrt{2\pi}}{\omegaSamp}x\parens*{-\frac{2\pi}{\omegaSamp}n}

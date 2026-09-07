@@ -14,7 +14,6 @@
                 \]
             \end{shadebox}
             \begin{proof}
-                \quad\par
                 1周期の範囲で統計を求めればよい。
                 累積分布関数 $P(x) = \abs{\{t|-T/2\leq t\leq T/2, x(t) \leq x\}}/T$ を考える。
                 まず $P(x) = 0\;(x < -A),P(x) = 1\;(x > A)$ は明らか。
@@ -31,7 +30,6 @@
                 $x$ の分散は $A^2/2$ である。
             \end{shadebox}
             \begin{proof}
-                \quad\par
                 求めたい分散は次式である。
                 \[
                     \integrate{-A}{A}{x^2 p(x)}{}{x} = 2\integrate{0}{A}{x^2 p(x)}{}{x} = \integrate{0}{A}{\frac{2 x^2}{\pi A\sqrt{1-(x/A)^2}}}{}{x} \tag{1}
@@ -52,7 +50,6 @@
                 \[ H(x) = \lim_{\varepsilon\to +0}\frac{1}{2\pi i}\integrate{-\infty}{\infty}{\frac{1}{t-i\varepsilon}\NapierE^{ixt}}{}{t} \]
             \end{shadebox}
             \begin{proof}
-                \quad\par
                 複素積分を用いて示す。
                 $R>\varepsilon,f(z) := \NapierE^{ixz}/(z-i\varepsilon)$とする。
                 $f$の極は$i\varepsilon$であり，位数1, 留数1である。

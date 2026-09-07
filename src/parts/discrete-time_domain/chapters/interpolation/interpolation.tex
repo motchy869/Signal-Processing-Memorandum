@@ -150,7 +150,6 @@
             期待通りの結果を得るには \ref{IDTFT を用いた有限長信号の補間>方法} のように総和の範囲を正負対称にし，$\XDTFT$ に手を加えた結果を少なくとも Hermite 対称にする必要がある。
         \subsection{性質 1 の導出}
             \begin{proof}
-                \quad\par
                 $t = n\in\integers$ とする。
                 \begin{align*}
                     \hat{x}(t) &= \hat{x}(n) = \frac{1}{\sqrt{N}}\sum_{k=-(N-1)/2}^{(N-1)/2}\XDTFT(k\%N)\exp i2\pi\frac{1}{N}kn \\
@@ -224,8 +223,7 @@
                 これは $\XDTFT$ を $\sqrt{L}$ 倍して台を $\{-(N-1)/2,-(N-1)/2+1,\dots,(N-1)/2\}$ に制限したものを $LN$ 間隔で無限に並べ，隙間に 0 を置いたものと等しい。
             \end{shadebox}
             \begin{proof}
-                \quad\par
-                DFT の性質から $\YDTFT$ が $LN$ 周期関数であることが解る。
+                DFT の性質から $\YDTFT$ が $LN$ 周期関数であることが解る。\newline
                 そこで，まず集合 $I\coloneq\{-\floor{(LN-1)/2},-\floor{(LN-1)/2}+1,\dots,\floor{(LN-1)/2}-1\}$ （$LN$ の偶奇に関係なく適切な集合であることに注意すべし）上で $\YDTFT$ を評価し，それを $LN$ 周期拡張する。
                 $I$ に於いては次式が成り立つ。
                 \begin{align*}
