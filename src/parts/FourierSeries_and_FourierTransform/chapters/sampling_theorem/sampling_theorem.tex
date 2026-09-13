@@ -15,7 +15,7 @@
         \end{shadebox}
         \begin{proof}
             $\FT{f}$の台が超直方体$\IAF$に含まれるから$\FT{f}$はFourier級数展開できる。
-            第 $\bm{n}$ Fourier 係数を$c(\FT{f},\bm{n})$とすると
+            第$\bm{n}$ Fourier係数を$c(\FT{f},\bm{n})$とすると
             \[ \FT{f}(\bm{\omega}) = \sum_{\bm{n}\in\integers^d} c(\FT{f},\bm{n}) \exp i\sum_{l=1}^d n_l\frac{\omega_l}{W_l}\pi \]
             となる。$c(\FT{f},\bm{n})$は次式で求まる。
             \begin{align}
@@ -49,44 +49,44 @@
         \end{proof}
     \section{再標本化への応用}
         \subsection{動機}
-            実用の場面では，あるサンプリング周波数 $\fsampSs{1}$ で標本化された離散時間信号 $x:\integers\to\complexNumbers$ を別のサンプリング周波数 $\fsampSs{2}$ で再標本化することがある。
-            その際に \cref{equation:標本化定理の基本形の周波数版} を直接適用すると，補間係数すなわち sinc 関数の部分が十分小さくなって計算誤差が許容できる程度に至るまで部分和の計算が必要である。
-            $x$ の占有帯域が $[-\fsampSs{2}/2,\fsampSs{2}/2]$ 一杯に広がっている場合はそうするより他にない。
-            しかし特に通信分野に於いてはその仕様は稀であり，普通はその 80 \% 以下と規定されることが多い\footnote{例えば Analog Devices Inc. が販売しているような DAC, ADC と DSP を組み合わせたデバイスのレート変換処理に於けるフィルタの仕様はそうである。}。
-            その場合は，補間係数を sinc 関数より早く 0 に収束する別の係数で置き換えることができる。
-            そのような係数は，feedforward フィルタの係数を得る方法として広く用いられている，Remez アルゴリズムで数値的に計算される場合が殆どである\footnote{Raised-Cosine フィルタでもよい。それなら解析的に求められる}。
+            実用の場面では，あるサンプリング周波数$\fsampSs{1}$で標本化された離散時間信号$x:\integers\to\complexNumbers$を別のサンプリング周波数$\fsampSs{2}$で再標本化することがある。
+            その際に\cref{equation:標本化定理の基本形の周波数版}を直接適用すると，補間係数すなわちsinc関数の部分が十分小さくなって計算誤差が許容できる程度に至るまで部分和の計算が必要である。
+            $x$の占有帯域が$[-\fsampSs{2}/2,\fsampSs{2}/2]$一杯に広がっている場合はそうするより他にない。
+            しかし特に通信分野に於いてはその仕様は稀であり，普通はその80 \%以下と規定されることが多い\footnote{例えばAnalog Devices Inc.が販売しているようなDAC, ADCとDSPを組み合わせたデバイスのレート変換処理に於けるフィルタの仕様はそうである。}。
+            その場合は，補間係数をsinc関数より早く0に収束する別の係数で置き換えることができる。
+            そのような係数は，feedforwardフィルタの係数を得る方法として広く用いられている，Remezアルゴリズムで数値的に計算される場合が殆どである\footnote{Raised-Cosineフィルタでもよい。それなら解析的に求められる}。
         \subsection{主張}
-            本質に焦点を当てるため 1 次元の場合 ($d=1$) を考えるが，$d>1$ への拡張は容易である。
+            本質に焦点を当てるため1次元の場合($d=1$)を考えるが，$d>1$への拡張は容易である。
             \begin{shadebox}
-                $\omegaSamp>0,\IAF\coloneq [-\omegaSamp/2,\omegaSamp/2]$ とする。
-                $x:\realNumbers\to\complexNumbers$ の Fourier 変換 $\FT{x}$ が存在して，その台が $\IAF$ に含まれるとする。
+                $\omegaSamp>0,\IAF\coloneq [-\omegaSamp/2,\omegaSamp/2]$とする。
+                $x:\realNumbers\to\complexNumbers$のFourier変換$\FT{x}$が存在して，その台が$\IAF$に含まれるとする。
                 \par
-                さらに，$H:\realNumbers\to\complexNumbers$ が存在して，その台が $\IAF$ に含まれ，かつ $H\FT{x} = \FT{x}\;(\omega\in\IAF)$ が成り立つとする。
-                サンプル周期 $\Ts\coloneqq 2\pi/\omegaSamp$ に於ける $H$ の逆 DTFT を \ref{IDTFT を用いた有限長信号の補間} の方法で連続時間に拡張したもの $h:\realNumbers\to\complexNumbers$ とする。
+                さらに，$H:\realNumbers\to\complexNumbers$が存在して，その台が$\IAF$に含まれ，かつ$H\FT{x} = \FT{x}\;(\omega\in\IAF)$が成り立つとする。
+                サンプル周期$\Ts\coloneqq 2\pi/\omegaSamp$に於ける$H$の逆DTFTを\ref{IDTFT を用いた有限長信号の補間}の方法で連続時間に拡張したもの$h:\realNumbers\to\complexNumbers$とする。
                 \par
                 このとき次式が成り立つ。
                 \[ x(t) = \sum_{n\in\integers} x\parens*{\frac{2\pi}{\omegaSamp}n}h\parens*{t-\frac{2\pi}{\omegaSamp}n} = \sum_{n\in\integers} x\parens*{n\Ts}h\parens*{t-n\Ts} = \sum_{n\in\integers} x\parens*{\frac{n}{\fsamp}}h\parens*{t-\frac{n}{\fsamp}} \]
-                ここに $\fsamp\coloneqq \omegaSamp/(2\pi)$ はサンプリング周波数である。
+                ここに$\fsamp\coloneqq \omegaSamp/(2\pi)$はサンプリング周波数である。
             \end{shadebox}
-            $\fsamp$ は再標本化前のサンプリング周波数である。
-            $\FT{x}$ の台が $\IAF$ に含まれる（通信分野の実用では台の広さは $\IAF$ の 80 \% 程度が普通）から，$H$ として roll-off 特性を持つ滑らかな関数を選べる（例えば Raised-Cosine）。
-            そのような $h$ の減衰は sinc 関数（roll-off が無い場合に相当）より早い。
+            $\fsamp$は再標本化前のサンプリング周波数である。
+            $\FT{x}$の台が$\IAF$に含まれる（通信分野の実用では台の広さは$\IAF$の80 \%程度が普通）から，$H$としてroll-off特性を持つ滑らかな関数を選べる（例えばRaised-Cosine）。
+            そのような$h$の減衰はsinc関数（roll-offが無い場合に相当）より早い。
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=2]
                 {\currfiledir/fig/visual_H.pdf}
-                \caption{再標本化前の信号と $H$ の周波数特性}
+                \caption{再標本化前の信号と$H$の周波数特性}
             \end{figure}
             \par
-            再標本化の実装に於いては $t$ の取り得る値を $\Ts$ の有理数倍に制限し，その小数部の取り得る値（`sub-sample timing' と呼ばれる）を有限個にする（数千程度）。
-            sub-sample timing 毎に，$h$ を（十分減衰するまで）有限時間区間に亘り標本化した補間係数ベクトルを用意しておき，入力系列 $x(n\Ts)$ と内積をとって出力を得る。
+            再標本化の実装に於いては$t$の取り得る値を$\Ts$の有理数倍に制限し，その小数部の取り得る値（`sub-sample timing'と呼ばれる）を有限個にする（数千程度）。
+            sub-sample timing毎に，$h$を（十分減衰するまで）有限時間区間に亘り標本化した補間係数ベクトルを用意しておき，入力系列$x(n\Ts)$と内積をとって出力を得る。
         \subsection{導出}
             \begin{proof}
-                \cref{equation:標本化定理の基本形::Fourier 係数} と同様にして $\FT{x}$ の第 $n$ Fourier 係数 $c(\FT{x},n)$ は次式である。
+                \cref{equation:標本化定理の基本形::Fourier係数}と同様にして$\FT{x}$の第$n$ Fourier係数$c(\FT{x},n)$は次式である。
                 \begin{align*}
                     c(\FT{x},n) = \frac{\sqrt{2\pi}}{\omegaSamp}x\parens*{-\frac{2\pi}{\omegaSamp}n}
                 \end{align*}
-                \cref{equation:標本化定理の基本形::Fourier 逆変換} と同様にして次式が成り立つ（途中経過を省いている）。
+                \cref{equation:標本化定理の基本形::Fourier逆変換}と同様にして次式が成り立つ（途中経過を省いている）。
                 \begin{align*}
                     x(t) &= \IFTwithArg{\FT{x}}{t} = \IFTwithArg{H\FT{x}}{t} = \sum_{n\in\naturalNumbers}x\parens*{-\frac{2\pi}{\omegaSamp}n}\frac{1}{\omegaSamp}\integrate{\IAF}{}{H(\omega)\exp i\omega\parens*{t + \frac{2\pi}{\omegaSamp} n}}{}{\omega} \\
                     &= \sum_{n\in\naturalNumbers}x\parens*{-n\Ts}\frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp i\omega\parens*{t + n\Ts}}{}{\omega} = \sum_{n\in\integers} x\parens*{-n\Ts}h\parens*{t+n\Ts} = \sum_{n\in\integers} x\parens*{n\Ts}h\parens*{t-n\Ts}

@@ -1,40 +1,40 @@
 \chapter{アンダー・サンプリング}
-    \section{アンダー・サンプリングされた信号の DTFT}
+    \section{アンダー・サンプリングされた信号のDTFT}
         \label{アンダー・サンプリングされた信号の DTFT}
         \subsection{主張}
             記号を次のように定義する。
             \begin{itemize}
-                \item $R\in\naturalNumbers,R\geq 2$ : アンダー・サンプリング・レート
-                \item $\xd:\integers\to\complexNumbers$ : 離散時間信号
-                \item $\Ts>0$ : $\xd$ のサンプル周期
-                \item $\yd$ : $\xd$ を $1/R$ にアンダー・サンプリングした離散時間信号。つまり $\yd(n) = \xd(nR)$ 。
-                \item $\XDTFT$ : $\xd$ のDTFT
-                \item $\YDTFT$ : $\yd$ のDTFT
+                \item $R\in\naturalNumbers,R\geq 2$ :アンダー・サンプリング・レート
+                \item $\xd:\integers\to\complexNumbers$ :離散時間信号
+                \item $\Ts>0$ : $\xd$のサンプル周期
+                \item $\yd$ : $\xd$を$1/R$にアンダー・サンプリングした離散時間信号。つまり$\yd(n) = \xd(nR)$。
+                \item $\XDTFT$ : $\xd$のDTFT
+                \item $\YDTFT$ : $\yd$のDTFT
             \end{itemize}
-            このとき $\YDTFT$ は次式で表される。
+            このとき$\YDTFT$は次式で表される。
             \[ \YDTFT(\omega) = \frac{1}{R}\sum_{n=0}^{R-1} \XDTFT\parens*{\omega-n\frac{2\pi}{R\Ts}} \]
-            $\YDTFT$ は $\omega$ に関する $2\pi/(R\Ts)$ 周期関数となり，$\YDTFT$ の第1 Nyquist 領域は $S_{\mathrm{N},Y} \coloneq [-\pi/(R\Ts),-\pi/(R\Ts))$ となる。
+            $\YDTFT$は$\omega$に関する$2\pi/(R\Ts)$周期関数となり，$\YDTFT$の第1 Nyquist領域は$S_{\mathrm{N},Y} \coloneq [-\pi/(R\Ts),-\pi/(R\Ts))$となる。
             \par
-            全体に $1/R$ が掛けられているが，振幅が $1/R$ になるわけではない。
-            DTFT の内積計算の対象となる点の数が $1/R$ に減ったことに起因する。
+            全体に$1/R$が掛けられているが，振幅が$1/R$になるわけではない。
+            DTFTの内積計算の対象となる点の数が$1/R$に減ったことに起因する。
             \par
-            $\XDTFT$ の台のうち $\xd$ の第1 Nyquist 領域 $S_{\mathrm{N},X} \coloneq [-\pi/\Ts, \pi/\Ts)$ にある部分を $S_X$ とする。
-            エイリアシングが生じない必要十分条件は $S_X\subset S_{\mathrm{N},X}$ である。
-            ここで言うエイリアシングとは，$S_X$ を $2\pi/(R\Ts)$ の整数倍ずつ平行移動しながら無限に複製したものを考えたとき，複製された $S_X$ 同士に重なりが生じることを指す。
+            $\XDTFT$の台のうち$\xd$の第1 Nyquist領域$S_{\mathrm{N},X} \coloneq [-\pi/\Ts, \pi/\Ts)$にある部分を$S_X$とする。
+            エイリアシングが生じない必要十分条件は$S_X\subset S_{\mathrm{N},X}$である。
+            ここで言うエイリアシングとは，$S_X$を$2\pi/(R\Ts)$の整数倍ずつ平行移動しながら無限に複製したものを考えたとき，複製された$S_X$同士に重なりが生じることを指す。
         \subsection{導出}
             \begin{align}
                 \YDTFT(\omega) &= \sum_{n=-\infty}^\infty \yd(n)\exp(-i\omega nR\Ts) = \sum_{n=-\infty}^\infty \xd(nR)\exp(-i\omega nR\Ts) \nonumber \\
                 &= \sum_{m=-\infty}^\infty \delta_R(m)\xd(m)\exp(-i\omega m\Ts) \quad \text{where} \quad \delta_R(m) \coloneq \delta(m\%R) \label{equation:アンダー・サンプリングされた信号の周波数スペクトラム 1}
             \end{align}
-            ここで $\delta_R$ について次式が成り立つ。
+            ここで$\delta_R$について次式が成り立つ。
             \[ \delta_R(n) = \frac{1}{R}\sum_{l=0}^{R-1}\exp(i2\pi nl/R) \]
-            これを \cref{equation:アンダー・サンプリングされた信号の周波数スペクトラム 1} に代入して次式を得る。
+            これを\cref{equation:アンダー・サンプリングされた信号の周波数スペクトラム1}に代入して次式を得る。
             \begin{align}
                 \YDTFT(\omega) &= \sum_{m=-\infty}^\infty \frac{1}{R}\sum_{l=0}^{R-1}\exp(i2\pi ml/R)\xd(m)\exp(-i\omega m\Ts) \nonumber \\
                 &= \frac{1}{R}\sum_{l=0}^{R-1} \sum_{m=-\infty}^\infty \xd(m)\exp\parens*{-i\parens*{\omega - 2\pi \frac{l}{R\Ts}}m\Ts} \\
                 &= \frac{1}{R}\sum_{l=0}^{R-1} \XDTFT\parens*{\omega - 2\pi \frac{l}{R\Ts}} \label{equation:アンダー・サンプリングされた信号の周波数スペクトラム 2}
             \end{align}
-            $\YDTFT$ を次の図に示す。
+            $\YDTFT$を次の図に示す。
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.7]
@@ -42,31 +42,31 @@
                 \caption{$\YDTFT$}
             \end{figure}
         \subsection{正規化角周波数で比較する}
-            フィルタ設計に於いてはしばしばダウン・サンプリング後の第1 Nyquist 領域に関心がある，すなわち横軸が正規化角周波数で表されたスペクトラムに関心がある。
-            この場合は $\YDTFT$ のグラフの見た目が異なる。
+            フィルタ設計に於いてはしばしばダウン・サンプリング後の第1 Nyquist領域に関心がある，すなわち横軸が正規化角周波数で表されたスペクトラムに関心がある。
+            この場合は$\YDTFT$のグラフの見た目が異なる。
             正規化角周波数で表示すると次式となる。
             \[ \tilde{Y}_\mathrm{DTFT}(\Omega) \coloneq \YDTFT(\Omega/(R\Ts)) \]
-            正規化角周波数で表示されたグラフでは，アンダー・サンプリングされた信号のスペクトラムは元の信号のスペクトラムを \cref{equation:アンダー・サンプリングされた信号の周波数スペクトラム 2} に従って複製して並べた後，横軸方向に $R$ に拡大した形になる。
+            正規化角周波数で表示されたグラフでは，アンダー・サンプリングされた信号のスペクトラムは元の信号のスペクトラムを\cref{equation:アンダー・サンプリングされた信号の周波数スペクトラム2}に従って複製して並べた後，横軸方向に$R$に拡大した形になる。
         \subsection{数値例}
-            いくつかの数値例が下記の Mathematica ノートブックにある。
-            下記の $x$ はサンプリング前の連続時間信号である。
+            いくつかの数値例が下記のMathematicaノートブックにある。
+            下記の$x$はサンプリング前の連続時間信号である。
             \begin{itemize}
                 \item \verb|DTFT_of_under-sampled_signal.nb|: $x(t) = A\exp(-t^2/(2\sigma^2))$
                 \item \verb|DTFT_of_under-sampled_signal_example2.nb|: $x(t) = \NapierE^{-12.5 t^2}\cos(10\pi t)$
             \end{itemize}
-    \section{アンダー・サンプリングされた信号の Z 変換}
-        \ref{アンダー・サンプリングされた信号の DTFT} の定義を引き継ぎ，次の定義を加える。
+    \section{アンダー・サンプリングされた信号のZ変換}
+        \ref{アンダー・サンプリングされた信号の DTFT}の定義を引き継ぎ，次の定義を加える。
         \begin{itemize}
-            \item $\XZT$ : $\xd$ の Z 変換
-            \item $\YZT$ : $\yd$ の Z 変換
+            \item $\XZT$ : $\xd$のZ変換
+            \item $\YZT$ : $\yd$のZ変換
         \end{itemize}
         \begin{shadebox}
             次式が成り立つ。
             \[ \YZT(z) = \frac{1}{R}\sum_{l=0}^{R-1} \XZT\parens*{\exp(-i2\pi l/R)z^{1/R}} \]
         \end{shadebox}
-        $z$ の分数冪が現れるが，マルチ・レート信号処理の議論に於いてはこれでも有用なときがある。
+        $z$の分数冪が現れるが，マルチ・レート信号処理の議論に於いてはこれでも有用なときがある。
         \begin{proof}
-            Z 変換にはサンプリング周波数の情報が含まれていないことに留意して，定義に従い機械的に計算する。
+            Z変換にはサンプリング周波数の情報が含まれていないことに留意して，定義に従い機械的に計算する。
             \begin{align*}
                 \YZT(z) &= \sum_{n=-\infty}^\infty \yd(n)z^{-n} = \sum_{n=-\infty}^\infty \xd(nR)z^{-n} = \sum_{n=-\infty}^\infty \delta_R(n)\xd(n)z^{-n/R} \\
                 &= \sum_{n=-\infty}^\infty \frac{1}{R}\sum_{l=0}^{R-1}\exp(i2\pi nl/R)\xd(n)z^{-n/R} = \frac{1}{R}\sum_{l=0}^{R-1}\sum_{n=-\infty}^\infty \exp(i2\pi nl/R)\xd(n)z^{-n/R} \\

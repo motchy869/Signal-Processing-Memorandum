@@ -1,41 +1,41 @@
 \chapter{オーバー・サンプリング}
-    \section{オーバー・サンプリングされた信号の DTFT}
+    \section{オーバー・サンプリングされた信号のDTFT}
         \label{オーバー・サンプリングされた信号の DTFT}
         \subsection{主張}
             記号を次のように定義する。
             \begin{itemize}
-                \item $R\in\naturalNumbers,R\geq 2$ : オーバー・サンプリング・レート
-                \item $\xd:\integers\to\complexNumbers$ : 離散時間信号
-                \item $\Ts>0$ : $\xd$ のサンプル周期
-                \item $\yd$ : $\xd$ を $R$ 倍にオーバー・サンプリングした離散時間信号。つまり $\yd(n) = \xd(n/R)\text{ for }R\mid n,0\text{ for }R\nmid n$ 。
-                \item $\XDTFT$ : $\xd$ のDTFT
-                \item $\YDTFT$ : $\yd$ のDTFT
+                \item $R\in\naturalNumbers,R\geq 2$ :オーバー・サンプリング・レート
+                \item $\xd:\integers\to\complexNumbers$ :離散時間信号
+                \item $\Ts>0$ : $\xd$のサンプル周期
+                \item $\yd$ : $\xd$を$R$倍にオーバー・サンプリングした離散時間信号。つまり$\yd(n) = \xd(n/R)\text{ for }R\mid n,0\text{ for }R\nmid n$。
+                \item $\XDTFT$ : $\xd$のDTFT
+                \item $\YDTFT$ : $\yd$のDTFT
             \end{itemize}
-            このとき $\YDTFT(\omega) = \XDTFT(\omega)$ となる（オーバー・サンプリング前の DTFT と完全に一致する）。
+            このとき$\YDTFT(\omega) = \XDTFT(\omega)$となる（オーバー・サンプリング前のDTFTと完全に一致する）。
         \subsection{導出}
             \begin{align*}
                 \YDTFT(\omega) &= \sum_{n=-\infty}^\infty \yd(n)\exp(-i\omega n\Ts/R) = \sum_{m=-\infty}^\infty \yd(mR)\exp(-i\omega (mR)\Ts/R) \\
                 &= \sum_{m=-\infty}^\infty \xd(m)\exp(-i\omega m\Ts) = \XDTFT(\omega)
             \end{align*}
         \subsection{正規化角周波数で比較する}
-            前述の通り $\XDTFT$ と $\YDTFT$ は完全に一致する。
-            しかしフィルタ設計に於いてはしばしばアップ・サンプリング後の第1 Nyquist 領域に関心がある，すなわち横軸が正規化角周波数で表されたスペクトラムに関心がある。
-            この場合は $\XDTFT$ と $\YDTFT$ のグラフの見た目が異なる。
+            前述の通り$\XDTFT$と$\YDTFT$は完全に一致する。
+            しかしフィルタ設計に於いてはしばしばアップ・サンプリング後の第1 Nyquist領域に関心がある，すなわち横軸が正規化角周波数で表されたスペクトラムに関心がある。
+            この場合は$\XDTFT$と$\YDTFT$のグラフの見た目が異なる。
             両者をそれぞれ正規化角周波数で表示すると次式となる。
             \[ \tilde{\XDTFT}(\Omega) \coloneq \XDTFT(\Omega/\Ts),\quad \tilde{\YDTFT}(\Omega) \coloneq \YDTFT(\Omega/(\Ts/R)) = \YDTFT(R\Omega/\Ts) \]
-            正規化角周波数で表示されたグラフでは，オーバー・サンプリングされた信号のスペクトラムは元の信号のスペクトラムを横軸方向に $1/R$ に縮小した形になる。
+            正規化角周波数で表示されたグラフでは，オーバー・サンプリングされた信号のスペクトラムは元の信号のスペクトラムを横軸方向に$1/R$に縮小した形になる。
         \subsection{数値例}
-            サンプリング前の連続時間信号が $x(t) = \NapierE^{-\frac{n^2}{800}}\cos\parens*{\frac{\pi n}{5}}$ の場合の数値例が Mathematica ノートブック \verb|zero_pad_effect_for_DTFT.nb| にある。
-    \section{オーバー・サンプリングされた信号の Z 変換}
-        \ref{オーバー・サンプリングされた信号の DTFT} の定義を引き継ぎ，次の定義を加える。
+            サンプリング前の連続時間信号が$x(t) = \NapierE^{-\frac{n^2}{800}}\cos\parens*{\frac{\pi n}{5}}$の場合の数値例がMathematicaノートブック\verb|zero_pad_effect_for_DTFT.nb| にある。
+    \section{オーバー・サンプリングされた信号のZ変換}
+        \ref{オーバー・サンプリングされた信号の DTFT}の定義を引き継ぎ，次の定義を加える。
         \begin{itemize}
-            \item $\XZT$ : $\xd$ の Z 変換
-            \item $\YZT$ : $\yd$ の Z 変換
+            \item $\XZT$ : $\xd$のZ変換
+            \item $\YZT$ : $\yd$のZ変換
         \end{itemize}
         \begin{shadebox}
             次式が成り立つ：$\YZT(z) = \XZT(z^R)$
         \end{shadebox}
         \begin{proof}
-            Z 変換にはサンプリング周波数の情報が含まれていないことに留意して，定義に従い機械的に計算する。
+            Z変換にはサンプリング周波数の情報が含まれていないことに留意して，定義に従い機械的に計算する。
             \[ \YZT(z) = \sum_{n=-\infty}^\infty \yd(n)z^{-n} = \sum_{m=-\infty}^\infty \xd(m)z^{-mR} = \XZT(z^R) \]
         \end{proof}

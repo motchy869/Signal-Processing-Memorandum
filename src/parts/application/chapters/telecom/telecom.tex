@@ -1,16 +1,16 @@
 \chapter{通信への応用}
-    \section{2 経路交差フィルタ}
+    \section{2経路交差フィルタ}
         次のブロック図が示すフィルタを考える。
-        これを「2 経路交差フィルタ」と呼ぶことにする。\footnote{筆者が勝手に付けた名前である。もし広く了解された名前を知っている読者が居たら，教えてほしい。}
-        この構造は，典型的には直交変復調を用いる送信機に於いてアナログ回路の（余計な）周波数特性を補償するための DSP 機能として実装される。
+        これを「2経路交差フィルタ」と呼ぶことにする。\footnote{筆者が勝手に付けた名前である。もし広く了解された名前を知っている読者が居たら，教えてほしい。}
+        この構造は，典型的には直交変復調を用いる送信機に於いてアナログ回路の（余計な）周波数特性を補償するためのDSP機能として実装される。
         \begin{figure}[H]
             \centering
             \includegraphics[keepaspectratio, scale=1]
             {\currfiledir/figs/two_path_cross_term_filter.pdf}
-            \caption{2 経路交差フィルタのブロック図}
+            \caption{2経路交差フィルタのブロック図}
         \end{figure}
-        ここに $\xInI,\xInQ,\xOutI,\xOutQ$ はそれぞれ入力の実数値信号，出力の実数値信号である。
-        $\hII,\hIQ,\hQQ,\hQI$ は実数係数フィルタのインパルス応答である。
+        ここに$\xInI,\xInQ,\xOutI,\xOutQ$はそれぞれ入力の実数値信号，出力の実数値信号である。
+        $\hII,\hIQ,\hQQ,\hQI$は実数係数フィルタのインパルス応答である。
         \par
         以下の議論は，連続時間系，離散時間系の両方に適用でき，フィルタのインパルス応答は有限，無限どちらでもよい。
         そこで以下では連続時間系の無限インパルス応答フィルタを対象にする。
@@ -29,9 +29,9 @@
                 \xInQ
             \end{bmatrix}
         \end{equation}
-        ここに，信号（$\realNumbers\to\realNumbers$）を成分とする行列 $A, B$ 同士の畳み込み $A*B$ とは，通常の行列の積に於ける成分毎の積を畳み込みで置き換えたものと約束する。
-    \subsection{複素係数フィルタと 2 経路交差フィルタの表現能力の違い}
-        \ref{複素係数 feedforward フィルタの乗算回路の削減_導出} で扱った複素係数フィルタと 2 経路交差フィルタは似ているが，等価ではない。
+        ここに，信号（$\realNumbers\to\realNumbers$）を成分とする行列$A, B$同士の畳み込み$A*B$とは，通常の行列の積に於ける成分毎の積を畳み込みで置き換えたものと約束する。
+    \subsection{複素係数フィルタと2経路交差フィルタの表現能力の違い}
+        \ref{複素係数 feedforward フィルタの乗算回路の削減_導出}で扱った複素係数フィルタと2経路交差フィルタは似ているが，等価ではない。
         議論の解りやすさのために，前記複素係数フィルタを連続時間かつ無限インパルス応答に拡張する。入出力関係式は次式である。
         \begin{equation}
             \label{equation:複素係数フィルタの入出力関係式}
@@ -47,11 +47,11 @@
                 \xInImag
             \end{bmatrix}
         \end{equation}
-        \cref{equation:2 経路交差フィルタの入出力関係式} と \cref{equation:複素係数フィルタの入出力関係式} を比べて直ちに解るが，複素係数フィルタは 2 経路交差フィルタの特殊な場合である。
-        前者は自由度が 4 ，後者は 2 である（係数列 1 個を 1 自由度と数える）。
-    \section{Nyquist ISI 基準}
-        これは大雑把に言うと Fourier 変換が存在する連続時間信号 $h:\realNumbers\to\complexNumbers$ が時刻 0 を除いて，ある周期 $\Ts>0$ (s は symbol の意味)の整数倍の時刻で 0 になるための必要十分条件である。
-        限定された周波数帯域を使って通信する際に受信側で情報を正しく復元するために重要な性質であり，詳細は \cite{Nyquist_ISI_crit} にある。
+        \cref{equation:2経路交差フィルタの入出力関係式}と\cref{equation:複素係数フィルタの入出力関係式}を比べて直ちに解るが，複素係数フィルタは2経路交差フィルタの特殊な場合である。
+        前者は自由度が4，後者は2である（係数列1個を1自由度と数える）。
+    \section{Nyquist ISI基準}
+        これは大雑把に言うとFourier変換が存在する連続時間信号$h:\realNumbers\to\complexNumbers$が時刻0を除いて，ある周期$\Ts>0$ (sはsymbolの意味)の整数倍の時刻で0になるための必要十分条件である。
+        限定された周波数帯域を使って通信する際に受信側で情報を正しく復元するために重要な性質であり，詳細は\cite{Nyquist_ISI_crit}にある。
         数式で表すと次である。
         \[
             h(n\Ts) = \begin{cases}
@@ -60,67 +60,67 @@
             \end{cases}
             \iff \forall f\in\realNumbers,\frac{1}{\Ts}\sum_{n=-\infty}^\infty H(f-n/\Ts) = 1
         \]
-        ここに $H$ は $h$ の Fourier 変換である。
-        \cite{Nyquist_ISI_crit} には $\Rightarrow$ の証明のみがある。
-        本書では $\Leftarrow$ を証明する。
+        ここに$H$は$h$のFourier変換である。
+        \cite{Nyquist_ISI_crit}には$\Rightarrow$の証明のみがある。
+        本書では$\Leftarrow$を証明する。
         \begin{proof}
             \begin{align*}
                 1 &= \frac{1}{\Ts}\sum_{n=-\infty}^\infty H(f-n/\Ts) = \frac{1}{\Ts}\sum_{n=-\infty}^\infty\integrate{-\infty}{\infty}{h(t)\exp\parens*{-i2\pi(f-n/\Ts)t}}{}{t} \\
                 &= \frac{1}{\Ts}\integrate{-\infty}{\infty}{h(t)\exp(-i2\pi ft)\sum_{n=-\infty}^\infty\exp\parens*{i2\pi nt/\Ts}}{}{t} \tag{1}
             \end{align*}
-            ここで次の関係式を使う(\ref{定数関数1のDTFT} の派生版)。
+            ここで次の関係式を使う(\ref{定数関数1のDTFT}の派生版)。
             \[ \sum_{n=-\infty}^\infty\exp\parens*{i2\pi nt/\Ts} = 2\pi\Ts\sum_{n=-\infty}^\infty\delta(2\pi t-2\pi\Ts n) = \Ts\sum_{n=-\infty}^\infty\delta(t-n\Ts) \]
-            これを式 (1) に適用して次式を得る。
+            これを式(1)に適用して次式を得る。
             \begin{align*}
                 1 &= \integrate{-\infty}{\infty}{h(t)\exp\parens*{-i2\pi ft}\sum_{n=-\infty}^\infty\delta(t-n\Ts)}{}{t} = \sum_{n=-\infty}^\infty\integrate{-\infty}{\infty}{h(t)\exp\parens*{-i2\pi ft}\delta(t-n\Ts)}{}{t} \\
                 &= \sum_{n=-\infty}^\infty h(n\Ts)\exp\parens*{-i2\pi fn\Ts}
             \end{align*}
-            右辺は $f$ に関する周期 $1/\Ts$ の関数の Fourier 級数であり，$h(n\Ts)$ は Fourier 係数である。
-            左辺が 1 であることから $h(0) = 1,h(n\Ts)\;(n\neq 0) = 0$ である（より丁寧に論じるなら，前記の式の両辺に $\exp(i2\pi fk\Ts)\;(k\in\integers)$ を掛けて区間 $[-1/(2\Ts),1/(2\Ts)]$ で積分する。その結果が $k$ にどう依存するかを調べる）。
+            右辺は$f$に関する周期$1/\Ts$の関数のFourier級数であり，$h(n\Ts)$はFourier係数である。
+            左辺が1であることから$h(0) = 1,h(n\Ts)\;(n\neq 0) = 0$である（より丁寧に論じるなら，前記の式の両辺に$\exp(i2\pi fk\Ts)\;(k\in\integers)$を掛けて区間$[-1/(2\Ts),1/(2\Ts)]$で積分する。その結果が$k$にどう依存するかを調べる）。
         \end{proof}
     \section{帯域制限された信号が一定時間間隔で無限に配置されると定数になる}
         \begin{shadebox}
-            $T>0$ とする。
-            連続時間信号 $h:\realNumbers\to\complexNumbers$ の Fourier 変換 $H$ の台が有界であり，$H(f)=0\;(\abs{f}\geq 1/T)$ であるとき，次が成り立つ。
+            $T>0$とする。
+            連続時間信号$h:\realNumbers\to\complexNumbers$のFourier変換$H$の台が有界であり，$H(f)=0\;(\abs{f}\geq 1/T)$であるとき，次が成り立つ。
             \[ \sum_{n=-\infty}^\infty h(t-nT) = H(0)/T \]
         \end{shadebox}
-        例えば位相変調による通信の目的で設計された回路に於いて，シンボル周期と同じ時間間隔で同じ大きさのパルスを Raised-Cosine フィルタに入力し続けると出力は一定の値になる。
-        直感的には Raised-Cosine フィルタのインパルス応答が見えるように思えるが，そうはならない。
+        例えば位相変調による通信の目的で設計された回路に於いて，シンボル周期と同じ時間間隔で同じ大きさのパルスをRaised-Cosineフィルタに入力し続けると出力は一定の値になる。
+        直感的にはRaised-Cosineフィルタのインパルス応答が見えるように思えるが，そうはならない。
         \begin{proof}
             \begin{align*}
                 \sum_{n=-\infty}^\infty h(t-nT) &= \sum_{n=-\infty}^\infty \mathcal{F}^{-1}(H)(t-nT) = \sum_{n=-\infty}^\infty\integrate{-\infty}{\infty}{H(f)\exp(i2\pi f(t-nT))}{}{f} \\
                 &= \integrate{-\infty}{\infty}{H(f)\exp(i2\pi ft)\sum_{n=-\infty}^\infty\exp(-i2\pi fnT)}{}{f} \tag{1}
             \end{align*}
-            ここで次の関係式を使う(\ref{定数関数1のDTFT} の派生版)。
+            ここで次の関係式を使う(\ref{定数関数1のDTFT}の派生版)。
             \begin{align*}
                 \sum_{n=-\infty}^\infty\exp(-i2\pi fnT) &= \frac{2\pi}{T}\sum_{n=-\infty}^\infty\delta(-2\pi f - 2\pi n/T) = \frac{1}{T}\sum_{n=-\infty}^\infty\delta(-f - n/T) \\
                 &= \frac{1}{T}\sum_{n=-\infty}^\infty\delta(f + n/T) = \frac{1}{T}\sum_{n=-\infty}^\infty\delta(f - n/T)
             \end{align*}
-            これを式 (1) に適用して次式を得る。
+            これを式(1)に適用して次式を得る。
             \begin{align*}
                 \sum_{n=-\infty}^\infty h(t-nT) &= \frac{1}{T}\sum_{n=-\infty}^\infty\integrate{-\infty}{\infty}{H(f)\exp(i2\pi ft)\delta(f-n/T)}{}{f} \\
                 &= \frac{1}{T}\sum_{n=-\infty}^\infty H(n/T)\exp(i2\pi nt/T) = H(0)/T
             \end{align*}
-            最後の等号は $h$ の帯域制限の前提による。
+            最後の等号は$h$の帯域制限の前提による。
         \end{proof}
     \section{直交復調}
-        \subsection{直交復調は正の周波数側にある信号を取り出して中心周波数を 0 にする}
-            キャリア周波数を $\fc$ ，入力である実時間信号を $x:\realNumbers\to\realNumbers$ とすると，直交復調器は $x(t)\parens*{\cos(2\pi \fc t) - i\sin(2\pi \fc t)}$ を LPF に通してベースバンドの外側の周波数成分を取り除く。
-            その結果，ベースバンド信号として $X = \mathcal{F}(x)$ の正の周波数側の信号（複素数値信号）が得られる。
+        \subsection{直交復調は正の周波数側にある信号を取り出して中心周波数を0にする}
+            キャリア周波数を$\fc$，入力である実時間信号を$x:\realNumbers\to\realNumbers$とすると，直交復調器は$x(t)\parens*{\cos(2\pi \fc t) - i\sin(2\pi \fc t)}$をLPFに通してベースバンドの外側の周波数成分を取り除く。
+            その結果，ベースバンド信号として$X = \mathcal{F}(x)$の正の周波数側の信号（複素数値信号）が得られる。
             \par
             そうなる理由を説明する。
-            LPF に入力される前の信号の周波数表示された Fourier 変換は次式である。
+            LPFに入力される前の信号の周波数表示されたFourier変換は次式である。
             \[ \parens*{X*(\delta_{-\fc} + \delta_{\fc})/2}(f) - i\parens*{X*(\delta_{-\fc} - \delta_{\fc})/(2i)}(f) \]
-            ここに $\delta_a\;(a\in\realNumbers)$ は Dirac のデルタ関数を時間軸方向に $-a$ だけシフトしたものである。
+            ここに$\delta_a\;(a\in\realNumbers)$はDiracのデルタ関数を時間軸方向に$-a$だけシフトしたものである。
             計算を進めると次式を得る。
             \[ \frac{1}{2}\parens*{X(f-\fc)+X(f+\fc)} - \frac{1}{2}\parens*{X(f-\fc)-X(f+\fc)} = X(f+\fc) \]
-            $x$ は実数値関数であるから $X$ は Hermite 対称である。
-            つまり適当な $X_+:\realNumbers\to\complexNumbers$ が存在して，$X(f) = X_+(f) + \conj{X_+(-f)}$ である。
-            さらに $X_+$ の台は $\fc$ を中心とするベースバンド帯域幅に制限されている。
-            よって $X(f+\fc)$ を LPF に通した結果は $X_+(f)$ である。
-    \section{IQ 不平衡}
+            $x$は実数値関数であるから$X$はHermite対称である。
+            つまり適当な$X_+:\realNumbers\to\complexNumbers$が存在して，$X(f) = X_+(f) + \conj{X_+(-f)}$である。
+            さらに$X_+$の台は$\fc$を中心とするベースバンド帯域幅に制限されている。
+            よって$X(f+\fc)$をLPFに通した結果は$X_+(f)$である。
+    \section{IQ不平衡}
         \subsection{ベースバンド信号の変換行列}
-            \subsubsection{送信側のみに IQ 不平衡が存在する場合}
+            \subsubsection{送信側のみにIQ不平衡が存在する場合}
                 \label{送信側のみに IQ 不平衡が存在する場合}
                 次の状況を考える。
                 \begin{itemize}
@@ -128,7 +128,7 @@
                     \item 送信側のベースバンド信号の同相成分：$\IBT(t)$，直交成分：$\QBT(t)$
                     \item 受信側のベースバンド信号の同相成分：$\IBR(t)$，直交成分：$\QBR(t)$
                 \end{itemize}
-                このとき，$[\IBT(t), \QBT(t)]^\top$ から $[\IBR(t), \QBR(t)]^\top$ への変換は次式で与えられる。
+                このとき，$[\IBT(t), \QBT(t)]^\top$から$[\IBR(t), \QBR(t)]^\top$への変換は次式で与えられる。
                 （少し手間だが）直接計算で導出できる。
                 \begin{equation}
                     \label{equation:送信側のみに IQ 不平衡が存在する場合のベースバンド信号の変換行列}
@@ -143,14 +143,14 @@
                         \QBT(t)
                     \end{bmatrix}
                 \end{equation}
-            \subsubsection{受信側のみに IQ 不平衡が存在する場合}
+            \subsubsection{受信側のみにIQ不平衡が存在する場合}
                 \label{受信側のみに IQ 不平衡が存在する場合}
                 次の状況を考える。
                 \begin{itemize}
                     \item 受信側の搬送波の同相成分：$(1+\varepsilon_A)\cos(\omegaCarrier t - \varepsilon_\theta/2)$，直交成分：$-(1-\varepsilon_A)\sin(\omegaCarrier t + \varepsilon_\theta/2)$
-                    \item 送信側，受信側のベースバンド信号の同相成分：\ref{送信側のみに IQ 不平衡が存在する場合} と同じ
+                    \item 送信側，受信側のベースバンド信号の同相成分：\ref{送信側のみに IQ 不平衡が存在する場合}と同じ
                 \end{itemize}
-                このとき，$[\IBT(t), \QBT(t)]^\top$ から $[\IBR(t), \QBR(t)]^\top$ への変換は次式で与えられる。
+                このとき，$[\IBT(t), \QBT(t)]^\top$から$[\IBR(t), \QBR(t)]^\top$への変換は次式で与えられる。
                 \[
                     \begin{bmatrix}
                         \IBR(t) \\
@@ -163,13 +163,13 @@
                         \QBT(t)
                     \end{bmatrix}
                 \]
-        \subsection{IQ 不平衡の補正は複素係数 FIR フィルタに合成できない}
-            ここでは送信側に IQ 不平衡が存在し，受信側には存在しない場合を考える。
-            \cref{equation:送信側のみに IQ 不平衡が存在する場合のベースバンド信号の変換行列} と \cref{equation:複素係数フィルタの入出力関係式} を見比べると判るが，「複素係数フィルタの伝達関数の行列」の自由度は 2 であり，「IQ 不平衡の変換行列の逆行列」\footnote{補正には逆行列を用いる}の自由度は 3 である。
+        \subsection{IQ不平衡の補正は複素係数FIRフィルタに合成できない}
+            ここでは送信側にIQ不平衡が存在し，受信側には存在しない場合を考える。
+            \cref{equation:送信側のみにIQ不平衡が存在する場合のベースバンド信号の変換行列}と\cref{equation:複素係数フィルタの入出力関係式}を見比べると判るが，「複素係数フィルタの伝達関数の行列」の自由度は2であり，「IQ不平衡の変換行列の逆行列」\footnote{補正には逆行列を用いる}の自由度は3である。
             前者で後者を表現できない。
         \subsection{直交度補正の乗算回路の削減}
             振幅誤差は別の回路で補正済みであるとし，直交度誤差のみが存在する場合を考える。
-            \ref{送信側のみに IQ 不平衡が存在する場合}, \ref{受信側のみに IQ 不平衡が存在する場合} いずれの場合も，ベースバンド信号の補正は次の形になる。
+            \ref{送信側のみに IQ 不平衡が存在する場合}, \ref{受信側のみに IQ 不平衡が存在する場合}いずれの場合も，ベースバンド信号の補正は次の形になる。
             \[
                 \begin{bmatrix}
                     \xOutI \\
@@ -182,8 +182,8 @@
                     h_1 & h_0
                 \end{bmatrix}
             \]
-            ここに $h_0,h_1$ は適当な実数，$\xInI,\xInQ$ 補正前のベースバンド信号の同相，直交成分，$\xOutI,\xOutQ$ 補正後のベースバンド信号の同相，直交成分である。
-            この補正計算をディジタル回路に実装する前提で，乗算回路の個数を 4 ではなく 3 とする方法を示す。
+            ここに$h_0,h_1$は適当な実数，$\xInI,\xInQ$補正前のベースバンド信号の同相，直交成分，$\xOutI,\xOutQ$補正後のベースバンド信号の同相，直交成分である。
+            この補正計算をディジタル回路に実装する前提で，乗算回路の個数を4ではなく3とする方法を示す。
             次の量を定義する。
             \[ \hd \coloneq h_0 - h_1,\xs \coloneq \xInI + \xInQ,\xAlpha \coloneq \hd\xInI,\xBeta \coloneq \hd\xInQ,\xGamma \coloneq h_1\xs \]
             このとき，次式が成り立つ。
@@ -196,5 +196,5 @@
                 \centering
                 \includegraphics[keepaspectratio, scale=1]
                 {\currfiledir/figs/mult_reduc_for_IQ_imb_cmp.pdf}
-                \caption{3 個の乗算回路で構成された IQ 不平衡補正回路}
+                \caption{3個の乗算回路で構成されたIQ不平衡補正回路}
             \end{figure}

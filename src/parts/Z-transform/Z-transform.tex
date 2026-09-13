@@ -1,15 +1,15 @@
-\part{Z 変換}
-    \chapter{両側 Z 変換}
-        \section{逆 Z 変換}
+\part{Z変換}
+    \chapter{両側Z変換}
+        \section{逆Z変換}
             \label{inv_Z_trans}
             \begin{shadebox}
-                $X:\complexNumbers\to\complexNumbers$ は離散時間信号 $x:\integers\to\complexNumbers$ の Z 変換であるとする。
+                $X:\complexNumbers\to\complexNumbers$は離散時間信号$x:\integers\to\complexNumbers$のZ変換であるとする。
                 このとき次式が成り立つ。
                 \begin{equation}
                     \label{equation:inv_Z_trans}
                     x(n) = \frac{1}{2\pi i}\oint_C X(z)z^{n-1}\mathrm{d}z
                 \end{equation}
-                ここに積分路 $C$ は $X(z)$ のすべての極を含む反時計回りの単純閉曲線である。
+                ここに積分路$C$は$X(z)$のすべての極を含む反時計回りの単純閉曲線である。
             \end{shadebox}
             \begin{proof}
                 \begin{align*}
@@ -60,19 +60,19 @@
                 ここに$c_0,c_{k,l}\;(k=1,\dots,\Np,l=1,\dots,N_{\mathrm{p},k})$は適当な複素数である。
                 $x,y$のZ変換をそれぞれ$X,Y$とすると$Y(z) = H(z)F(z) = A H(z)/(1-\NapierE^{i\Omega}z^{-1})$である。
                 これの部分分数展開に現れる，$1/(1-p_k z^{-1})^l\;(k=1,\dots,\Np,l=1,\dots,N_{\mathrm{p},k})$に比例する項は逆Z変換すると$n$の多項式と公比$p_k$の等比級数の積となり，$n\to\infty$で0に収束する。
-                (このことはZ変換の性質: 時間シフト$\mathcal{Z}[x(n+k)] = z^kX(z)$，およびZ領域微分$\mathcal{Z}[nx(n)] = -z\derivLong{\mathcal{Z}[x(n)]}{z}{}$を繰り返し用いることで分かる)
+                (このことはZ変換の性質:時間シフト$\mathcal{Z}[x(n+k)] = z^kX(z)$，およびZ領域微分$\mathcal{Z}[nx(n)] = -z\derivLong{\mathcal{Z}[x(n)]}{z}{}$を繰り返し用いることで分かる)
                 \par
                 残りの項，すなわち$1/(1-\NapierE^{i\Omega}z^{-1})$に比例する項は$AH(\NapierE^{i\Omega})/(1-\NapierE^{i\Omega}z^{-1}) = H(\NapierE^{i\Omega})X(z)$となる。
             \end{proof}
-    \chapter{片側 Z 変換}
-        \section{信号とその片側 Z 変換の一対一対応}
-            離散時間信号 $x:\integers\to\complexNumbers$ とその片側 Z 変換 $X$ は非負の時間領域について一対一対応する。
-            このことは \ref{inv_Z_trans} の証明から明らかである。
-            片側 Z 変換の結果に対して式 \eqref{equation:inv_Z_trans} に於いて負の時刻を指定すると，結果は 0 である。
-        \section{畳み込みの片側 Z 変換}
+    \chapter{片側Z変換}
+        \section{信号とその片側Z変換の一対一対応}
+            離散時間信号$x:\integers\to\complexNumbers$とその片側Z変換$X$は非負の時間領域について一対一対応する。
+            このことは\ref{inv_Z_trans}の証明から明らかである。
+            片側Z変換の結果に対して式\eqref{equation:inv_Z_trans}に於いて負の時刻を指定すると，結果は0である。
+        \section{畳み込みの片側Z変換}
             \label{single_sided_Z_transform_of_convolution}
             \begin{shadebox}
-                離散時間信号 $x,y:\integers\to\complexNumbers$ がともに負の時刻について 0 であるとし，それぞれの片側 Z 変換を $X,Y$ とする。
+                離散時間信号$x,y:\integers\to\complexNumbers$がともに負の時刻について0であるとし，それぞれの片側Z変換を$X,Y$とする。
                 次式が成り立つ。
                 \[ \SSZTrans{x*y}(z) = X(z)Y(z) \]
             \end{shadebox}
