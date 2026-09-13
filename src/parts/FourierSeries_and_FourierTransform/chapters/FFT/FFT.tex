@@ -2,21 +2,21 @@
     \section{長さが2のべき乗でない信号のDFTを長さが2のべき乗の信号のFFTに帰着する方法}
         $N$を$2$のべき乗でない自然数とする。
         長さ$N$の信号$x$のDFT
-        \[ X(k) = \frac{1}{\sqrt{N}} \sum_{n=0}^{N-1} x(n)\exp \left(2\pi i\frac{-kn}{N}\right) \quad k=1,2,\dots,N-1 \]
+        \[ X(k) = \frac{1}{\sqrt{N}} \sum_{n=0}^{N-1} x(n)\exp \parens*{2\pi i\frac{-kn}{N}} \quad k=1,2,\dots,N-1 \]
         を長さが$2$のべき乗である信号のFFTに帰着する方法を考える。
-        $\forall a,b\in\mathbb{R},ab = \frac{a^2 + b^2 - (a-b)^2}{2}$を用いて上の式を次のように変形する。
+        $\forall a,b\in\realNumbers,ab = \frac{a^2 + b^2 - (a-b)^2}{2}$を用いて上の式を次のように変形する。
         \begin{align*}
             \begin{aligned}
-                X(k) &= \frac{1}{\sqrt{N}} \exp \left(\pi i\frac{-k^2}{N}\right) \sum_{n=0}^{N-1} x(n)\exp \left(\pi i\frac{-n^2}{N}\right) \exp \left(\pi i\frac{(k-n)^2}{N}\right) \\
-                &= \frac{1}{\sqrt{N}} \exp \left(\pi i\frac{-k^2}{N}\right) \sum_{n=0}^{N-1} u(n)v(k-n) \\
-                & \text{where} \quad u(n) \coloneq x(n)\exp \left(\pi i\frac{-n^2}{N}\right),v(n) \coloneq \exp \left(\pi i\frac{n^2}{N}\right)
+                X(k) &= \frac{1}{\sqrt{N}} \exp \parens*{\pi i\frac{-k^2}{N}} \sum_{n=0}^{N-1} x(n)\exp \parens*{\pi i\frac{-n^2}{N}} \exp \parens*{\pi i\frac{(k-n)^2}{N}} \\
+                &= \frac{1}{\sqrt{N}} \exp \parens*{\pi i\frac{-k^2}{N}} \sum_{n=0}^{N-1} u(n)v(k-n) \\
+                & \text{where} \quad u(n) \coloneq x(n)\exp \parens*{\pi i\frac{-n^2}{N}},v(n) \coloneq \exp \parens*{\pi i\frac{n^2}{N}}
             \end{aligned}
         \end{align*}
-        \[ \therefore\; X(k)\sqrt{N} \exp \left(\pi i\frac{k^2}{N}\right) = (u*v)(k) \]
+        \[ \therefore\; X(k)\sqrt{N} \exp \parens*{\pi i\frac{k^2}{N}} = (u*v)(k) \]
         $u*v$を，長さが$2$のべき乗の信号に対して使えるFFT, IFFTを用いて計算する。
         そのために長さが$2$のべき乗の信号同士の**巡回畳み込み**の中に$u*v$が部分的に現れるような状況を以下のようにして作り出す。
         \par
-        $N_2 \coloneq \min\{a|\exists b\in \mathbb{N}, a = 2^b \geq 2N\}$ とする。
+        $N_2 \coloneq \min\{a|\exists b\in \naturalNumbers, a = 2^b \geq 2N\}$ とする。
         長さ$N_2$の信号$u_2,v_2$を以下のように定義する。
         \[
             u_2(n) \coloneq \left\{
@@ -49,8 +49,8 @@
         より
         \[ \text{IFFT}(\sqrt{N_2}\text{ FFT}(u_2) \text{ FFT}(v_2)) \]
         により$u_2*v_2$を高速に計算し，結果の先頭$N$要素を切り出せば$u*v$を得る。
-        得られた$u*v$の第$k$要素に$\frac{1}{\sqrt{N}} \exp \left(\pi i\frac{-k^2}{N}\right)$を掛ければ$x$のDFTが得られる。
-        $v_2$のFFTや$\frac{1}{\sqrt{N}} \exp \left(\pi i\frac{-k^2}{N}\right) \;(k=0,1,\dots,N-1)$は初回の計算結果を保存しておけば別の信号のDFTの計算で再利用できる。
+        得られた$u*v$の第$k$要素に$\frac{1}{\sqrt{N}} \exp \parens*{\pi i\frac{-k^2}{N}}$を掛ければ$x$のDFTが得られる。
+        $v_2$のFFTや$\frac{1}{\sqrt{N}} \exp \parens*{\pi i\frac{-k^2}{N}} \;(k=0,1,\dots,N-1)$は初回の計算結果を保存しておけば別の信号のDFTの計算で再利用できる。
     \section{長さを 2 数の積に分解して複数回の DFT に分ける方法}
         \subsection{目標}
             $P,Q\in\naturalNumbers,P,Q\geq 2,N = PQ$ とし，$x$ を周期 $N$ の離散時間複素数値信号とする。

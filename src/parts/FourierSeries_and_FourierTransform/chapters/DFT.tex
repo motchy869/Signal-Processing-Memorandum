@@ -2,7 +2,7 @@
     \section{基底}
         $d\in\naturalNumbers,N_l\in\naturalNumbers\;(l=1,2,\dots,d),\bm{k},\bm{n}\in\integers^d$とする。
         次式で定義される，$\bm{n}$に関する離散座標信号を$d$次元DFTの第$\bm{k}$基底ベクトルという。
-        \[ W(\bm{k},\bm{n}) \coloneq \left(\prod_{l=1}^d N_l\right)^{-1/2} \exp i\left(\sum_{l=1}^d \frac{k_l n_l}{N_l}2\pi\right)\]
+        \[ W(\bm{k},\bm{n}) \coloneq \parens*{\prod_{l=1}^d N_l}^{-1/2} \exp i\parens*{\sum_{l=1}^d \frac{k_l n_l}{N_l}2\pi}\]
 
     \section{DFTの定義}
         \label{DFTの定義}
@@ -42,17 +42,17 @@
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
             $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき，次が成り立つ。
-            \[ \DFTwithArg{f\circledast g}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
+            \[ \DFTwithArg{f\circledast g}{\bm{k}} = \parens*{\prod_{l=1}^d N_l}^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
         \end{shadebox}
         \begin{proof}
             $\bm{N} \coloneq [N_1,\dots,N_d]^\top$とする。
             \begin{align*}
-                \DFTwithArg{f\circledast g}{\bm{k}} &= \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \left(f\circledast g\right)(\bm{n}) = \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \\
+                \DFTwithArg{f\circledast g}{\bm{k}} &= \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \parens*{f\circledast g}(\bm{n}) = \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \\
                 &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}g((\bm{n}-\bm{m})\%\bm{N}) \\
-                &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \left(\prod_{l=1}^d N_l\right)^{1/2} \conj{W(\bm{k},\bm{m})} \conj{W(\bm{k},\bm{n}-\bm{m})} g((\bm{n}-\bm{m})\%\bm{N}) \\
-                &= \left(\prod_{l=1}^d N_l\right)^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},(\bm{n}-\bm{m})\%\bm{N})} g((\bm{n}-\bm{m})\%\bm{N}) \\
-                &= \left(\prod_{l=1}^d N_l\right)^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} g(\bm{n}) \\
-                &= \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}}
+                &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \parens*{\prod_{l=1}^d N_l}^{1/2} \conj{W(\bm{k},\bm{m})} \conj{W(\bm{k},\bm{n}-\bm{m})} g((\bm{n}-\bm{m})\%\bm{N}) \\
+                &= \parens*{\prod_{l=1}^d N_l}^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},(\bm{n}-\bm{m})\%\bm{N})} g((\bm{n}-\bm{m})\%\bm{N}) \\
+                &= \parens*{\prod_{l=1}^d N_l}^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} g(\bm{n}) \\
+                &= \parens*{\prod_{l=1}^d N_l}^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}}
             \end{align*}
         \end{proof}
 
@@ -63,7 +63,7 @@
             $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とする。
             $f$と$g$の巡回相関を$R_{f,g}(n) = \cycCorrel{f}{g}(\bm{n})$とする。
             このとき，次が成り立つ。
-            \[ \DFTwithArg{R_{f,g}}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\conj{\DFTwithArg{g}{\bm{k}}} \]
+            \[ \DFTwithArg{R_{f,g}}{\bm{k}} = \parens*{\prod_{l=1}^d N_l}^{1/2}\DFTwithArg{f}{\bm{k}}\conj{\DFTwithArg{g}{\bm{k}}} \]
         \end{shadebox}
         \begin{proof}
             $\bm{N} \coloneq [N_1,\dots,N_d]^\top$とする。
@@ -73,27 +73,27 @@
             \end{align*}
             ここで$\conj{W(\bm{k},\bm{n})}$を変形して次式を得る。
             \begin{align*}
-                \conj{W(\bm{k},\bm{n})} &= W(\bm{k},-\bm{n}) = \left(\prod_{l=1}^d N_l\right)^{1/2}W(\bm{k},\bm{m}-\bm{n})W(\bm{k},-\bm{m}) \\
-                &= \left(\prod_{l=1}^d N_l\right)^{1/2}W(\bm{k},(\bm{m}-\bm{n})\%\bm{N})\conj{W(\bm{k},\bm{m})}
+                \conj{W(\bm{k},\bm{n})} &= W(\bm{k},-\bm{n}) = \parens*{\prod_{l=1}^d N_l}^{1/2}W(\bm{k},\bm{m}-\bm{n})W(\bm{k},-\bm{m}) \\
+                &= \parens*{\prod_{l=1}^d N_l}^{1/2}W(\bm{k},(\bm{m}-\bm{n})\%\bm{N})\conj{W(\bm{k},\bm{m})}
             \end{align*}
             これを式(1)に適用して次式を得る。
             \begin{align*}
-                \DFTwithArg{R_{f,g}}{\bm{k}} &= \left(\prod_{l=1}^d N_l\right)^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega}\conj{\conj{W(\bm{k},(\bm{m}-\bm{n})\%\bm{N})}g((\bm{m}-\bm{n})\%\bm{N})} \\
-                &= \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\conj{\DFTwithArg{g}{\bm{k}}}
+                \DFTwithArg{R_{f,g}}{\bm{k}} &= \parens*{\prod_{l=1}^d N_l}^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega}\conj{\conj{W(\bm{k},(\bm{m}-\bm{n})\%\bm{N})}g((\bm{m}-\bm{n})\%\bm{N})} \\
+                &= \parens*{\prod_{l=1}^d N_l}^{1/2}\DFTwithArg{f}{\bm{k}}\conj{\DFTwithArg{g}{\bm{k}}}
             \end{align*}
         \end{proof}
     \section{巡回畳み込みのDFT}
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
             $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき，次が成り立つ。
-            \[ \DFTwithArg{f\circledast g}{\bm{k}} = \left(\prod_{l=1}^d N_l\right)^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
+            \[ \DFTwithArg{f\circledast g}{\bm{k}} = \parens*{\prod_{l=1}^d N_l}^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
         \end{shadebox}
         \begin{proof}
             \ref{巡回相関のDFT} と同じ要領で示せる。
         \end{proof}
     \section{GaussianノイズのDFT}
         \begin{shadebox}
-            $F(n) \in \complexNumbers\;(n=0,1,\dots,N-1)$は互いに独立で，複素正規分布$N(0,\sigma^2)$に従うとする$\left(\text{p}(f) = \frac{1}{2\pi\sigma^2}\exp\frac{-\Re{f}^2-\Im{f}^2}{2\sigma^2} = \frac{1}{2\pi\sigma^2}\exp\frac{-|f|^2}{2\sigma^2}\right)$。
+            $F(n) \in \complexNumbers\;(n=0,1,\dots,N-1)$は互いに独立で，複素正規分布$N(0,\sigma^2)$に従うとする$\parens*{\text{p}(f) = \frac{1}{2\pi\sigma^2}\exp\frac{-\Re{f}^2-\Im{f}^2}{2\sigma^2} = \frac{1}{2\pi\sigma^2}\exp\frac{-|f|^2}{2\sigma^2}}$。
             これのDFTを$G(k) = \DFTwithArg{F}{k}$とするとき，$G(k)\;(k=0,1,\dots,N-1)$もまた互いに独立で，複素正規分布$N(0,\sigma^2)$に従う。
         \end{shadebox}
         \begin{proof}
@@ -104,8 +104,8 @@
             となる。
             \begin{align*}
                 \Pr{\bm{G} = \bm{g} \in \complexNumbers^N} &= \Pr{P^*\bm{F} = \bm{g}} = \Pr{\bm{F} = P\bm{g}} \\
-                &= \prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2} \exp\frac{-|(P\bm{g})[i]|^2}{2\sigma^2} = \left(\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}\right) \exp \sum_{i=0}^{N-1} \frac{-|(P\bm{g})[i]|^2}{2\sigma^2} \\
-                &= \left(\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}\right) \exp \frac{-\norm{P\bm{g}}_2^2}{2\sigma^2} = \left(\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}\right) \exp \frac{-\norm{\bm{g}}_2^2}{2\sigma^2} \\
+                &= \prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2} \exp\frac{-|(P\bm{g})[i]|^2}{2\sigma^2} = \parens*{\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}} \exp \sum_{i=0}^{N-1} \frac{-|(P\bm{g})[i]|^2}{2\sigma^2} \\
+                &= \parens*{\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}} \exp \frac{-\norm{P\bm{g}}_2^2}{2\sigma^2} = \parens*{\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}} \exp \frac{-\norm{\bm{g}}_2^2}{2\sigma^2} \\
                 &= \prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2} \exp \frac{-|g_i|^2}{2\sigma^2}
             \end{align*}
         \end{proof}

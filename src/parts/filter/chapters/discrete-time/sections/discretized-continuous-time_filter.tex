@@ -13,11 +13,11 @@
     \end{shadebox}
     \begin{proof}
         \begin{align*}
-            \DTFTwithArg{\yd}{\bm{\omega}} &= \sum_{m=-\infty}^\infty y(n\Ts)\exp \left(-i n\Ts\omega\right) = \sum_{m=-\infty}^\infty (h*x)(n\Ts)\exp \left(-i n\Ts\omega\right) \\
-            &= \sum_{m=-\infty}^\infty \left(\integrate{-\infty}{\infty}{h(\tau)x(n\Ts-\tau)}{}{\tau}\right)\exp \left(-i n\Ts\omega\right) \\
-            &= \integrate{-\infty}{\infty}{h(\tau)\sum_{m=-\infty}^\infty x(n\Ts-\tau)\exp \left(-i n\Ts\omega\right)}{}{\tau} \\
-            &= \integrate{-\infty}{\infty}{h(\tau)\sum_{m=-\infty}^\infty A\exp i(\omega_0 (n\Ts-\tau) + \phi)\exp \left(-i n\Ts\omega\right)}{}{\tau} \\
-            &= \integrate{-\infty}{\infty}{h(\tau) \exp(-i\omega_0\tau)\sum_{m=-\infty}^\infty A\exp i(\omega_0 n\Ts + \phi)\exp \left(-i n\Ts\omega\right)}{}{\tau} \\
+            \DTFTwithArg{\yd}{\bm{\omega}} &= \sum_{m=-\infty}^\infty y(n\Ts)\exp \parens*{-i n\Ts\omega} = \sum_{m=-\infty}^\infty (h*x)(n\Ts)\exp \parens*{-i n\Ts\omega} \\
+            &= \sum_{m=-\infty}^\infty \parens*{\integrate{-\infty}{\infty}{h(\tau)x(n\Ts-\tau)}{}{\tau}}\exp \parens*{-i n\Ts\omega} \\
+            &= \integrate{-\infty}{\infty}{h(\tau)\sum_{m=-\infty}^\infty x(n\Ts-\tau)\exp \parens*{-i n\Ts\omega}}{}{\tau} \\
+            &= \integrate{-\infty}{\infty}{h(\tau)\sum_{m=-\infty}^\infty A\exp i(\omega_0 (n\Ts-\tau) + \phi)\exp \parens*{-i n\Ts\omega}}{}{\tau} \\
+            &= \integrate{-\infty}{\infty}{h(\tau) \exp(-i\omega_0\tau)\sum_{m=-\infty}^\infty A\exp i(\omega_0 n\Ts + \phi)\exp \parens*{-i n\Ts\omega}}{}{\tau} \\
             &= \DTFTwithArg{\xd}{\omega} \integrate{-\infty}{\infty}{h(\tau) \exp(-i\omega_0\tau)}{}{\tau} = \DTFTwithArg{\xd}{\omega}H(i\omega_0)
         \end{align*}
     \end{proof}

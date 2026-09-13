@@ -16,13 +16,13 @@
             $g(t) \sim H(i\omega)f(t)$となる。
         \end{shadebox}
         \begin{proof}
-            $N_\mathrm{p}$を$H(s)$の分母多項式の相異なる零点の個数とし，それら零点を$p_0,\dots,p_{N_\mathrm{p}}$とする。
+            $\Np$を$H(s)$の分母多項式の相異なる零点の個数とし，それら零点を$p_0,\dots,p_{\Np}$とする。
             零点$p_k$の次数を$N_{\mathrm{p},k}$とし，$H(s)$の部分分数展開を
-            \[ H(s) = c_0 + \sum_{k=1}^{N_\mathrm{p}} \sum_{l=1}^{N_{\mathrm{p},k}} \frac{c_{k,l}}{(s-p_k)^l} \]
+            \[ H(s) = c_0 + \sum_{k=1}^{\Np} \sum_{l=1}^{N_{\mathrm{p},k}} \frac{c_{k,l}}{(s-p_k)^l} \]
             とする。
-            ここに$c_0,c_{k,l}\;(k=1,\dots,N_\mathrm{p},l=1,\dots,N_{\mathrm{p},k})$は適当な複素数である。
+            ここに$c_0,c_{k,l}\;(k=1,\dots,\Np,l=1,\dots,N_{\mathrm{p},k})$は適当な複素数である。
             $f,g$のLaplace変換をそれぞれ$F,G$とすると$G(s) = H(s)F(s) = A H(s)/(s-i\omega)$である。
-            これの部分分数展開に現れる，$1/(s-p_k)^l\;(k=1,\dots,N_\mathrm{p},l=1,\dots,N_{\mathrm{p},k})$に比例する項は逆Laplace変換すると$t^{l-1}\NapierE^{p_k t}$に比例する関数となり，$t\to\infty$で0に収束する。\hfill \rule{10cm}{0.4pt}(1)
+            これの部分分数展開に現れる，$1/(s-p_k)^l\;(k=1,\dots,\Np,l=1,\dots,N_{\mathrm{p},k})$に比例する項は逆Laplace変換すると$t^{l-1}\NapierE^{p_k t}$に比例する関数となり，$t\to\infty$で0に収束する。\hfill \rule{10cm}{0.4pt}(1)
             \par
             残りの項，すなわち$1/(s-i\omega)$に比例する項は$AH(i\omega)/(s-i\omega) = H(i\omega)F(s)$となる。
             以上より，十分大きい$t$に対して$g(t) \sim \ILPLC{H(i\omega)F(s)}(t) = H(i\omega)f(t)$となる。
@@ -66,7 +66,7 @@
                 $f_2$も同様に示せる。
                 直前の定理の証明の(1)までは同じである。
                 $f_1,g_1$のLaplace変換をそれぞれ$F_1,G_1$とすると
-                \[ F_1(s) = \frac{As}{s^2+\omega^2} = \frac{A}{2}\left(\frac{1}{s+i\omega} + \frac{1}{s-i\omega}\right) \]
+                \[ F_1(s) = \frac{As}{s^2+\omega^2} = \frac{A}{2}\parens*{\frac{1}{s+i\omega} + \frac{1}{s-i\omega}} \]
                 であるから，$G_1(s) = H(s)F(s)$の部分分数展開のうち$1/(s+i\omega),1/(s-i\omega)$に比例する項を詳しく調べれば良い。
                 $1/(s+i\omega)$の係数は
                 \[ \left. G(s)X(s)(s+i\omega) \right|_{s\to-i\omega} = AG(-i\omega)/2\]
@@ -75,18 +75,18 @@
                 となる。
                 よってこれらの項の和は
                 \begin{align}
-                    &\quad \frac{AG(-i\omega)/2}{s+i\omega} + \frac{AG(i\omega)/2}{s-i\omega} = \frac{A}{2}\left(\frac{G(-i\omega)}{s+i\omega} + \frac{G(i\omega)}{s-i\omega}\right) \nonumber\\
-                    &= \frac{A}{2}\times\frac{1}{s^2+\omega^2}\left(G(-i\omega)(s-i\omega) + G(i\omega)(s+i\omega)\right) \nonumber\\
+                    &\quad \frac{AG(-i\omega)/2}{s+i\omega} + \frac{AG(i\omega)/2}{s-i\omega} = \frac{A}{2}\parens*{\frac{G(-i\omega)}{s+i\omega} + \frac{G(i\omega)}{s-i\omega}} \nonumber\\
+                    &= \frac{A}{2}\times\frac{1}{s^2+\omega^2}\parens*{G(-i\omega)(s-i\omega) + G(i\omega)(s+i\omega)} \nonumber\\
                     &= \frac{As}{s^2+\omega^2}\times\frac{1}{2}(G(i\omega)+G(-i\omega)) + \frac{A\omega}{s^2+\omega^2}\times\frac{-1}{2i}(G(i\omega)-G(-i\omega))
                 \end{align}
                 $G(s)$は有理式なので$G(-i\omega) = \conj{G(i\omega)}$となることに注意して
-                \[ \frac{1}{2}(G(i\omega)+G(-i\omega)) = |G(i\omega)|\frac{1}{2}\left(\NapierE^{i\Arg\parens*{G(i\omega)}} + \NapierE^{-i\Arg\parens*{G(i\omega)}}\right) = |G(i\omega)|\cos\Arg\parens*{G(i\omega)} \]
+                \[ \frac{1}{2}(G(i\omega)+G(-i\omega)) = |G(i\omega)|\frac{1}{2}\parens*{\NapierE^{i\Arg\parens*{G(i\omega)}} + \NapierE^{-i\Arg\parens*{G(i\omega)}}} = |G(i\omega)|\cos\Arg\parens*{G(i\omega)} \]
                 同様に
                 \[ \frac{-1}{2i}(G(i\omega)-G(-i\omega)) = -|G(i\omega)|\sin\Arg\parens*{G(i\omega)} \]
                 以上より，
                 \begin{align*}
-                    (1) &= |G(i\omega)|\left(\cos\Arg\parens*{G(i\omega)}\frac{As}{s^2+\omega^2} - \sin\Arg\parens*{G(i\omega)}\frac{A\omega}{s^2+\omega^2} \right) \\
-                    g(t) &\sim \ILPLC{(1)}(t) = |G(i\omega)|\left(\cos\Arg\parens*{G(i\omega)}\cos\omega t - \sin\Arg\parens*{G(i\omega)}\sin\omega t \right) \\
-                    &= |G(i\omega)|\cos\left(\omega t + \Arg\parens*{G(i\omega)}\right)
+                    (1) &= |G(i\omega)|\parens*{\cos\Arg\parens*{G(i\omega)}\frac{As}{s^2+\omega^2} - \sin\Arg\parens*{G(i\omega)}\frac{A\omega}{s^2+\omega^2} } \\
+                    g(t) &\sim \ILPLC{(1)}(t) = |G(i\omega)|\parens*{\cos\Arg\parens*{G(i\omega)}\cos\omega t - \sin\Arg\parens*{G(i\omega)}\sin\omega t } \\
+                    &= |G(i\omega)|\cos\parens*{\omega t + \Arg\parens*{G(i\omega)}}
                 \end{align*}
             \end{proof}

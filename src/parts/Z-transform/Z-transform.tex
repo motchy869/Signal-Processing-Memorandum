@@ -31,8 +31,8 @@
                 任意の$\varepsilon \in (0,1)$に対してある$N\in\naturalNumbers$が存在して$\forall n\geq N,|x(n)-\alpha|<\varepsilon$となる。
                 \begin{align*}
                     \quad &\lim_{z\to1}(z-1)F(z) - \alpha = \lim_{z\to1}(z-1)z^N F(z) - \alpha \\
-                    &= \lim_{z\to1}(z-1)z^N\left(\sum_{k=0}^{N-1} x(k)z^{-k} + \sum_{k=N+1}^\infty x(k)z^{-k}\right) - (z-1)z^N\sum_{k=N+1}^\infty \alpha z^{-k} \\
-                    &= \lim_{z\to1}(z-1)z^N \sum_{k=N+1}^\infty (x(n) - \alpha)z^{-k} \quad \left(\sum_{k=0}^{N-1}\text{の項は極限で消える}\right) \tag{1} \\
+                    &= \lim_{z\to1}(z-1)z^N\parens*{\sum_{k=0}^{N-1} x(k)z^{-k} + \sum_{k=N+1}^\infty x(k)z^{-k}} - (z-1)z^N\sum_{k=N+1}^\infty \alpha z^{-k} \\
+                    &= \lim_{z\to1}(z-1)z^N \sum_{k=N+1}^\infty (x(n) - \alpha)z^{-k} \quad \parens*{\sum_{k=0}^{N-1}\text{の項は極限で消える}} \tag{1} \\
                     |(1)| &\leq \lim_{z\to1}(z-1)z^N \sum_{k=N+1}^\infty |x(n) - \alpha|z^{-k} < \lim_{z\to1}(z-1)z^N \sum_{k=N+1}^\infty \varepsilon z^{-k} = \varepsilon
                 \end{align*}
             \end{proof}
@@ -53,13 +53,13 @@
                 $y(n) \sim H(\NapierE^{i\Omega})x(n)$となる。
             \end{shadebox}
             \begin{proof}
-                $N_\mathrm{p}$を$H(s)$の相異なる極の個数とし，それら極を$p_0,\dots,p_{N_\mathrm{p}}$とする。
+                $\Np$を$H(s)$の相異なる極の個数とし，それら極を$p_0,\dots,p_{\Np}$とする。
                 極$p_k$の次数を$N_{\mathrm{p},k}$とし，$H(z)$の部分分数展開を
-                \[ H(z) = c_0 + \sum_{k=1}^{N_\mathrm{p}} \sum_{l=1}^{N_{\mathrm{p},k}} \frac{c_{k,l}}{(1-p_kz^{-1})^l} \]
+                \[ H(z) = c_0 + \sum_{k=1}^{\Np} \sum_{l=1}^{N_{\mathrm{p},k}} \frac{c_{k,l}}{(1-p_kz^{-1})^l} \]
                 とする。
-                ここに$c_0,c_{k,l}\;(k=1,\dots,N_\mathrm{p},l=1,\dots,N_{\mathrm{p},k})$は適当な複素数である。
+                ここに$c_0,c_{k,l}\;(k=1,\dots,\Np,l=1,\dots,N_{\mathrm{p},k})$は適当な複素数である。
                 $x,y$のZ変換をそれぞれ$X,Y$とすると$Y(z) = H(z)F(z) = A H(z)/(1-\NapierE^{i\Omega}z^{-1})$である。
-                これの部分分数展開に現れる，$1/(1-p_k z^{-1})^l\;(k=1,\dots,N_\mathrm{p},l=1,\dots,N_{\mathrm{p},k})$に比例する項は逆Z変換すると$n$の多項式と公比$p_k$の等比級数の積となり，$n\to\infty$で0に収束する。
+                これの部分分数展開に現れる，$1/(1-p_k z^{-1})^l\;(k=1,\dots,\Np,l=1,\dots,N_{\mathrm{p},k})$に比例する項は逆Z変換すると$n$の多項式と公比$p_k$の等比級数の積となり，$n\to\infty$で0に収束する。
                 (このことはZ変換の性質: 時間シフト$\mathcal{Z}[x(n+k)] = z^kX(z)$，およびZ領域微分$\mathcal{Z}[nx(n)] = -z\derivLong{\mathcal{Z}[x(n)]}{z}{}$を繰り返し用いることで分かる)
                 \par
                 残りの項，すなわち$1/(1-\NapierE^{i\Omega}z^{-1})$に比例する項は$AH(\NapierE^{i\Omega})/(1-\NapierE^{i\Omega}z^{-1}) = H(\NapierE^{i\Omega})X(z)$となる。

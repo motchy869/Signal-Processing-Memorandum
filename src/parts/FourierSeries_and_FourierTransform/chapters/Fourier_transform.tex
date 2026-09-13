@@ -29,7 +29,7 @@
             \begin{gather*}
                 G(\bm{f}) \coloneq \tilde{\mathcal{F}}(g)(\bm{f}) = (2\pi)^{d/2}\FTwithArg{g}{\bm{\omega}} \\
                 \begin{aligned}
-                    \tilde{\mathcal{F}}^{-1}(G)(\bm{x}) &= \integrate{\realNumbers^d}{}{G(\bm{f})\exp (i2\pi\bm{f}^\top\bm{x})}{d}{\bm{f}} = \integrate{\realNumbers^d}{}{(2\pi)^{d/2}\FTwithArg{g}{\bm{\omega}}\exp (i\bm{\omega}^\top\bm{x})\det\left(\frac{1}{2\pi}I_d\right)}{d}{\bm{\omega}} \\
+                    \tilde{\mathcal{F}}^{-1}(G)(\bm{x}) &= \integrate{\realNumbers^d}{}{G(\bm{f})\exp (i2\pi\bm{f}^\top\bm{x})}{d}{\bm{f}} = \integrate{\realNumbers^d}{}{(2\pi)^{d/2}\FTwithArg{g}{\bm{\omega}}\exp (i\bm{\omega}^\top\bm{x})\det\parens*{\frac{1}{2\pi}I_d}}{d}{\bm{\omega}} \\
                     &= (2\pi)^{-d/2}\integrate{\realNumbers^d}{}{\FTwithArg{g}{\bm{\omega}}\exp (i\bm{\omega}^\top\bm{x})}{d}{\bm{\omega}} = \IFTwithArg{\FT{g}}{\bm{x}} = g(\bm{x})
                 \end{aligned}
             \end{gather*}

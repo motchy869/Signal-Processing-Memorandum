@@ -12,7 +12,7 @@
             しかしDTFTは電気・電子系の信号処理の分野で発展したため，離散``時間''という呼称が浸透しており，これに敢えて逆らって離散``座標''と呼ぶのは本書と工学応用の相性を悪くするだけで無益である。
             そこで，DTFTのような，歴史的な理由で呼称が定着しているものについては慣例に従うことにする。
     \section{連続座標信号との関係}
-        連続座標信号$f_\mathrm{c}:\realNumbers^d\to\complexNumbers$をサンプル周期$\bm{T}_\mathrm{s} \coloneq [T_{\mathrm{s},1}, T_{\mathrm{s},2}, \dotsc, T_{\mathrm{s},d}]^\top\in\realNumbers^d$すなわち周波数$\bm{f}_\mathrm{s} \coloneq [f_{\mathrm{s},1}, f_{\mathrm{s},2}, \dotsc, f_{\mathrm{s},d}]^\top \coloneq [1/T_{\mathrm{s},1}, 1/T_{\mathrm{s},2}, \dotsc, 1/T_{\mathrm{s},d}]^\top\in\realNumbers^d$でサンプリングした離散座標信号を$f_\mathrm{d}: \bm{n}\in\integers^d\mapsto f_\mathrm{c}(\bm{T}^\top\bm{n})$とする。
+        連続座標信号$\fc:\realNumbers^d\to\complexNumbers$をサンプル周期$\bm{T}_\mathrm{s} \coloneq [T_{\mathrm{s},1}, T_{\mathrm{s},2}, \dotsc, T_{\mathrm{s},d}]^\top\in\realNumbers^d$すなわち周波数$\bm{f}_\mathrm{s} \coloneq [f_{\mathrm{s},1}, f_{\mathrm{s},2}, \dotsc, f_{\mathrm{s},d}]^\top \coloneq [1/T_{\mathrm{s},1}, 1/T_{\mathrm{s},2}, \dotsc, 1/T_{\mathrm{s},d}]^\top\in\realNumbers^d$でサンプリングした離散座標信号を$f_\mathrm{d}: \bm{n}\in\integers^d\mapsto \fc(\bm{T}^\top\bm{n})$とする。
         $f_\mathrm{d}$のDTFTに於ける多次元の角周波数$\bm{\omega}$を周波数$\bm{f}$を用いて$\bm{\omega} \coloneq 2\pi\bm{f}$と表す。
         \par
         $\bm{n}$の第$k$要素$n_k$が1だけ変化すると，元の連続座標信号の対応する座標は$T_k$だけ変化し，DTFTのカーネル関数$\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})$の偏角は$\omega_k T_{\mathrm{s},k} = 2\pi f_k T_{\mathrm{s},k}$だけ変化する。
@@ -43,8 +43,8 @@
             $f,g$の積のDTFTは次式で求まる。
             \begin{align*}
                 \DTFTwithArg{fg}{\bm{\omega}} &= \sum_{\bm{n}\in\integers^d} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) = \sum_{\bm{n}\in\integers^d} \IDTFTwithArg{F}{\bm{n}} g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
-                &= \sum_{\bm{n}\in\integers^d} \left(\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\NapierE^{i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}}}{}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
-                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{\bm{n}\in\integers^d} g(\bm{n})\NapierE^{-i\left((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\mathrm{s}\right)^\top\bm{n}}\right)}{}{\tilde{\bm{\omega}}} \\
+                &= \sum_{\bm{n}\in\integers^d} \parens*{\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\NapierE^{i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}}}{}{\tilde{\bm{\omega}}}} g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\parens*{\sum_{\bm{n}\in\integers^d} g(\bm{n})\NapierE^{-i\parens*{(\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\mathrm{s}}^\top\bm{n}}}}{}{\tilde{\bm{\omega}}} \\
                 &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}} = (F*G)(\omega)
             \end{align*}
         \subsection{畳み込みのDTFT}
@@ -58,8 +58,8 @@
             DTFTの可逆性から直ちに言えるが，敢えて直接計算してみる。
             \begin{align*}
                 \IDTFTwithArg{FG}{\bm{n}} &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
-                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\left(\DTFTwithArg{f}{\bm{\omega}}\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
-                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\left(\sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{m})\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\parens*{\DTFTwithArg{f}{\bm{\omega}}}G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\parens*{\sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{m})}G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
                 &= \sum_{\bm{m}\in\integers^d} f(\bm{m}) \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d} \integrate{\Omega}{}{G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top(\bm{n}-\bm{m}))}{}{\bm{\omega}} \\
                 &= \sum_{\bm{m}\in\integers^d} f(\bm{m})g(\bm{n}-\bm{m}) = (f*g)(\bm{n})
             \end{align*}
@@ -68,9 +68,9 @@
             \begin{align*}
                 &\phantom{=} \IDTFTwithArg{F*G}{\bm{n}} \\
                 &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{(F*G)(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
-                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{\left(\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\tilde{\bm{\omega}}\in\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}}\right)\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{\parens*{\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\tilde{\bm{\omega}}\in\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}}}\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
                 &=
-                \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d} \int_{\tilde{\bm{\omega}}\in\Omega} \left(\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{G(\bm{\omega}-\tilde{\bm{\omega}})\exp(i((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}}\right) \\
+                \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d} \int_{\tilde{\bm{\omega}}\in\Omega} \parens*{\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{G(\bm{\omega}-\tilde{\bm{\omega}})\exp(i((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}}} \\
                 &\phantom{=} F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})\mathrm{d}\bm{\tilde{\bm{\omega}}} \\
                 &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\tilde{\bm{\omega}}\in\Omega}{}{g(\bm{n})F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\tilde{\bm{\omega}}} \\
                 &= f(\bm{n})g(\bm{n})
@@ -130,8 +130,8 @@
             \[ N\geq N_1 \Rightarrow \abs{\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} - \pi} < \varepsilon \]
             以上より，$d'>0$を十分に小さくとり，$N\geq\max(N_1,N_2)$とすれば次式が成り立つ。
             \begin{align*}
-                \abs{I_N - \frac{2\pi}{\Ts} f(0)} &= \left|\underbrace{\left(\frac{2}{\Ts}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} - \frac{2\pi}{\Ts} f(0)\right)}_{(1)} \right. \\
-                &\phantom{=} \left.+ \underbrace{\left(\frac{2}{\Ts}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{}{y} - \frac{2}{\Ts}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}\right)}_{(2)} \right. \\
+                \abs{I_N - \frac{2\pi}{\Ts} f(0)} &= \left|\underbrace{\parens*{\frac{2}{\Ts}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y} - \frac{2\pi}{\Ts} f(0)}}_{(1)} \right. \\
+                &\phantom{=} \left.+ \underbrace{\parens*{\frac{2}{\Ts}\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}\frac{y}{\sin y}f(2y)}{}{y} - \frac{2}{\Ts}f(0)\integrate{-d'}{d'}{\frac{\sin(2N+1)y}{y}}{}{y}}}_{(2)} \right. \\
                 &\phantom{=} \left.+ \underbrace{\frac{2}{\Ts}\integrate{[-h/2,-d']\cup[d',h/2]}{}{\frac{\sin(2N+1)y}{\sin y}f(2y)}{}{y}}_{(3)}\right| \\
                 &\leq |(1)| + |(2)| + |(3)| < \frac{2f(0)}{\Ts}\varepsilon + \frac{2\varepsilon}{\Ts}(\pi+\varepsilon) + \varepsilon
             \end{align*}
@@ -140,19 +140,19 @@
         $\Ts>0$とする。
         $\sin(\omega_0 \Ts n + \phi)\;(\omega_0\in\realNumbers, n\in\integers)$のDTFTは\ref{定数関数1のDTFT}の結果を用いて次のようにして得られる。
         \begin{align*}
-            \DTFTwithArg{\sin(\omega_0 \Ts n + \phi)}{\omega} &= \frac{1}{2i}\sum_{m\in\integers} \bigl(\exp(i(\omega_0\Ts m + \phi) - \exp(-i(\omega_0\Ts m + \phi))\bigr)\exp(-i\omega\Ts m) \\
-            &= \frac{1}{2i}\sum_{m\in\integers} \left(\NapierE^{i\phi}\exp(i(\omega_0-\omega)\Ts m) - \NapierE^{-i\phi}\exp(i(-\omega_0-\omega)\Ts m)\right) \\
+            \DTFTwithArg{\sin(\omega_0 \Ts n + \phi)}{\omega} &= \frac{1}{2i}\sum_{m\in\integers} \parens*{\exp(i(\omega_0\Ts m + \phi) - \exp(-i(\omega_0\Ts m + \phi))}\exp(-i\omega\Ts m) \\
+            &= \frac{1}{2i}\sum_{m\in\integers} \parens*{\NapierE^{i\phi}\exp(i(\omega_0-\omega)\Ts m) - \NapierE^{-i\phi}\exp(i(-\omega_0-\omega)\Ts m)} \\
             &= \frac{1}{2i}\NapierE^{i\phi}\sum_{m\in\integers}\delta(\omega_0-\omega - 2\pi m/\Ts) - \frac{1}{2i}\NapierE^{-i\phi}\sum_{m\in\integers}\delta(-\omega_0-\omega - 2\pi m/\Ts) \\
             &= \frac{1}{2i}\NapierE^{i\phi}\sum_{m\in\integers}\delta(-(\omega-\omega_0) - 2\pi m/\Ts) - \frac{1}{2i}\NapierE^{-i\phi}\sum_{m\in\integers}\delta(-(\omega+\omega_0) - 2\pi m/\Ts) \\
             &= \frac{1}{2i}\NapierE^{i\phi}\frac{2\pi}{\Ts}\sum_{m\in\integers}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \frac{1}{2i}\NapierE^{-i\phi}\frac{2\pi}{\Ts}\sum_{m\in\integers}\delta(\omega+\omega_0 - 2\pi m/\Ts) \\
-            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
+            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)}
         \end{align*}
         上の結果を利用して，$\cos(\omega_0 \Ts n + \phi)$のDTFTは次式となる。
         \begin{align*}
             \DTFT{\cos(\omega_0 \Ts n + \phi)}{\omega} &= \DTFTwithArg{\sin(\omega_0 \Ts n + \phi + \pi/2)}{\omega} \\
-            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i(\phi+\pi/2)}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i(\phi+\pi/2)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
-            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(i\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + i\NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
-            &= \frac{\pi}{\Ts}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + \NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
+            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{\NapierE^{i(\phi+\pi/2)}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i(\phi+\pi/2)}\delta(\omega+\omega_0 - 2\pi m/\Ts)} \\
+            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{i\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + i\NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)} \\
+            &= \frac{\pi}{\Ts}\sum_{m\in\integers}\parens*{\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + \NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)}
         \end{align*}
     \section{エイリアシングとの関係}
         \label{DTFTとエイリアシングとの関係}
@@ -162,7 +162,7 @@
         $F := \FT{f}$とする。
         \begin{align*}
             \DTFTwithArg{\tilde{f}}{\omega} &= \sum_{n=-\infty}^\infty f(n\Ts)\NapierE^{-i\omega\Ts n} = \sum_{n=-\infty}^\infty \IFTwithArg{F}{n\Ts} \NapierE^{-i\omega\Ts n} \\
-            &= \sum_{n=-\infty}^\infty \left(\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\NapierE^{i\omega'\Ts n}}{}{\omega'}\right)\NapierE^{-i\omega\Ts n} = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\sum_{n=-\infty}^\infty \NapierE^{i(\omega'-\omega)\Ts n}}{}{\omega'} \\
+            &= \sum_{n=-\infty}^\infty \parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\NapierE^{i\omega'\Ts n}}{}{\omega'}}\NapierE^{-i\omega\Ts n} = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\sum_{n=-\infty}^\infty \NapierE^{i(\omega'-\omega)\Ts n}}{}{\omega'} \\
             &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\frac{2\pi}{\Ts}\sum_{n=-\infty}^\infty \delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} \quad (\text{\ref{定数関数1のDTFT}を用いた。}) \\
             &= \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty \integrate{-\infty}{\infty}{F(\omega')\delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} = \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty F(\omega + 2\pi n/\Ts) \tag {1}
         \end{align*}
@@ -188,40 +188,40 @@
         \begin{shadebox}
             サンプリング時間を$\Ts>0$とする。
             実数値の入力に対して実数値を出力するシステムの伝達関数が$H:\omega\in\realNumbers\mapsto H(\omega)\in\complexNumbers$であるとき，このシステムに単一周波数の正弦波$f(n) := \sin(\omega_0 \Ts n + \phi)\;(-\pi/\Ts\leq\omega_0\leq\pi/\Ts)$を入力したときの出力$g(n)$は次式となる。
-            \[ g(n) = \abs{H(\omega_0)}\sin\bigl(\omega_0 \Ts n + \phi + \Arg\parens*{H(\omega_0)}\bigr) \]
+            \[ g(n) = \abs{H(\omega_0)}\sin\parens*{\omega_0 \Ts n + \phi + \Arg\parens*{H(\omega_0)}} \]
             $\omega_0<-\pi/\Ts, \pi/\Ts<\omega_0$のときは$\tilde{\omega}_0 := (\omega_0+\pi/\Ts)\%(2\pi/\Ts)-\pi/\Ts$とすると$\sin(\omega_0 \Ts n + \phi) = \sin(\tilde{\omega}_0 \Ts n + \phi)$となるので，$-\pi/\Ts\leq\omega_0\leq\pi/\Ts$の場合のみを考慮すればよい。
         \end{shadebox}
         (直接的で長い証明)
         \begin{proof}
             システムのインパルス応答を$h(n)(\in\realNumbers) = \IDTFTwithArg{H}{n}$とすると$g(n) = (h*f)(n)$と表される。
             \begin{align*}
-                g(n) &= (h*f)(n) = \sum_{m=-\infty}^\infty h(m)f(n-m) = \sum_{m=-\infty}^\infty \left(\frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp(i\omega\Ts m)}{}{\omega}\right)f(n-m) \\
+                g(n) &= (h*f)(n) = \sum_{m=-\infty}^\infty h(m)f(n-m) = \sum_{m=-\infty}^\infty \parens*{\frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp(i\omega\Ts m)}{}{\omega}}f(n-m) \\
                 &= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\sum_{m=-\infty}^\infty \exp(i\omega\Ts m)f(n-m)}{}{\omega} \\
-                &= \frac{\Ts}{2\pi} \int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega) \sum_{m=-\infty}^\infty \exp(i\omega\Ts m) \Bigl(\exp\bigl(i(\omega_0\Ts(n-m)+\phi)\bigr) \\
-                &\phantom{=} - \exp\bigl(-i(\omega_0\Ts(n-m)+\phi)\bigr)\Bigr)\mathrm{d}\omega \\
-                &= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega)\sum_{m=-\infty}^\infty \Bigl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i(\omega-\omega_0)\Ts m\bigr) \\
-                &\phantom{=} - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\exp\bigl(i(\omega+\omega_0)\Ts m\bigr)\Bigr) \mathrm{d}\omega \\
-                &= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega)\sum_{m=-\infty}^\infty \biggl(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\frac{2\pi}{\Ts}\delta(\omega-\omega_0 - 2\pi m/\Ts)\\
-                &\phantom{=} - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\frac{2\pi}{\Ts}\delta(\omega+\omega_0 - 2\pi m/\Ts)\biggr) \mathrm{d}\omega \\
-                &= \frac{1}{2i}\int_{-\pi/\Ts}^{\pi/\Ts} H(\omega)\left(\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)\delta(\omega-\omega_0) - \exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\delta(\omega+\omega_0)\right) \mathrm{d}\omega \\
-                &= \frac{1}{2i}\left(H(\omega_0)\exp\bigl(i(\omega_0\Ts n+\phi)\bigr) - H(-\omega_0)\exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\right) \\
-                &= \frac{1}{2i}\left(H(\omega_0)\exp\bigl(i(\omega_0\Ts n+\phi)\bigr) - \conj{H(\omega_0)\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)}\right) \\
-                &\phantom{=} \bigl(h(n)\in\realNumbers\text{なので}H(-\omega_0) = \conj{H(\omega_0)}\bigr) \\
-                &= \frac{1}{2i}2i\Im{H(\omega_0)\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)} \\
-                &= \Re{H(\omega_0)}\Im{\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)} + \Im{H(\omega_0)}\Re{\exp\bigl(i(\omega_0\Ts n+\phi)\bigr)} \\
+                &= \frac{\Ts}{2\pi} \int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega) \sum_{m=-\infty}^\infty \exp(i\omega\Ts m) \Bigl(\exp\parens*{i(\omega_0\Ts(n-m)+\phi)} \\
+                &\phantom{=} - \exp\parens*{-i(\omega_0\Ts(n-m)+\phi)}\Bigr)\mathrm{d}\omega \\
+                &= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega)\sum_{m=-\infty}^\infty \Bigl(\exp\parens*{i(\omega_0\Ts n+\phi)}\exp\parens*{i(\omega-\omega_0)\Ts m} \\
+                &\phantom{=} - \exp\parens*{-i(\omega_0\Ts n+\phi)}\exp\parens*{i(\omega+\omega_0)\Ts m}\Bigr) \mathrm{d}\omega \\
+                &= \frac{\Ts}{2\pi}\int_{-\pi/\Ts}^{\pi/\Ts} \frac{1}{2i}H(\omega)\sum_{m=-\infty}^\infty \biggl(\exp\parens*{i(\omega_0\Ts n+\phi)}\frac{2\pi}{\Ts}\delta(\omega-\omega_0 - 2\pi m/\Ts)\\
+                &\phantom{=} - \exp\parens*{-i(\omega_0\Ts n+\phi)}\frac{2\pi}{\Ts}\delta(\omega+\omega_0 - 2\pi m/\Ts)\biggr) \mathrm{d}\omega \\
+                &= \frac{1}{2i}\int_{-\pi/\Ts}^{\pi/\Ts} H(\omega)\parens*{\exp\parens*{i(\omega_0\Ts n+\phi)}\delta(\omega-\omega_0) - \exp\parens*{-i(\omega_0\Ts n+\phi)}\delta(\omega+\omega_0)} \mathrm{d}\omega \\
+                &= \frac{1}{2i}\parens*{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)} - H(-\omega_0)\exp\parens*{-i(\omega_0\Ts n+\phi)}} \\
+                &= \frac{1}{2i}\parens*{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)} - \conj{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)}}} \\
+                &\phantom{=} \parens*{h(n)\in\realNumbers\text{なので}H(-\omega_0) = \conj{H(\omega_0)}} \\
+                &= \frac{1}{2i}2i\Im{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)}} \\
+                &= \Re{H(\omega_0)}\Im{\exp\parens*{i(\omega_0\Ts n+\phi)}} + \Im{H(\omega_0)}\Re{\exp\parens*{i(\omega_0\Ts n+\phi)}} \\
                 &= \Re{H(\omega_0)}\sin(\omega_0\Ts n+\phi) + \Im{H(\omega_0)}\cos(\omega_0\Ts n+\phi) \\
-                &= |H(\omega)|\sin\bigl(\omega_0\Ts n+\phi + \Arg\parens*{H(\omega_0)}\bigr)
+                &= |H(\omega)|\sin\parens*{\omega_0\Ts n+\phi + \Arg\parens*{H(\omega_0)}}
             \end{align*}
         \end{proof}
         (DTFTを経由した短い証明)
         \begin{proof}
             $f,g$のDTFTを$F,G$とすると
-            \[ G(\omega) = H(\omega)F(\omega) = H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \]
+            \[ G(\omega) = H(\omega)F(\omega) = H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)} \]
             これを逆変換して
             \begin{align*}
                 g(n) &= \IDTFT{G}(n) \\
-                &= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)\exp(i\omega\Ts n)}{}{\omega} \\
-                &= \frac{1}{2i}\left(H(\omega_0)\exp\bigl(i(\omega_0\Ts n+\phi)\bigr) - H(-\omega_0)\exp\bigl(-i(\omega_0\Ts n+\phi)\bigr)\right)
+                &= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)}\exp(i\omega\Ts n)}{}{\omega} \\
+                &= \frac{1}{2i}\parens*{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)} - H(-\omega_0)\exp\parens*{-i(\omega_0\Ts n+\phi)}}
             \end{align*}
             この先は「直接的で長い証明」と同じである。
         \end{proof}
@@ -249,7 +249,7 @@
             時間の不連続関数とも思えるノイズに対するFourier変換を通常の方法で定義できない。
             ここでは，サンプリング周波数が極めて高い測定器を用いて計算されるDTFT由来のスペクトラムを考えることにする。
             実用の場面ではこのような測定結果を用いるので，極限を数学的に厳密に扱わなくても実用上困ることはない。
-            注目する時間区間(測定器で言えばGate time) $I := [t_0,t_1]$ に於いて確率変数としての連続時間ノイズ信号$X(t)$を周期$\Ts$でサンプリングした$N = \lfloor(t_1-t_0)/\Ts\rfloor$個のデータ$X_n := X(n\Ts)$に対して，区間$I$に於ける平均スペクトラムを次式で定義する。
-            \[ Y(f) := \frac{1}{t_1-t_0}\sum_{n=0}^{N-1} \frac{t_1-t_0}{N} X_n \exp\left(-j2\pi f n\Ts\right) \]
+            注目する時間区間(測定器で言えばGate time) $I := [t_0,t_1]$ に於いて確率変数としての連続時間ノイズ信号$X(t)$を周期$\Ts$でサンプリングした$N = \floor{(t_1-t_0)/\Ts}$個のデータ$X_n := X(n\Ts)$に対して，区間$I$に於ける平均スペクトラムを次式で定義する。
+            \[ Y(f) := \frac{1}{t_1-t_0}\sum_{n=0}^{N-1} \frac{t_1-t_0}{N} X_n \exp\parens*{-j2\pi f n\Ts} \]
             上式は$\Ts\to +0$のとき，$X$の台を$I$に制限したFourier変換の$1/(t_1-t_0)$倍に近付く($X$がRiemann可積分かどうか疑わしいので「一致する」とは言い難い)。
             \ref{GaussianノイズのDTFTのエネルギー・スペクトラム密度}の証明と同様にして$Y(\omega)$の実部と虚部はそれぞれ独立に正規分布$N(0,\sigma)$に従い，$|Y(\omega)|^2/\sigma^2$は$\chi_2^2$分布に従うことがわかる。

@@ -25,9 +25,9 @@
             それは次のようにして確かめられる。ここに $X_0 = \FT{x_0}$ である。
             \[ \FT{x_1} = \FT{t\mapsto x_0(t)\cos(2\pi f_\mathrm{m} t) - i x_0(t)\sin(2\pi f_\mathrm{m} t)} = \FT{t\mapsto x_0(t)\exp(-i 2\pi f_\mathrm{m} t)} = X_0(f + f_\mathrm{m}) \]
         \subsection{特に通信の場合}
-            通信の場合はキャリア周波数 $f_\mathrm{c}>0$ が存在して，$X_0$ が $f_\mathrm{c},-f_\mathrm{c}$ に集中する。
-            $f_\mathrm{m}$ は $0 < f_\mathrm{m} < f_\mathrm{c}$ なる適当な周波数が選ばれる。
-            $x_1$ に対して適当な LPF が掛けられ，$\FT{x_1}$ のうち $f_\mathrm{c} - f_\mathrm{m}$ 近傍の成分だけが残される (\cref{fig:Rx_IQ_mod_IF})。
+            通信の場合はキャリア周波数 $\fc>0$ が存在して，$X_0$ が $\fc,-\fc$ に集中する。
+            $f_\mathrm{m}$ は $0 < f_\mathrm{m} < \fc$ なる適当な周波数が選ばれる。
+            $x_1$ に対して適当な LPF が掛けられ，$\FT{x_1}$ のうち $\fc - f_\mathrm{m}$ 近傍の成分だけが残される (\cref{fig:Rx_IQ_mod_IF})。
             これが所謂「中間周波信号」である。
     \section{連続時間複素数値信号を上方変換して実数値信号を送信し，受信側で複素数値信号を復元する}
         無線通信で使われる手法である。

@@ -24,12 +24,12 @@
         $N\in\naturalNumbers$とし，窓の幅を$T=N\Ts$とする。
         窓の幅を$\Ts$の整数倍に選んでいるが，非整数倍の場合でも幅を十分に大きくとれば小数部分に対応する区間の積分の$1/T$倍は無視できるほど小さくなり，最も近い整数倍の幅を用いた結果と殆ど一致する。
         $x$の窓付きFourier変換を窓の幅で規格化したものは次式である。
-        \[ X(f) = \frac{1}{T} \integrate{0}{T}{x(t)\exp(-i 2\pi f t)}{}{t} = \frac{1}{i 2\pi(f-f_0)T}\left(1-\exp\left(-i 2\pi(f-f_0)T\right)\right) \]
+        \[ X(f) = \frac{1}{T} \integrate{0}{T}{x(t)\exp(-i 2\pi f t)}{}{t} = \frac{1}{i 2\pi(f-f_0)T}\parens*{1-\exp\parens*{-i 2\pi(f-f_0)T}} \]
         $\xd$の窓付きFourier変換は次式である。
         \begin{align*}
             \Xd(f) &= \frac{1}{T}\integrate{0}{T}{\xd(t)\exp(-i 2\pi f t)}{}{t} = \frac{1}{T}\sum_{k=0}^{N-1}\integrate{k\Ts}{(k+1)\Ts}{\xd(t)\exp(-i 2\pi f t)}{}{t} \\
             &= \frac{1}{T}\sum_{k=0}^{N-1}\exp(i 2\pi f_0 k\Ts)\integrate{k\Ts}{(k+1)\Ts}{\exp(-i 2\pi f t)}{}{t} \\
-            &= \frac{1}{T}\sum_{k=0}^{N-1}\exp(i 2\pi f_0 k\Ts)\frac{1}{i 2\pi f}\exp(-i 2\pi f k\Ts)\left(1-\exp(-i 2\pi f \Ts)\right) \\
+            &= \frac{1}{T}\sum_{k=0}^{N-1}\exp(i 2\pi f_0 k\Ts)\frac{1}{i 2\pi f}\exp(-i 2\pi f k\Ts)\parens*{1-\exp(-i 2\pi f \Ts)} \\
             &= \frac{1-\exp(-i 2\pi f\Ts)}{i 2\pi f}\frac{1}{T}\underbrace{\sum_{k=0}^{N-1}\exp(i 2\pi(f_0-f)k\Ts)}_{\mathrm{(A)}} \\
             &= \frac{1-\exp(-i 2\pi f\Ts)}{i 2\pi f}\frac{1}{N\Ts}\exp(i\pi(f_0-f)(N-1)\Ts)\frac{\sin\pi(f-f_0)N\Ts}{\sin\pi(f-f_0)\Ts}
         \end{align*}
