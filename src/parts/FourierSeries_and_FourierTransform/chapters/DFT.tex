@@ -22,15 +22,15 @@
                 2\Im{\DFTwithArg{f}{\bm{k}}} &= \DFTwithArg{f}{\bm{k}} - \conj{\DFTwithArg{f}{\bm{k}}} \\
                 &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})\conj{f(\bm{n})}
             \end{align*}
-            ここで$\bm{n}_\text{M} \coloneq [N_1,\dots,N_d]^\top$とすると，
-            \[ \conj{W(\bm{k},\bm{n})} = W(\bm{k},-\bm{n}) = W(\bm{k},\bm{n}_\text{M}-\bm{n}) \]
+            ここで$\bm{n}_\mathrm{M} \coloneq [N_1,\dots,N_d]^\top$とすると，
+            \[ \conj{W(\bm{k},\bm{n})} = W(\bm{k},-\bm{n}) = W(\bm{k},\bm{n}_\mathrm{M}-\bm{n}) \]
             また，$f$のHermite性の仮定より
-            \[ \conj{f(\bm{n})} = f(-\bm{n}) = f(\bm{n}_\text{M}-\bm{n}) \]
+            \[ \conj{f(\bm{n})} = f(-\bm{n}) = f(\bm{n}_\mathrm{M}-\bm{n}) \]
             以上より
             \begin{align*}
-                2\Im{\DFTwithArg{f}{\bm{k}}} &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\text{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})f(\bm{n}_\text{M}-\bm{n}) \\
-                &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\text{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\text{M}-\bm{n})f(\bm{n}) \\
-                &\phantom{=} (\{(\bm{n}, \bm{n}_\text{M}-\bm{n}) | \bm{n}\in\Omega\} = \{(\bm{n}_\text{M}-\bm{n}), \bm{n} | \bm{n}\in\Omega\}\text{を用いた}) \\
+                2\Im{\DFTwithArg{f}{\bm{k}}} &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})f(\bm{n}_\mathrm{M}-\bm{n}) \\
+                &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) \\
+                &\phantom{=} (\{(\bm{n}, \bm{n}_\mathrm{M}-\bm{n}) | \bm{n}\in\Omega\} = \{(\bm{n}_\mathrm{M}-\bm{n}), \bm{n} | \bm{n}\in\Omega\}\text{を用いた}) \\
                 &= 0
             \end{align*}
         \end{proof}
@@ -110,7 +110,7 @@
             \end{align*}
         \end{proof}
     \section{DTFT を DFT で表す}
-        \newcommand*{\XprdDFT}{\mathring{X}_\text{DFT}}
+        \newcommand*{\XprdDFT}{\mathring{X}_\mathrm{DFT}}
         有限長の信号は周期拡張によって DFT と一対一対応し，かつ DTFT とも一対一対応するので，信号が有限長であれば DTFT と DFT は一対一対応する。
         一次元の場合について示すが，多次元の場合にも容易に拡張できる。
         \begin{shadebox}

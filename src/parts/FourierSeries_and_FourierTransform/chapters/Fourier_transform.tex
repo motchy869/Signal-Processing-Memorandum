@@ -79,19 +79,19 @@
     \section{実部または虚部のみの Fourier 変換}
         簡単のため 1 次元の場合を扱う。
         \begin{shadebox}
-            $x:\realNumbers\to\complexNumbers,x_\text{R} = \Re{x},x_\text{I} = \Im{x},X = \mathcal{F}(x),X_\text{R} = \mathcal{F}(x_\text{R}),X_\text{I} = \mathcal{F}(x_\text{I}),\omega\in\realNumbers$ とする。
+            $x:\realNumbers\to\complexNumbers,x_\mathrm{R} = \Re{x},x_\mathrm{I} = \Im{x},X = \mathcal{F}(x),X_\mathrm{R} = \mathcal{F}(x_\mathrm{R}),X_\mathrm{I} = \mathcal{F}(x_\mathrm{I}),\omega\in\realNumbers$ とする。
             次が成り立つ。
             \begin{enumerate}
-                \item $X_\text{R}(\omega) = \frac{1}{2}X(\omega) + \frac{1}{2}\conj{X(-\omega)}$
-                \item $X_\text{I}(\omega) = \frac{1}{2i}X(\omega) - \frac{1}{2i}\conj{X(-\omega)}$
-                \item $X(\omega) = X_\text{R}(\omega) + i X_\text{I}(\omega)$
+                \item $X_\mathrm{R}(\omega) = \frac{1}{2}X(\omega) + \frac{1}{2}\conj{X(-\omega)}$
+                \item $X_\mathrm{I}(\omega) = \frac{1}{2i}X(\omega) - \frac{1}{2i}\conj{X(-\omega)}$
+                \item $X(\omega) = X_\mathrm{R}(\omega) + i X_\mathrm{I}(\omega)$
             \end{enumerate}
         \end{shadebox}
         \begin{proof}
             2 は 1 と同様にして示せる。3 は 1 と 2 を用いて容易に示せる。
             そこで 1 のみを示す。
             \begin{align*}
-                X_\text{R}(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\frac{1}{2}\parens*{x(t)+\conj{x(t)}}\exp(-i\omega t)}{}{t} = \frac{1}{2}X(\omega) + \frac{1}{2}\times\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\conj{x(t)\exp\parens*{-i(-\omega) t}}}{}{t} \\
+                X_\mathrm{R}(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\frac{1}{2}\parens*{x(t)+\conj{x(t)}}\exp(-i\omega t)}{}{t} = \frac{1}{2}X(\omega) + \frac{1}{2}\times\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\conj{x(t)\exp\parens*{-i(-\omega) t}}}{}{t} \\
                 &= \frac{1}{2}X(\omega) + \frac{1}{2}\times\frac{1}{\sqrt{2\pi}}\conj{\integrate{-\infty}{\infty}{x(t)\exp\parens*{-i(-\omega) t}}{}{t}} = \frac{1}{2}X(\omega) + \frac{1}{2}\conj{X(-\omega)}
             \end{align*}
         \end{proof}

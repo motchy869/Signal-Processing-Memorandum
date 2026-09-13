@@ -30,7 +30,7 @@
             \Xd(f) &= \frac{1}{T}\integrate{0}{T}{\xd(t)\exp(-i 2\pi f t)}{}{t} = \frac{1}{T}\sum_{k=0}^{N-1}\integrate{k\Ts}{(k+1)\Ts}{\xd(t)\exp(-i 2\pi f t)}{}{t} \\
             &= \frac{1}{T}\sum_{k=0}^{N-1}\exp(i 2\pi f_0 k\Ts)\integrate{k\Ts}{(k+1)\Ts}{\exp(-i 2\pi f t)}{}{t} \\
             &= \frac{1}{T}\sum_{k=0}^{N-1}\exp(i 2\pi f_0 k\Ts)\frac{1}{i 2\pi f}\exp(-i 2\pi f k\Ts)\left(1-\exp(-i 2\pi f \Ts)\right) \\
-            &= \frac{1-\exp(-i 2\pi f\Ts)}{i 2\pi f}\frac{1}{T}\underbrace{\sum_{k=0}^{N-1}\exp(i 2\pi(f_0-f)k\Ts)}_{\text{(A)}} \\
+            &= \frac{1-\exp(-i 2\pi f\Ts)}{i 2\pi f}\frac{1}{T}\underbrace{\sum_{k=0}^{N-1}\exp(i 2\pi(f_0-f)k\Ts)}_{\mathrm{(A)}} \\
             &= \frac{1-\exp(-i 2\pi f\Ts)}{i 2\pi f}\frac{1}{N\Ts}\exp(i\pi(f_0-f)(N-1)\Ts)\frac{\sin\pi(f-f_0)N\Ts}{\sin\pi(f-f_0)\Ts}
         \end{align*}
         最後の式を導くために，(A)に等比数列の和の公式を適用し，分母・分子それぞれ$\sin$が生じるように複素指数関数を括り出して整理した。

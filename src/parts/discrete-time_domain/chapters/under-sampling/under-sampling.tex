@@ -13,13 +13,13 @@
             \end{itemize}
             このとき $\YDTFT$ は次式で表される。
             \[ \YDTFT(\omega) = \frac{1}{R}\sum_{n=0}^{R-1} \XDTFT\parens*{\omega-n\frac{2\pi}{R\Ts}} \]
-            $\YDTFT$ は $\omega$ に関する $2\pi/(R\Ts)$ 周期関数となり，$\YDTFT$ の第1 Nyquist 領域は $S_{\text{N},Y} \coloneq [-\pi/(R\Ts),-\pi/(R\Ts))$ となる。
+            $\YDTFT$ は $\omega$ に関する $2\pi/(R\Ts)$ 周期関数となり，$\YDTFT$ の第1 Nyquist 領域は $S_{\mathrm{N},Y} \coloneq [-\pi/(R\Ts),-\pi/(R\Ts))$ となる。
             \par
             全体に $1/R$ が掛けられているが，振幅が $1/R$ になるわけではない。
             DTFT の内積計算の対象となる点の数が $1/R$ に減ったことに起因する。
             \par
-            $\XDTFT$ の台のうち $\xd$ の第1 Nyquist 領域 $S_{\text{N},X} \coloneq [-\pi/\Ts, \pi/\Ts)$ にある部分を $S_X$ とする。
-            エイリアシングが生じない必要十分条件は $S_X\subset S_{\text{N},X}$ である。
+            $\XDTFT$ の台のうち $\xd$ の第1 Nyquist 領域 $S_{\mathrm{N},X} \coloneq [-\pi/\Ts, \pi/\Ts)$ にある部分を $S_X$ とする。
+            エイリアシングが生じない必要十分条件は $S_X\subset S_{\mathrm{N},X}$ である。
             ここで言うエイリアシングとは，$S_X$ を $2\pi/(R\Ts)$ の整数倍ずつ平行移動しながら無限に複製したものを考えたとき，複製された $S_X$ 同士に重なりが生じることを指す。
         \subsection{導出}
             \begin{align}
@@ -45,7 +45,7 @@
             フィルタ設計に於いてはしばしばダウン・サンプリング後の第1 Nyquist 領域に関心がある，すなわち横軸が正規化角周波数で表されたスペクトラムに関心がある。
             この場合は $\YDTFT$ のグラフの見た目が異なる。
             正規化角周波数で表示すると次式となる。
-            \[ \tilde{Y}_\text{DTFT}(\Omega) \coloneq \YDTFT(\Omega/(R\Ts)) \]
+            \[ \tilde{Y}_\mathrm{DTFT}(\Omega) \coloneq \YDTFT(\Omega/(R\Ts)) \]
             正規化角周波数で表示されたグラフでは，アンダー・サンプリングされた信号のスペクトラムは元の信号のスペクトラムを \cref{equation:アンダー・サンプリングされた信号の周波数スペクトラム 2} に従って複製して並べた後，横軸方向に $R$ に拡大した形になる。
         \subsection{数値例}
             いくつかの数値例が下記の Mathematica ノートブックにある。

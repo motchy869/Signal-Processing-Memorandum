@@ -17,19 +17,19 @@
         ここに $x,y:\integers\to\complexNumbers$ は差分器への入力と出力である。
         同様に記号を流用して積算器の入出力 1 つの漸化式は $y(n) = y(n-1) + x(n-1)$ であり，伝達関数は $(z^{-1})/(1-z^{-1})$ である。
         Noble Identity を用いて $R$ 倍オーバー・サンプラを最前段に移動すると， $R$ 倍オーバー・サンプラの後ろの伝達関数は次式である。
-        \[ H_\text{C,I}(z) = z^{-N(R+1)}\parens*{\frac{1-z^{-MR}}{1-z^{-1}}}^N = z^{-N(R+1)}\parens*{\sum_{n=0}^{MR-1} z^{-n}}^N \]
+        \[ H_\mathrm{C,I}(z) = z^{-N(R+1)}\parens*{\frac{1-z^{-MR}}{1-z^{-1}}}^N = z^{-N(R+1)}\parens*{\sum_{n=0}^{MR-1} z^{-n}}^N \]
         （C, I はそれぞれ comb, integrator の意味）これは，長さ $MR$ の区間の和をとるブロックを $N$ 段従属接続して $N(R+1)$ だけ遅延させる操作と等価である。
         この系に対して元の信号を $MR$ 倍にオーバー・サンプルした信号を入力して得られる出力が CIC up-sampler の出力である。
         \par
-        CIC up-sampler の出力の絶対値が最大となるのは，入力のビット幅が許す範囲の絶対値最大（この値を $x_\text{MAX}$ とおく）の定数列が入力された場合であり，値は次式である。
+        CIC up-sampler の出力の絶対値が最大となるのは，入力のビット幅が許す範囲の絶対値最大（この値を $x_\mathrm{MAX}$ とおく）の定数列が入力された場合であり，値は次式である。
         \begin{equation}
-            x_\text{MAX}(MR)^{N-1}
+            x_\mathrm{MAX}(MR)^{N-1}
             \label{equation:CIC up-sampler の出力の絶対値の最大値}
         \end{equation}
         このことから直ちに解るが， CIC up-sampler の直流ゲインは $(MR)^{N-1}$ である。
         \par
         入力と出力の DTFT をそれぞれ $\XNAF(\Omega), \YNAF(\Omega)$ ($\Omega$ は正規化角周波数) とする。
-        $H_\text{C,I}(z)$ に於いて $z = \exp(i\Omega)$ とし，\ref{オーバー・サンプリングされた信号の DTFT} を適用し，周波数スペクトラムとして次式を得る。
+        $H_\mathrm{C,I}(z)$ に於いて $z = \exp(i\Omega)$ とし，\ref{オーバー・サンプリングされた信号の DTFT} を適用し，周波数スペクトラムとして次式を得る。
         \begin{align*}
             \YNAF(\Omega) &= \exp(-iN(R+1)\Omega)\frac{\parens*{1-\exp\parens*{-iMR\Omega}}^N}{\parens*{1-\exp\parens*{-i\Omega}}^N}\XNAF(R\Omega) \\
             &= \exp\parens*{-i\frac{\Omega}{2}N((M+2)R+1)}\parens*{\frac{\sin(MR\Omega/2)}{\sin(\Omega/2)}}^N \XNAF(R\Omega)
@@ -111,15 +111,15 @@
     \end{figure}
     \subsection{周波数スペクトラム}
         Noble Identity を用いて $1/R$ 倍アンダー・サンプラを最終段に移動すると，\ref{CIC up-sampler の周波数スペクトラム} と同様にして， $1/R$ 倍アンダー・サンプラより前の伝達関数は次式である。
-        \[ H_\text{I,C}(z) = z^{-N(R+1)}\parens*{\frac{1-z^{-MR}}{1-z^{-1}}}^N = z^{-N(R+1)}\parens*{\sum_{n=0}^{MR-1}z^{-n}}^N \]
+        \[ H_\mathrm{I,C}(z) = z^{-N(R+1)}\parens*{\frac{1-z^{-MR}}{1-z^{-1}}}^N = z^{-N(R+1)}\parens*{\sum_{n=0}^{MR-1}z^{-n}}^N \]
         （C, I はそれぞれ comb, integrator の意味）これは，長さ $MR$ の区間の和をとるブロックを $N$ 段従属接続して $N(R+1)$ だけ遅延させる操作と等価である。
         この系の出力を $1/R$ でアンダー・サンプルした結果が CIC down-sampler の出力である。
-        よって，系の出力の絶対値が最大となるのは，絶対値が最大の定数 ($x_\text{MAX}$ とする)を入力し続けたときであり，そのときの出力の絶対値は $(MR)^N x_\text{MAX}$ である。
+        よって，系の出力の絶対値が最大となるのは，絶対値が最大の定数 ($x_\mathrm{MAX}$ とする)を入力し続けたときであり，そのときの出力の絶対値は $(MR)^N x_\mathrm{MAX}$ である。
         このことから直ちに解るが，直流ゲインは $(MR)^N$ である。
         \par
         入力の DTFT を $\XNAF(\Omega)$ ($\Omega$ は正規化角周波数) とする。
         $1/R$ 倍アンダー・サンプラより前の出力の DTFT を $\tYNAF(\Omega)$ とする。
-        $H_\text{I,C}(z)$ に於いて $z = \exp(i\Omega)$ とすると次式が成り立つ。
+        $H_\mathrm{I,C}(z)$ に於いて $z = \exp(i\Omega)$ とすると次式が成り立つ。
         \begin{align*}
             \tYNAF(\Omega) &= \exp(-iN(R+1)\Omega)\frac{\parens*{1-\exp\parens*{-iMR\Omega}}^N}{\parens*{1-\exp\parens*{-i\Omega}}^N}\XNAF(\Omega) \\
             &= \exp\parens*{-i\frac{\Omega}{2}N((M+2)R+1)}\parens*{\frac{\sin(MR\Omega/2)}{\sin(\Omega/2)}}^N \XNAF(\Omega)

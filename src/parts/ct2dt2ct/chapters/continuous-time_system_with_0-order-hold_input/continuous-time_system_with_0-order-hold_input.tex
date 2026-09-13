@@ -21,7 +21,7 @@
         周期$\Ts$で0次ホールドされた入力信号を$\ud:t\in\realNumbers\to u(\floor{t/\Ts}\Ts)$とする。
         Heavisideの単位ステップ関数を$\uH$とすると$\ud$は次式で表せる。
         \[ \ud(t) = \sum_{k=0}^\infty u(k\Ts)\left(\uH(t-k\Ts) - \uH(t-(k+1)\Ts)\right) \]
-        これのラプラス変換を$U_\text{d}$とすると次式で表される。
+        これのラプラス変換を$U_\mathrm{d}$とすると次式で表される。
         \[ \Ud(s) = \sum_{k=0}^\infty u(k\Ts)\NapierE^{-k\Ts s}\frac{1-\NapierE^{-\Ts s}}{s} \]
         これに対する出力$\yd$のラプラス変換を$\YLplc$とすると，次式である。
         \begin{align*}

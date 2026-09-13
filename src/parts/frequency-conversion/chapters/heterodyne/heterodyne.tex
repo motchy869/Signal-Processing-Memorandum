@@ -20,19 +20,19 @@
             \end{minipage}
         \end{figure}
         \subsection{計算}
-            $x_0:\realNumbers\to\realNumbers,x_{1,\text{I}}:t\in\realNumbers\mapsto x_0(t)\cos(2\pi f_\text{m} t),x_{1,\text{Q}}:t\in\realNumbers\mapsto -x_0(t)\sin(2\pi f_\text{m} t),x_1\coloneq x_{1,\text{I}} + i x_{1,\text{Q}}$ とする (\cref{fig:Rx_IQ_mod_blk_diag})。
-            $x_1$ の周波数スペクトラムは $x_0$ のそれを周波数に関して $f_\text{m}$ だけ負の向きにシフトしたものである。
+            $x_0:\realNumbers\to\realNumbers,x_{1,\mathrm{I}}:t\in\realNumbers\mapsto x_0(t)\cos(2\pi f_\mathrm{m} t),x_{1,\mathrm{Q}}:t\in\realNumbers\mapsto -x_0(t)\sin(2\pi f_\mathrm{m} t),x_1\coloneq x_{1,\mathrm{I}} + i x_{1,\mathrm{Q}}$ とする (\cref{fig:Rx_IQ_mod_blk_diag})。
+            $x_1$ の周波数スペクトラムは $x_0$ のそれを周波数に関して $f_\mathrm{m}$ だけ負の向きにシフトしたものである。
             それは次のようにして確かめられる。ここに $X_0 = \FT{x_0}$ である。
-            \[ \FT{x_1} = \FT{t\mapsto x_0(t)\cos(2\pi f_\text{m} t) - i x_0(t)\sin(2\pi f_\text{m} t)} = \FT{t\mapsto x_0(t)\exp(-i 2\pi f_\text{m} t)} = X_0(f + f_\text{m}) \]
+            \[ \FT{x_1} = \FT{t\mapsto x_0(t)\cos(2\pi f_\mathrm{m} t) - i x_0(t)\sin(2\pi f_\mathrm{m} t)} = \FT{t\mapsto x_0(t)\exp(-i 2\pi f_\mathrm{m} t)} = X_0(f + f_\mathrm{m}) \]
         \subsection{特に通信の場合}
-            通信の場合はキャリア周波数 $f_\text{c}>0$ が存在して，$X_0$ が $f_\text{c},-f_\text{c}$ に集中する。
-            $f_\text{m}$ は $0 < f_\text{m} < f_\text{c}$ なる適当な周波数が選ばれる。
-            $x_1$ に対して適当な LPF が掛けられ，$\FT{x_1}$ のうち $f_\text{c} - f_\text{m}$ 近傍の成分だけが残される (\cref{fig:Rx_IQ_mod_IF})。
+            通信の場合はキャリア周波数 $f_\mathrm{c}>0$ が存在して，$X_0$ が $f_\mathrm{c},-f_\mathrm{c}$ に集中する。
+            $f_\mathrm{m}$ は $0 < f_\mathrm{m} < f_\mathrm{c}$ なる適当な周波数が選ばれる。
+            $x_1$ に対して適当な LPF が掛けられ，$\FT{x_1}$ のうち $f_\mathrm{c} - f_\mathrm{m}$ 近傍の成分だけが残される (\cref{fig:Rx_IQ_mod_IF})。
             これが所謂「中間周波信号」である。
     \section{連続時間複素数値信号を上方変換して実数値信号を送信し，受信側で複素数値信号を復元する}
         無線通信で使われる手法である。
         \subsection{計算}
-            $I_0, Q_0:\realNumbers\to\realNumbers,f_\text{m}>0,x_0:\realNumbers\to\complexNumbers; t\in\realNumbers\mapsto I_0(t) + iQ_0(t),\omega > 0$ とする。
+            $I_0, Q_0:\realNumbers\to\realNumbers,f_\mathrm{m}>0,x_0:\realNumbers\to\complexNumbers; t\in\realNumbers\mapsto I_0(t) + iQ_0(t),\omega > 0$ とする。
             $x_0$ は所謂ベースバンド信号である。
             送信側は次式で上方変換された信号を $x_1$ 作る。
             \[ x_1(t) = x_0(t)\exp(i\omega t) = I_0(t)\cos\omega t - Q_0(t)\sin\omega t + i\parens*{Q_0(t)\cos\omega t + I_0(t)\sin\omega t} \]

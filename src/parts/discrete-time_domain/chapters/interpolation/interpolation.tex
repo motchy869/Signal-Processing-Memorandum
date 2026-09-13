@@ -104,20 +104,20 @@
                 式 (1) に於いて $\omega$ を $\Omega/\Ts$ で書き換え，関係式 $\XDTFT(\Omega/\Ts) = \Xdn(\Omega)$ を用いると式 (2) が得られる。
             \end{proof}
             \subsubsection{数値例}
-                \ref{IDTFT を用いた有限長信号の補間>数値例} の $h$ を $4$ 倍に補間した信号 $h_\text{itp}$ とその DTFT の絶対値を次の図に示す。
+                \ref{IDTFT を用いた有限長信号の補間>数値例} の $h$ を $4$ 倍に補間した信号 $h_\mathrm{itp}$ とその DTFT の絶対値を次の図に示す。
                 \begin{figure}[H]
                     \centering
                     \begin{minipage}{0.49\hsize}
                         \centering
                         \includegraphics[keepaspectratio, scale=0.69]
                         {\currfiledir/calc/Interpolation_with_IDTFT/h_itp.pdf}
-                        \caption{$h_\text{itp}$}
+                        \caption{$h_\mathrm{itp}$}
                     \end{minipage}
                     \begin{minipage}{0.49\hsize}
                         \centering
                         \includegraphics[keepaspectratio, scale=0.69]
                         {\currfiledir/calc/Interpolation_with_IDTFT/abs_of_H_and_H_itp.pdf}
-                        \caption{$h,h_\text{itp}$ の DTFT。横軸は正規化角周波数}
+                        \caption{$h,h_\mathrm{itp}$ の DTFT。横軸は正規化角周波数}
                     \end{minipage}
                 \end{figure}
     \section{IDFT を用いた周期信号の補間}
@@ -170,7 +170,7 @@
             \end{proof}
         \subsection{数値例}
             \label{IDFT を用いた周期信号の補間>数値例}
-            次式で定義される 2 次元平面上の閉曲線 $C:r(t)\;;t:0\to 1$ を $1/N_\text{pt} \coloneq 1/33$ 間隔で $t=0$ から $(N_\text{pt}-1)/N_\text{pt}$ まで標本化した離散座標周期列を $r_\text{d}:\integers\to\realNumbers^2$ とする。
+            次式で定義される 2 次元平面上の閉曲線 $C:r(t)\;;t:0\to 1$ を $1/N_\mathrm{pt} \coloneq 1/33$ 間隔で $t=0$ から $(N_\mathrm{pt}-1)/N_\mathrm{pt}$ まで標本化した離散座標周期列を $r_\mathrm{d}:\integers\to\realNumbers^2$ とする。
             \[
                 r: t\in\realNumbers\mapsto\begin{bmatrix}
                     (1+(\cos 4\pi t)/2+(\cos 14\pi t)/8)\cos 2\pi t \\
@@ -189,15 +189,15 @@
                     \centering
                     \includegraphics[keepaspectratio, scale=0.69]
                     {\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=odd_x=2D_closed_curve/r_d.pdf}
-                    \caption{$r_\text{d}$}
+                    \caption{$r_\mathrm{d}$}
                 \end{minipage}
             \end{figure}
-            次の図はこれを IDFT を使う方法で 4 倍に補間した離散座標周期列 $r_\text{itp}$ である。
+            次の図はこれを IDFT を使う方法で 4 倍に補間した離散座標周期列 $r_\mathrm{itp}$ である。
             \begin{figure}[H]
                 \centering
                 \includegraphics[keepaspectratio, scale=0.69]
                 {\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=odd_x=2D_closed_curve/r_itp.pdf}
-                \caption{$r_\text{itp}$}
+                \caption{$r_\mathrm{itp}$}
             \end{figure}
             この数値例を計算した Mathematica notebook が下記のファイル名で保存されている。
             Git リポジトリ内でファイル名検索すれば発見できるであろう。

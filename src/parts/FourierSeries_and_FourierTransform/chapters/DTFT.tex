@@ -2,28 +2,28 @@
     \section{直観的な説明}
         離散時間Fourier変換(Discrete Time Fourier Transform, DTFT)とは，直観的には，離散座標信号を，連続的な周波数をもつ無数の離散時間信号の重ね合わせとして表現するものである。
     \section{定義}
-        $d\in\naturalNumbers,\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0}$とする。
+        $d\in\naturalNumbers,\bm{T}_\mathrm{s}(\in\realNumbers^d)>\bm{0}$とする。
         $f:\integers^d\to\complexNumbers$に対して，次式で定義される，$\bm{\omega}\in\realNumbers^d$に関する連続座標信号を$f$の離散時間Fourier変換という。
-        \[ \DTFTwithArg{f}{\bm{\omega}} \coloneq \sum_{\bm{n}\in\integers^d} f(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \]
-        $\bm{\omega}$は各軸方向の角周波数をまとめて表したベクトルであり，$\bm{T}_\text{s}$は各軸方向のサンプル周期である。
-        DTFTは$\bm{\omega}$に関する周期関数であり，その周期は$2\pi\bm{1}\HadamardDiv\bm{T}_\text{s}$である。
+        \[ \DTFTwithArg{f}{\bm{\omega}} \coloneq \sum_{\bm{n}\in\integers^d} f(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \]
+        $\bm{\omega}$は各軸方向の角周波数をまとめて表したベクトルであり，$\bm{T}_\mathrm{s}$は各軸方向のサンプル周期である。
+        DTFTは$\bm{\omega}$に関する周期関数であり，その周期は$2\pi\bm{1}\HadamardDiv\bm{T}_\mathrm{s}$である。
         \subsection{呼称について}
             本書では関数の引数を時間や周波数に限定せず，より一般に座標と呼ぶ姿勢をとっている。
             しかしDTFTは電気・電子系の信号処理の分野で発展したため，離散``時間''という呼称が浸透しており，これに敢えて逆らって離散``座標''と呼ぶのは本書と工学応用の相性を悪くするだけで無益である。
             そこで，DTFTのような，歴史的な理由で呼称が定着しているものについては慣例に従うことにする。
     \section{連続座標信号との関係}
-        連続座標信号$f_\text{c}:\realNumbers^d\to\complexNumbers$をサンプル周期$\bm{T}_\text{s} \coloneq [T_{\text{s},1}, T_{\text{s},2}, \dotsc, T_{\text{s},d}]^\top\in\realNumbers^d$すなわち周波数$\bm{f}_\text{s} \coloneq [f_{\text{s},1}, f_{\text{s},2}, \dotsc, f_{\text{s},d}]^\top \coloneq [1/T_{\text{s},1}, 1/T_{\text{s},2}, \dotsc, 1/T_{\text{s},d}]^\top\in\realNumbers^d$でサンプリングした離散座標信号を$f_\text{d}: \bm{n}\in\integers^d\mapsto f_\text{c}(\bm{T}^\top\bm{n})$とする。
-        $f_\text{d}$のDTFTに於ける多次元の角周波数$\bm{\omega}$を周波数$\bm{f}$を用いて$\bm{\omega} \coloneq 2\pi\bm{f}$と表す。
+        連続座標信号$f_\mathrm{c}:\realNumbers^d\to\complexNumbers$をサンプル周期$\bm{T}_\mathrm{s} \coloneq [T_{\mathrm{s},1}, T_{\mathrm{s},2}, \dotsc, T_{\mathrm{s},d}]^\top\in\realNumbers^d$すなわち周波数$\bm{f}_\mathrm{s} \coloneq [f_{\mathrm{s},1}, f_{\mathrm{s},2}, \dotsc, f_{\mathrm{s},d}]^\top \coloneq [1/T_{\mathrm{s},1}, 1/T_{\mathrm{s},2}, \dotsc, 1/T_{\mathrm{s},d}]^\top\in\realNumbers^d$でサンプリングした離散座標信号を$f_\mathrm{d}: \bm{n}\in\integers^d\mapsto f_\mathrm{c}(\bm{T}^\top\bm{n})$とする。
+        $f_\mathrm{d}$のDTFTに於ける多次元の角周波数$\bm{\omega}$を周波数$\bm{f}$を用いて$\bm{\omega} \coloneq 2\pi\bm{f}$と表す。
         \par
-        $\bm{n}$の第$k$要素$n_k$が1だけ変化すると，元の連続座標信号の対応する座標は$T_k$だけ変化し，DTFTのカーネル関数$\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})$の偏角は$\omega_k T_{\text{s},k} = 2\pi f_k T_{\text{s},k}$だけ変化する。
+        $\bm{n}$の第$k$要素$n_k$が1だけ変化すると，元の連続座標信号の対応する座標は$T_k$だけ変化し，DTFTのカーネル関数$\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})$の偏角は$\omega_k T_{\mathrm{s},k} = 2\pi f_k T_{\mathrm{s},k}$だけ変化する。
         つまりDTFTの定義域に於ける周波数$\bm{f}$の第$k$成分に対応する元の連続座標信号の周波数の第$k$成分は$f_k$であり，スケールは保たれている。
         \par
-        DTFTの定義で述べたように，DTFTは周期が$2\pi\bm{1}\HadamardDiv\bm{T}_\text{s}$であるから，一意に区別できる角周波数は$-\bm{\pi}\HadamardDiv\bm{T}_\text{s} \leq \bm{\omega} < \bm{\pi}\HadamardDiv\bm{T}_\text{s}$，つまり一意に区別できる周波数は$-\bm{f}_\text{s}/2 \leq \bm{f} < \bm{f}_\text{s}/2$である。
-        この事実と，先程述べたDTFTと元の連続座標信号との周波数の関係から，DTFTに於いて一意に区別できる周波数に対応する元の連続座標信号の周波数$\tilde{\bm{f}}$は$-\bm{f}_\text{s}/2 \leq \tilde{\bm{f}} < \bm{f}_\text{s}/2$である。
+        DTFTの定義で述べたように，DTFTは周期が$2\pi\bm{1}\HadamardDiv\bm{T}_\mathrm{s}$であるから，一意に区別できる角周波数は$-\bm{\pi}\HadamardDiv\bm{T}_\mathrm{s} \leq \bm{\omega} < \bm{\pi}\HadamardDiv\bm{T}_\mathrm{s}$，つまり一意に区別できる周波数は$-\bm{f}_\mathrm{s}/2 \leq \bm{f} < \bm{f}_\mathrm{s}/2$である。
+        この事実と，先程述べたDTFTと元の連続座標信号との周波数の関係から，DTFTに於いて一意に区別できる周波数に対応する元の連続座標信号の周波数$\tilde{\bm{f}}$は$-\bm{f}_\mathrm{s}/2 \leq \tilde{\bm{f}} < \bm{f}_\mathrm{s}/2$である。
     \section{逆離散時間Fourier変換(IDTFT)}
-        $d\in\naturalNumbers,\bm{T}_\text{s}(\in\realNumbers^d)>\bm{0},\Omega := \prod_{k=1}^d [-\pi/T_{\text{s},k},\pi/T_{\text{s},k})$とする。
+        $d\in\naturalNumbers,\bm{T}_\mathrm{s}(\in\realNumbers^d)>\bm{0},\Omega := \prod_{k=1}^d [-\pi/T_{\mathrm{s},k},\pi/T_{\mathrm{s},k})$とする。
         $F:\realNumbers^d\to\complexNumbers$に対して，次式で定義される，$\bm{n}\in\integers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT, IDTFT)という。
-        \[ \IDTFTwithArg{F}{\bm{n}} \coloneq \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \]
+        \[ \IDTFTwithArg{F}{\bm{n}} \coloneq \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \]
         \subsection{IDTFTがDTFTの逆変換であること}
             厳密な導出はここでは述べないが，$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\IDTFTwithArg{\DTFT{f}}{\bm{n}} = f(\bm{n})$となることを簡単に証明できる。
             $\sum$と$\int$の順序交換が簡単に行えるからである。
@@ -38,41 +38,41 @@
             周波数領域の畳み込みを次で定義する:
             \par
             $F,G:\realNumbers^d\to\complexNumbers$に対してその畳み込み$F*G$を次式で定義する。
-            \[ (F*G)(\bm{\omega}) := \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}} \]
+            \[ (F*G)(\bm{\omega}) := \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}} \]
         \subsection{積のDTFT}
             $f,g$の積のDTFTは次式で求まる。
             \begin{align*}
-                \DTFTwithArg{fg}{\bm{\omega}} &= \sum_{\bm{n}\in\integers^d} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) = \sum_{\bm{n}\in\integers^d} \IDTFTwithArg{F}{\bm{n}} g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \\
-                &= \sum_{\bm{n}\in\integers^d} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\NapierE^{i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\text{s})^\top\bm{n}}}{}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \\
-                &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{\bm{n}\in\integers^d} g(\bm{n})\NapierE^{-i\left((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\text{s}\right)^\top\bm{n}}\right)}{}{\tilde{\bm{\omega}}} \\
-                &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}} = (F*G)(\omega)
+                \DTFTwithArg{fg}{\bm{\omega}} &= \sum_{\bm{n}\in\integers^d} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) = \sum_{\bm{n}\in\integers^d} \IDTFTwithArg{F}{\bm{n}} g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
+                &= \sum_{\bm{n}\in\integers^d} \left(\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\NapierE^{i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}}}{}{\tilde{\bm{\omega}}}\right) g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\left(\sum_{\bm{n}\in\integers^d} g(\bm{n})\NapierE^{-i\left((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\mathrm{s}\right)^\top\bm{n}}\right)}{}{\tilde{\bm{\omega}}} \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}} = (F*G)(\omega)
             \end{align*}
         \subsection{畳み込みのDTFT}
             $f,g$の畳み込みのDTFTは次式で求まる。
             \begin{align*}
-                \DTFTwithArg{f*g}{\bm{\omega}} &= \sum_{\bm{n}\in\integers^d} \sum_{\bm{m}\in\integers^d}f(\bm{m})g(\bm{n}-\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n}) \\
-                &= \sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{m}) \sum_{\bm{n}\in\integers^d} g(\bm{n}-\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top(\bm{n}-\bm{m})) \\
+                \DTFTwithArg{f*g}{\bm{\omega}} &= \sum_{\bm{n}\in\integers^d} \sum_{\bm{m}\in\integers^d}f(\bm{m})g(\bm{n}-\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
+                &= \sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{m}) \sum_{\bm{n}\in\integers^d} g(\bm{n}-\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top(\bm{n}-\bm{m})) \\
                 &= F(\bm{\omega})G(\bm{\omega})
             \end{align*}
         \subsection{積のIDTFT}
             DTFTの可逆性から直ちに言えるが，敢えて直接計算してみる。
             \begin{align*}
-                \IDTFTwithArg{FG}{\bm{n}} &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
-                &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\left(\DTFTwithArg{f}{\bm{\omega}}\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
-                &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\left(\sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{m})\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
-                &= \sum_{\bm{m}\in\integers^d} f(\bm{m}) \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d} \integrate{\Omega}{}{G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top(\bm{n}-\bm{m}))}{}{\bm{\omega}} \\
+                \IDTFTwithArg{FG}{\bm{n}} &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\left(\DTFTwithArg{f}{\bm{\omega}}\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\left(\sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{m})\right)G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
+                &= \sum_{\bm{m}\in\integers^d} f(\bm{m}) \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d} \integrate{\Omega}{}{G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top(\bm{n}-\bm{m}))}{}{\bm{\omega}} \\
                 &= \sum_{\bm{m}\in\integers^d} f(\bm{m})g(\bm{n}-\bm{m}) = (f*g)(\bm{n})
             \end{align*}
         \subsection{畳み込みのIDTFT}
             DTFTの可逆性から直ちに言えるが，敢えて直接計算してみる。
             \begin{align*}
                 &\phantom{=} \IDTFTwithArg{F*G}{\bm{n}} \\
-                &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{(F*G)(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
-                &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{\left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\tilde{\bm{\omega}}\in\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}}\right)\exp(i(\bm{\omega}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}} \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{(F*G)(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{\left(\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\tilde{\bm{\omega}}\in\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}}\right)\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
                 &=
-                \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d} \int_{\tilde{\bm{\omega}}\in\Omega} \left(\frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{G(\bm{\omega}-\tilde{\bm{\omega}})\exp(i((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\bm{\omega}}\right) \\
-                &\phantom{=} F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\text{s})^\top\bm{n})\mathrm{d}\bm{\tilde{\bm{\omega}}} \\
-                &= \frac{\prod_{k=1}^d T_{\text{s},k}}{(2\pi)^d}\integrate{\tilde{\bm{\omega}}\in\Omega}{}{g(\bm{n})F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\text{s})^\top\bm{n})}{}{\tilde{\bm{\omega}}} \\
+                \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d} \int_{\tilde{\bm{\omega}}\in\Omega} \left(\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{G(\bm{\omega}-\tilde{\bm{\omega}})\exp(i((\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}}\right) \\
+                &\phantom{=} F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})\mathrm{d}\bm{\tilde{\bm{\omega}}} \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\tilde{\bm{\omega}}\in\Omega}{}{g(\bm{n})F(\tilde{\bm{\omega}})\exp(i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\tilde{\bm{\omega}}} \\
                 &= f(\bm{n})g(\bm{n})
             \end{align*}
     \section{定数関数1のDTFT}
