@@ -67,7 +67,7 @@
             この数値例を計算した Mathematica notebook が下記のファイル名で保存されている。
             Git リポジトリ内でファイル名検索すれば発見できるであろう。
             notebook 中では前記 $N$ が \inlineCode{N_tp} となっている。\newline
-            \href{\currfiledir/calc/Interpolation_with_IDTFT/Interpolation_with_IDTFT.nb}{\escapeUnderscore{Interpolation_with_IDTFT.nb}}\newline
+            \href{\currfiledir/calc/Interpolation_with_IDTFT/Interpolation_with_IDTFT.nb}{\robustEscapeUnderscore{Interpolation_with_IDTFT.nb}}\newline
         \subsection{等間隔補間信号の周波数スペクトラム}
             \ref{IDTFT を用いた有限長信号の補間>方法} の方法で等間隔に補間され $L\;(\in\naturalNumbers,L\geq 2)$ 倍のサンプル周波数を持つ新たな信号の周波数スペクトラムの性質を述べる。
             \begin{shadebox}
@@ -203,14 +203,14 @@
             Git リポジトリ内でファイル名検索すれば発見できるであろう。
             notebook 中では実装の都合上，前記 $r$ の成分を $x,y$ として分けて扱っている。\newline
             \begin{itemize}
-                \item \href{\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=odd_x=2D_closed_curve/interpolation_with_IDFT_N=odd_x=2D_closed_curve.nb}{\escapeUnderscore{interpolation_with_IDFT_N=odd_x=2D_closed_curve.nb}}：前記の数値例
-                \item \href{\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=odd/interpolation_with_IDFT_N=odd.nb}{\escapeUnderscore{interpolation_with_IDFT_N=odd.nb}}：上記の数値例の前身。$x$ 成分のみを扱っている。
+                \item \href{\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=odd_x=2D_closed_curve/interpolation_with_IDFT_N=odd_x=2D_closed_curve.nb}{\robustEscapeUnderscore{interpolation_with_IDFT_N=odd_x=2D_closed_curve.nb}}：前記の数値例
+                \item \href{\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=odd/interpolation_with_IDFT_N=odd.nb}{\robustEscapeUnderscore{interpolation_with_IDFT_N=odd.nb}}：上記の数値例の前身。$x$ 成分のみを扱っている。
             \end{itemize}
         \subsection{N が偶数のときに無理矢理適用した結果}
             \label{N が偶数のときに無理矢理適用した結果}
             式 \eqref{IDFT を用いた周期信号の補間>公式} に於いて仮に $N$ を偶数とした場合の結果が次の Mathematica notebook に記されている。
             大雑把にそれらしい結果が得られているが，補間結果が不自然に波打っている。\newline
-            \href{\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=even/interpolation_with_IDFT_N=even.nb}{\escapeUnderscore{interpolation_with_IDFT_N=even.nb}}
+            \href{\currfiledir/calc/Interpolation_with_IDFT/interpolation_with_IDFT_N=even/interpolation_with_IDFT_N=even.nb}{\robustEscapeUnderscore{interpolation_with_IDFT_N=even.nb}}
         \subsection{等間隔補間信号の周波数スペクトラム}
             \ref{IDFT を用いた周期信号の補間>方法} の方法で等間隔に補間され $L\;(\in\naturalNumbers,L\geq 2)$ 倍の周期を持つ新たな信号の周波数スペクトラムの性質を述べる。
             $L$ に偶奇の制約はない。
@@ -313,11 +313,11 @@
     %         \par\vspace{\baselineskip}\noindent
     %         以上で求めた $\tilde{\bm{x}}$ を用いて式 (1) を評価すれば，任意の時刻 $t$ に於ける $x(t)$ の妥当な値が求まる。
     %     \subsection{数値例}
-    %         次の Mathematica notebook に記されている。：\href{\currfiledir/calc/interpolate_unequally-spaced_samples/interpolate_unequally-spaced_samples.nb}{\escapeUnderscore{interpolate_unequally-spaced_samples.nb}}
+    %         次の Mathematica notebook に記されている。：\href{\currfiledir/calc/interpolate_unequally-spaced_samples/interpolate_unequally-spaced_samples.nb}{\robustEscapeUnderscore{interpolate_unequally-spaced_samples.nb}}
     %         \par
     %         この例では $L=M=11,\tilde{T}=1,\tilde{t}_i=i\tilde{T}$ であり，$x(t)=\exp(t/4)\sin(\pi t/2)$ を $t=0,1.5,2.1,3,3.8,5,5.7,6.7,8,9.1,10$ でサンプリングして $x_i$ としている。
     %         $A$ の特性は前述の (1) である。
-    %         次の図中の \escapeUnderscore{x_tld_arr} が推定された $\tilde{x}_i$ であり，\escapeUnderscore{x_tld} が $\tilde{x}(t)$ である。
+    %         次の図中の \robustEscapeUnderscore{x_tld_arr} が推定された $\tilde{x}_i$ であり，\robustEscapeUnderscore{x_tld} が $\tilde{x}(t)$ である。
     %         spline 補間も示している。結果は spline 補間の方が優秀であった。
     %         \begin{figure}[H]
     %             \centering
