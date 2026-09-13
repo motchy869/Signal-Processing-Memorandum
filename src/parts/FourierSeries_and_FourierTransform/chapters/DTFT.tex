@@ -151,7 +151,7 @@
         \begin{align*}
             \DTFT{\cos(\omega_0 \Ts n + \phi)}{\omega} &= \DTFTwithArg{\sin(\omega_0 \Ts n + \phi + \pi/2)}{\omega} \\
             &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(\NapierE^{i(\phi+\pi/2)}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i(\phi+\pi/2)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
-            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(ie^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + ie^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
+            &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\left(i\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + i\NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right) \\
             &= \frac{\pi}{\Ts}\sum_{m\in\integers}\left(\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + \NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)\right)
         \end{align*}
     \section{エイリアシングとの関係}
