@@ -98,6 +98,9 @@
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
 
+% longtable settings
+% \setcounter{LTchunksize}{200} % currently not used
+
 % cleveref settings
 % see: [LaTeXの相互参照を賢くする (cleveref)](https://qiita.com/Hdan/items/8c59a7e0a3215ae32d74)
 \crefname{equation}{式}{式} % {環境名}{単数形}{複数形}
@@ -161,6 +164,7 @@
 \newtheorem*{attention}{注意}
 \newtheorem*{solution}{解法}
 \newtheorem*{definition}{定義}
+\newtheorem*{derivation*}{導出}
 
 % table settings
 \renewcommand\theadfont{} % don't change the font
@@ -174,6 +178,7 @@
 %     \bitbox{#2}{#3}%
 % }
 
+% listings settings
 \lstset{
     basicstyle=\ttfamily,
     identifierstyle=\small,
