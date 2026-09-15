@@ -28,7 +28,7 @@
             \end{align}
             ここで$\delta_R$について次式が成り立つ。
             \[ \delta_R(n) = \frac{1}{R}\sum_{l=0}^{R-1}\exp(i2\pi nl/R) \]
-            これを\cref{equation:アンダー・サンプリングされた信号の周波数スペクトラム1}に代入して次式を得る。
+            これを\cref{equation:アンダー・サンプリングされた信号の周波数スペクトラム 1}に代入して次式を得る。
             \begin{align}
                 \YDTFT(\omega) &= \sum_{m=-\infty}^\infty \frac{1}{R}\sum_{l=0}^{R-1}\exp(i2\pi ml/R)\xd(m)\exp(-i\omega m\Ts) \nonumber \\
                 &= \frac{1}{R}\sum_{l=0}^{R-1} \sum_{m=-\infty}^\infty \xd(m)\exp\parens*{-i\parens*{\omega - 2\pi \frac{l}{R\Ts}}m\Ts} \\
@@ -46,7 +46,7 @@
             この場合は$\YDTFT$のグラフの見た目が異なる。
             正規化角周波数で表示すると次式となる。
             \[ \tilde{Y}_\mathrm{DTFT}(\Omega) \coloneq \YDTFT(\Omega/(R\Ts)) \]
-            正規化角周波数で表示されたグラフでは，アンダー・サンプリングされた信号のスペクトラムは元の信号のスペクトラムを\cref{equation:アンダー・サンプリングされた信号の周波数スペクトラム2}に従って複製して並べた後，横軸方向に$R$に拡大した形になる。
+            正規化角周波数で表示されたグラフでは，アンダー・サンプリングされた信号のスペクトラムは元の信号のスペクトラムを\cref{equation:アンダー・サンプリングされた信号の周波数スペクトラム 2}に従って複製して並べた後，横軸方向に$R$に拡大した形になる。
         \subsection{数値例}
             いくつかの数値例が下記のMathematicaノートブックにある。
             下記の$x$はサンプリング前の連続時間信号である。

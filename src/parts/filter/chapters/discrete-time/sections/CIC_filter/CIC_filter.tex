@@ -56,7 +56,7 @@
             よって，差分器の出力のビット幅は入力のそれの2倍を確保すればよく，$N$段目の差分器の出力のビット幅は初段の入力のビット幅+ $N$とすればよい。
         \subsubsection{積算器のビット幅（解析的な方法）}
             CIC up-samplerの入力のビット幅を$B$とする。
-            まず，\cref{equation:CIC up-samplerの出力の絶対値の最大値}より最終段の積算器（第$N$積算器）の出力のビット幅は$B + (N-1)\log_2 MR$を確保すれば必要十分である。
+            まず，\cref{equation:CIC up-sampler の出力の絶対値の最大値}より最終段の積算器（第$N$積算器）の出力のビット幅は$B + (N-1)\log_2 MR$を確保すれば必要十分である。
             \par
             最終段より前の積算器については必要十分なビット幅を解析的に求めることはできないが，十分な値であれば次のようにして求められる。
             \par
@@ -80,9 +80,9 @@
             \end{equation}
             これは抽出された部分系の有限インパルス応答のz変換である。
             この系の応答の絶対値が最大となるような作為的な入力に対する応答を収容できるビット幅を確保すればよい。
-            そのような最悪の応答は\cref{equation:CIC up-samplerの部分系の伝達関数}を計算機代数システムを用いて$z^{-1}$の多項式として展開し，係数の絶対値の総和をとることで得られる。
+            そのような最悪の応答は\cref{equation:CIC up-sampler の部分系の伝達関数}を計算機代数システムを用いて$z^{-1}$の多項式として展開し，係数の絶対値の総和をとることで得られる。
     \subsection{CIC up-sampler補償フィルタ}
-        \cref{equation:CIC up-samplerの周波数スペクトラム}より，アップ・サンプリングにより$\XNF$には$F$に依存する因子が掛かる。
+        \cref{equation:CIC up-sampler の周波数スペクトラム}より，アップ・サンプリングにより$\XNF$には$F$に依存する因子が掛かる。
         これをできるだけ補正するために，CIC up-samplerの直前で前記の因子の逆特性を近似するfeedforwardフィルタ（以下単に「FIRフィルタ」と呼ぶ）の適用を考える。
         このフィルタの周波数スペクトラムを$\HCNF$とすると次式が成り立つ。
         \[ \YNF(F) = \exp\parens*{-i\pi N((M+2)R+1)F}\parens*{\frac{\sin(\pi MRF)}{\sin(\pi F)}}^N \HCNF(RF)\XNF(RF) \]
@@ -90,15 +90,15 @@
         \begin{equation}
             \exp\parens*{i\pi N\frac{(M+2)R+1}{R}F}\parens*{\frac{\sin(\pi F/R)}{\sin(\pi MF)}}^N \label{equation:CIC up-sampler 補償フィルタの理想的な周波数スペクトラム}
         \end{equation}
-        $R$が大きいとき，$\sin(\pi F/R) \sim \pi F/R$として\cref{equation:CIC up-sampler補償フィルタの理想的な周波数スペクトラム}の振幅特性が$(MR\sinc(\pi MF))^{-N}$に漸近する。
+        $R$が大きいとき，$\sin(\pi F/R) \sim \pi F/R$として\cref{equation:CIC up-sampler 補償フィルタの理想的な周波数スペクトラム}の振幅特性が$(MR\sinc(\pi MF))^{-N}$に漸近する。
         \par
         $\HCNF$が周期1の関数であることから，$[-1/2,1/2]$の区間全体で上式を近似することはできない（端点で微分不可能になる）。
         現実には，$\alpha[-1/2,1/2]\;(0<\alpha<1)$の範囲をRemezのアルゴリズム等で近似する。
         $\alpha$が1に近づく程，必要な係数が増える。
-        \cref{equation:CIC up-samplerの周波数スペクトラム}が示すようにCIC up-samplerの位相特性が線形なのでRemezのアルゴリズムでは振幅の補正だけを気にして係数設計してよい（生成されるFIRフィルタの位相特性も線形なので合成系の位相特性も線形となる）。
+        \cref{equation:CIC up-sampler の周波数スペクトラム}が示すようにCIC up-samplerの位相特性が線形なのでRemezのアルゴリズムでは振幅の補正だけを気にして係数設計してよい（生成されるFIRフィルタの位相特性も線形なので合成系の位相特性も線形となる）。
         \par
         アップ・サンプリングを全てCIC up-samplerで行うのではなく，一部をCIC up-samplerの前段にオーバー・サンプラと帯域制限用FIRフィルタ(「FIRフィルタ1」と呼ぶ)の組を置いてそれに分担させ，FIRフィルタ1に後段のCIC up-samplerの補正フィルタを兼任させる（合成する）こともしばしば行われる。
-        例えば，FIRフィルタ1の直前で2倍アップ・サンプリングを行う場合，FIRフィルタ1では$0.8\times[-1/4,1/4]$の領域で\cref{equation:CIC up-sampler補償フィルタの理想的な周波数スペクトラム}を近似し，$[-1/2,-1.2\times(1/4)-]\cup[1.2\times(1/4),1/2]$の領域を阻止帯とするようにRemezのアルゴリズムで係数を計算する。
+        例えば，FIRフィルタ1の直前で2倍アップ・サンプリングを行う場合，FIRフィルタ1では$0.8\times[-1/4,1/4]$の領域で\cref{equation:CIC up-sampler 補償フィルタの理想的な周波数スペクトラム}を近似し，$[-1/2,-1.2\times(1/4)-]\cup[1.2\times(1/4),1/2]$の領域を阻止帯とするようにRemezのアルゴリズムで係数を計算する。
 \section{CIC down-sampler}
     \ref{CIC up-sampler}と同様に加算器（組み合わせ論理回路）の直後にFlip-flopを置く。
     次の図はCIC down-samplerのブロック図である。
@@ -140,7 +140,7 @@
         \par
         積算器はオーバー・フローし得るが，溢れた桁を捨てる操作がmodulo演算であることと，最終段の出力のビット幅を考えれば，最終段より左側の全ての段のビット幅を最終段と等しくしておけば問題ない（無限のビット幅を持つ仮想的な系と同じ出力が得られる）ことが判る。
     \subsection{CIC down-sampler補償フィルタ}
-        \cref{equation:CIC down-samplerの周波数スペクトラム}より，ダウン・サンプリングにより$\XNF$には$F$に依存する因子が掛かる。
+        \cref{equation:CIC down-sampler の周波数スペクトラム}より，ダウン・サンプリングにより$\XNF$には$F$に依存する因子が掛かる。
         これをできるだけ補正するために，CIC down-samplerの直後で前記の因子の逆特性を近似するfeedforwardフィルタの適用を考える。
         ダウン・サンプリング後に補償用フィルタを掛けるので，操作できるのは第1 Nyquist領域のみである。
         第1 Nyquist領域のみを抽出し，補償用フィルタの周波数スペクトラムを$\HCNF$とすると次式が成り立つ。
@@ -149,4 +149,4 @@
         \begin{equation}
             \exp\parens*{i\pi N F\frac{(M+2)R+1}{R}}\parens*{\frac{\sin(\pi F/R)}{\sin(\pi MF)}}^N
         \end{equation}
-        この式は偏角の差を除いて\cref{equation:CIC up-sampler補償フィルタの理想的な周波数スペクトラム}と一致するため，補償用フィルタの設計手法はCIC up-sampler補償フィルタと同じものを適用できる。
+        この式は偏角の差を除いて\cref{equation:CIC up-sampler 補償フィルタの理想的な周波数スペクトラム}と一致するため，補償用フィルタの設計手法はCIC up-sampler補償フィルタと同じものを適用できる。

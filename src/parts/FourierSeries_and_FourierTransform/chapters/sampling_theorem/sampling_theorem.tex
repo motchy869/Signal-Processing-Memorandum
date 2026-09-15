@@ -82,11 +82,11 @@
             sub-sample timing毎に，$h$を（十分減衰するまで）有限時間区間に亘り標本化した補間係数ベクトルを用意しておき，入力系列$x(n\Ts)$と内積をとって出力を得る。
         \subsection{導出}
             \begin{proof}
-                \cref{equation:標本化定理の基本形::Fourier係数}と同様にして$\FT{x}$の第$n$ Fourier係数$c(\FT{x},n)$は次式である。
+                \cref{equation:標本化定理の基本形::Fourier 係数}と同様にして$\FT{x}$の第$n$ Fourier係数$c(\FT{x},n)$は次式である。
                 \begin{align*}
                     c(\FT{x},n) = \frac{\sqrt{2\pi}}{\omegaSamp}x\parens*{-\frac{2\pi}{\omegaSamp}n}
                 \end{align*}
-                \cref{equation:標本化定理の基本形::Fourier逆変換}と同様にして次式が成り立つ（途中経過を省いている）。
+                \cref{equation:標本化定理の基本形::Fourier 逆変換}と同様にして次式が成り立つ（途中経過を省いている）。
                 \begin{align*}
                     x(t) &= \IFTwithArg{\FT{x}}{t} = \IFTwithArg{H\FT{x}}{t} = \sum_{n\in\naturalNumbers}x\parens*{-\frac{2\pi}{\omegaSamp}n}\frac{1}{\omegaSamp}\integrate{\IAF}{}{H(\omega)\exp i\omega\parens*{t + \frac{2\pi}{\omegaSamp} n}}{}{\omega} \\
                     &= \sum_{n\in\naturalNumbers}x\parens*{-n\Ts}\frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp i\omega\parens*{t + n\Ts}}{}{\omega} = \sum_{n\in\integers} x\parens*{-n\Ts}h\parens*{t+n\Ts} = \sum_{n\in\integers} x\parens*{n\Ts}h\parens*{t-n\Ts}
