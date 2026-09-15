@@ -12,7 +12,7 @@
         ここに$\xInI,\xInQ,\xOutI,\xOutQ$はそれぞれ入力の実数値信号，出力の実数値信号である。
         $\hII,\hIQ,\hQQ,\hQI$は実数係数フィルタのインパルス応答である。
         \par
-        以下の議論は，連続時間系，離散時間系の両方に適用でき，フィルタのインパルス応答は有限，無限どちらでもよい。
+        以下の議論は，連続時間系、離散時間系の両方に適用でき，フィルタのインパルス応答は有限，無限どちらでもよい。
         そこで以下では連続時間系の無限インパルス応答フィルタを対象にする。
         入出力の関係式は次の通りである。
         \begin{equation}
@@ -148,7 +148,7 @@
                 次の状況を考える。
                 \begin{itemize}
                     \item 受信側の搬送波の同相成分：$(1+\varepsilon_A)\cos(\omegaCarrier t - \varepsilon_\theta/2)$，直交成分：$-(1-\varepsilon_A)\sin(\omegaCarrier t + \varepsilon_\theta/2)$
-                    \item 送信側，受信側のベースバンド信号の同相成分：\ref{送信側のみに IQ 不平衡が存在する場合}と同じ
+                    \item 送信側、受信側のベースバンド信号の同相成分：\ref{送信側のみに IQ 不平衡が存在する場合}と同じ
                 \end{itemize}
                 このとき，$[\IBT(t), \QBT(t)]^\top$から$[\IBR(t), \QBR(t)]^\top$への変換は次式で与えられる。
                 \[
@@ -182,7 +182,7 @@
                     h_1 & h_0
                 \end{bmatrix}
             \]
-            ここに$h_0,h_1$は適当な実数，$\xInI,\xInQ$補正前のベースバンド信号の同相，直交成分，$\xOutI,\xOutQ$補正後のベースバンド信号の同相，直交成分である。
+            ここに$h_0,h_1$は適当な実数，$\xInI,\xInQ$補正前のベースバンド信号の同相、直交成分，$\xOutI,\xOutQ$補正後のベースバンド信号の同相，直交成分である。
             この補正計算をディジタル回路に実装する前提で，乗算回路の個数を4ではなく3とする方法を示す。
             次の量を定義する。
             \[ \hd \coloneq h_0 - h_1,\xs \coloneq \xInI + \xInQ,\xAlpha \coloneq \hd\xInI,\xBeta \coloneq \hd\xInQ,\xGamma \coloneq h_1\xs \]
