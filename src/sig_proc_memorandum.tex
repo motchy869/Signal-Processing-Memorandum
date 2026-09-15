@@ -22,7 +22,9 @@
 \usepackage{arydshln}
 \usepackage{ascmac}
 \usepackage{bbm}
-%\usepackage{bytefield} % currently not used
+\usepackage{braket}
+% \usepackage{bytefield} % currently not used
+% \usepackage{cases} % currently not used
 \usepackage{chngcntr} % for counterwithin command
 \usepackage[usenames]{color}
 \usepackage{currfile}
@@ -43,7 +45,7 @@
 \usepackage{makecell} % [How to add a forced line break inside a table cell](https://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell)
 % \usepackage{pdflscape} % currently not used
 \usepackage[group-separator={,}]{siunitx}
-\usepackage{tablefootnote}
+% \usepackage{tablefootnote} % currently not used
 \usepackage{tocloft} % to remove paragraph indentation in table of contents
 
 % for \arrayrulecolor command
@@ -52,13 +54,13 @@
 
 \usepackage{ulem} % for \uline etc.
 \usepackage{upgreek} % for upright Greek letters in math mode (\upalpha, \upbeta, \upgamma, ...)
-\usepackage{xspace} % [Space after LaTeX commands](https://tex.stackexchange.com/questions/31091/space-after-latex-commands)
+% \usepackage{xspace} % [Space after LaTeX commands](https://tex.stackexchange.com/questions/31091/space-after-latex-commands)
 \usepackage{xurl}
 \usepackage{zref-xr}
 
 % cross reference
 \zxrsetup{toltxlabel} % use normal LaTeX style \ref
-\zexternaldocument*[1:]{reference/Mathematics_Memorandum_v0.23.0} % usage: \zexternaldocument*[prefix]{path/to/aux/file/without/extension}[path/to/pdf/file] Only ascii name is allowed.
+\zexternaldocument*[1:]{reference/mathematics_memorandum_v0.23.0} % usage: \zexternaldocument*[prefix]{path/to/aux/file/without/extension}[path/to/pdf/file] Only ascii name is allowed.
 
 % ---------- structure settings ----------
 \makeatletter
@@ -73,13 +75,13 @@
 
 \renewcommand*\thepart{\arabic{part}} % arabic numbers for part
 
-% Adds part number to the beginning of section, subsection, and subsubsection numbers.
+% Add part number to the beginning of section, subsection, and subsubsection numbers.
 \counterwithin{chapter}{part}\renewcommand{\thechapter}{\thepart.\arabic{chapter}}
 \counterwithin{section}{chapter}\renewcommand{\thesection}{\thechapter.\arabic{section}}
 \counterwithin{subsection}{section}\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \counterwithin{subsubsection}{subsection}\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 
-% Stores current level number and title (later used in header).
+% Store current level number and title (later used in header).
 \newcommand\currLevelNo{} % up to chapter
 \newcommand\currLevelTitle{NOT YET SET}
 \makeatletter
@@ -108,8 +110,8 @@
 \crefname{table}{表}{表}
 \newcommand{\crefpairconjunction}{と}
 \newcommand{\crefrangeconjunction}{から}
-\newcommand{\crefmiddleconjunction}{、}
-\newcommand{\creflastconjunction}{、および}
+\newcommand{\crefmiddleconjunction}{，}
+\newcommand{\creflastconjunction}{，および}
 
 % datatool settings
 %% currently not used
@@ -149,7 +151,7 @@
 \setlength{\cftsubsubsecnumwidth}{5.0em}
 \setlength{\cftparanumwidth}{6.0em}
 
-% Places dots between chapter titles and page numbers in table of contents.
+% Place dots between chapter titles and page numbers in table of contents.
 % see: [LaTeXにおいて体裁を整えるのに便利なパッケージ](https://qiita.com/shohirose/items/52f778ebd21f8e5f5c0e)
 \renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
 \renewcommand{\cftchapdotsep}{\cftdotsep}
@@ -174,8 +176,8 @@
 % % 1. [Combining color, bitboxes* and base alignment](https://tex.stackexchange.com/questions/371175/combining-color-bitboxes-and-base-alignment)
 % % 2. [Colored custom bytefield](https://www.latex4technics.com/?note=3c6du2)
 % \newcommand*{\colorbitbox}[3]{%
-%     \rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
-%     \bitbox{#2}{#3}%
+%      \rlap{\bitbox{#2}{\color{#1}\rule{\width}{\height}}}%
+%      \bitbox{#2}{#3}%
 % }
 
 % listings settings
