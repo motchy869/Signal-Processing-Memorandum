@@ -9,17 +9,17 @@
         $d\in\naturalNumbers,N_l\in\naturalNumbers\;(l=1,2,\dots,d),\bm{k}\in\integers^d$とする。
         $\Omega \coloneq \{0,1,\dots,N_1-1\}\times\{0,1,\dots,N_2-1\}\times\cdots\times\{0,1,\dots,N_d-1\}$とする。
         $f$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n})$とするとき，次式で定義される，$\bm{k}$に関する離散座標信号を$f$の離散Fourier変換(Discrete Fourier Transform, DFT)という。
-        \[ \DFTwithArg{f}{\bm{k}} \coloneq \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} f(\bm{n}) \]
+        \[ \DFT\parens*{f}\parens*{\bm{k}} \coloneq \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} f(\bm{n}) \]
 
     \section{Hermiteな離散座標信号のDFTは実数である}
         \label{Hermiteな離散座標信号のDFTは実数である}
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega,f$の定義は\ref{DFTの定義}と同じものとする。
-            $f$にさらにHermite性: $\conj{f(\bm{n})} = f(-\bm{n})$を要請するとき，$\DFTwithArg{f}{\bm{k}}$は実数となる。
+            $f$にさらにHermite性: $\conj{f(\bm{n})} = f(-\bm{n})$を要請するとき，$\DFT\parens*{f}\parens*{\bm{k}}$は実数となる。
         \end{shadebox}
         \begin{proof}
             \begin{align*}
-                2\Im\parens*{\DFTwithArg{f}{\bm{k}}} &= \DFTwithArg{f}{\bm{k}} - \conj{\DFTwithArg{f}{\bm{k}}} \\
+                2\Im\parens*{\DFT\parens*{f}\parens*{\bm{k}}} &= \DFT\parens*{f}\parens*{\bm{k}} - \conj{\DFT\parens*{f}\parens*{\bm{k}}} \\
                 &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})\conj{f(\bm{n})}
             \end{align*}
             ここで$\bm{n}_\mathrm{M} \coloneq [N_1,\dots,N_d]^\top$とすると，
@@ -28,7 +28,7 @@
             \[ \conj{f(\bm{n})} = f(-\bm{n}) = f(\bm{n}_\mathrm{M}-\bm{n}) \]
             以上より
             \begin{align*}
-                2\Im\parens*{\DFTwithArg{f}{\bm{k}}} &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})f(\bm{n}_\mathrm{M}-\bm{n}) \\
+                2\Im\parens*{\DFT\parens*{f}\parens*{\bm{k}}} &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})f(\bm{n}_\mathrm{M}-\bm{n}) \\
                 &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) \\
                 &\phantom{=} (\{(\bm{n}, \bm{n}_\mathrm{M}-\bm{n}) | \bm{n}\in\Omega\} = \{(\bm{n}_\mathrm{M}-\bm{n}), \bm{n} | \bm{n}\in\Omega\}\text{を用いた}) \\
                 &= 0
@@ -42,17 +42,17 @@
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
             $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき，次が成り立つ。
-            \[ \DFTwithArg{f\circledast g}{\bm{k}} = \parens*{\prod_{l=1}^d N_l}^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
+            \[ \DFT\parens*{f\circledast g}\parens*{\bm{k}} = \parens*{\prod_{l=1}^d N_l}^{1/2}\DFT\parens*{f}\parens*{\bm{k}}\DFT\parens*{g}\parens*{\bm{k}} \]
         \end{shadebox}
         \begin{proof}
             $\bm{N} \coloneq [N_1,\dots,N_d]^\top$とする。
             \begin{align*}
-                \DFTwithArg{f\circledast g}{\bm{k}} &= \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \parens*{f\circledast g}(\bm{n}) = \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \\
+                \DFT\parens*{f\circledast g}\parens*{\bm{k}} &= \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \parens*{f\circledast g}(\bm{n}) = \sum_{\bm{n}\in\Omega}\conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})g((\bm{n}-\bm{m})\%\bm{N}) \\
                 &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}g((\bm{n}-\bm{m})\%\bm{N}) \\
                 &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \parens*{\prod_{l=1}^d N_l}^{1/2} \conj{W(\bm{k},\bm{m})} \conj{W(\bm{k},\bm{n}-\bm{m})} g((\bm{n}-\bm{m})\%\bm{N}) \\
                 &= \parens*{\prod_{l=1}^d N_l}^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},(\bm{n}-\bm{m})\%\bm{N})} g((\bm{n}-\bm{m})\%\bm{N}) \\
                 &= \parens*{\prod_{l=1}^d N_l}^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} g(\bm{n}) \\
-                &= \parens*{\prod_{l=1}^d N_l}^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}}
+                &= \parens*{\prod_{l=1}^d N_l}^{1/2}\DFT\parens*{f}\parens*{\bm{k}}\DFT\parens*{g}\parens*{\bm{k}}
             \end{align*}
         \end{proof}
 
@@ -61,14 +61,14 @@
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
             $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とする。
-            $f$と$g$の巡回相関を$R_{f,g}(n) = \cycCorrel{f}{g}(\bm{n})$とする。
+            $f$と$g$の巡回相関を$R_{f,g}(n) = \cycCorrel\parens*{f,g}(\bm{n})$とする。
             このとき，次が成り立つ。
-            \[ \DFTwithArg{R_{f,g}}{\bm{k}} = \parens*{\prod_{l=1}^d N_l}^{1/2}\DFTwithArg{f}{\bm{k}}\conj{\DFTwithArg{g}{\bm{k}}} \]
+            \[ \DFT\parens*{R_{f,g}}\parens*{\bm{k}} = \parens*{\prod_{l=1}^d N_l}^{1/2}\DFT\parens*{f}\parens*{\bm{k}}\conj{\DFT\parens*{g}\parens*{\bm{k}}} \]
         \end{shadebox}
         \begin{proof}
             $\bm{N} \coloneq [N_1,\dots,N_d]^\top$とする。
             \begin{align*}
-                \DFTwithArg{R_{f,g}}{\bm{k}} &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})\conj{g((\bm{m}-\bm{n})\%\bm{N})} \\
+                \DFT\parens*{R_{f,g}}\parens*{\bm{k}} &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})} \sum_{\bm{m}\in\Omega} f(\bm{m})\conj{g((\bm{m}-\bm{n})\%\bm{N})} \\
                 &= \sum_{\bm{m}\in\Omega} f(\bm{m}) \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}\conj{g((\bm{m}-\bm{n})\%\bm{N})} \tag{1}
             \end{align*}
             ここで$\conj{W(\bm{k},\bm{n})}$を変形して次式を得る。
@@ -78,15 +78,15 @@
             \end{align*}
             これを式(1)に適用して次式を得る。
             \begin{align*}
-                \DFTwithArg{R_{f,g}}{\bm{k}} &= \parens*{\prod_{l=1}^d N_l}^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega}\conj{\conj{W(\bm{k},(\bm{m}-\bm{n})\%\bm{N})}g((\bm{m}-\bm{n})\%\bm{N})} \\
-                &= \parens*{\prod_{l=1}^d N_l}^{1/2}\DFTwithArg{f}{\bm{k}}\conj{\DFTwithArg{g}{\bm{k}}}
+                \DFT\parens*{R_{f,g}}\parens*{\bm{k}} &= \parens*{\prod_{l=1}^d N_l}^{1/2} \sum_{\bm{m}\in\Omega} \conj{W(\bm{k},\bm{m})}f(\bm{m}) \sum_{\bm{n}\in\Omega}\conj{\conj{W(\bm{k},(\bm{m}-\bm{n})\%\bm{N})}g((\bm{m}-\bm{n})\%\bm{N})} \\
+                &= \parens*{\prod_{l=1}^d N_l}^{1/2}\DFT\parens*{f}\parens*{\bm{k}}\conj{\DFT\parens*{g}\parens*{\bm{k}}}
             \end{align*}
         \end{proof}
     \section{巡回畳み込みのDFT}
         \begin{shadebox}
             $d,N_l,\bm{k},\Omega$の定義は\ref{DFTの定義}と同じものとする。
             $f,g$を周期が$(N_1,N_2,\dots,N_d)$であるような離散座標信号$f,g: \integers^d\to\complexNumbers;\;\bm{n} = [n_1,n_2,\dots,n_d]^\top \mapsto f(\bm{n}),g(\bm{n})$とするとき，次が成り立つ。
-            \[ \DFTwithArg{f\circledast g}{\bm{k}} = \parens*{\prod_{l=1}^d N_l}^{1/2}\DFTwithArg{f}{\bm{k}}\DFTwithArg{g}{\bm{k}} \]
+            \[ \DFT\parens*{f\circledast g}\parens*{\bm{k}} = \parens*{\prod_{l=1}^d N_l}^{1/2}\DFT\parens*{f}\parens*{\bm{k}}\DFT\parens*{g}\parens*{\bm{k}} \]
         \end{shadebox}
         \begin{proof}
             \ref{巡回相関のDFT}と同じ要領で示せる。
@@ -94,7 +94,7 @@
     \section{GaussianノイズのDFT}
         \begin{shadebox}
             $F(n) \in \complexNumbers\;(n=0,1,\dots,N-1)$は互いに独立で，複素正規分布$N(0,\sigma^2)$に従うとする$\parens*{\text{p}(f) = \frac{1}{2\pi\sigma^2}\exp\frac{-\Re\parens*{f}^2-\Im\parens*{f}^2}{2\sigma^2} = \frac{1}{2\pi\sigma^2}\exp\frac{-|f|^2}{2\sigma^2}}$。
-            これのDFTを$G(k) = \DFTwithArg{F}{k}$とするとき，$G(k)\;(k=0,1,\dots,N-1)$もまた互いに独立で，複素正規分布$N(0,\sigma^2)$に従う。
+            これのDFTを$G(k) = \DFT\parens*{F}\parens*{k}$とするとき，$G(k)\;(k=0,1,\dots,N-1)$もまた互いに独立で，複素正規分布$N(0,\sigma^2)$に従う。
         \end{shadebox}
         \begin{proof}
             \[ P \in \complexNumbers^{N\times N}, P_{k,n} \coloneq W(k,n) \coloneq \frac{1}{\sqrt{N}}\exp i\frac{kn}{N}2\pi\;(k,n \in \{0,1,\dots,N-1\}) \]

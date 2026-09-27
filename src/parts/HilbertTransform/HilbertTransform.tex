@@ -32,13 +32,13 @@
         \end{proof}
     \chapter{Hilbert変換のFourier変換}
         \begin{shadebox}
-            $x:\realNumbers\to\complexNumbers$を連続時間信号とし，$\hat{x} = \HilbertTransform{x},X = \FT{x}$とする。
+            $x:\realNumbers\to\complexNumbers$を連続時間信号とし，$\hat{x} = \HilbertTransform\parens*{x},X = \FT\parens*{x}$とする。
             次式が成り立つ。
-            \[ \FT{\hat{x}}(\omega) = -i\sgn(\omega)X(\omega) \]
+            \[ \FT\parens*{\hat{x}}(\omega) = -i\sgn(\omega)X(\omega) \]
         \end{shadebox}
         \begin{proof}
             \begin{align*}
-                \FT{\hat{x}}(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{x(t-\tau)}{\tau}}{}{\tau}\NapierE^{-i\omega t}}{}{t} \\
+                \FT\parens*{\hat{x}}(\omega) &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{x(t-\tau)}{\tau}}{}{\tau}\NapierE^{-i\omega t}}{}{t} \\
                 &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{\frac{1}{\pi}\pv\integrate{-\infty}{\infty}{x(t-\tau)\NapierE^{-i\omega(t-\tau)}\frac{\NapierE^{-i\omega \tau}}{\tau}}{}{\tau}}{}{t} \\
                 &= \frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{\NapierE^{-i\omega \tau}}{\tau}\parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{x(t-\tau)\NapierE^{-i\omega(t-\tau)}}{}{t}}}{}{\tau} \\
                 &= \frac{1}{\pi}\pv\integrate{-\infty}{\infty}{\frac{\NapierE^{-i\omega \tau}}{\tau}X(\omega)}{}{\tau} \\

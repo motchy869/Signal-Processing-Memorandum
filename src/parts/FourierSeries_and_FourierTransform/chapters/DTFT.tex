@@ -4,7 +4,7 @@
     \section{定義}
         $d\in\naturalNumbers,\bm{T}_\mathrm{s}(\in\realNumbers^d)>\bm{0}$とする。
         $f:\integers^d\to\complexNumbers$に対して，次式で定義される，$\bm{\omega}\in\realNumbers^d$に関する連続座標信号を$f$の離散時間Fourier変換という。
-        \[ \DTFTwithArg{f}{\bm{\omega}} \coloneq \sum_{\bm{n}\in\integers^d} f(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \]
+        \[ \DTFT\parens*{f}\parens*{\bm{\omega}} \coloneq \sum_{\bm{n}\in\integers^d} f(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \]
         $\bm{\omega}$は各軸方向の角周波数をまとめて表したベクトルであり，$\bm{T}_\mathrm{s}$は各軸方向のサンプル周期である。
         DTFTは$\bm{\omega}$に関する周期関数であり，その周期は$2\pi\bm{1}\HadamardDiv\bm{T}_\mathrm{s}$である。
         \subsection{呼称について}
@@ -23,9 +23,9 @@
     \section{逆離散時間Fourier変換(IDTFT)}
         $d\in\naturalNumbers,\bm{T}_\mathrm{s}(\in\realNumbers^d)>\bm{0},\Omega := \prod_{k=1}^d [-\pi/T_{\mathrm{s},k},\pi/T_{\mathrm{s},k})$とする。
         $F:\realNumbers^d\to\complexNumbers$に対して，次式で定義される，$\bm{n}\in\integers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT, IDTFT)という。
-        \[ \IDTFTwithArg{F}{\bm{n}} \coloneq \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \]
+        \[ \IDTFT\parens*{F}\parens*{\bm{n}} \coloneq \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \]
         \subsection{IDTFTがDTFTの逆変換であること}
-            厳密な導出はここでは述べないが，$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\IDTFTwithArg{\DTFT\parens*{f}}{\bm{n}} = f(\bm{n})$となることを簡単に証明できる。
+            厳密な導出はここでは述べないが，$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\IDTFT\parens*{\DTFT\parens*{f}}\parens*{\bm{n}} = f(\bm{n})$となることを簡単に証明できる。
             $\sum$と$\int$の順序交換が簡単に行えるからである。
     \section{積と畳み込みとの関係}
         以下では既出の記号の定義は上書きしない限り引き継ぐ。
@@ -42,7 +42,7 @@
         \subsection{積のDTFT}
             $f,g$の積のDTFTは次式で求まる。
             \begin{align*}
-                \DTFTwithArg{fg}{\bm{\omega}} &= \sum_{\bm{n}\in\integers^d} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) = \sum_{\bm{n}\in\integers^d} \IDTFTwithArg{F}{\bm{n}} g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
+                \DTFT\parens*{fg}\parens*{\bm{\omega}} &= \sum_{\bm{n}\in\integers^d} f(\bm{n})g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) = \sum_{\bm{n}\in\integers^d} \IDTFT\parens*{F}\parens*{\bm{n}} g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
                 &= \sum_{\bm{n}\in\integers^d} \parens*{\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\NapierE^{i(\tilde{\bm{\omega}}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}}}{}{\tilde{\bm{\omega}}}} g(\bm{n})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
                 &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})\parens*{\sum_{\bm{n}\in\integers^d} g(\bm{n})\NapierE^{-i\parens*{(\bm{\omega}-\tilde{\bm{\omega}})\HadamardProd\bm{T}_\mathrm{s}}^\top\bm{n}}}}{}{\tilde{\bm{\omega}}} \\
                 &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}} = (F*G)(\omega)
@@ -50,15 +50,15 @@
         \subsection{畳み込みのDTFT}
             $f,g$の畳み込みのDTFTは次式で求まる。
             \begin{align*}
-                \DTFTwithArg{f*g}{\bm{\omega}} &= \sum_{\bm{n}\in\integers^d} \sum_{\bm{m}\in\integers^d}f(\bm{m})g(\bm{n}-\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
+                \DTFT\parens*{f*g}\parens*{\bm{\omega}} &= \sum_{\bm{n}\in\integers^d} \sum_{\bm{m}\in\integers^d}f(\bm{m})g(\bm{n}-\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n}) \\
                 &= \sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{m}) \sum_{\bm{n}\in\integers^d} g(\bm{n}-\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top(\bm{n}-\bm{m})) \\
                 &= F(\bm{\omega})G(\bm{\omega})
             \end{align*}
         \subsection{積のIDTFT}
             DTFTの可逆性から直ちに言えるが，敢えて直接計算してみる。
             \begin{align*}
-                \IDTFTwithArg{FG}{\bm{n}} &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
-                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\parens*{\DTFTwithArg{f}{\bm{\omega}}}G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
+                \IDTFT\parens*{FG}\parens*{\bm{n}} &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
+                &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\parens*{\DTFT\parens*{f}\parens*{\bm{\omega}}}G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
                 &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{\parens*{\sum_{\bm{m}\in\integers^d} f(\bm{m})\exp(-i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{m})}G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
                 &= \sum_{\bm{m}\in\integers^d} f(\bm{m}) \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d} \integrate{\Omega}{}{G(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top(\bm{n}-\bm{m}))}{}{\bm{\omega}} \\
                 &= \sum_{\bm{m}\in\integers^d} f(\bm{m})g(\bm{n}-\bm{m}) = (f*g)(\bm{n})
@@ -66,7 +66,7 @@
         \subsection{畳み込みのIDTFT}
             DTFTの可逆性から直ちに言えるが，敢えて直接計算してみる。
             \begin{align*}
-                &\phantom{=} \IDTFTwithArg{F*G}{\bm{n}} \\
+                &\phantom{=} \IDTFT\parens*{F*G}\parens*{\bm{n}} \\
                 &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{(F*G)(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
                 &= \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\bm{\omega}\in\Omega}{}{\parens*{\frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\tilde{\bm{\omega}}\in\Omega}{}{F(\tilde{\bm{\omega}})G(\bm{\omega}-\tilde{\bm{\omega}})}{}{\tilde{\bm{\omega}}}}\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \\
                 &=
@@ -79,13 +79,13 @@
         \label{定数関数1のDTFT}
         簡単のため1次元の場合について考察する。
         工学系の学生を対象とする講義では，\\
-        $\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
-        $\IDTFTwithArg{(2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)}{x}=1$の確認は簡単であり，DTFTの可逆性から$\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$を受け入れる説明がなされると思う。
+        $\DTFT\parens*{1}\parens*{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$($\delta$はDiracのデルタ関数)を詳細を割愛して結果として受け入れさせる場合が多いと思う。
+        $\IDTFT\parens*{(2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)}\parens*{x}=1$の確認は簡単であり，DTFTの可逆性から$\DTFT\parens*{1}\parens*{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$を受け入れる説明がなされると思う。
         \par
-        ここではDirichlet積分を用いて$\DTFTwithArg{1}{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$を直接的に導出してみる。
+        ここではDirichlet積分を用いて$\DTFT\parens*{1}\parens*{\omega} = (2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$を直接的に導出してみる。
         DTFTの定義から次式が成り立つ。
         \[
-            \DTFTwithArg{1}{\omega} = \lim_{N\to\infty} \sum_{m=-N}^N \NapierE^{i\omega \Ts m} = \frac{\sin(N+1/2)\omega \Ts}{\sin(\omega \Ts/2)}
+            \DTFT\parens*{1}\parens*{\omega} = \lim_{N\to\infty} \sum_{m=-N}^N \NapierE^{i\omega \Ts m} = \frac{\sin(N+1/2)\omega \Ts}{\sin(\omega \Ts/2)}
         \]
         最右辺は等比数列の和の公式を用いた後，分母と分子に$\NapierE^{-i\omega/2}$を掛けて整理すると得られる。
         これが$N\to\infty$で$(2\pi/\Ts)\sum_{m\in\integers}\delta(\omega-2m\pi/\Ts)$として振る舞うことを確かめる。
@@ -140,7 +140,7 @@
         $\Ts>0$とする。
         $\sin(\omega_0 \Ts n + \phi)\;(\omega_0\in\realNumbers, n\in\integers)$のDTFTは\ref{定数関数1のDTFT}の結果を用いて次のようにして得られる。
         \begin{align*}
-            \DTFTwithArg{\sin(\omega_0 \Ts n + \phi)}{\omega} &= \frac{1}{2i}\sum_{m\in\integers} \parens*{\exp(i(\omega_0\Ts m + \phi) - \exp(-i(\omega_0\Ts m + \phi))}\exp(-i\omega\Ts m) \\
+            \DTFT\parens*{\sin(\omega_0 \Ts n + \phi)}\parens*{\omega} &= \frac{1}{2i}\sum_{m\in\integers} \parens*{\exp(i(\omega_0\Ts m + \phi) - \exp(-i(\omega_0\Ts m + \phi))}\exp(-i\omega\Ts m) \\
             &= \frac{1}{2i}\sum_{m\in\integers} \parens*{\NapierE^{i\phi}\exp(i(\omega_0-\omega)\Ts m) - \NapierE^{-i\phi}\exp(i(-\omega_0-\omega)\Ts m)} \\
             &= \frac{1}{2i}\NapierE^{i\phi}\sum_{m\in\integers}\delta(\omega_0-\omega - 2\pi m/\Ts) - \frac{1}{2i}\NapierE^{-i\phi}\sum_{m\in\integers}\delta(-\omega_0-\omega - 2\pi m/\Ts) \\
             &= \frac{1}{2i}\NapierE^{i\phi}\sum_{m\in\integers}\delta(-(\omega-\omega_0) - 2\pi m/\Ts) - \frac{1}{2i}\NapierE^{-i\phi}\sum_{m\in\integers}\delta(-(\omega+\omega_0) - 2\pi m/\Ts) \\
@@ -149,7 +149,7 @@
         \end{align*}
         上の結果を利用して，$\cos(\omega_0 \Ts n + \phi)$のDTFTは次式となる。
         \begin{align*}
-            \DTFT\parens*{\cos(\omega_0 \Ts n + \phi)}{\omega} &= \DTFTwithArg{\sin(\omega_0 \Ts n + \phi + \pi/2)}{\omega} \\
+            \DTFT\parens*{\cos(\omega_0 \Ts n + \phi)}{\omega} &= \DTFT\parens*{\sin(\omega_0 \Ts n + \phi + \pi/2)}\parens*{\omega} \\
             &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{\NapierE^{i(\phi+\pi/2)}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i(\phi+\pi/2)}\delta(\omega+\omega_0 - 2\pi m/\Ts)} \\
             &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{i\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + i\NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)} \\
             &= \frac{\pi}{\Ts}\sum_{m\in\integers}\parens*{\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + \NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)}
@@ -159,9 +159,9 @@
         簡単のため1次元の場合について考察する。
         $d\in\naturalNumbers$とする。
         連続時間信号$f:\realNumbers\to\complexNumbers^d$をサンプル周期$\Ts$でサンプリングした信号$\tilde{f}:\naturalNumbers\to\complexNumbers^d$のDTFTを求める。
-        $F := \FT{f}$とする。
+        $F := \FT\parens*{f}$とする。
         \begin{align*}
-            \DTFTwithArg{\tilde{f}}{\omega} &= \sum_{n=-\infty}^\infty f(n\Ts)\NapierE^{-i\omega\Ts n} = \sum_{n=-\infty}^\infty \IFTwithArg{F}{n\Ts} \NapierE^{-i\omega\Ts n} \\
+            \DTFT\parens*{\tilde{f}}\parens*{\omega} &= \sum_{n=-\infty}^\infty f(n\Ts)\NapierE^{-i\omega\Ts n} = \sum_{n=-\infty}^\infty \IFT\parens*{F}\parens*{n\Ts} \NapierE^{-i\omega\Ts n} \\
             &= \sum_{n=-\infty}^\infty \parens*{\frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\NapierE^{i\omega'\Ts n}}{}{\omega'}}\NapierE^{-i\omega\Ts n} = \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\sum_{n=-\infty}^\infty \NapierE^{i(\omega'-\omega)\Ts n}}{}{\omega'} \\
             &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\frac{2\pi}{\Ts}\sum_{n=-\infty}^\infty \delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} \quad (\text{\ref{定数関数1のDTFT}を用いた。}) \\
             &= \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty \integrate{-\infty}{\infty}{F(\omega')\delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} = \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty F(\omega + 2\pi n/\Ts) \tag {1}
@@ -176,7 +176,7 @@
         周波数で表現するなら，帯域制限区間の端部の周波数$f_0 := \omega_0/(2\pi)$,サンプリング周波数$\fsamp := 1/\Ts$を用いて$\fsamp>2f_0$である。
         \subsection{補足:式(1)のもう一つの導出}
             \begin{align*}
-                \DTFTwithArg{\tilde{f}}{\omega} &= \sum_{n=-\infty}^\infty f(n\Ts)\NapierE^{-i\omega\Ts n} = \sum_{n=-\infty}^\infty\parens*{\integrate{-\infty}{\infty}{f(t)\delta(t-n\Ts)}{}{t}}\exp(-i\omega\Ts n) \\
+                \DTFT\parens*{\tilde{f}}\parens*{\omega} &= \sum_{n=-\infty}^\infty f(n\Ts)\NapierE^{-i\omega\Ts n} = \sum_{n=-\infty}^\infty\parens*{\integrate{-\infty}{\infty}{f(t)\delta(t-n\Ts)}{}{t}}\exp(-i\omega\Ts n) \\
                 &= \integrate{-\infty}{\infty}{f(t)\sum_{n=-\infty}^\infty\delta(t-n\Ts)\exp(-i\omega\Ts n)}{}{t} = \integrate{-\infty}{\infty}{f(t)\sum_{n=-\infty}^\infty\delta(t-n\Ts)\exp(-i\omega t)}{}{t} \\
                 &= \integrate{-\infty}{\infty}{f(t)\exp(-i\omega t)\sum_{n=-\infty}^\infty\delta(t-n\Ts)}{}{t} \\
                 &= \integrate{-\infty}{\infty}{f(t)\exp(-i\omega t)\frac{1}{\Ts}\sum_{n=-\infty}^\infty \exp\parens*{i t n\frac{2\pi}{\Ts}}}{}{t} \quad (\text{\ref{定数関数1のDTFT}を用いた。}) \\
@@ -193,7 +193,7 @@
         \end{shadebox}
         (直接的で長い証明)
         \begin{proof}
-            システムのインパルス応答を$h(n)(\in\realNumbers) = \IDTFTwithArg{H}{n}$とすると$g(n) = (h*f)(n)$と表される。
+            システムのインパルス応答を$h(n)(\in\realNumbers) = \IDTFT\parens*{H}\parens*{n}$とすると$g(n) = (h*f)(n)$と表される。
             \begin{align*}
                 g(n) &= (h*f)(n) = \sum_{m=-\infty}^\infty h(m)f(n-m) = \sum_{m=-\infty}^\infty \parens*{\frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\exp(i\omega\Ts m)}{}{\omega}}f(n-m) \\
                 &= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\sum_{m=-\infty}^\infty \exp(i\omega\Ts m)f(n-m)}{}{\omega} \\

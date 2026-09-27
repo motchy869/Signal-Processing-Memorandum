@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Rx IF signal
 - Changed:
   - Updated MtyLaTeXCmds submodule.
+  - Argument delimiters of local operator macros are now supplied by callers.
 
 ## [0.20.0] - 2026-07-24
 

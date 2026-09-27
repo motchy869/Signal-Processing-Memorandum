@@ -1,14 +1,10 @@
 % operators
-% grouped by functionality
-\newcommand*{\cycCorrel}[2]{\mathrm{cycCor}\parens*{#1,#2}}
-\newcommand*{\FT}[1]{\mathcal{F}\parens*{#1}}
-\newcommand*{\FTwithArg}[2]{\FT{#1}\parens*{#2}}
-\newcommand*{\IFT}[1]{\mathcal{F}^{-1}\parens*{#1}}
-\newcommand*{\IFTwithArg}[2]{\IFT{#1}\parens*{#2}}
-\newcommand*{\DFTwithArg}[2]{\DFT\parens*{#1}\parens*{#2}}
-\newcommand*{\DTFTwithArg}[2]{\DTFT\parens*{#1}\parens*{#2}}
-\newcommand*{\IDTFTwithArg}[2]{\IDTFT\parens*{#1}\parens*{#2}}
-\newcommand*{\HilbertTransform}[1]{\mathrm{H}\parens*{#1}}
+% Delimiters around the argument are the caller's responsibility.
+% Write, e.g., \FT\parens*{f}, not \FT\parens*{f}.
+\newcommand*{\cycCorrel}{\operatorname{cycCor}}
+\newcommand*{\FT}{\operatorname{\mathcal{F}}}
+\newcommand*{\IFT}{\operatorname{\mathcal{F}}^{-1}}
+\newcommand*{\HilbertTransform}{\operatorname{H}}
 
 % symbols
 % sorted in alphabetical order
