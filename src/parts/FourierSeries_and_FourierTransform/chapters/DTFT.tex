@@ -25,7 +25,7 @@
         $F:\realNumbers^d\to\complexNumbers$に対して，次式で定義される，$\bm{n}\in\integers^d$に関する離散座標信号を$F$の逆離散時間Fourier変換(Inverse DTFT, IDTFT)という。
         \[ \IDTFTwithArg{F}{\bm{n}} \coloneq \frac{\prod_{k=1}^d T_{\mathrm{s},k}}{(2\pi)^d}\integrate{\Omega}{}{F(\bm{\omega})\exp(i(\bm{\omega}\HadamardProd\bm{T}_\mathrm{s})^\top\bm{n})}{}{\bm{\omega}} \]
         \subsection{IDTFTがDTFTの逆変換であること}
-            厳密な導出はここでは述べないが，$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\IDTFTwithArg{\DTFT{f}}{\bm{n}} = f(\bm{n})$となることを簡単に証明できる。
+            厳密な導出はここでは述べないが，$\sum_{\bm{n}\in\integers^d} f(\bm{n})$が絶対収束する場合は$\IDTFTwithArg{\DTFT\parens*{f}}{\bm{n}} = f(\bm{n})$となることを簡単に証明できる。
             $\sum$と$\int$の順序交換が簡単に行えるからである。
     \section{積と畳み込みとの関係}
         以下では既出の記号の定義は上書きしない限り引き継ぐ。
@@ -149,7 +149,7 @@
         \end{align*}
         上の結果を利用して，$\cos(\omega_0 \Ts n + \phi)$のDTFTは次式となる。
         \begin{align*}
-            \DTFT{\cos(\omega_0 \Ts n + \phi)}{\omega} &= \DTFTwithArg{\sin(\omega_0 \Ts n + \phi + \pi/2)}{\omega} \\
+            \DTFT\parens*{\cos(\omega_0 \Ts n + \phi)}{\omega} &= \DTFTwithArg{\sin(\omega_0 \Ts n + \phi + \pi/2)}{\omega} \\
             &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{\NapierE^{i(\phi+\pi/2)}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i(\phi+\pi/2)}\delta(\omega+\omega_0 - 2\pi m/\Ts)} \\
             &= \frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{i\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + i\NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)} \\
             &= \frac{\pi}{\Ts}\sum_{m\in\integers}\parens*{\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) + \NapierE^{-i(\phi)}\delta(\omega+\omega_0 - 2\pi m/\Ts)}
@@ -166,8 +166,8 @@
             &= \frac{1}{\sqrt{2\pi}}\integrate{-\infty}{\infty}{F(\omega')\frac{2\pi}{\Ts}\sum_{n=-\infty}^\infty \delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} \quad (\text{\ref{定数関数1のDTFT}を用いた。}) \\
             &= \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty \integrate{-\infty}{\infty}{F(\omega')\delta(\omega'-\omega - 2\pi n/\Ts)}{}{\omega'} = \frac{\sqrt{2\pi}}{\Ts} \sum_{n=-\infty}^\infty F(\omega + 2\pi n/\Ts) \tag {1}
         \end{align*}
-        このように，$\DTFT{\tilde{f}}$は$F$をスケーリングして$2\pi/\Ts$周期で重ね合わせたものになる。
-        $f$が帯域制限信号である，すなわちある$\omega_0\geq 0$が存在して$F$の台が$[-\omega_0,\omega_0]$の範囲に収まるとき，$\Ts$を十分に小さくとれば，$\DTFT{\tilde{f}}$の一意に区別可能な角周波数の区間$[-\pi/\Ts,\pi/\Ts]$で$\DTFT{\tilde{f}}$は$(\sqrt{2\pi}/\Ts)F$と一致する。
+        このように，$\DTFT\parens*{\tilde{f}}$は$F$をスケーリングして$2\pi/\Ts$周期で重ね合わせたものになる。
+        $f$が帯域制限信号である，すなわちある$\omega_0\geq 0$が存在して$F$の台が$[-\omega_0,\omega_0]$の範囲に収まるとき，$\Ts$を十分に小さくとれば，$\DTFT\parens*{\tilde{f}}$の一意に区別可能な角周波数の区間$[-\pi/\Ts,\pi/\Ts]$で$\DTFT\parens*{\tilde{f}}$は$(\sqrt{2\pi}/\Ts)F$と一致する。
         逆に$\Ts$が大きいとき，$[-\pi/\Ts,\pi/\Ts]$の区間の端部付近で$F(\omega+2\pi/\Ts)$や$F(\omega-2\pi/\Ts)$が0でない値をとる。
         つまりサンプリングする前の連続時間信号には存在しなかった高周波成分が現れる。
         この現象を``Aliasing'' (エイリアシング)と呼ぶ。
@@ -207,9 +207,9 @@
                 &= \frac{1}{2i}\parens*{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)} - H(-\omega_0)\exp\parens*{-i(\omega_0\Ts n+\phi)}} \\
                 &= \frac{1}{2i}\parens*{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)} - \conj{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)}}} \\
                 &\phantom{=} \parens*{h(n)\in\realNumbers\text{なので}H(-\omega_0) = \conj{H(\omega_0)}} \\
-                &= \frac{1}{2i}2i\Im{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)}} \\
-                &= \Re{H(\omega_0)}\Im{\exp\parens*{i(\omega_0\Ts n+\phi)}} + \Im{H(\omega_0)}\Re{\exp\parens*{i(\omega_0\Ts n+\phi)}} \\
-                &= \Re{H(\omega_0)}\sin(\omega_0\Ts n+\phi) + \Im{H(\omega_0)}\cos(\omega_0\Ts n+\phi) \\
+                &= \frac{1}{2i}2i\Im\parens*{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)}} \\
+                &= \Re\parens*{H(\omega_0)}\Im\parens*{\exp\parens*{i(\omega_0\Ts n+\phi)}} + \Im\parens*{H(\omega_0)}\Re\parens*{\exp\parens*{i(\omega_0\Ts n+\phi)}} \\
+                &= \Re\parens*{H(\omega_0)}\sin(\omega_0\Ts n+\phi) + \Im\parens*{H(\omega_0)}\cos(\omega_0\Ts n+\phi) \\
                 &= |H(\omega)|\sin\parens*{\omega_0\Ts n+\phi + \Arg\parens*{H(\omega_0)}}
             \end{align*}
         \end{proof}
@@ -219,7 +219,7 @@
             \[ G(\omega) = H(\omega)F(\omega) = H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)} \]
             これを逆変換して
             \begin{align*}
-                g(n) &= \IDTFT{G}(n) \\
+                g(n) &= \IDTFT\parens*{G}(n) \\
                 &= \frac{\Ts}{2\pi}\integrate{-\pi/\Ts}{\pi/\Ts}{H(\omega)\frac{\pi}{\Ts i}\sum_{m\in\integers}\parens*{\NapierE^{i\phi}\delta(\omega-\omega_0 - 2\pi m/\Ts) - \NapierE^{-i\phi}\delta(\omega+\omega_0 - 2\pi m/\Ts)}\exp(i\omega\Ts n)}{}{\omega} \\
                 &= \frac{1}{2i}\parens*{H(\omega_0)\exp\parens*{i(\omega_0\Ts n+\phi)} - H(-\omega_0)\exp\parens*{-i(\omega_0\Ts n+\phi)}}
             \end{align*}
@@ -237,7 +237,7 @@
                 数列$\{X_n\}$のDTFTを$Y:\realNumbers\to\complexNumbers$とすると，$|Y(\omega)|^2/(N\sigma^2)$は$\chi_2^2$に従う。
             \end{shadebox}
             \begin{proof}
-                $[\Re{X_n}, \Im{X_n}]^\top \sim N(\bm{0}, \sigma I_2)$である。
+                $[\Re\parens*{X_n}, \Im\parens*{X_n}]^\top \sim N(\bm{0}, \sigma I_2)$である。
                 ここに$I_2$は2次の単位行列である。
                 $Y(\omega) = \sum_{n=0}^{N-1} X_n \NapierE^{-j\omega\Ts n}$
                 であるが，$X_n \NapierE^{-j\omega\Ts n}$は$X_n$を$-\omega\Ts n$だけ回転させたものであり，これもまた$N(\bm{0}, \sigma I_2)$に従う。

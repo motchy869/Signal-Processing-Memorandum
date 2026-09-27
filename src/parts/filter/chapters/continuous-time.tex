@@ -5,9 +5,9 @@
             \par
             系1は複素数値インパルス応答$h:\realNumbers\to\complexNumbers$をもつシステムである。
             入力信号$x:\realNumbers\to\complexNumbers$に対して出力信号$y:\realNumbers\to\complexNumbers$は$y = h*x$である。
-            $h$の実部と虚部をそれぞれ$h_\mathrm{R},h_\mathrm{I}$とすると$y = h_\mathrm{R}*\Re{x} - h_\mathrm{I}*\Im{x} + i(h_\mathrm{R}*\Im{x} + h_\mathrm{I}*\Re{x})$である。
+            $h$の実部と虚部をそれぞれ$h_\mathrm{R},h_\mathrm{I}$とすると$y = h_\mathrm{R}*\Re\parens*{x} - h_\mathrm{I}*\Im\parens*{x} + i(h_\mathrm{R}*\Im\parens*{x} + h_\mathrm{I}*\Re\parens*{x})$である。
             \par
             系2は実数値インパルス応答$\tilde{h}_\mathrm{R},\tilde{h}_\mathrm{I}:\realNumbers\to\realNumbers$を持つ2つの経路を持ち，その後段に実数値のゲイン$a_\mathrm{R},b_\mathrm{R},a_\mathrm{I},b_\mathrm{I}$がある。
-            入力信号$x:\realNumbers\to\complexNumbers$に対して出力信号$y:\realNumbers\to\complexNumbers$は$y = a_\mathrm{R}\tilde{h}_\mathrm{R}*\Re{x} + b_\mathrm{R}\tilde{h}_\mathrm{I}*\Im{x} + i(a_\mathrm{I}\tilde{h}_\mathrm{R}*\Re{x} + b_\mathrm{I}\tilde{h}_\mathrm{I}*\Im{x})$である。
+            入力信号$x:\realNumbers\to\complexNumbers$に対して出力信号$y:\realNumbers\to\complexNumbers$は$y = a_\mathrm{R}\tilde{h}_\mathrm{R}*\Re\parens*{x} + b_\mathrm{R}\tilde{h}_\mathrm{I}*\Im\parens*{x} + i(a_\mathrm{I}\tilde{h}_\mathrm{R}*\Re\parens*{x} + b_\mathrm{I}\tilde{h}_\mathrm{I}*\Im\parens*{x})$である。
             \par
             系2の方が系1よりも自由度が高いので，系1で系2を常には表現できない。

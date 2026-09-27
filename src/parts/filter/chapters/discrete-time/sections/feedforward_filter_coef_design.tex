@@ -19,7 +19,7 @@
                 $\bm{h} \coloneq [h_{-\Nm},h_{-\Nm+1},\dots,h_{\Np-1},h_\Np]^\top$として次式で定義される$H$と$\Hideal$の誤差2乗積分の評価関数
                 \[ J(\bm{h}) \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{H(\Omega)-\Hideal(\Omega)}^2}{}{\Omega} \tag{1} \]
                 の最小点$\vhOpt$の第$n\in\naturalNumbers\cup\{0\}$要素は次式である。
-                \[ \vhOpt[n] = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega} = \IDTFT{\Hideal}(n-\Nm) \]
+                \[ \vhOpt[n] = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega} = \IDTFT\parens*{\Hideal}(n-\Nm) \]
                 とくに$\Hideal$がHermite対称であるとき（実数値信号の周波数スペクトラム）は$\vhOpt\in\realNumbers^N$となる。
             \end{shadebox}
             \begin{proof}
@@ -29,12 +29,12 @@
                     &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\parens*{\sum_{k=-\Nm}^\Np h_k\NapierE^{-i\Omega k} -\Hideal(\Omega)}\parens*{\sum_{l=-\Nm}^\Np \conj{h_l}\NapierE^{i\Omega l} -\conj{\Hideal(\Omega)}}}{}{\Omega} \\
                     &= \frac{1}{2\pi}\sum_{k=-\Nm}^\Np\sum_{l=-\Nm}^\Np h_k\conj{h_l}\integrate{-\pi}{\pi}{\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega} \\
                     &\phantom{=}- \frac{1}{2\pi}\sum_{l=-\Nm}^\Np \conj{h_l}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega l}}{}{\Omega} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \\
-                    &= \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re{\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \tag{2}
+                    &= \norm{\bm{h}}_2^2 - \frac{1}{2\pi}2\Re\parens*{\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{\abs{\Hideal(\Omega)}^2}{}{\Omega} \tag{2}
                 \end{align*}
                 ここで$v_k\;(k=-\Nm,-\Nm+1,\dots,\Np)$を次式で定義し，$\bm{v}\coloneq[v_{-\Nm},v_{-\Nm+1},\dots,v_\Np]^\top$とする。
                 \[ v_n \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega n}}{}{\Omega} \]
                 式(2)の第3項は$\bm{h}$に依存しないので無視し，第2項までを取り出して次の評価関数を得る。
-                \[ J_2(\bm{h}) \coloneq \norm{\bm{h}}_2^2 - 2\Re{\bm{v}^*\bm{h}} = \norm{\bm{h} - \bm{v}}_2^2 - \norm{\bm{v}}_2^2 \]
+                \[ J_2(\bm{h}) \coloneq \norm{\bm{h}}_2^2 - 2\Re\parens*{\bm{v}^*\bm{h}} = \norm{\bm{h} - \bm{v}}_2^2 - \norm{\bm{v}}_2^2 \]
                 これの最小点が$\bm{v}$であるから主張が従う。
                 \newline
                 \par\noindent
@@ -43,7 +43,7 @@
                 式(3)に変数変換を施すと次式を得る。
                 \[ (3) = \integrate{0}{\pi}{\Hideal(-\Omega)\NapierE^{-i\Omega (n-\Nm)}}{}{\Omega} = \conj{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}} \]
                 よって次式を得る。
-                \[ \vhOpt[n] = \frac{1}{\pi}\Re{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}}\in\realNumbers \]
+                \[ \vhOpt[n] = \frac{1}{\pi}\Re\parens*{\integrate{0}{\pi}{\Hideal(\Omega)\NapierE^{i\Omega (n-\Nm)}}{}{\Omega}}\in\realNumbers \]
             \end{proof}
             \paragraph{因果的フィルタとして実現する方法}
                 \label{因果的フィルタとして実現する方法}
@@ -64,7 +64,7 @@
                 \[ \HidealNA(\Omega) = \Hideal(\Omega\fsamp/(2\pi)) \]
                 これに対して\ref{誤差の重みが一様である場合}の方法を適用すると次式が成り立つ。
                 \begin{align*}
-                    \vhOpt[n] &= \IDTFT{\HidealNA}(n-\Nm) = \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\IDTFT{\Omega\mapsto\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(n-\Nm) \\
+                    \vhOpt[n] &= \IDTFT\parens*{\HidealNA}(n-\Nm) = \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\IDTFT\parens*{\Omega\mapsto\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(n-\Nm) \\
                     &= \sum_{k=\kmin}^\kmax \Hideal(k\Delta f)\frac{1}{2\pi}\integrate{-\pi}{\pi}{\bracks*{\sinc\frac{\pi}{\Delta f}\parens*{\frac{\Omega\fsamp}{2\pi}-k\Delta f}}(\exp i\Omega(n-\Nm))}{}{\Omega}
                 \end{align*}
                 これは一般にはIDFTによる結果と一致しない。
@@ -86,7 +86,7 @@
                 式(1)と同じ要領で式変形を行うと次式を得る。
                 \begin{align*}
                     J(\bm{h}) &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\parens{H(\Omega)-\Hideal(\Omega)}\parens{\conj{H(\Omega)-\Hideal(\Omega)}}}{}{\Omega} \\
-                    &= \frac{1}{2\pi}\sum_{k=-\Nm}^\Np\sum_{l=-\Nm}^\Np h_k\conj{h_l}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}2\Re{\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{w(\Omega)\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} \\
+                    &= \frac{1}{2\pi}\sum_{k=-\Nm}^\Np\sum_{l=-\Nm}^\Np h_k\conj{h_l}\integrate{-\pi}{\pi}{w(\Omega)\NapierE^{i\Omega(l-k)}}{}{\Omega} - \frac{1}{2\pi}2\Re\parens*{\sum_{k=-\Nm}^\Np h_k\integrate{-\pi}{\pi}{w(\Omega)\conj{\Hideal(\Omega)}\NapierE^{-i\Omega k}}{}{\Omega}} \\
                     &\phantom{=} + \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\abs{\Hideal(\Omega)}^2}{}{\Omega}\tag{5}
                 \end{align*}
                 $N\times N$ Hermite対称行列$A$を，第$(l,k)$要素が次式で定義されるものとする。
@@ -94,11 +94,11 @@
                 また$v_n\;(n=-\Nm,-\Nm+1,\dots,\Np)$を次式で定義し，$\bm{v}\coloneq[v_{-\Nm},v_{-\Nm+1},\dots,v_\Np]^\top$とする。
                 \[ v_n \coloneq \frac{1}{2\pi}\integrate{-\pi}{\pi}{w(\Omega)\Hideal(\Omega)\NapierE^{i\Omega n}}{}{\Omega} \]
                 上記を式(5)に適用し，$\bm{h}$に依存しない項を無視すると次の評価関数を得る。
-                \[ J_2(\bm{h}) \coloneq \bm{h}^*A\bm{h} - 2\Re{\bm{v}^*\bm{h}} \]
+                \[ J_2(\bm{h}) \coloneq \bm{h}^*A\bm{h} - 2\Re\parens*{\bm{v}^*\bm{h}} \]
                 証明していないが$A$は正定であると期待され\footnote{$w$が偶関数であれば，区間$[-\pi,\pi]$に於ける$w$のFourier級数展開を考えると$A$が巡回行列となって固有値が容易に計算でき，正定性を示せるように思える。試してはない。}，以下ではそう仮定する。
                 すると$J_2(\bm{h})$は$\bm{h}$の狭義凸2次形式であり，最小点が存在する。
                 それは$\bm{h}$が微小量$\Delta\bm{h}$変化するときの$J_2$の増分$\Delta J_2(\bm{h})$が0となる$\bm{h}$である。
-                \[ \Delta J_2(\bm{h}) = \bm{h}^*A\Delta\bm{h} + \Delta\bm{h}^*A\bm{h} - 2\Re{\bm{v}^*\Delta\bm{h}} + \underset{\norm{\Delta\bm{h}}_2\to 0}{o}(\norm{\Delta\bm{h}}_2) = 2\Re{(\bm{h}^*A-\bm{v}^*)\Delta\bm{h}} \]
+                \[ \Delta J_2(\bm{h}) = \bm{h}^*A\Delta\bm{h} + \Delta\bm{h}^*A\bm{h} - 2\Re\parens*{\bm{v}^*\Delta\bm{h}} + \underset{\norm{\Delta\bm{h}}_2\to 0}{o}(\norm{\Delta\bm{h}}_2) = 2\Re\parens*{(\bm{h}^*A-\bm{v}^*)\Delta\bm{h}} \]
                 $\Delta J_2(\bm{h}) = 0\iff\bm{h} = A^{-1}\bm{v}$であるから主張が従う。
                 \newline
                 \par\noindent

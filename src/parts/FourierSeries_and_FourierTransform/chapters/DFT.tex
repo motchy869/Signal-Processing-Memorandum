@@ -19,7 +19,7 @@
         \end{shadebox}
         \begin{proof}
             \begin{align*}
-                2\Im{\DFTwithArg{f}{\bm{k}}} &= \DFTwithArg{f}{\bm{k}} - \conj{\DFTwithArg{f}{\bm{k}}} \\
+                2\Im\parens*{\DFTwithArg{f}{\bm{k}}} &= \DFTwithArg{f}{\bm{k}} - \conj{\DFTwithArg{f}{\bm{k}}} \\
                 &= \sum_{\bm{n}\in\Omega} \conj{W(\bm{k},\bm{n})}f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})\conj{f(\bm{n})}
             \end{align*}
             ここで$\bm{n}_\mathrm{M} \coloneq [N_1,\dots,N_d]^\top$とすると，
@@ -28,7 +28,7 @@
             \[ \conj{f(\bm{n})} = f(-\bm{n}) = f(\bm{n}_\mathrm{M}-\bm{n}) \]
             以上より
             \begin{align*}
-                2\Im{\DFTwithArg{f}{\bm{k}}} &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})f(\bm{n}_\mathrm{M}-\bm{n}) \\
+                2\Im\parens*{\DFTwithArg{f}{\bm{k}}} &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n} \in \Omega}W(\bm{k},\bm{n})f(\bm{n}_\mathrm{M}-\bm{n}) \\
                 &= \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) - \sum_{\bm{n}\in\Omega} W(\bm{k},\bm{n}_\mathrm{M}-\bm{n})f(\bm{n}) \\
                 &\phantom{=} (\{(\bm{n}, \bm{n}_\mathrm{M}-\bm{n}) | \bm{n}\in\Omega\} = \{(\bm{n}_\mathrm{M}-\bm{n}), \bm{n} | \bm{n}\in\Omega\}\text{を用いた}) \\
                 &= 0
@@ -93,7 +93,7 @@
         \end{proof}
     \section{GaussianノイズのDFT}
         \begin{shadebox}
-            $F(n) \in \complexNumbers\;(n=0,1,\dots,N-1)$は互いに独立で，複素正規分布$N(0,\sigma^2)$に従うとする$\parens*{\text{p}(f) = \frac{1}{2\pi\sigma^2}\exp\frac{-\Re{f}^2-\Im{f}^2}{2\sigma^2} = \frac{1}{2\pi\sigma^2}\exp\frac{-|f|^2}{2\sigma^2}}$。
+            $F(n) \in \complexNumbers\;(n=0,1,\dots,N-1)$は互いに独立で，複素正規分布$N(0,\sigma^2)$に従うとする$\parens*{\text{p}(f) = \frac{1}{2\pi\sigma^2}\exp\frac{-\Re\parens*{f}^2-\Im\parens*{f}^2}{2\sigma^2} = \frac{1}{2\pi\sigma^2}\exp\frac{-|f|^2}{2\sigma^2}}$。
             これのDFTを$G(k) = \DFTwithArg{F}{k}$とするとき，$G(k)\;(k=0,1,\dots,N-1)$もまた互いに独立で，複素正規分布$N(0,\sigma^2)$に従う。
         \end{shadebox}
         \begin{proof}
@@ -103,7 +103,7 @@
             \[ \bm{G} = P^*\bm{F} \]
             となる。
             \begin{align*}
-                \Pr{\bm{G} = \bm{g} \in \complexNumbers^N} &= \Pr{P^*\bm{F} = \bm{g}} = \Pr{\bm{F} = P\bm{g}} \\
+                \Pr\parens*{\bm{G} = \bm{g} \in \complexNumbers^N} &= \Pr\parens*{P^*\bm{F} = \bm{g}} = \Pr\parens*{\bm{F} = P\bm{g}} \\
                 &= \prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2} \exp\frac{-|(P\bm{g})[i]|^2}{2\sigma^2} = \parens*{\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}} \exp \sum_{i=0}^{N-1} \frac{-|(P\bm{g})[i]|^2}{2\sigma^2} \\
                 &= \parens*{\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}} \exp \frac{-\norm{P\bm{g}}_2^2}{2\sigma^2} = \parens*{\prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2}} \exp \frac{-\norm{\bm{g}}_2^2}{2\sigma^2} \\
                 &= \prod_{i=0}^{N-1}\frac{1}{2\pi\sigma^2} \exp \frac{-|g_i|^2}{2\sigma^2}
@@ -126,7 +126,7 @@
         \end{shadebox}
         \begin{proof}
             \begin{align*}
-                \XDTFT(F) &= \sum_{m=0}^{L-1}\IDFT{\XprdDFT}(m)\exp(-i 2\pi F m) \\
+                \XDTFT(F) &= \sum_{m=0}^{L-1}\IDFT\parens*{\XprdDFT}(m)\exp(-i 2\pi F m) \\
                 &= \sum_{m=0}^{L-1}\frac{1}{\sqrt{L}}\sum_{k=0}^{L-1}\XprdDFT(k)\parens*{\exp i\frac{m}{L}k 2\pi}\exp(-i 2\pi F m) \\
                 &= \frac{1}{\sqrt{L}}\sum_{k=0}^{L-1}\XprdDFT(k)\sum_{m=0}^{L-1}\exp i m(k/L-F)2\pi \tag{1}
             \end{align*}

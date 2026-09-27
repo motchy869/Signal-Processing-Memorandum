@@ -9,7 +9,7 @@
             台有界な離散時間信号$\xd:\integers\to\complexNumbers$のDTFTを$\XDTFT:\realNumbers\to\complexNumbers$とする。
             但し引数は正規化角周波数である。
             連続時間信号$\hat{x}:\realNumbers\to\realNumbers$を次式で定義する。
-            \[ \hat{x}(t)\coloneq\left.\IDTFT{\XDTFT}(n)\right|_{n\to t} = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\XDTFT(\Omega)\exp\parens*{i\Omega t}}{}{\Omega} = \sum_{m=-\infty}^\infty \xd(m)\sinc\pi(t-m) \]
+            \[ \hat{x}(t)\coloneq\left.\IDTFT\parens*{\XDTFT}(n)\right|_{n\to t} = \frac{1}{2\pi}\integrate{-\pi}{\pi}{\XDTFT(\Omega)\exp\parens*{i\Omega t}}{}{\Omega} = \sum_{m=-\infty}^\infty \xd(m)\sinc\pi(t-m) \]
             $\hat{x}$は全ての離散時刻に於いて$\xd$と一致する連続関数である。
             これは\ref{標本化定理の基本形}に於いて$F_1=1/2$とした場合の式と同じである。
             \par
@@ -136,14 +136,14 @@
             これは$t\in\integers$のとき$\xd(t)$と一致する（性質1）。
             特に$n\in\integers,\Delta t\in[0,1)$であるとき次式が成り立つ（性質2）。
             \begin{gather}
-                \hat{x}(n+\Delta t) = \parens*{\exp i\pi\frac{1-N}{N}n}\IDFT{\Xtilded}(n) \label{IDFT を用いた周期信号の補間>公式}\\
+                \hat{x}(n+\Delta t) = \parens*{\exp i\pi\frac{1-N}{N}n}\IDFT\parens*{\Xtilded}(n) \label{IDFT を用いた周期信号の補間>公式}\\
                 \text{where} \quad \Xtilded:k\in\integers\mapsto\XDTFT\parens*{\parens*{k-\frac{N-1}{2}}\%N}\bracks*{\exp i2\pi\frac{1}{N}\parens*{k-\frac{N-1}{2}}\Delta t} \nonumber
             \end{gather}
             $\Xtilded(k)\;(k=0,1,\dots,N-1)$は$O(N)$の計算量で用意できる。
             IDFTの部分はFFTを用いて（データ数が奇数なので亜種を使う）高速に計算できる。
         \subsection{式(1)を得る発想}
             一見すると，次の式に於いて単純に$n$を$t$に置き換えれば上手くいくように思える。
-            \[ \xd(n) = \IDFT{\XDTFT}(n) = \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}\XDTFT(k)\exp\parens*{i2\pi\frac{1}{N}kn} \]
+            \[ \xd(n) = \IDFT\parens*{\XDTFT}(n) = \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}\XDTFT(k)\exp\parens*{i2\pi\frac{1}{N}kn} \]
             しかしこれは失敗する。
             例えば$\xd$が実数値信号であるとき$\XDTFT$はHermite対称である($\XDTFT(-k)=\XDTFT(N-k)=\conj{\XDTFT(k)}$)。
             $t=n+\Delta t,n=\floor{t},\Delta t\in[0,1)$とすると$\xd(t)$は$k\mapsto\XDTFT(k)\exp i2\pi k\Delta t/N$のIDFTであるが，これは実数値ではなく，補間の結果として受け入れられない。
@@ -165,7 +165,7 @@
                     &= \frac{1}{\sqrt{N}}\sum_{k=-(N-1)/2}^{(N-1)/2}\XDTFT(k\%N)\parens*{\exp i2\pi\frac{1}{N}k\Delta t}\exp i2\pi\frac{1}{N}kn \\
                     &= \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}\XDTFT\parens*{\parens*{k-\frac{N-1}{2}}\%N}\bracks*{\exp i2\pi\frac{1}{N}\parens*{k-\frac{N-1}{2}}\Delta t}\exp i2\pi\frac{1}{N}\parens*{k-\frac{N-1}{2}}n \\
                     &= \parens*{\exp i\pi\frac{1-N}{N}n}\frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}\XDTFT\parens*{\parens*{k-\frac{N-1}{2}}\%N}\bracks*{\exp i2\pi\frac{1}{N}\parens*{k-\frac{N-1}{2}}\Delta t}\exp i2\pi\frac{1}{N}n \\
-                    &= \parens*{\exp i\pi\frac{1-N}{N}n}\IDFT{\Xtilded}(n)
+                    &= \parens*{\exp i\pi\frac{1-N}{N}n}\IDFT\parens*{\Xtilded}(n)
                 \end{align*}
             \end{proof}
         \subsection{数値例}

@@ -33,7 +33,7 @@
             定義の条件3の両辺を逆DTFTする。任意の整数$n$に対して次式が成り立つ。
             \begin{align*}
                 \text{RHS} &= \frac{1}{2\pi}\integrate{-\pi}{\pi}{\exp(i\Omega n)}{}{\Omega} \\
-                \text{LHS} &= \sum_{k=0}^{N-1} \IDTFT{\Omega\mapsto\HDTFT\parens*{\Omega-\frac{k}{N}2\pi}}(n) = \sum_{k=0}^{N-1} \IDTFT{\DTFT{m\mapsto h(m)\exp\parens*{i\frac{k}{N}2\pi m}}}(n) \\
+                \text{LHS} &= \sum_{k=0}^{N-1} \IDTFT\parens*{\Omega\mapsto\HDTFT\parens*{\Omega-\frac{k}{N}2\pi}}(n) = \sum_{k=0}^{N-1} \IDTFT\parens*{\DTFT\parens*{m\mapsto h(m)\exp\parens*{i\frac{k}{N}2\pi m}}}(n) \\
                 &= \sum_{k=0}^{N-1}h(n)\exp\parens*{i\frac{k}{N}2\pi n} = h(n)\sum_{k=0}^{N-1}\exp\parens*{i\frac{k}{N}2\pi n}
             \end{align*}
             上式に於いて$n=0$のときは$1 = Nh(0)$であるので，$h(0)=1/N$が従う。
