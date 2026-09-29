@@ -1,7 +1,9 @@
 # Signal Processing Memorandum
 
-This is my note for (mainly digital) signal processing.
-I hope this helps someones like students and engineers.
+This book is a collection of notes recording the conclusions I have reached regarding the problems I’ve been compelled to consider while working as a professional on radio-frequency (mainly digital) signal processing.
+I am publishing it in the hope that it may be of some use to students and professionals in science and engineering.
+I consider my mathematical ability to be quite ordinary, so this book likely contains many errors.
+Readers are advised to proceed with caution.
 
 ## 1. Definitions
 
