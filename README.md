@@ -27,6 +27,10 @@ We need to install [LaTeX Workshop](https://marketplace.visualstudio.com/items?i
 2. Open the command palette (Ctrl+Shift+P) and type "LaTeX Workshop: Build with recipe".
 3. Select "lualatex".
 
-   Don't worry. `./vscode/settings.json` is already configured to use `lualatex`. It is recommended to look at the settings and you will learn how this works.
+   Don't worry. `./.vscode/settings.json` is already configured to use `lualatex`. It is recommended to look at the settings and you will learn how this works.
 
 4. Wait for the build to finish.
+
+## 3. LaTeX style check
+
+see `<workspace directory>/.chktexrc`
