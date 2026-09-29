@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fixed:
+  - a typo in equation of NCO spurious frequencies
 - Added:
   - ~~interpolation for unequally-spaced samples~~
   - Rx IF signal
